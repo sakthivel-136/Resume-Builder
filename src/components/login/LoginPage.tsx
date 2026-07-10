@@ -367,16 +367,15 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* ===== Branded Footer with hidden easter egg acronym ===== */}
+        {/* ===== Minimalist Branded Footer with subtle color trick ===== */}
         <footer className={styles.footer}>
           <div className={styles.footerText}>
-            <span className={styles.secretLetter}>M</span>aking{' '}
-            <span className={styles.secretLetter}>E</span>xcellent{' '}
-            <span className={styles.secretLetter}>R</span>esumes{' '}
-            <span className={styles.secretLetter}>C</span>rafted for{' '}
-            <span className={styles.secretLetter}>Y</span>ou
-            <span className={styles.footerDivider}>|</span>
-            By <span className={styles.authorName}>SAKTHI</span>
+            <span className={styles.secretLetter}>M</span><span className={styles.normalLetters}>aking</span>{' '}
+            <span className={styles.secretLetter}>E</span><span className={styles.normalLetters}>xcellent</span>{' '}
+            <span className={styles.secretLetter}>R</span><span className={styles.normalLetters}>esumes</span>{' '}
+            <span className={styles.secretLetter}>C</span><span className={styles.normalLetters}>rafted for</span>{' '}
+            <span className={styles.secretLetter}>Y</span><span className={styles.normalLetters}>ou</span>{' '}
+            <span className={styles.creditAccent}>— By SAKTHI</span>
           </div>
         </footer>
       </div>

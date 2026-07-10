@@ -817,33 +817,23 @@
 }
 
 .footerText {
-  font-size: 12px;
-  font-weight: 400;
-  color: rgba(200, 205, 220, 0.45); /* Minimalistic gray */
+  font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.5px;
   text-align: center;
-  transition: color var(--transition-fast);
 }
 
 .secretLetter {
-  color: rgba(200, 205, 220, 0.45);
-  font-weight: 500;
-  transition: all var(--transition-fast);
+  color: #333333; /* Subtle dark charcoal grey */
 }
 
-/* Easter Egg: Gently highlight acronym letters in cyan on hover */
-.footerText:hover .secretLetter {
-  color: #4ecdc4;
-  text-shadow: 0 0 8px rgba(78, 205, 196, 0.55);
+.normalLetters {
+  color: #555555; /* Subtle slightly lighter grey */
 }
 
-.footerDivider {
-  margin: 0 12px;
-  color: rgba(255, 255, 255, 0.08);
-}
-
-.authorName {
-  font-weight: 600;
-  color: rgba(200, 205, 220, 0.65);
+.creditAccent {
+  color: var(--accent-primary); /* Primary purple accent to draw the eye */
+  font-weight: 700;
+  margin-left: 6px;
   letter-spacing: 1px;
 }
