@@ -196,10 +196,11 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                 verticalAlign: 'middle'
               }}
             >
-              {sIdx > 0 && (
+              <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>{v}</span>
+              {sIdx < allItems.length - 1 && (
                 <span 
                   style={{ 
-                    color: hColor, 
+                    color: state.bulletColor || hColor, 
                     marginLeft: '8px', 
                     marginRight: '8px', 
                     fontWeight: 'bold',
@@ -211,7 +212,6 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                   •
                 </span>
               )}
-              <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>{v}</span>
             </span>
           ))}
         </div>
