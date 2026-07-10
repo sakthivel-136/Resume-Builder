@@ -14,7 +14,7 @@ const PersonalInfoCard = () => {
 
   return (
     <Card title="Personal Information" collapsible>
-      <div className={styles.field}>
+      <div className={styles.field} style={{ marginBottom: '14px' }}>
         <label htmlFor="p-name">Full Name</label>
         <input
           id="p-name"
@@ -23,6 +23,7 @@ const PersonalInfoCard = () => {
           placeholder="e.g. Sakthi Vel C"
           value={state.name}
           onChange={(e) => handleChange('name', e.target.value)}
+          onFocus={(e) => e.target.select()}
         />
       </div>
 
@@ -35,6 +36,7 @@ const PersonalInfoCard = () => {
           placeholder="e.g. Python Full-Stack Developer"
           value={state.title}
           onChange={(e) => handleChange('title', e.target.value)}
+          onFocus={(e) => e.target.select()}
         />
       </div>
 
@@ -48,6 +50,7 @@ const PersonalInfoCard = () => {
             placeholder="e.g. +91 99999 99999"
             value={state.phone}
             onChange={(e) => handleChange('phone', e.target.value)}
+            onFocus={(e) => e.target.select()}
           />
         </div>
         <div className={styles.field}>
@@ -59,6 +62,7 @@ const PersonalInfoCard = () => {
             placeholder="e.g. c.sakthivel@gmail.com"
             value={state.email}
             onChange={(e) => handleChange('email', e.target.value)}
+            onFocus={(e) => e.target.select()}
           />
         </div>
       </div>
@@ -73,6 +77,7 @@ const PersonalInfoCard = () => {
             placeholder="e.g. linkedin.com/in/sakthivel"
             value={state.linkedin}
             onChange={(e) => handleChange('linkedin', e.target.value)}
+            onFocus={(e) => e.target.select()}
           />
         </div>
         <div className={styles.field}>
@@ -84,6 +89,7 @@ const PersonalInfoCard = () => {
             placeholder="e.g. github.com/sakthivel"
             value={state.github}
             onChange={(e) => handleChange('github', e.target.value)}
+            onFocus={(e) => e.target.select()}
           />
         </div>
       </div>
@@ -97,6 +103,7 @@ const PersonalInfoCard = () => {
           placeholder="e.g. sakthivel-blog.io"
           value={state.website}
           onChange={(e) => handleChange('website', e.target.value)}
+          onFocus={(e) => e.target.select()}
         />
       </div>
 

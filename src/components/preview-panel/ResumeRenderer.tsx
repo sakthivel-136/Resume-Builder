@@ -35,15 +35,27 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
   }, [onHeightChange, state]);
 
   const renderActiveTemplate = (isExport = false) => {
-    switch (state.tpl) {
+    const stateWithFallbacks = {
+      ...state,
+      name: state.name ? state.name.trim() : 'Sakthi Vel C',
+      title: state.title ? state.title.trim() : 'Python Full-Stack Developer',
+      phone: state.phone ? state.phone.trim() : '+91 99999 99999',
+      email: state.email ? state.email.trim() : 'hello@alexcarter.dev',
+      linkedin: state.linkedin ? state.linkedin.trim() : 'linkedin.com/in/sakthivel-c',
+      github: state.github ? state.github.trim() : 'github.com/alex-dev',
+      website: state.website ? state.website.trim() : 'sakthivel-blog.io',
+      summary: state.summary ? state.summary.trim() : 'Computer Science student and Python Full-Stack Developer specializing in Machine Learning and IoT, focusing on architecting secure, scalable systems. Proven expertise in building real-time AI applications with Gemini 1.5 Pro, FastAPI, and Next.js, while optimizing database performance and implementing robust encrypted data architectures for high-performance environments.'
+    };
+
+    switch (stateWithFallbacks.tpl) {
       case 1:
-        return <ClassicTemplate state={state} isExport={isExport} />;
+        return <ClassicTemplate state={stateWithFallbacks} isExport={isExport} />;
       case 2:
-        return <SidebarTemplate state={state} isExport={isExport} />;
+        return <SidebarTemplate state={stateWithFallbacks} isExport={isExport} />;
       case 3:
-        return <ModernTemplate state={state} isExport={isExport} />;
+        return <ModernTemplate state={stateWithFallbacks} isExport={isExport} />;
       default:
-        return <ClassicTemplate state={state} isExport={isExport} />;
+        return <ClassicTemplate state={stateWithFallbacks} isExport={isExport} />;
     }
   };
 
