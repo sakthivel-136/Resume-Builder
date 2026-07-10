@@ -5,6 +5,7 @@ import { useResume } from '@/context/ResumeContext';
 import ClassicTemplate from './templates/ClassicTemplate';
 import SidebarTemplate from './templates/SidebarTemplate';
 import ModernTemplate from './templates/ModernTemplate';
+import { SAMPLE_RESUME_DATA } from '@/data/defaultResume';
 
 interface ResumeRendererProps {
   onHeightChange?: (height: number) => void;
@@ -44,7 +45,14 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
       linkedin: state.linkedin ? state.linkedin.trim() : 'linkedin.com/in/sakthivel-c',
       github: state.github ? state.github.trim() : 'github.com/alex-dev',
       website: state.website ? state.website.trim() : 'sakthivel-blog.io',
-      summary: state.summary ? state.summary.trim() : 'Computer Science student and Python Full-Stack Developer specializing in Machine Learning and IoT, focusing on architecting secure, scalable systems. Proven expertise in building real-time AI applications with Gemini 1.5 Pro, FastAPI, and Next.js, while optimizing database performance and implementing robust encrypted data architectures for high-performance environments.'
+      summary: state.summary ? state.summary.trim() : 'Computer Science student and Python Full-Stack Developer specializing in Machine Learning and IoT, focusing on architecting secure, scalable systems. Proven expertise in building real-time AI applications with Gemini 1.5 Pro, FastAPI, and Next.js, while optimizing database performance and implementing robust encrypted data architectures for high-performance environments.',
+      
+      // List fallbacks
+      education: (state.education && state.education.length > 0 && state.education[0].school.trim()) ? state.education : SAMPLE_RESUME_DATA.education,
+      skillGroups: (state.skillGroups && state.skillGroups.length > 0 && state.skillGroups[0].category.trim()) ? state.skillGroups : SAMPLE_RESUME_DATA.skillGroups,
+      experience: (state.experience && state.experience.length > 0) ? state.experience : SAMPLE_RESUME_DATA.experience,
+      projects: (state.projects && state.projects.length > 0) ? state.projects : SAMPLE_RESUME_DATA.projects,
+      achievements: (state.achievements && state.achievements.length > 0) ? state.achievements : SAMPLE_RESUME_DATA.achievements,
     };
 
     switch (stateWithFallbacks.tpl) {
