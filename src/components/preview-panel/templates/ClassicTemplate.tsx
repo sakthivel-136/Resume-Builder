@@ -188,11 +188,30 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           }}
         >
           {allItems.map((v, sIdx) => (
-            <span key={sIdx} style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
+            <span 
+              key={sIdx} 
+              style={{ 
+                whiteSpace: 'nowrap', 
+                display: 'inline-block',
+                verticalAlign: 'middle'
+              }}
+            >
               {sIdx > 0 && (
-                <span style={{ color: hColor, marginLeft: '8px', marginRight: '8px', fontWeight: 'bold' }}>•</span>
+                <span 
+                  style={{ 
+                    color: hColor, 
+                    marginLeft: '8px', 
+                    marginRight: '8px', 
+                    fontWeight: 'bold',
+                    display: 'inline-block',
+                    verticalAlign: 'middle',
+                    lineHeight: 1
+                  }}
+                >
+                  •
+                </span>
               )}
-              {v}
+              <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>{v}</span>
             </span>
           ))}
         </div>
