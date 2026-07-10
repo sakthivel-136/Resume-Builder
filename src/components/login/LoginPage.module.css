@@ -803,3 +803,61 @@
   text-transform: uppercase;
   margin-top: 1px;
 }
+
+/* ===== Typography Footer ===== */
+.footer {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  width: 100%;
+  animation: fadeUp 600ms ease 550ms both;
+}
+
+.acronymWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+  row-gap: 8px;
+}
+
+.acronymWord {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.giantLetter {
+  font-size: 24px;
+  font-weight: 800;
+  color: #4ecdc4; /* Cyan/Teal accent color */
+  text-shadow: 0 0 12px rgba(78, 205, 196, 0.4);
+  letter-spacing: -0.5px;
+}
+
+.smallLetters {
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(200, 205, 220, 0.55);
+  letter-spacing: 0.5px;
+  margin-left: 1px;
+  text-transform: lowercase;
+}
+
+.footerCredit {
+  font-size: 11px;
+  color: rgba(200, 205, 220, 0.4);
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.authorName {
+  font-weight: 600;
+  color: #6c63ff; /* Purple accent */
+  text-shadow: 0 0 10px rgba(108, 99, 255, 0.3);
+  letter-spacing: 1.5px;
+}
