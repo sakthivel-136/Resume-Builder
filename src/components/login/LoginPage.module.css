@@ -832,7 +832,7 @@
 }
 
 .creditAccent {
-  color: var(--accent-primary); /* Primary purple accent to draw the eye */
+  color: #d4af37; /* Premium Gold Accent */
   font-weight: 700;
   margin-left: 6px;
   letter-spacing: 1px;
