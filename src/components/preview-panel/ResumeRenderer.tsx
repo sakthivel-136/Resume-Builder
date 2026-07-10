@@ -36,9 +36,22 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
   }, [onHeightChange, state]);
 
   const renderActiveTemplate = (isExport = false) => {
-    // If the user has entered their name, they are creating their own resume.
-    // We clear the visual sample fallbacks for any remaining empty fields so they don't have to manually delete or add spaces.
-    const hasStartedEditing = !!(state.name && state.name.trim());
+    // Determine if the loaded profile is the default demo sample
+    const isSampleProfile = state.profileName === 'Sample Resume';
+
+    // We disable fallbacks entirely if:
+    // 1. This is a user-created profile (not the preloaded "Sample Resume").
+    // 2. Or, if they have started customizing the "Sample Resume" profile by typing in ANY personal details field.
+    const hasStartedEditing = !isSampleProfile || !!(
+      (state.name && state.name.trim()) ||
+      (state.title && state.title.trim()) ||
+      (state.phone && state.phone.trim()) ||
+      (state.email && state.email.trim()) ||
+      (state.linkedin && state.linkedin.trim()) ||
+      (state.github && state.github.trim()) ||
+      (state.website && state.website.trim()) ||
+      (state.summary && state.summary.trim())
+    );
 
     const stateWithFallbacks = {
       ...state,
