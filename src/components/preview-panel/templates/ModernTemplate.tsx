@@ -423,7 +423,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
       <div 
         className={styles.leftCol}
         style={{ 
-          padding: `0px ${state.sbPad}px 0px ${state.sbPad}px`,
+          padding: `${state.mT}px ${state.sbPad}px ${state.mB}px ${state.sbPad}px`,
           background: state.leftBg,
           borderColor: hColor
         }}
@@ -453,7 +453,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
       <div 
         className={styles.rightCol}
         style={{ 
-          padding: `${isExport ? 0 : state.mT}px ${state.mR}px ${isExport ? 0 : state.mB}px ${state.mainPad}px`,
+          padding: `${state.mT}px ${state.mR}px ${state.mB}px ${state.mainPad}px`,
           background: state.bgColor,
           color: state.tColor
         }}
