@@ -1,6 +1,6 @@
 'use client';
 
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useResume } from '@/context/ResumeContext';
 import { useToast } from '@/context/ToastContext';
 import Button from '@/components/ui/Button';
@@ -17,6 +17,7 @@ interface ToolbarProps {
 const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, onToggleTab }: ToolbarProps) => {
   const { state, dispatch } = useResume();
   const { addToast } = useToast();
+  const [showBackupPrompt, setShowBackupPrompt] = useState(false);
 
   // Zoom options
   const handleZoomOut = () => {
@@ -67,6 +68,11 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
         // Run generator
         await html2pdf().set(opt).from(element).save();
         addToast('PDF downloaded successfully!', 'success');
+
+        // Show backup prompt modal after 3.5 seconds
+        setTimeout(() => {
+          setShowBackupPrompt(true);
+        }, 3500);
 
         // Increment global PDF download counter
         await fetch('/api/counter', { method: 'POST' }).catch((err) =>
@@ -234,6 +240,110 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
       >
         💡 <strong>Auto Fit:</strong> Fills spacing to exactly one A4 page. <strong>PDF Export:</strong> Custom breaks avoided dynamically. Use <strong>Ctrl+P</strong> shortcut.
       </div>
+
+      {showBackupPrompt && (
+        <div 
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'rgba(3, 7, 18, 0.75)',
+            backdropFilter: 'blur(8px)',
+          }}
+        >
+          <div 
+            style={{
+              background: 'var(--bg-secondary)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              borderRadius: 'var(--radius-lg)',
+              padding: '30px',
+              maxWidth: '440px',
+              width: '90%',
+              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(108, 99, 255, 0.1)',
+              fontFamily: 'inherit',
+            }}
+          >
+            <h3 
+              style={{
+                fontSize: '18px',
+                fontWeight: 700,
+                color: 'var(--text-primary)',
+                margin: '0 0 12px 0',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              💾 Save a Local Backup!
+            </h3>
+            <p 
+              style={{
+                fontSize: '13px',
+                color: 'var(--text-secondary)',
+                lineHeight: '1.6',
+                margin: '0 0 20px 0',
+              }}
+            >
+              To safeguard your data against browser cache clearing or to edit your resume on another device, kindly please download the JSON formatted backup file also!
+            </p>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button
+                onClick={() => {
+                  const jsonStr = JSON.stringify(state, null, 2);
+                  const blob = new Blob([jsonStr], { type: 'application/json' });
+                  const url = URL.createObjectURL(blob);
+                  const link = document.createElement('a');
+                  link.href = url;
+                  link.download = `resume-${state.profileName.replace(/\s+/g, '-').toLowerCase()}-backup.json`;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  URL.revokeObjectURL(url);
+                  addToast('JSON backup downloaded successfully!', 'success');
+                  setShowBackupPrompt(false);
+                }}
+                style={{
+                  flex: 1,
+                  background: '#ffd700',
+                  color: '#030712',
+                  border: 'none',
+                  padding: '10px 16px',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: '13px',
+                  fontWeight: 750,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.filter = 'brightness(1.15)')}
+                onMouseOut={(e) => (e.currentTarget.style.filter = 'none')}
+              >
+                Download JSON Backup
+              </button>
+              <button
+                onClick={() => setShowBackupPrompt(false)}
+                style={{
+                  background: 'var(--bg-tertiary)',
+                  color: 'var(--text-primary)',
+                  border: '1px solid var(--border)',
+                  padding: '10px 16px',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.background = 'var(--border)')}
+                onMouseOut={(e) => (e.currentTarget.style.background = 'var(--bg-tertiary)')}
+              >
+                No, thanks
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
