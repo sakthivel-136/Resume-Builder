@@ -61,7 +61,7 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
             useCORS: true, 
             logging: false
           },
-          jsPDF: { unit: 'px', format: [794, 1128] as [number, number], hotfixes: ['px_scaling'] },
+          jsPDF: { unit: 'px', format: [794, 1123] as [number, number], hotfixes: ['px_scaling'] },
           pagebreak: { mode: ['css', 'legacy'] }
         };
 

@@ -89,30 +89,10 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
     '--p-sec-sp': `${state.secSp}px`,
   } as React.CSSProperties;
 
-  const usableHeight = 1123 - state.mT - state.mB;
-  const pageCount = Math.max(1, Math.ceil((contentHeight - 15) / usableHeight));
+  const pageCount = Math.max(1, Math.ceil(contentHeight / 1123));
 
   return (
-    <div id="resume-content" style={{ position: 'relative' }}>
-      {/* Off-screen Measurement Container (Invisible) */}
-      <div 
-        ref={measureRef}
-        id="resume-measure"
-        style={{
-          ...cssVarsStyle,
-          width: '794px',
-          height: 'auto',
-          position: 'absolute',
-          top: '-9999px',
-          left: '-9999px',
-          visibility: 'hidden',
-          pointerEvents: 'none',
-          boxSizing: 'border-box',
-        }}
-      >
-        {renderActiveTemplate(true)}
-      </div>
-
+    <div id="resume-content-wrapper" style={{ position: 'relative' }}>
       {/* Off-screen Export Container (Always 100% scale, page-split, for html2pdf capture) */}
       <div style={{ position: 'absolute', top: '-9999px', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden', pointerEvents: 'none' }}>
         <div 
@@ -121,7 +101,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
             ...cssVarsStyle,
             position: 'relative',
             width: '794px',
-            height: `${pageCount * usableHeight}px`,
+            height: `${pageCount * 1123}px`,
             background: state.bgColor || '#ffffff',
             boxSizing: 'border-box',
             fontFamily: state.bFont,
@@ -129,7 +109,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
             color: state.tColor,
           }}
         >
-          {renderActiveTemplate()}
+          {renderActiveTemplate(true)}
         </div>
       </div>
 
@@ -138,7 +118,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
         id="resume-content"
         style={{
           width: '794px',
-          height: `${pageCount * usableHeight}px`,
+          height: `${pageCount * 1123}px`,
           background: state.bgColor || '#ffffff',
           boxShadow: '0 4px 24px rgba(20, 30, 50, 0.12)',
           position: 'relative',
@@ -149,8 +129,11 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           color: state.tColor,
         }}
       >
-        <div style={{ ...cssVarsStyle, width: '100%', height: '100%', boxSizing: 'border-box' }}>
-          {renderActiveTemplate()}
+        <div 
+          ref={measureRef} 
+          style={{ ...cssVarsStyle, width: '100%', height: 'auto', boxSizing: 'border-box' }}
+        >
+          {renderActiveTemplate(false)}
         </div>
 
         {/* Page Break Indicators */}
@@ -161,7 +144,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
               key={i}
               style={{
                 position: 'absolute',
-                top: `${state.mT + i * usableHeight}px`,
+                top: `${i * 1123}px`,
                 left: 0,
                 right: 0,
                 height: '0px',
