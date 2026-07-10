@@ -33,7 +33,10 @@ export const metadata: Metadata = {
   title: 'Resume Builder Pro',
   description:
     'Create stunning, ATS-optimized resumes with multiple templates, real-time preview, and PDF export. Free and open-source.',
-  icons: { icon: '/favicon.ico' },
+  icons: {
+    icon: '/tgs-logo.png',
+    apple: '/tgs-logo.png',
+  },
 };
 
 export default function RootLayout({

@@ -149,9 +149,11 @@ export default function LoginPage() {
         {/* Header / Branding */}
         <header className={styles.header}>
           <div className={styles.logo}>
-            <div className={styles.logoIcon}>
-              <DocIcon />
-            </div>
+            <img
+              src="/tgs-logo.png"
+              alt="TGS Logo"
+              className={styles.logoImg}
+            />
           </div>
           <h1 className={styles.title}>Resume Builder Pro</h1>
           <p className={styles.subtitle}>
@@ -319,6 +321,10 @@ export default function LoginPage() {
                 <div className={styles.importStep}>
                   <span className={styles.importBadge}>Tip</span>
                   Use <b>Duplicate Profile</b> to create multiple resume versions for different job roles without starting over!
+                </div>
+                <div className={styles.importStep + ' ' + styles.importWarning}>
+                  <span className={styles.importBadgeWarn}>⚠️ Warning</span>
+                  <span><b>Clearing browser cache will delete all your resume data!</b> Before clearing cache or switching devices, always click <b>Export JSON</b> to download a backup of your resume first.</span>
                 </div>
               </div>
             </div>
