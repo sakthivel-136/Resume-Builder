@@ -191,10 +191,18 @@ export function createSampleResume(): ResumeData {
     github: '',
     website: '',
     summary: '',
-    education: [],
-    skillGroups: [],
-    experience: [],
-    projects: [],
-    achievements: [],
+    education: [
+      { id: generateId(), degree: '', school: '', dates: '', gpa: '' }
+    ],
+    skillGroups: [
+      { id: generateId(), category: '', values: '' }
+    ],
+    experience: [
+      { id: generateId(), role: '', company: '', dates: '', points: [''] }
+    ],
+    projects: [
+      { id: generateId(), name: '', tech: '', dates: '', points: [''] }
+    ],
+    achievements: [''],
   };
 }

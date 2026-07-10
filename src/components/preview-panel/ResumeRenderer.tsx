@@ -48,11 +48,11 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
       summary: state.summary ? state.summary.trim() : 'Computer Science student and Python Full-Stack Developer specializing in Machine Learning and IoT, focusing on architecting secure, scalable systems. Proven expertise in building real-time AI applications with Gemini 1.5 Pro, FastAPI, and Next.js, while optimizing database performance and implementing robust encrypted data architectures for high-performance environments.',
       
       // List fallbacks
-      education: (state.education && state.education.length > 0 && state.education[0].school.trim()) ? state.education : SAMPLE_RESUME_DATA.education,
-      skillGroups: (state.skillGroups && state.skillGroups.length > 0 && state.skillGroups[0].category.trim()) ? state.skillGroups : SAMPLE_RESUME_DATA.skillGroups,
-      experience: (state.experience && state.experience.length > 0) ? state.experience : SAMPLE_RESUME_DATA.experience,
-      projects: (state.projects && state.projects.length > 0) ? state.projects : SAMPLE_RESUME_DATA.projects,
-      achievements: (state.achievements && state.achievements.length > 0) ? state.achievements : SAMPLE_RESUME_DATA.achievements,
+      education: (state.education && state.education.length > 0 && state.education[0].school?.trim()) ? state.education : SAMPLE_RESUME_DATA.education,
+      skillGroups: (state.skillGroups && state.skillGroups.length > 0 && (state.skillGroups[0].category?.trim() || state.skillGroups[0].values?.trim())) ? state.skillGroups : SAMPLE_RESUME_DATA.skillGroups,
+      experience: (state.experience && state.experience.length > 0 && (state.experience[0].company?.trim() || state.experience[0].role?.trim())) ? state.experience : SAMPLE_RESUME_DATA.experience,
+      projects: (state.projects && state.projects.length > 0 && state.projects[0].name?.trim()) ? state.projects : SAMPLE_RESUME_DATA.projects,
+      achievements: (state.achievements && state.achievements.length > 0 && state.achievements[0]?.trim()) ? state.achievements : SAMPLE_RESUME_DATA.achievements,
     };
 
     switch (stateWithFallbacks.tpl) {
