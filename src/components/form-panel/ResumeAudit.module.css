@@ -1,0 +1,154 @@
+/* ===== Resume Health Audit CSS modules ===== */
+
+.auditContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 4px 0;
+}
+
+/* Gauge block styling */
+.gaugeBlock {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+
+.gaugeMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.gaugeText {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.gaugeStatus {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.progressBar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.4s ease-in-out;
+}
+
+/* Gauge status colors */
+.healthGreen {
+  color: var(--success);
+  background-color: var(--success);
+  box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+}
+
+.healthYellow {
+  color: var(--warning, #b6863c);
+  background-color: var(--warning, #b6863c);
+  box-shadow: 0 0 10px rgba(182, 134, 60, 0.3);
+}
+
+.healthRed {
+  color: var(--danger);
+  background-color: var(--danger);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+/* Issues row styling */
+.issuesList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.issueRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  line-height: 1.45;
+  transition: background-color var(--transition-fast);
+}
+
+.issueCritical {
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.12);
+  color: #ff8585;
+}
+
+.issueWarning {
+  background: rgba(182, 134, 60, 0.04);
+  border: 1px solid rgba(182, 134, 60, 0.1);
+  color: #ffdfa9;
+}
+
+.issueIcon {
+  flex-shrink: 0;
+  font-size: 14px;
+  margin-top: 1px;
+}
+
+.issueMessage {
+  flex: 1;
+}
+
+/* Perfect State */
+.perfectState {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(78, 205, 196, 0.06);
+  border: 1px solid rgba(78, 205, 196, 0.2);
+  border-radius: var(--radius-md);
+}
+
+.perfectIcon {
+  font-size: 20px;
+}
+
+.perfectTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--success);
+  margin-bottom: 4px;
+}
+
+.perfectDesc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* Success Summary */
+.successSummary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  margin-top: 4px;
+}
+
+.successIcon {
+  font-size: 14px;
+}

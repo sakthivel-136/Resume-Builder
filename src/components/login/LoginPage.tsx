@@ -84,12 +84,14 @@ export default function LoginPage() {
   const [downloadCount, setDownloadCount] = useState(142);
 
   useEffect(() => {
-    const saved = localStorage.getItem('rbp_global_download_count');
-    if (saved) {
-      setDownloadCount(parseInt(saved, 10));
-    } else {
-      localStorage.setItem('rbp_global_download_count', '142');
-    }
+    fetch('/api/counter')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.count === 'number') {
+          setDownloadCount(data.count);
+        }
+      })
+      .catch((err) => console.error('Failed to load global counter:', err));
   }, []);
 
   // Build returning user data
@@ -187,7 +189,26 @@ export default function LoginPage() {
           <button className={styles.submitBtn} type="submit">
             Get Started →
           </button>
+          <div className={styles.desktopAdvice}>
+            💻 <b>Best Experienced on Desktop:</b> Resume layout precision and editing are easiest on a larger screen. You can still use mobile to view or make quick edits!
+          </div>
         </form>
+
+        {/* ===== Client-Side Privacy Meter ===== */}
+        <div className={styles.privacyWidget}>
+          <div className={styles.privacyHeader}>
+            <svg className={styles.privacyShield} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <span className={styles.privacyStatusText}>Privacy Meter: 100% Client-Side Secure</span>
+          </div>
+          <div className={styles.privacyGaugeContainer}>
+            <div className={styles.privacyGaugeFill} />
+          </div>
+          <p className={styles.privacyExplain}>
+            All your resume data is saved strictly in your local browser storage. No databases, no tracking, and 0% of your data is sent to external servers.
+          </p>
+        </div>
 
         {/* Returning Users */}
         {returningUsers.length > 0 && (

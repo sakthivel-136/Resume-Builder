@@ -59,6 +59,18 @@
   border-color: rgba(255, 255, 255, 0.12);
 }
 
+.selectedItem {
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 10px rgba(108, 99, 255, 0.4);
+  background: rgba(108, 99, 255, 0.05) !important;
+  animation: pulseSelection 1.5s infinite alternate;
+}
+
+@keyframes pulseSelection {
+  0% { border-color: rgba(108, 99, 255, 0.4); }
+  100% { border-color: rgba(108, 99, 255, 1); }
+}
+
 .sectionNameInput {
   flex: 1;
   background: none;

@@ -99,58 +99,10 @@ function BuilderContent() {
         {/* Tab view screen */}
         <div style={{ flex: 1, overflow: 'hidden', display: 'flex' }}>
           {activeTab === 'edit' ? (
-            <FormPanel />
+            <FormPanel onToggleTab={setActiveTab} />
           ) : (
-            <PreviewPanel />
+            <PreviewPanel onToggleTab={setActiveTab} />
           )}
-        </div>
-
-        {/* Bottom tab switcher bar */}
-        <div 
-          style={{ 
-            height: '56px', 
-            background: 'var(--bg-secondary)', 
-            borderTop: '1px solid var(--border)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-around',
-            zIndex: 100
-          }}
-        >
-          <button
-            onClick={() => setActiveTab('edit')}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: activeTab === 'edit' ? 'var(--accent-primary)' : 'var(--text-secondary)',
-              fontSize: '12px',
-              fontWeight: 700,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            ✏️ Edit Inputs
-          </button>
-          <button
-            onClick={() => setActiveTab('preview')}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: activeTab === 'preview' ? 'var(--accent-primary)' : 'var(--text-secondary)',
-              fontSize: '12px',
-              fontWeight: 700,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            👁️ Preview & PDF
-          </button>
         </div>
       </div>
     );

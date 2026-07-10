@@ -11,9 +11,10 @@ interface ToolbarProps {
   setZoom: (val: number | 'fit') => void;
   isExporting: boolean;
   setIsExporting: (val: boolean) => void;
+  onToggleTab?: (tab: 'edit' | 'preview') => void;
 }
 
-const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting }: ToolbarProps) => {
+const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, onToggleTab }: ToolbarProps) => {
   const { state, dispatch } = useResume();
   const { addToast } = useToast();
 
@@ -68,9 +69,9 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting }: 
         addToast('PDF downloaded successfully!', 'success');
 
         // Increment global PDF download counter
-        const curCount = localStorage.getItem('rbp_global_download_count');
-        const nextCount = curCount ? parseInt(curCount, 10) + 1 : 143;
-        localStorage.setItem('rbp_global_download_count', nextCount.toString());
+        await fetch('/api/counter', { method: 'POST' }).catch((err) =>
+          console.error('Failed to increment global counter:', err)
+        );
       } catch (err) {
         console.error(err);
         addToast('Failed to export PDF', 'error');
@@ -130,6 +131,24 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting }: 
         padding: '12px 16px'
       }}
     >
+      {onToggleTab && (
+        <div style={{ display: 'flex', background: 'var(--bg-tertiary)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', padding: '3px', width: '100%', marginBottom: '4px' }}>
+          <button 
+            type="button"
+            style={{ flex: 1, background: 'none', border: 'none', color: 'var(--text-secondary)', fontSize: '11.5px', fontWeight: 700, padding: '8px 12px', cursor: 'pointer', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
+            onClick={() => onToggleTab('edit')}
+          >
+            ✏️ Edit Inputs
+          </button>
+          <button 
+            type="button"
+            style={{ flex: 1, background: 'var(--bg-primary)', border: 'none', color: 'var(--accent-primary)', fontSize: '11.5px', fontWeight: 700, padding: '8px 12px', cursor: 'default', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)' }}
+            disabled
+          >
+            👁️ Preview &amp; PDF
+          </button>
+        </div>
+      )}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
         {/* Status indicator */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12.5px', color: 'var(--text-secondary)' }}>

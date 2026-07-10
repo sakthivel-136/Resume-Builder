@@ -71,7 +71,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
   } as React.CSSProperties;
 
   const usableHeight = 1123 - state.mT - state.mB;
-  const pageCount = Math.max(1, Math.ceil(contentHeight / usableHeight));
+  const pageCount = Math.max(1, Math.ceil((contentHeight - 15) / usableHeight));
 
   return (
     <div id="resume-content" style={{ position: 'relative' }}>

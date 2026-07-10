@@ -245,6 +245,21 @@
   box-shadow: 0 2px 8px rgba(108, 99, 255, 0.2);
 }
 
+.desktopAdvice {
+  margin-top: 14px;
+  font-size: 11px;
+  color: rgba(200, 205, 220, 0.6);
+  line-height: 1.45;
+  text-align: center;
+  border-top: 1px dashed rgba(255, 255, 255, 0.06);
+  padding-top: 10px;
+}
+
+.desktopAdvice b {
+  color: #4ecdc4;
+  font-weight: 600;
+}
+
 /* --- Returning Users Section --- */
 .returningSection {
   width: 100%;
@@ -675,6 +690,77 @@
 
 .quickRefItem span {
   font-size: 15px;
+}
+
+/* ===== Privacy Meter styles ===== */
+.privacyWidget {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  animation: fadeUp 600ms ease 200ms both;
+}
+
+.privacyHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.privacyShield {
+  width: 18px;
+  height: 18px;
+  color: #4ecdc4;
+  filter: drop-shadow(0 2px 6px rgba(78, 205, 196, 0.4));
+  animation: pulseShield 2s infinite alternate;
+}
+
+@keyframes pulseShield {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+.privacyStatusText {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e8eaf0;
+  letter-spacing: 0.1px;
+}
+
+.privacyGaugeContainer {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.privacyGaugeFill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #6c63ff, #4ecdc4);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(78, 205, 196, 0.6);
+  transform-origin: left;
+  animation: fillGauge 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fillGauge {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+.privacyExplain {
+  font-size: 11px;
+  color: rgba(200, 205, 220, 0.72);
+  line-height: 1.5;
+  margin: 0;
 }
 
 @media (max-width: 600px) {

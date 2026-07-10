@@ -1,19 +1,38 @@
 'use client';
 
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import Toolbar from './Toolbar';
 import ATSScoreBar from './ATSScoreBar';
 import PageInfoBar from './PageInfoBar';
 import ResumeRenderer from './ResumeRenderer';
 import styles from './PreviewPanel.module.css';
 
-const PreviewPanel = () => {
+interface PreviewPanelProps {
+  onToggleTab?: (tab: 'edit' | 'preview') => void;
+}
+
+const PreviewPanel = ({ onToggleTab }: PreviewPanelProps) => {
   const [contentHeight, setContentHeight] = useState(1123);
   const [zoom, setZoom] = useState<number | 'fit'>('fit');
   const [isExporting, setIsExporting] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(1200);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const getZoomScale = () => {
-    if (zoom === 'fit') return 0.82; // Comfortable fitting scale
+    if (zoom === 'fit') {
+      if (windowWidth < 1024) {
+        const padding = 24;
+        const availableWidth = windowWidth - padding;
+        return Math.min(0.82, availableWidth / 794);
+      }
+      return 0.82; // Comfortable fitting scale
+    }
     return zoom;
   };
 
@@ -31,6 +50,7 @@ const PreviewPanel = () => {
           setZoom={setZoom} 
           isExporting={isExporting}
           setIsExporting={setIsExporting}
+          onToggleTab={onToggleTab}
         />
 
         {/* ATS incompatibility scoring */}

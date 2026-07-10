@@ -2,6 +2,7 @@
 
 import React, { memo, useState } from 'react';
 import { useResume } from '@/context/ResumeContext';
+import { useToast } from '@/context/ToastContext';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Modal from '@/components/ui/Modal';
@@ -27,16 +28,17 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-/* ===== Sortable Section Row Component ===== */
 interface SortableSectionProps {
   id: string;
   name: string;
   visible: boolean;
   isCustom: boolean;
   isPinned?: boolean;
+  isSelected?: boolean;
   onToggleVis: (key: string) => void;
   onRename: (key: string, name: string) => void;
   onDeleteCustom: (key: string) => void;
+  onClick?: () => void;
 }
 
 const SortableSectionItem = ({
@@ -45,9 +47,11 @@ const SortableSectionItem = ({
   visible,
   isCustom,
   isPinned,
+  isSelected,
   onToggleVis,
   onRename,
   onDeleteCustom,
+  onClick,
 }: SortableSectionProps) => {
   const {
     attributes,
@@ -66,7 +70,12 @@ const SortableSectionItem = ({
   };
 
   return (
-    <div ref={setNodeRef} style={style} className={styles.sectionItem}>
+    <div 
+      ref={setNodeRef} 
+      style={style} 
+      className={`${styles.sectionItem} ${isSelected ? styles.selectedItem : ''}`}
+      onClick={isPinned ? undefined : onClick}
+    >
       {isPinned ? (
         <div className={styles.actionBtn} style={{ cursor: 'default' }} title="Pinned Section">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -75,7 +84,7 @@ const SortableSectionItem = ({
           </svg>
         </div>
       ) : (
-        <div {...attributes} {...listeners} className={styles.dragHandle} title="Drag to reorder section">
+        <div {...attributes} {...listeners} className={styles.dragHandle} title="Drag to reorder section" onClick={(e) => e.stopPropagation()}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="9" cy="5" r="1" />
             <circle cx="15" cy="5" r="1" />
@@ -92,13 +101,17 @@ const SortableSectionItem = ({
         type="text"
         value={name}
         onChange={(e) => onRename(id, e.target.value)}
+        onClick={(e) => e.stopPropagation()}
         disabled={isPinned}
       />
 
-      <div className={styles.actions}>
+      <div className={styles.actions} onClick={(e) => e.stopPropagation()}>
         <button
           type="button"
-          onClick={() => onToggleVis(id)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleVis(id);
+          }}
           className={`${styles.actionBtn} ${visible ? styles.actionBtnActive : ''}`}
           title={visible ? 'Hide section' : 'Show section'}
         >
@@ -118,7 +131,10 @@ const SortableSectionItem = ({
         {isCustom && (
           <button
             type="button"
-            onClick={() => onDeleteCustom(id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDeleteCustom(id);
+            }}
             className={`${styles.actionBtn} ${styles.delBtn}`}
             title="Delete custom section"
           >
@@ -151,7 +167,9 @@ const DroppableZone = ({ id, children }: DroppableZoneProps) => {
 /* ===== Main SectionManager Component ===== */
 const SectionManager = () => {
   const { state, dispatch } = useResume();
+  const { addToast } = useToast();
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [selectedSectionId, setSelectedSectionId] = useState<string | null>(null);
   const [customName, setCustomName] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
@@ -190,6 +208,68 @@ const SectionManager = () => {
 
   // Helper to check if a section is custom
   const isCustomSection = (key: string) => key.startsWith('custom_');
+
+  // Handle mobile click-to-swap fallback
+  const handleSectionClick = (id: string) => {
+    if (!selectedSectionId) {
+      setSelectedSectionId(id);
+      addToast(`Selected "${state.secNames[id] || id}". Tap another section to swap positions!`, 'info');
+    } else {
+      if (selectedSectionId === id) {
+        setSelectedSectionId(null);
+        addToast('Selection cleared', 'info');
+        return;
+      }
+
+      if (state.tpl === 1) {
+        const order = [...state.sectionOrder];
+        const idx1 = order.indexOf(selectedSectionId);
+        const idx2 = order.indexOf(id);
+        if (idx1 !== -1 && idx2 !== -1) {
+          order[idx1] = id;
+          order[idx2] = selectedSectionId;
+          dispatch({ type: 'REORDER_SECTIONS', order });
+          addToast('Sections swapped successfully!', 'success');
+        }
+      } else {
+        const container1 = findContainer(selectedSectionId);
+        const container2 = findContainer(id);
+
+        if (container1 && container2) {
+          let sidebar = [...state.sidebarSections];
+          let main = [...state.mainSections];
+
+          if (container1 === container2) {
+            const arr = container1 === 'sidebar' ? sidebar : main;
+            const idx1 = arr.indexOf(selectedSectionId);
+            const idx2 = arr.indexOf(id);
+            if (idx1 !== -1 && idx2 !== -1) {
+              arr[idx1] = id;
+              arr[idx2] = selectedSectionId;
+            }
+          } else {
+            const idx1 = sidebar.indexOf(selectedSectionId);
+            const idx2 = main.indexOf(id);
+            if (idx1 !== -1 && idx2 !== -1) {
+              sidebar[idx1] = id;
+              main[idx2] = selectedSectionId;
+            } else {
+              const idx3 = sidebar.indexOf(id);
+              const idx4 = main.indexOf(selectedSectionId);
+              if (idx3 !== -1 && idx4 !== -1) {
+                sidebar[idx3] = selectedSectionId;
+                main[idx4] = id;
+              }
+            }
+          }
+
+          dispatch({ type: 'SET_ZONES', sidebar, main });
+          addToast('Sections swapped successfully!', 'success');
+        }
+      }
+      setSelectedSectionId(null);
+    }
+  };
 
   // Drag handlers
   const handleDragStart = (event: DragStartEvent) => {
@@ -303,9 +383,11 @@ const SectionManager = () => {
                     name={state.secNames[key] || key}
                     visible={!!state.secVis[key]}
                     isCustom={isCustomSection(key)}
+                    isSelected={selectedSectionId === key}
                     onToggleVis={handleToggleVis}
                     onRename={handleRename}
                     onDeleteCustom={handleDeleteCustom}
+                    onClick={() => handleSectionClick(key)}
                   />
                 ))}
               </div>
@@ -344,9 +426,11 @@ const SectionManager = () => {
                         name={state.secNames[key] || key}
                         visible={!!state.secVis[key]}
                         isCustom={isCustomSection(key)}
+                        isSelected={selectedSectionId === key}
                         onToggleVis={handleToggleVis}
                         onRename={handleRename}
                         onDeleteCustom={handleDeleteCustom}
+                        onClick={() => handleSectionClick(key)}
                       />
                     ))}
                     {state.sidebarSections.length === 0 && (
@@ -373,9 +457,11 @@ const SectionManager = () => {
                         name={state.secNames[key] || key}
                         visible={!!state.secVis[key]}
                         isCustom={isCustomSection(key)}
+                        isSelected={selectedSectionId === key}
                         onToggleVis={handleToggleVis}
                         onRename={handleRename}
                         onDeleteCustom={handleDeleteCustom}
+                        onClick={() => handleSectionClick(key)}
                       />
                     ))}
                     {state.mainSections.length === 0 && (

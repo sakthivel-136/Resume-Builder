@@ -34,8 +34,13 @@ import TypographyControls from './TypographyControls';
 import LayoutControls from './LayoutControls';
 import PhotoControls from './PhotoControls';
 import SectionManager from './SectionManager';
+import ResumeAudit from './ResumeAudit';
 
-const FormPanel = () => {
+interface FormPanelProps {
+  onToggleTab?: (tab: 'edit' | 'preview') => void;
+}
+
+const FormPanel = ({ onToggleTab }: FormPanelProps) => {
   const { user, logout } = useAuth();
   const { state, dispatch, canUndo, canRedo } = useResume();
   const undo = () => dispatch({ type: 'UNDO' });
@@ -308,6 +313,25 @@ const FormPanel = () => {
               style={{ display: 'none' }}
             />
           </div>
+          
+          {onToggleTab && (
+            <div className={styles.mobileToggleWrapper}>
+              <button 
+                className={`${styles.mobileToggleBtn} ${styles.mobileToggleBtnActive}`}
+                disabled
+                type="button"
+              >
+                ✏️ Edit Inputs
+              </button>
+              <button 
+                className={styles.mobileToggleBtn} 
+                onClick={() => onToggleTab('preview')}
+                type="button"
+              >
+                👁️ Preview &amp; PDF
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Auto save indicator status */}
@@ -319,6 +343,7 @@ const FormPanel = () => {
 
       {/* Main scrollable inputs */}
       <div className={styles.scrollArea}>
+        <ResumeAudit />
         <TemplateSelector />
         <PaletteSelector />
         <PersonalInfoCard />
