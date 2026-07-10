@@ -367,32 +367,16 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* ===== Branded Footer with custom visual acronym ===== */}
+        {/* ===== Branded Footer with hidden easter egg acronym ===== */}
         <footer className={styles.footer}>
-          <div className={styles.acronymWrapper}>
-            <span className={styles.acronymWord}>
-              <span className={styles.giantLetter}>M</span>
-              <span className={styles.smallLetters}>aking</span>
-            </span>
-            <span className={styles.acronymWord}>
-              <span className={styles.giantLetter}>E</span>
-              <span className={styles.smallLetters}>xcellent</span>
-            </span>
-            <span className={styles.acronymWord}>
-              <span className={styles.giantLetter}>R</span>
-              <span className={styles.smallLetters}>esumes</span>
-            </span>
-            <span className={styles.acronymWord}>
-              <span className={styles.giantLetter}>C</span>
-              <span className={styles.smallLetters}>rafted for</span>
-            </span>
-            <span className={styles.acronymWord}>
-              <span className={styles.giantLetter}>Y</span>
-              <span className={styles.smallLetters}>ou</span>
-            </span>
-          </div>
-          <div className={styles.footerCredit}>
-            — By <span className={styles.authorName}>SAKTHI</span>
+          <div className={styles.footerText}>
+            <span className={styles.secretLetter}>M</span>aking{' '}
+            <span className={styles.secretLetter}>E</span>xcellent{' '}
+            <span className={styles.secretLetter}>R</span>esumes{' '}
+            <span className={styles.secretLetter}>C</span>rafted for{' '}
+            <span className={styles.secretLetter}>Y</span>ou
+            <span className={styles.footerDivider}>|</span>
+            By <span className={styles.authorName}>SAKTHI</span>
           </div>
         </footer>
       </div>
