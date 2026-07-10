@@ -180,8 +180,10 @@ export const SAMPLE_RESUME_DATA = {
 };
 
 export function createSampleResume(): ResumeData {
+  const base = createDefaultResume();
   return {
-    ...createDefaultResume(),
+    ...base,
+    profileId: 'sample-profile',
     profileName: 'Sample Resume',
     name: '',
     title: '',
