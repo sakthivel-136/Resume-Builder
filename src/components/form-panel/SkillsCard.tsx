@@ -145,6 +145,12 @@ const SkillsCard = () => {
     })
   );
 
+  React.useEffect(() => {
+    if ((state.tpl === 2 || state.tpl === 3) && state.skillMode === 'pills') {
+      dispatch({ type: 'SET_FIELD', field: 'skillMode', value: 'text' });
+    }
+  }, [state.tpl, state.skillMode, dispatch]);
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (over && active.id !== over.id) {
@@ -175,13 +181,17 @@ const SkillsCard = () => {
     dispatch({ type: 'SET_FIELD', field: 'skillMode', value: mode });
   };
 
+  const allowedModes = (state.tpl === 2 || state.tpl === 3)
+    ? (['text', 'bullets'] as const)
+    : (['text', 'pills', 'bullets'] as const);
+
   return (
     <Card title={state.secNames.skills || "Technical Skills"} collapsible>
       {/* Display Mode Selector */}
       <div className={styles.field} style={{ marginBottom: '16px' }}>
         <label>Display Style</label>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginTop: '6px' }}>
-          {(['text', 'pills', 'bullets'] as const).map((m) => (
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${allowedModes.length}, 1fr)`, gap: '8px', marginTop: '6px' }}>
+          {allowedModes.map((m) => (
             <button
               key={m}
               type="button"
@@ -206,41 +216,64 @@ const SkillsCard = () => {
         </div>
       </div>
 
-      <DndContext
-        id="skills-dnd"
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext
-          items={state.skillGroups.map((s) => s.id)}
-          strategy={verticalListSortingStrategy}
-        >
-          <div>
-            {state.skillGroups.map((item, idx) => (
-              <SortableSkillGroup
-                key={item.id}
-                id={item.id}
-                index={idx}
-                category={item.category}
-                values={item.values}
-                onRemove={handleRemove}
-                onUpdate={handleUpdate}
-              />
-            ))}
+      {state.skillMode === 'pills' ? (
+        <div className={styles.entry}>
+          <div className={styles.field}>
+            <label style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>SKILLS (COMMA-SEPARATED)</label>
+            <textarea
+              className={styles.textarea}
+              placeholder="e.g. Python, SQL, FastAPI, Flask, Next.js"
+              value={state.skillGroups[0]?.values || ''}
+              onChange={(e) => {
+                if (state.skillGroups.length === 0) {
+                  dispatch({ type: 'ADD_SKILL_GROUP' });
+                }
+                handleUpdate(0, 'values', e.target.value);
+              }}
+              rows={4}
+              style={{ minHeight: '80px', marginTop: '6px' }}
+            />
           </div>
-        </SortableContext>
-      </DndContext>
+        </div>
+      ) : (
+        <>
+          <DndContext
+            id="skills-dnd"
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={state.skillGroups.map((s) => s.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              <div>
+                {state.skillGroups.map((item, idx) => (
+                  <SortableSkillGroup
+                    key={item.id}
+                    id={item.id}
+                    index={idx}
+                    category={item.category}
+                    values={item.values}
+                    onRemove={handleRemove}
+                    onUpdate={handleUpdate}
+                  />
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
 
-      <Button
-        type="button"
-        variant="secondary"
-        onClick={handleAdd}
-        fullWidth
-        className={styles.addBtn}
-      >
-        + Add Skill Category
-      </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={handleAdd}
+            fullWidth
+            className={styles.addBtn}
+          >
+            + Add Skill Category
+          </Button>
+        </>
+      )}
     </Card>
   );
 };
