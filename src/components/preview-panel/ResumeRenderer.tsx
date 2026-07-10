@@ -89,7 +89,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
     '--p-sec-sp': `${state.secSp}px`,
   } as React.CSSProperties;
 
-  const pageCount = Math.max(1, Math.ceil(contentHeight / 1123));
+  const pageCount = Math.max(1, Math.ceil((contentHeight + 6) / 1123));
 
   return (
     <div id="resume-content-wrapper" style={{ position: 'relative' }}>
@@ -109,7 +109,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
             color: state.tColor,
           }}
         >
-          {renderActiveTemplate(true)}
+          {renderActiveTemplate(false)}
         </div>
       </div>
 

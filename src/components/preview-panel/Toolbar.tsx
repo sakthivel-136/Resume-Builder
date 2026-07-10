@@ -53,7 +53,7 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
         
         // Configure export settings
         const opt = {
-          margin: [state.mT, 0, state.mB, 0] as [number, number, number, number],
+          margin: 0,
           filename: `${state.name.replace(/\s+/g, '_').toLowerCase() || 'resume'}_cv.pdf`,
           image: { type: 'jpeg' as const, quality: 0.98 },
           html2canvas: { 
