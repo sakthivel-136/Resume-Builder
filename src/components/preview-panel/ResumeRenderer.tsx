@@ -36,23 +36,37 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
   }, [onHeightChange, state]);
 
   const renderActiveTemplate = (isExport = false) => {
+    // If the user has entered their name, they are creating their own resume.
+    // We clear the visual sample fallbacks for any remaining empty fields so they don't have to manually delete or add spaces.
+    const hasStartedEditing = !!(state.name && state.name.trim());
+
     const stateWithFallbacks = {
       ...state,
-      name: state.name ? state.name.trim() : 'Sakthi Vel C',
-      title: state.title ? state.title.trim() : 'Python Full-Stack Developer',
-      phone: state.phone ? state.phone.trim() : '+91 99999 99999',
-      email: state.email ? state.email.trim() : 'hello@alexcarter.dev',
-      linkedin: state.linkedin ? state.linkedin.trim() : 'linkedin.com/in/sakthivel-c',
-      github: state.github ? state.github.trim() : 'github.com/alex-dev',
-      website: state.website ? state.website.trim() : 'sakthivel-blog.io',
-      summary: state.summary ? state.summary.trim() : 'Computer Science student and Python Full-Stack Developer specializing in Machine Learning and IoT, focusing on architecting secure, scalable systems. Proven expertise in building real-time AI applications with Gemini 1.5 Pro, FastAPI, and Next.js, while optimizing database performance and implementing robust encrypted data architectures for high-performance environments.',
+      name: hasStartedEditing ? state.name.trim() : 'Sakthi Vel C',
+      title: hasStartedEditing ? (state.title ? state.title.trim() : '') : (state.title ? state.title.trim() : 'Python Full-Stack Developer'),
+      phone: hasStartedEditing ? (state.phone ? state.phone.trim() : '') : (state.phone ? state.phone.trim() : '+91 99999 99999'),
+      email: hasStartedEditing ? (state.email ? state.email.trim() : '') : (state.email ? state.email.trim() : 'hello@alexcarter.dev'),
+      linkedin: hasStartedEditing ? (state.linkedin ? state.linkedin.trim() : '') : (state.linkedin ? state.linkedin.trim() : 'linkedin.com/in/sakthivel-c'),
+      github: hasStartedEditing ? (state.github ? state.github.trim() : '') : (state.github ? state.github.trim() : 'github.com/alex-dev'),
+      website: hasStartedEditing ? (state.website ? state.website.trim() : '') : (state.website ? state.website.trim() : 'sakthivel-blog.io'),
+      summary: hasStartedEditing ? (state.summary ? state.summary.trim() : '') : (state.summary ? state.summary.trim() : 'Computer Science student and Python Full-Stack Developer specializing in Machine Learning and IoT, focusing on architecting secure, scalable systems. Proven expertise in building real-time AI applications with Gemini 1.5 Pro, FastAPI, and Next.js, while optimizing database performance and implementing robust encrypted data architectures for high-performance environments.'),
       
-      // List fallbacks
-      education: (state.education && state.education.length > 0 && state.education[0].school?.trim()) ? state.education : SAMPLE_RESUME_DATA.education,
-      skillGroups: (state.skillGroups && state.skillGroups.length > 0 && (state.skillGroups[0].category?.trim() || state.skillGroups[0].values?.trim())) ? state.skillGroups : SAMPLE_RESUME_DATA.skillGroups,
-      experience: (state.experience && state.experience.length > 0 && (state.experience[0].company?.trim() || state.experience[0].role?.trim())) ? state.experience : SAMPLE_RESUME_DATA.experience,
-      projects: (state.projects && state.projects.length > 0 && state.projects[0].name?.trim()) ? state.projects : SAMPLE_RESUME_DATA.projects,
-      achievements: (state.achievements && state.achievements.length > 0 && state.achievements[0]?.trim()) ? state.achievements : SAMPLE_RESUME_DATA.achievements,
+      // List fallbacks: if editing has started, don't show list fallbacks unless they contain real user entries
+      education: hasStartedEditing
+        ? ((state.education && state.education.length > 0 && state.education[0].school?.trim()) ? state.education : [])
+        : ((state.education && state.education.length > 0 && state.education[0].school?.trim()) ? state.education : SAMPLE_RESUME_DATA.education),
+      skillGroups: hasStartedEditing
+        ? ((state.skillGroups && state.skillGroups.length > 0 && (state.skillGroups[0].category?.trim() || state.skillGroups[0].values?.trim())) ? state.skillGroups : [])
+        : ((state.skillGroups && state.skillGroups.length > 0 && (state.skillGroups[0].category?.trim() || state.skillGroups[0].values?.trim())) ? state.skillGroups : SAMPLE_RESUME_DATA.skillGroups),
+      experience: hasStartedEditing
+        ? ((state.experience && state.experience.length > 0 && (state.experience[0].company?.trim() || state.experience[0].role?.trim())) ? state.experience : [])
+        : ((state.experience && state.experience.length > 0 && (state.experience[0].company?.trim() || state.experience[0].role?.trim())) ? state.experience : SAMPLE_RESUME_DATA.experience),
+      projects: hasStartedEditing
+        ? ((state.projects && state.projects.length > 0 && state.projects[0].name?.trim()) ? state.projects : [])
+        : ((state.projects && state.projects.length > 0 && state.projects[0].name?.trim()) ? state.projects : SAMPLE_RESUME_DATA.projects),
+      achievements: hasStartedEditing
+        ? ((state.achievements && state.achievements.length > 0 && state.achievements[0]?.trim()) ? state.achievements : [])
+        : ((state.achievements && state.achievements.length > 0 && state.achievements[0]?.trim()) ? state.achievements : SAMPLE_RESUME_DATA.achievements),
     };
 
     switch (stateWithFallbacks.tpl) {
