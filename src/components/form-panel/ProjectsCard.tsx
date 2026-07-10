@@ -73,6 +73,23 @@ const SortableBulletPoint = ({
         placeholder="Describe a key aspect of this project..."
         value={value}
         onChange={(e) => onUpdatePoint(projIndex, pointIndex, e.target.value)}
+        onFocus={(e) => {
+          const defaults = [
+            'Architected a full-stack verification system with Role-Based Access Control (RBAC) and real-time monitoring.',
+            'Optimized database queries reducing response time by 40% for high-concurrency environments.',
+            'Deployed and hosted the system in production for Pentagon Garments; actively used by the company for real-world security monitoring.',
+            'Awarded a certification by Pentagon Garments for successful project completion and live deployment.',
+            'Engineering a PSTN-based platform using Gemini 1.5 Pro to convert offline voice calls into structured digital reports.',
+            'Implementing speech recognition and automated intent detection to classify and escalate grievances to authorities.',
+            'Developed a predictive alert system using Random Forest to detect health risks and HVAC inefficiencies.',
+            'Presented research findings at the ICASET-2026 International Conference in Chennai.'
+          ];
+          if (defaults.includes(e.target.value)) {
+            onUpdatePoint(projIndex, pointIndex, '');
+          } else {
+            e.target.select();
+          }
+        }}
       />
       <button
         type="button"
@@ -186,7 +203,18 @@ const SortableProjectEntry = ({
             placeholder="e.g. DigiSphere"
             value={name}
             onChange={(e) => onUpdate(index, 'name', e.target.value)}
-            onFocus={(e) => e.target.select()}
+            onFocus={(e) => {
+              const defaults = [
+                'DigiSphere',
+                'KURAL – AI Voice-Based Grievance Redressal System',
+                'IoT Smart Air Quality & Climate Monitoring System'
+              ];
+              if (defaults.includes(e.target.value)) {
+                onUpdate(index, 'name', '');
+              } else {
+                e.target.select();
+              }
+            }}
           />
         </div>
         <div className={styles.field}>
@@ -197,7 +225,14 @@ const SortableProjectEntry = ({
             placeholder="e.g. July 2026"
             value={dates}
             onChange={(e) => onUpdate(index, 'dates', e.target.value)}
-            onFocus={(e) => e.target.select()}
+            onFocus={(e) => {
+              const defaults = ['July 2026', 'Oct 2025 – Present', 'Nov 2025'];
+              if (defaults.includes(e.target.value)) {
+                onUpdate(index, 'dates', '');
+              } else {
+                e.target.select();
+              }
+            }}
           />
         </div>
       </div>
@@ -210,7 +245,18 @@ const SortableProjectEntry = ({
           placeholder="e.g. FastAPI, Next.js, PostgreSQL, JWT"
           value={tech}
           onChange={(e) => onUpdate(index, 'tech', e.target.value)}
-          onFocus={(e) => e.target.select()}
+          onFocus={(e) => {
+            const defaults = [
+              'FastAPI, Next.js, PostgreSQL, JWT',
+              'Gemini 1.5 Pro, PSTN',
+              'ESP32, Random Forest'
+            ];
+            if (defaults.includes(e.target.value)) {
+              onUpdate(index, 'tech', '');
+            } else {
+              e.target.select();
+            }
+          }}
         />
       </div>
 

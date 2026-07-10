@@ -32,6 +32,14 @@ const SummaryCard = () => {
           placeholder="Describe your professional background, key skills, and career achievements..."
           value={state.summary}
           onChange={handleChange}
+          onFocus={(e) => {
+            const sampleSummary = 'Computer Science student and Python Full-Stack Developer specializing in Machine Learning and IoT, focusing on architecting secure, scalable systems. Proven expertise in building real-time AI applications with Gemini 1.5 Pro, FastAPI, and Next.js, while optimizing database performance and implementing robust encrypted data architectures for high-performance environments.';
+            if (e.target.value === sampleSummary) {
+              dispatch({ type: 'SET_FIELD', field: 'summary', value: '' });
+            } else {
+              e.target.select();
+            }
+          }}
           rows={4}
           style={{ minHeight: '80px', overflowY: 'hidden' }}
         />

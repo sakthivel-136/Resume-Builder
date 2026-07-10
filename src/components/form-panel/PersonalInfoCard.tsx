@@ -23,7 +23,13 @@ const PersonalInfoCard = () => {
           placeholder="e.g. Sakthi Vel C"
           value={state.name}
           onChange={(e) => handleChange('name', e.target.value)}
-          onFocus={(e) => e.target.select()}
+          onFocus={(e) => {
+            if (e.target.value === 'Sakthi Vel C') {
+              handleChange('name', '');
+            } else {
+              e.target.select();
+            }
+          }}
         />
       </div>
 
@@ -36,7 +42,13 @@ const PersonalInfoCard = () => {
           placeholder="e.g. Python Full-Stack Developer"
           value={state.title}
           onChange={(e) => handleChange('title', e.target.value)}
-          onFocus={(e) => e.target.select()}
+          onFocus={(e) => {
+            if (e.target.value === 'Python Full-Stack Developer') {
+              handleChange('title', '');
+            } else {
+              e.target.select();
+            }
+          }}
         />
       </div>
 
@@ -50,7 +62,13 @@ const PersonalInfoCard = () => {
             placeholder="e.g. +91 99999 99999"
             value={state.phone}
             onChange={(e) => handleChange('phone', e.target.value)}
-            onFocus={(e) => e.target.select()}
+            onFocus={(e) => {
+              if (e.target.value === '+91 99999 99999') {
+                handleChange('phone', '');
+              } else {
+                e.target.select();
+              }
+            }}
           />
         </div>
         <div className={styles.field}>
@@ -62,7 +80,13 @@ const PersonalInfoCard = () => {
             placeholder="e.g. c.sakthivel@gmail.com"
             value={state.email}
             onChange={(e) => handleChange('email', e.target.value)}
-            onFocus={(e) => e.target.select()}
+            onFocus={(e) => {
+              if (e.target.value === 'hello@alexcarter.dev') {
+                handleChange('email', '');
+              } else {
+                e.target.select();
+              }
+            }}
           />
         </div>
       </div>
@@ -77,7 +101,13 @@ const PersonalInfoCard = () => {
             placeholder="e.g. linkedin.com/in/sakthivel"
             value={state.linkedin}
             onChange={(e) => handleChange('linkedin', e.target.value)}
-            onFocus={(e) => e.target.select()}
+            onFocus={(e) => {
+              if (e.target.value === 'linkedin.com/in/sakthivel-c') {
+                handleChange('linkedin', '');
+              } else {
+                e.target.select();
+              }
+            }}
           />
         </div>
         <div className={styles.field}>
@@ -89,7 +119,13 @@ const PersonalInfoCard = () => {
             placeholder="e.g. github.com/sakthivel"
             value={state.github}
             onChange={(e) => handleChange('github', e.target.value)}
-            onFocus={(e) => e.target.select()}
+            onFocus={(e) => {
+              if (e.target.value === 'github.com/alex-dev') {
+                handleChange('github', '');
+              } else {
+                e.target.select();
+              }
+            }}
           />
         </div>
       </div>
@@ -103,7 +139,13 @@ const PersonalInfoCard = () => {
           placeholder="e.g. sakthivel-blog.io"
           value={state.website}
           onChange={(e) => handleChange('website', e.target.value)}
-          onFocus={(e) => e.target.select()}
+          onFocus={(e) => {
+            if (e.target.value === 'sakthivel-blog.io') {
+              handleChange('website', '');
+            } else {
+              e.target.select();
+            }
+          }}
         />
       </div>
 

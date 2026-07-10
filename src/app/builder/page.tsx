@@ -18,6 +18,7 @@ function BuilderContent() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit');
   const [isMobile, setIsMobile] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   // Check viewport width for responsive tabs
   useEffect(() => {
@@ -27,6 +28,14 @@ function BuilderContent() {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Show onboarding popup if the user hasn't seen it yet
+    const seen = localStorage.getItem('has_seen_onboarding');
+    if (!seen) {
+      setShowOnboarding(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -80,6 +89,85 @@ function BuilderContent() {
     }
   });
 
+  const renderOnboardingModal = () => {
+    if (!showOnboarding) return null;
+    return (
+      <div 
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'rgba(3, 7, 18, 0.75)',
+          backdropFilter: 'blur(8px)',
+        }}
+      >
+        <div 
+          style={{
+            background: 'var(--bg-secondary)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '30px',
+            maxWidth: '440px',
+            width: '90%',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(108, 99, 255, 0.1)',
+            fontFamily: 'inherit',
+          }}
+        >
+          <h3 
+            style={{
+              fontSize: '18px',
+              fontWeight: 700,
+              color: 'var(--text-primary)',
+              margin: '0 0 12px 0',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+            }}
+          >
+            <span style={{ fontSize: '20px' }}>🚀</span> Welcome to Resume Builder Pro!
+          </h3>
+          <p 
+            style={{
+              fontSize: '13px',
+              color: 'var(--text-secondary)',
+              lineHeight: '1.6',
+              margin: '0 0 20px 0',
+            }}
+          >
+            We've preloaded a sample template to help you see how the resume looks.
+            <br /><br />
+            <b>💡 Tip:</b> To maintain your own resume details, create a personal version by clicking <b>"Create New Profile"</b> in the top-left section manager. This saves your personal CV data under your own private profile!
+          </p>
+          <button
+            onClick={() => {
+              localStorage.setItem('has_seen_onboarding', 'true');
+              setShowOnboarding(false);
+            }}
+            style={{
+              width: '100%',
+              background: 'var(--accent-primary)',
+              color: '#ffffff',
+              border: 'none',
+              padding: '10px 16px',
+              borderRadius: 'var(--radius-sm)',
+              fontSize: '13px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.filter = 'brightness(1.15)')}
+            onMouseOut={(e) => (e.currentTarget.style.filter = 'none')}
+          >
+            Got it, let's build!
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   if (loading) {
     return (
       <div 
@@ -111,6 +199,7 @@ function BuilderContent() {
             <PreviewPanel onToggleTab={setActiveTab} />
           )}
         </div>
+        {renderOnboardingModal()}
       </div>
     );
   }
@@ -127,6 +216,7 @@ function BuilderContent() {
     >
       <FormPanel />
       <PreviewPanel />
+      {renderOnboardingModal()}
     </div>
   );
 }

@@ -73,6 +73,19 @@ const SortableBulletPoint = ({
         placeholder="Describe a key achievement or responsibility..."
         value={value}
         onChange={(e) => onUpdatePoint(expIndex, pointIndex, e.target.value)}
+        onFocus={(e) => {
+          const defaults = [
+            'Developed a secure verification system with RESTful APIs and JWT authentication for real-time security monitoring.',
+            'Independently built and deployed the DigiSphere system into production for the company, currently in active daily use by their security staff.',
+            'Received a certification from Pentagon Garments for successful completion and real-world deployment of the project.',
+            'Developed and deployed predictive Machine Learning models using XGBoost and Random Forest to enhance system accuracy and project performance.'
+          ];
+          if (defaults.includes(e.target.value)) {
+            onUpdatePoint(expIndex, pointIndex, '');
+          } else {
+            e.target.select();
+          }
+        }}
       />
       <button
         type="button"
@@ -186,7 +199,14 @@ const SortableExperienceEntry = ({
             placeholder="e.g. Software Developer Intern"
             value={role}
             onChange={(e) => onUpdate(index, 'role', e.target.value)}
-            onFocus={(e) => e.target.select()}
+            onFocus={(e) => {
+              const defaults = ['Software Developer Intern', 'Machine Learning Intern'];
+              if (defaults.includes(e.target.value)) {
+                onUpdate(index, 'role', '');
+              } else {
+                e.target.select();
+              }
+            }}
           />
         </div>
         <div className={styles.field}>
@@ -197,7 +217,14 @@ const SortableExperienceEntry = ({
             placeholder="e.g. Dec 2025 – Jun 2026"
             value={dates}
             onChange={(e) => onUpdate(index, 'dates', e.target.value)}
-            onFocus={(e) => e.target.select()}
+            onFocus={(e) => {
+              const defaults = ['Dec 2025 – Jun 2026', 'June 2025 – Nov 2025'];
+              if (defaults.includes(e.target.value)) {
+                onUpdate(index, 'dates', '');
+              } else {
+                e.target.select();
+              }
+            }}
           />
         </div>
       </div>
@@ -210,7 +237,17 @@ const SortableExperienceEntry = ({
           placeholder="e.g. Pentagon Garments, Virudhunagar, India"
           value={company}
           onChange={(e) => onUpdate(index, 'company', e.target.value)}
-          onFocus={(e) => e.target.select()}
+          onFocus={(e) => {
+            const defaults = [
+              'PENTAGON GARMENTS, Virudhunagar, India',
+              'PANITH INNOVATIONS, Remote'
+            ];
+            if (defaults.includes(e.target.value)) {
+              onUpdate(index, 'company', '');
+            } else {
+              e.target.select();
+            }
+          }}
         />
       </div>
 

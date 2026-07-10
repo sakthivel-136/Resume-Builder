@@ -71,6 +71,20 @@ const SortableAchievementEntry = ({
         placeholder="e.g. Grand Winner – Student Pitch Competition at Mini Technovision 2K26."
         value={value}
         onChange={(e) => onUpdate(index, e.target.value)}
+        onFocus={(e) => {
+          const defaults = [
+            'Grand Winner – Student Pitch Competition at Mini Technovision 2K26.',
+            'Presenter – Presented research on IoT-integrated Air Quality Systems in ICASET - 2026.',
+            'Patent Filed – Intellectual Property application filed for "Mr. Strict" (AI Proctoring System).',
+            'ISRO Certification – Completed AIML training for Crop Acreage Mapping via official ISRO workshop.',
+            'Industry Certification – Certified by Pentagon Garments for developing and deploying the DigiSphere system into the real-world production use.'
+          ];
+          if (defaults.includes(e.target.value)) {
+            onUpdate(index, '');
+          } else {
+            e.target.select();
+          }
+        }}
       />
       <button
         type="button"

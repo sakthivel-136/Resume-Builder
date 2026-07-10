@@ -90,7 +90,13 @@ const SortableEducationEntry = ({
           placeholder="e.g. Bachelor of Engineering in Computer Science"
           value={degree}
           onChange={(e) => onUpdate(index, 'degree', e.target.value)}
-          onFocus={(e) => e.target.select()}
+          onFocus={(e) => {
+            if (e.target.value === 'Bachelor of Engineering in Computer Science') {
+              onUpdate(index, 'degree', '');
+            } else {
+              e.target.select();
+            }
+          }}
         />
       </div>
 
@@ -102,7 +108,13 @@ const SortableEducationEntry = ({
           placeholder="e.g. Kamaraj College of Engineering and Technology"
           value={school}
           onChange={(e) => onUpdate(index, 'school', e.target.value)}
-          onFocus={(e) => e.target.select()}
+          onFocus={(e) => {
+            if (e.target.value === 'Kamaraj College of Engineering and Technology, Virudhunagar, India') {
+              onUpdate(index, 'school', '');
+            } else {
+              e.target.select();
+            }
+          }}
         />
       </div>
 
@@ -115,7 +127,13 @@ const SortableEducationEntry = ({
             placeholder="e.g. 2023 – 2027"
             value={dates}
             onChange={(e) => onUpdate(index, 'dates', e.target.value)}
-            onFocus={(e) => e.target.select()}
+            onFocus={(e) => {
+              if (e.target.value === '2023 – 2027') {
+                onUpdate(index, 'dates', '');
+              } else {
+                e.target.select();
+              }
+            }}
           />
         </div>
         <div className={styles.field}>
@@ -126,7 +144,13 @@ const SortableEducationEntry = ({
             placeholder="e.g. GPA: 7.44"
             value={gpa}
             onChange={(e) => onUpdate(index, 'gpa', e.target.value)}
-            onFocus={(e) => e.target.select()}
+            onFocus={(e) => {
+              if (e.target.value === 'GPA: 7.44 (till 5th sem)') {
+                onUpdate(index, 'gpa', '');
+              } else {
+                e.target.select();
+              }
+            }}
           />
         </div>
       </div>

@@ -86,7 +86,19 @@ const SortableSkillGroup = ({
           placeholder="e.g. Languages & Frameworks"
           value={category}
           onChange={(e) => onUpdate(index, 'category', e.target.value)}
-          onFocus={(e) => e.target.select()}
+          onFocus={(e) => {
+            const defaults = [
+              'Languages & Frameworks',
+              'Tools & Access Control',
+              'Machine Learning',
+              'IoT & Protocols'
+            ];
+            if (defaults.includes(e.target.value)) {
+              onUpdate(index, 'category', '');
+            } else {
+              e.target.select();
+            }
+          }}
         />
       </div>
 
@@ -97,7 +109,19 @@ const SortableSkillGroup = ({
           placeholder="e.g. Python, SQL, FastAPI, Flask, Next.js"
           value={values}
           onChange={(e) => onUpdate(index, 'values', e.target.value)}
-          onFocus={(e) => e.target.select()}
+          onFocus={(e) => {
+            const defaults = [
+              'Python, SQL, FastAPI, Flask, Next.js 14, PostgreSQL, Supabase, Tailwind CSS, RESTful APIs, JWT, Flutter',
+              'Git, GitHub, RBAC',
+              'TensorFlow, XGBoost, Random Forest, Gemini 1.5 Pro',
+              'ESP32/Arduino, MQTT'
+            ];
+            if (defaults.includes(e.target.value)) {
+              onUpdate(index, 'values', '');
+            } else {
+              e.target.select();
+            }
+          }}
           rows={2}
           style={{ minHeight: '44px' }}
         />
