@@ -2,16 +2,12 @@ name: Keep Render Awake
 
 on:
   schedule:
-    - cron: '*/10 * * * *' # Runs every 10 minutes
-  workflow_dispatch: # Allow manual trigger
+    - cron: '*/7 * * * *'  # Automates it to run every 7 minutes
+  workflow_dispatch:       # Keeps your manual "Run Workflow" button active
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Render URL
-        run: |
-          echo "Pinging Resume Builder on Render..."
-          curl -s -o /dev/null -w "Status: %{http_code} | Time: %{time_total}s" https://resume-builder-z1tx.onrender.com
-          echo ""
-          echo "✅ Ping sent at $(date)"
+        run: curl https://resume-builder-z1tx.onrender.com
