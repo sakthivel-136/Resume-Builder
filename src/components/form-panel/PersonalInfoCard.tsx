@@ -45,7 +45,7 @@ const PersonalInfoCard = () => {
             id="p-phone"
             className={styles.input}
             type="tel"
-            placeholder="e.g. +91 6374052055"
+            placeholder="e.g. +91 99999 99999"
             value={state.phone}
             onChange={(e) => handleChange('phone', e.target.value)}
           />

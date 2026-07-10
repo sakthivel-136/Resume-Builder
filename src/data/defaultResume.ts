@@ -102,12 +102,12 @@ export function createSampleResume(): ResumeData {
   return {
     ...createDefaultResume(),
     profileName: 'Sample Resume',
-    name: 'SAKTHI VEL C',
+    name: 'Alex Carter',
     title: 'Python Full-Stack Developer',
-    phone: '+91 6374052055',
-    email: 'c.sakthivel1.3.2006@gmail.com',
+    phone: '+91 99999 99999',
+    email: 'hello@alexcarter.dev',
     linkedin: 'linkedin.com/in/sakthivel-c',
-    github: 'github.com/sakthivel-136',
+    github: 'github.com/alex-dev',
     website: 'sakthivel-blog.io',
     summary: 'Computer Science student and Python Full-Stack Developer specializing in Machine Learning and IoT, focusing on architecting secure, scalable systems. Proven expertise in building real-time AI applications with Gemini 1.5 Pro, FastAPI, and Next.js, while optimizing database performance and implementing robust encrypted data architectures for high-performance environments.',
     education: [
