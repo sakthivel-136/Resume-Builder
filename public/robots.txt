@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://resume-builder-z1tx.onrender.com/sitemap.xml

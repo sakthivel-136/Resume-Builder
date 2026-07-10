@@ -50,9 +50,9 @@ const GOOGLE_FONTS_URL =
   '&display=swap';
 
 export const metadata: Metadata = {
-  title: 'Resume Builder Pro',
+  title: 'Resume Builder Pro - Create Your CV',
   description:
-    'Create stunning, ATS-optimized resumes with multiple templates, real-time preview, and PDF export. Free and open-source.',
+    'Build your professional resume quickly with Resume Builder Pro. Create stunning, ATS-optimized resumes with multiple templates, real-time preview, and PDF export. Free and open-source.',
   icons: {
     icon: '/tgs-logo.png',
     apple: '/tgs-logo.png',
@@ -67,6 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        <meta name="google-site-verification" content="GMSc7WP_QRhVY75Sa24pdfeME6f6rSefy8xvAe68-uw" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href={GOOGLE_FONTS_URL} />
