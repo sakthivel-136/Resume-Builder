@@ -93,15 +93,15 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
 
   return (
     <div id="resume-content-wrapper" style={{ position: 'relative' }}>
-      {/* Export Container (Hidden off-screen via GPU translation, fully rendered to apply CSS styles) */}
+      {/* Export Container (Hidden behind the visible layout, fully rendered to apply CSS styles) */}
       <div 
         style={{ 
-          position: 'fixed', 
+          position: 'absolute', 
           top: 0, 
           left: 0, 
           width: '794px', 
           height: `${pageCount * 1123}px`, 
-          transform: 'translate(-9999px, -9999px)', 
+          opacity: 0.01, 
           pointerEvents: 'none', 
           zIndex: -9999, 
           overflow: 'hidden',
