@@ -186,6 +186,7 @@ const SortableProjectEntry = ({
             placeholder="e.g. DigiSphere"
             value={name}
             onChange={(e) => onUpdate(index, 'name', e.target.value)}
+            onFocus={(e) => e.target.select()}
           />
         </div>
         <div className={styles.field}>
@@ -196,6 +197,7 @@ const SortableProjectEntry = ({
             placeholder="e.g. July 2026"
             value={dates}
             onChange={(e) => onUpdate(index, 'dates', e.target.value)}
+            onFocus={(e) => e.target.select()}
           />
         </div>
       </div>
@@ -208,6 +210,7 @@ const SortableProjectEntry = ({
           placeholder="e.g. FastAPI, Next.js, PostgreSQL, JWT"
           value={tech}
           onChange={(e) => onUpdate(index, 'tech', e.target.value)}
+          onFocus={(e) => e.target.select()}
         />
       </div>
 

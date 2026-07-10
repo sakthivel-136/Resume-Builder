@@ -37,7 +37,14 @@ function BuilderContent() {
       if (lastId) {
         const loaded = loadProfile(user.name, lastId);
         if (loaded) {
-          dispatch({ type: 'LOAD_PROFILE', data: loaded });
+          // Force reset cached sample profile to the clean empty inputs schema
+          if (loaded.profileName === 'Sample Resume' && loaded.experience.length > 0) {
+            const cleanSample = createSampleResume();
+            saveProfile(user.name, cleanSample);
+            dispatch({ type: 'LOAD_PROFILE', data: cleanSample });
+          } else {
+            dispatch({ type: 'LOAD_PROFILE', data: loaded });
+          }
         }
       }
     } else {

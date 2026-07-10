@@ -186,6 +186,7 @@ const SortableExperienceEntry = ({
             placeholder="e.g. Software Developer Intern"
             value={role}
             onChange={(e) => onUpdate(index, 'role', e.target.value)}
+            onFocus={(e) => e.target.select()}
           />
         </div>
         <div className={styles.field}>
@@ -196,6 +197,7 @@ const SortableExperienceEntry = ({
             placeholder="e.g. Dec 2025 – Jun 2026"
             value={dates}
             onChange={(e) => onUpdate(index, 'dates', e.target.value)}
+            onFocus={(e) => e.target.select()}
           />
         </div>
       </div>
@@ -208,6 +210,7 @@ const SortableExperienceEntry = ({
           placeholder="e.g. Pentagon Garments, Virudhunagar, India"
           value={company}
           onChange={(e) => onUpdate(index, 'company', e.target.value)}
+          onFocus={(e) => e.target.select()}
         />
       </div>
 

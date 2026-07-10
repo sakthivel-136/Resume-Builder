@@ -86,6 +86,7 @@ const SortableSkillGroup = ({
           placeholder="e.g. Languages & Frameworks"
           value={category}
           onChange={(e) => onUpdate(index, 'category', e.target.value)}
+          onFocus={(e) => e.target.select()}
         />
       </div>
 
@@ -96,6 +97,7 @@ const SortableSkillGroup = ({
           placeholder="e.g. Python, SQL, FastAPI, Flask, Next.js"
           value={values}
           onChange={(e) => onUpdate(index, 'values', e.target.value)}
+          onFocus={(e) => e.target.select()}
           rows={2}
           style={{ minHeight: '44px' }}
         />
