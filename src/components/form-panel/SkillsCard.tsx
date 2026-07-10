@@ -200,7 +200,7 @@ const SkillsCard = () => {
                 transition: 'all var(--transition-fast)',
               }}
             >
-              {m}
+              {m === 'pills' ? 'Inline Bullets' : m}
             </button>
           ))}
         </div>

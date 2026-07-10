@@ -177,32 +177,16 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           {skillGroups.map((s, idx) => {
             const items = s.values.split(',').map(v => v.trim()).filter(Boolean);
             return (
-              <div key={s.id || idx} style={{ marginBottom: '4px' }}>
-                <div className={shared.skillCat} style={{ color: hColor, marginBottom: '4px' }}>{s.category}</div>
-                <div style={{ display: 'block', marginTop: '4px' }}>
+              <div key={s.id || idx} style={{ marginBottom: '4px', lineHeight: 1.45 }}>
+                <span className={shared.skillCat} style={{ color: hColor }}>{s.category}: </span>
+                <span className={shared.skillVals}>
                   {items.map((v, sIdx) => (
-                    <span 
-                      key={sIdx} 
-                      style={{
-                        display: 'inline-block',
-                        verticalAlign: 'middle',
-                        padding: '4px 10px',
-                        background: hColor,
-                        color: '#fff',
-                        fontSize: `${bodySize * 0.8}px`,
-                        fontWeight: 600,
-                        lineHeight: '1.2',
-                        whiteSpace: 'nowrap',
-                        borderRadius: '100px',
-                        marginRight: '6px',
-                        marginBottom: '6px',
-                        textAlign: 'center',
-                      }}
-                    >
+                    <React.Fragment key={sIdx}>
+                      {sIdx > 0 && <span style={{ color: hColor, margin: '0 6px', fontWeight: 'bold' }}>•</span>}
                       {v}
-                    </span>
+                    </React.Fragment>
                   ))}
-                </div>
+                </span>
               </div>
             );
           })}
@@ -319,29 +303,12 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         if (section.type === 'skills') {
           const items = section.content.split(',').map((v) => v.trim()).filter(Boolean);
           return (
-            <div style={{ display: 'block', marginTop: '4px' }}>
+            <div style={{ display: 'block', marginTop: '4px', lineHeight: 1.45 }}>
               {items.map((t, idx) => (
-                <span
-                  key={idx}
-                  style={{
-                    display: 'inline-block',
-                    verticalAlign: 'middle',
-                    padding: '4px 10px',
-                    background: hColor,
-                    color: '#fff',
-                    fontSize: `${bodySize * 0.8}px`,
-                    fontWeight: 600,
-                    lineHeight: '1.2',
-                    whiteSpace: 'nowrap',
-                    borderRadius: '100px',
-                    marginRight: '6px',
-                    marginBottom: '6px',
-                    textAlign: 'center',
-                    opacity: 0.85
-                  }}
-                >
+                <React.Fragment key={idx}>
+                  {idx > 0 && <span style={{ color: hColor, margin: '0 6px', fontWeight: 'bold' }}>•</span>}
                   {t}
-                </span>
+                </React.Fragment>
               ))}
             </div>
           );

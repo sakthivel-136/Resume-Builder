@@ -119,7 +119,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
   };
 
   const renderSkills = (isSidebar: boolean) => {
-    if (skillMode === 'text') {
+    if (skillMode === 'text' || skillMode === 'pills') {
       return (
         <div className={shared.skillsContainer}>
           {skillGroups.map((s, idx) => (
@@ -128,45 +128,6 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
               <span className={shared.skillVals}>{s.values}</span>
             </div>
           ))}
-        </div>
-      );
-    }
-
-    if (skillMode === 'pills') {
-      return (
-        <div className={shared.skillsContainer}>
-          {skillGroups.map((s, idx) => {
-            const items = s.values.split(',').map(v => v.trim()).filter(Boolean);
-            return (
-              <div key={s.id || idx} style={{ marginBottom: '4px' }}>
-                <div className={shared.skillCat} style={{ color: isSidebar ? '#fff' : hColor, marginBottom: '4px' }}>{s.category}</div>
-                <div style={{ display: 'block', marginTop: '4px' }}>
-                  {items.map((v, sIdx) => (
-                    <span 
-                      key={sIdx} 
-                      style={{
-                        display: 'inline-block',
-                        verticalAlign: 'middle',
-                        padding: '4px 10px',
-                        background: isSidebar ? 'rgba(255, 255, 255, 0.18)' : hColor,
-                        color: isSidebar ? 'inherit' : '#fff',
-                        fontSize: `${bodySize * 0.8}px`,
-                        fontWeight: 600,
-                        lineHeight: '1.2',
-                        whiteSpace: 'nowrap',
-                        borderRadius: '100px',
-                        marginRight: '6px',
-                        marginBottom: '6px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {v}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
         </div>
       );
     }
@@ -263,30 +224,8 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         if (section.type === 'skills') {
           const items = section.content.split(',').map((v) => v.trim()).filter(Boolean);
           return (
-            <div style={{ display: 'block', marginTop: '4px' }}>
-              {items.map((t, idx) => (
-                <span
-                  key={idx}
-                  style={{
-                    display: 'inline-block',
-                    verticalAlign: 'middle',
-                    padding: '4px 10px',
-                    background: isSidebar ? 'rgba(255, 255, 255, 0.18)' : hColor,
-                    color: isSidebar ? 'inherit' : '#fff',
-                    fontSize: `${bodySize * 0.8}px`,
-                    fontWeight: 600,
-                    lineHeight: '1.2',
-                    whiteSpace: 'nowrap',
-                    borderRadius: '100px',
-                    marginRight: '6px',
-                    marginBottom: '6px',
-                    textAlign: 'center',
-                    opacity: isSidebar ? 1 : 0.85
-                  }}
-                >
-                  {t}
-                </span>
-              ))}
+            <div style={{ fontSize: isSidebar ? '0.9em' : 'inherit', marginTop: '4px', lineHeight: 1.4 }}>
+              {items.join(', ')}
             </div>
           );
         }
