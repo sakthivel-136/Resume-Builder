@@ -172,24 +172,29 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
     }
 
     if (skillMode === 'pills') {
+      const allItems = skillGroups.flatMap((s) =>
+        s.values.split(',').map((v) => v.trim()).filter(Boolean)
+      );
+      if (allItems.length === 0) return null;
       return (
-        <div className={shared.skillsContainer}>
-          {skillGroups.map((s, idx) => {
-            const items = s.values.split(',').map(v => v.trim()).filter(Boolean);
-            return (
-              <div key={s.id || idx} style={{ marginBottom: '4px', lineHeight: 1.45 }}>
-                <span className={shared.skillCat} style={{ color: hColor }}>{s.category}: </span>
-                <span className={shared.skillVals}>
-                  {items.map((v, sIdx) => (
-                    <React.Fragment key={sIdx}>
-                      {sIdx > 0 && <span style={{ color: hColor, margin: '0 6px', fontWeight: 'bold' }}>•</span>}
-                      {v}
-                    </React.Fragment>
-                  ))}
-                </span>
-              </div>
-            );
-          })}
+        <div 
+          className={shared.skillsContainer}
+          style={{ 
+            display: 'block', 
+            marginTop: '6px', 
+            lineHeight: 1.6, 
+            textAlign: 'justify',
+            fontSize: `${bodySize * 0.95}px`
+          }}
+        >
+          {allItems.map((v, sIdx) => (
+            <span key={sIdx} style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
+              {sIdx > 0 && (
+                <span style={{ color: hColor, marginLeft: '8px', marginRight: '8px', fontWeight: 'bold' }}>•</span>
+              )}
+              {v}
+            </span>
+          ))}
         </div>
       );
     }
