@@ -512,7 +512,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       )}
 
       {/* Main layout */}
-      <div style={{ padding: `${state.mT}px ${state.mR}px ${state.mB}px ${state.mL}px` }}>
+      <div style={{ padding: `${isExport ? 0 : state.mT}px ${state.mR}px ${isExport ? 0 : state.mB}px ${state.mL}px` }}>
         {renderHeader()}
         {sectionOrder.map((key) => renderSection(key))}
       </div>

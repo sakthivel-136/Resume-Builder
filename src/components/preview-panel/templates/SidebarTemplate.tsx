@@ -447,7 +447,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       <div 
         className={styles.sidebar}
         style={{ 
-          padding: `${state.mT}px ${state.sbPad}px ${state.mB}px ${state.sbPad}px`,
+          padding: `${isExport ? 0 : state.mT}px ${state.sbPad}px ${isExport ? 0 : state.mB}px ${state.sbPad}px`,
           background: state.sidebarBg,
           color: state.sidebarText
         }}
@@ -483,7 +483,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       <div 
         className={styles.main}
         style={{ 
-          padding: `${state.mT}px ${state.mR}px ${state.mB}px ${state.mainPad}px`,
+          padding: `${isExport ? 0 : state.mT}px ${state.mR}px ${isExport ? 0 : state.mB}px ${state.mainPad}px`,
           background: state.bgColor,
           color: state.tColor
         }}

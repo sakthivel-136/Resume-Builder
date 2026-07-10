@@ -83,6 +83,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
               onChange(val);
             }
           }}
+          onFocus={(e) => e.target.select()}
           aria-label={`${label} input value`}
         />
         {unit && <span style={{ fontSize: '10px', color: 'var(--text-muted)', fontWeight: 700 }}>{unit}</span>}

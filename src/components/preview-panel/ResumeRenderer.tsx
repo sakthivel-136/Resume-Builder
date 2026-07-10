@@ -102,6 +102,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
     '--p-bullet-char': bulletChar,
     '--p-bullet-size': `${state.bulletSize || 8}px`,
     '--p-bullet-color': state.bulletColor || 'var(--p-heading-color)',
+    '--p-sec-sp': `${state.secSp}px`,
   } as React.CSSProperties;
 
   const usableHeight = 1123 - state.mT - state.mB;
