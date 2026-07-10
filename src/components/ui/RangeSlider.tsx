@@ -74,14 +74,24 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
           type="number"
           className={styles.rangeValueInput}
           min={min}
-          max={max * 3}
+          max={max}
           step={step}
           value={value}
           onChange={(e) => {
             const val = Number(e.target.value);
             if (!isNaN(val)) {
-              onChange(val);
+              if (val > max) {
+                onChange(max);
+              } else {
+                onChange(val);
+              }
             }
+          }}
+          onBlur={(e) => {
+            let val = Number(e.target.value);
+            if (isNaN(val)) val = min;
+            const clamped = Math.max(min, Math.min(max, val));
+            onChange(clamped);
           }}
           onFocus={(e) => e.target.select()}
           aria-label={`${label} input value`}

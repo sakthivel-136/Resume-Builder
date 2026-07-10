@@ -84,8 +84,8 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
     '--heading-size': `${state.headSize}px`,
     '--line-height': state.lineH,
     '--p-bullet-char': bulletChar,
-    '--p-bullet-size': `${state.bulletSize || 8}px`,
-    '--p-bullet-color': state.bulletColor || 'var(--p-heading-color)',
+    '--p-bullet-size': '14px',
+    '--p-bullet-color': 'var(--p-heading-color)',
     '--p-sec-sp': `${state.secSp}px`,
   } as React.CSSProperties;
 
