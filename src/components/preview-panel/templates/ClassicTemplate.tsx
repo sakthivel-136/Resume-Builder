@@ -172,9 +172,9 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
     }
 
     if (skillMode === 'pills') {
-      const allItems = skillGroups.flatMap((s) =>
-        s.values.split(',').map((v) => v.trim()).filter(Boolean)
-      );
+      const allItems = skillGroups[0]
+        ? skillGroups[0].values.split(',').map((v) => v.trim()).filter(Boolean)
+        : [];
       if (allItems.length === 0) return null;
       return (
         <div 
@@ -188,31 +188,33 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           }}
         >
           {allItems.map((v, sIdx) => (
-            <span 
-              key={sIdx} 
-              style={{ 
-                whiteSpace: 'nowrap', 
-                display: 'inline-block',
-                verticalAlign: 'middle'
-              }}
-            >
-              <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>{v}</span>
-              {sIdx < allItems.length - 1 && (
-                <span 
-                  style={{ 
-                    color: state.bulletColor || hColor, 
-                    marginLeft: '8px', 
-                    marginRight: '8px', 
-                    fontWeight: 'bold',
-                    display: 'inline-block',
-                    verticalAlign: 'middle',
-                    lineHeight: 1
-                  }}
-                >
-                  •
-                </span>
-              )}
-            </span>
+            <React.Fragment key={sIdx}>
+              {sIdx > 0 && ' '}
+              <span 
+                style={{ 
+                  whiteSpace: 'nowrap', 
+                  display: 'inline-block',
+                  verticalAlign: 'middle'
+                }}
+              >
+                <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>{v}</span>
+                {sIdx < allItems.length - 1 && (
+                  <span 
+                    style={{ 
+                      color: state.bulletColor || hColor, 
+                      marginLeft: '8px', 
+                      marginRight: '8px', 
+                      fontWeight: 'bold',
+                      display: 'inline-block',
+                      verticalAlign: 'middle',
+                      lineHeight: 1
+                    }}
+                  >
+                    •
+                  </span>
+                )}
+              </span>
+            </React.Fragment>
           ))}
         </div>
       );
