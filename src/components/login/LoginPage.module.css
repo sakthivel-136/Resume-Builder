@@ -824,15 +824,16 @@
 }
 
 .secretLetter {
-  color: #333333; /* Subtle dark charcoal grey */
+  color: #996515; /* Darker Gold for hidden acronym */
+  font-weight: 700;
 }
 
 .normalLetters {
-  color: #555555; /* Subtle slightly lighter grey */
+  color: #d4af37; /* Premium Gold for normal letters */
 }
 
 .creditAccent {
-  color: #d4af37; /* Premium Gold Accent */
+  color: #ffd700; /* Brightest Gold for Sakthi credit */
   font-weight: 700;
   margin-left: 6px;
   letter-spacing: 1px;
