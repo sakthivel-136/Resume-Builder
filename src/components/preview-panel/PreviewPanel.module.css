@@ -1,0 +1,51 @@
+/* ===== Preview Panel Container Styles ===== */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.paperViewport {
+  position: relative;
+  transition: transform var(--transition-normal);
+  transform-origin: top center;
+  margin-bottom: 40px;
+}
+
+/* Page Break Markers */
+.pageBreakMarker {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 2px dashed var(--accent-secondary);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.pageBreakLabel {
+  position: absolute;
+  right: 16px;
+  top: -10px;
+  font-size: 9px;
+  color: var(--accent-secondary);
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1px 8px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(182, 134, 60, 0.2);
+}

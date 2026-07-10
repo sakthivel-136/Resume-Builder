@@ -1,0 +1,48 @@
+<USER_REQUEST>
+bro this is my project currtenly doing <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Resume Builder Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Source+Serif+4:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Merriweather:wght@400;700&family=Poppins:wght@500;600;700&family=Montserrat:wght@600;700&family=Inter:wght@400;500;600;700&family=Lora:wght@400;500&family=Roboto:wght@400;500&family=Open+Sans:wght@400;500;600&family=PT+Serif:wght@400;700&family=Crimson+Text:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Garamond:wght@400;700&family=Book+Antiqua&family=Palatino+Linotype&family=Georgia&family=Cambria&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+:root{--navy:#122644;--navy-soft:#1f3a63;--accent:#b6863c;--ink:#1c2430;--muted:#5c6773;--line:#dde3ea;--panel-bg:#f0f2f5;--panel-card:#ffffff;--danger:#b3432f;--danger-bg:#fbeae6;font-family:'Inter',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--panel-bg);color:var(--ink);font-size:14px;}
+.app{display:grid;grid-template-columns:minmax(390px,480px) 1fr;min-height:100vh;}
+.brand h1{font-family:'Source Serif 4',serif;font-size:20px;color:var(--navy);}
+.brand h1{font-family:'Source Serif 4',serif;font-size:20px;color:var(--navy);}
+.brand h1{font-family:'Source Serif 4',serif;font-size:20px;color:var(--navy);}
+.brand h1{font-family:'Source Serif 4',serif;font-size:20px;color:var(--navy);}
+.form-panel{padding:20px 18px 80px;overflow-y:auto;max-height:100vh;border-right:1px solid var(--line);background:#fff;}
+.brand{display:flex;align-items:baseline;gap:10px;margin-bottom:2px;}
+.brand h1{font-family:'Source Serif 4',serif;font-size:20px;color:var(--navy);}
+.brand span{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.subtext{font-size:12px;color:v
+<truncated 45215 bytes>
+D.phone,D.email,D.linkedin,D.github,D.website].filter(x=>x).map(c=>esc(c)).join('</span> | <span>')}</span></div></div></div>`;}
+    else if(pos==='top-right'){header=`<div class="header-flex-rev">${ph}<div style="flex:1;">${nameH.replace('text-align:center;','')}${titleH.replace('text-align:center;','')}<div class="p-contact" style="text-align:left;"><span>${[D.phone,D.email,D.linkedin,D.github,D.website].filter(x=>x).map(c=>esc(c)).join('</span> | <span>')}</span></div></div></div>`;}
+    return aBar+header+mainContent;
+  }else if(t===2){
+    let sideContent='';
+    if(inSide){sideContent=phSide+`<div class="p-name" style="font-size:${Math.round(D.nameSize*.65)}px;">${esc(D.name)||"Your Name"}</div><div class="p-title">${esc(D.title)}</div><h3>Contact</h3>${contactHtml}${buildSideSkills()}`;}
+    else{sideContent=`<div class="p-name" style="font-size:${Math.round(D.nameSize*.65)}px;">${esc(D.name)||"Your Name"}</div><div class="p-title">${esc(D.title)}</div><h3>Contact</h3>${contactHtml}${buildSideSkills()}`;}
+    let mainTop='';
+    if(!inSide&&ph){
+      if(pos==='top-center')mainTop=`<div style="text-align:center;">${ph}</div>`;
+      else if(pos==='top-left')mainTop=`<div style="margin-bottom:8px;">${ph}</div>`;
+      else if(pos==='top-right')mainTop=`<div style="text-align:right;margin-bottom:8px;">${ph}</div>`;
+    }
+    return aBar+`<div class="sidebar" style="padding:${D.sbPad}px;">${sideContent}</div><div class="main" style="padding:${D.mainPad}px;">${mainTop}${mainContent}</div>`;
+  }else{
+    let leftContent='';
+    if(inSide){leftContent=ph+`<h3>Contact</h3>${contactHtml}${buildSideSkills()}`;}
+    else{leftContent=`<h3>Contact</h3>${contactHtml}${buildSideSkills()}`;}
+    let rightTop=`<div class="p-name" style="font-size:${D.nameSize}px;">${esc(D.name)||"Your Name"}</div><div class="p-title">${esc(D.title)}</div>`;
+    if(!inSide&&ph){
+    
+<truncated 26642 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.

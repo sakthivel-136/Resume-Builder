@@ -1,0 +1,528 @@
+'use client';
+
+import React, { memo } from 'react';
+import { ResumeData } from '@/types/resume';
+import styles from './SidebarTemplate.module.css';
+import shared from './shared.module.css';
+
+interface SidebarTemplateProps {
+  state: ResumeData;
+  ignoreSpacers?: boolean;
+  spacers?: Record<string, number>;
+  isExport?: boolean;
+}
+
+const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport = false }: SidebarTemplateProps) => {
+  const {
+    name,
+    title,
+    phone,
+    email,
+    linkedin,
+    github,
+    website,
+    photo,
+    photoPos,
+    photoShape,
+    photoSize,
+    accentBar,
+    accentH,
+    hColor,
+    secNames,
+    secVis,
+    sidebarSections,
+    mainSections,
+    summary,
+    education,
+    experience,
+    projects,
+    skillGroups,
+    skillMode,
+    achievements,
+    customSections,
+    lineH,
+    secSp,
+    nameSize,
+    headSize,
+    bodySize,
+    customContacts,
+    bulletType,
+  } = state;
+
+  const getPhotoClass = () => {
+    if (photoShape === 'circle') return shared.photoCircle;
+    if (photoShape === 'rounded') return shared.photoRounded;
+    return shared.photoSquare;
+  };
+
+  const renderPhoto = (isSidebar: boolean) => {
+    if (!photo || photoPos === 'hidden') return null;
+    const shouldShow = isSidebar;
+    if (!shouldShow) return null;
+
+    return (
+      <img
+        src={photo}
+        alt="Profile"
+        className={`${shared.photo} ${getPhotoClass()}`}
+        style={{
+          width: `${photoSize}px`,
+          height: `${photoSize}px`,
+          border: isSidebar ? '2.5px solid rgba(255, 255, 255, 0.25)' : `1.5px solid ${hColor}`,
+          margin: isSidebar ? '24px auto 6px' : '0 0 10px 0',
+        }}
+      />
+    );
+  };
+
+  const renderContactGM = () => {
+    const items = [
+      { l: 'Phone', v: phone },
+      { l: 'Email', v: email },
+      { l: 'LinkedIn', v: linkedin },
+      { l: 'GitHub', v: github },
+      { l: 'Website', v: website },
+      ...(customContacts || []).map(c => ({ l: c.label, v: c.value })),
+    ].filter(i => i.v);
+
+    if (items.length === 0) return null;
+
+    return (
+      <div className={shared.gmContact}>
+        {items.map((it, idx) => (
+          <div key={idx} className={shared.gmItem}>
+            <div className={shared.gmLabel}>{it.l}</div>
+            <div className={shared.gmValue}>{it.v}</div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderContactInline = () => {
+    const cp = [
+      phone,
+      email,
+      linkedin,
+      github,
+      website,
+      ...(customContacts || []).map(c => c.value),
+    ].filter(Boolean);
+    if (cp.length === 0) return null;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85em' }}>
+        {cp.map((c, idx) => (
+          <div key={idx} style={{ wordBreak: 'break-all' }}>{c}</div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderSkills = (isSidebar: boolean) => {
+    if (skillMode === 'text') {
+      return (
+        <div className={shared.skillsContainer}>
+          {skillGroups.map((s, idx) => (
+            <div key={s.id || idx} style={{ marginBottom: '4px' }}>
+              <span className={shared.skillCat} style={{ color: isSidebar ? '#fff' : hColor }}>{s.category}: </span>
+              <span className={shared.skillVals}>{s.values}</span>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    if (skillMode === 'pills') {
+      return (
+        <div className={shared.skillsContainer}>
+          {skillGroups.map((s, idx) => {
+            const items = s.values.split(',').map(v => v.trim()).filter(Boolean);
+            return (
+              <div key={s.id || idx} style={{ marginBottom: '4px' }}>
+                <div className={shared.skillCat} style={{ color: isSidebar ? '#fff' : hColor, marginBottom: '4px' }}>{s.category}</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                  {items.map((v, sIdx) => (
+                    <span 
+                      key={sIdx} 
+                      className={shared.skillPill}
+                      style={{ 
+                        background: isSidebar ? 'rgba(255, 255, 255, 0.18)' : hColor, 
+                        color: isSidebar ? 'inherit' : '#fff',
+                        fontSize: `${bodySize * 0.8}px` 
+                      }}
+                    >
+                      {v}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+
+    // Bullets mode
+    return (
+      <div className={shared.skillsContainer}>
+        {skillGroups.map((s, idx) => {
+          const items = s.values.split(',').map(v => v.trim()).filter(Boolean);
+          return (
+            <div key={s.id || idx} style={{ marginBottom: '4px' }}>
+              <div className={shared.skillCat} style={{ color: isSidebar ? '#fff' : hColor }}>{s.category}</div>
+              <ul className={shared.points}>
+                {items.map((v, sIdx) => (
+                  <li key={sIdx} style={{ fontSize: `${bodySize * 0.9}px` }}>{v}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderSectionContent = (key: string, isSidebar: boolean) => {
+    // Custom section
+    if (key.startsWith('custom_')) {
+      const section = customSections[key];
+      if (!section) return null;
+
+      const renderCustomContent = () => {
+        if (!section.content.trim()) {
+          return <div style={{ fontStyle: 'italic', opacity: 0.5, fontSize: '0.9em' }}>No content added yet.</div>;
+        }
+        const lines = section.content.split('\n');
+
+        if (section.type === 'list') {
+          return (
+            <ul className={shared.achievementList}>
+              {lines.filter((l) => l.trim()).map((item, idx) => (
+                <li key={idx} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>{item}</li>
+              ))}
+            </ul>
+          );
+        }
+
+        if (section.type === 'simplelist') {
+          return (
+            <div>
+              {lines.filter((l) => l.trim()).map((item, idx) => (
+                <div key={idx} style={{ marginBottom: '2px', fontSize: isSidebar ? '0.85em' : '0.93em' }}>
+                  {idx + 1}. {item}
+                </div>
+              ))}
+            </div>
+          );
+        }
+
+        if (section.type === 'text') {
+          return (
+            <div className={shared.customContent} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>
+              {section.content.split('\n\n').filter((p) => p.trim()).map((para, idx) => (
+                <p key={idx}>{para}</p>
+              ))}
+            </div>
+          );
+        }
+
+        if (section.type === 'keyvalue') {
+          return (
+            <div>
+              {lines.filter((l) => l.trim()).map((line, idx) => {
+                const parts = line.split(':');
+                if (parts.length >= 2) {
+                  const keyLabel = parts.shift()?.trim() || '';
+                  const valText = parts.join(':').trim();
+                  return (
+                    <div key={idx} className={shared.kvRow} style={{ fontSize: isSidebar ? '0.85em' : '0.93em' }}>
+                      <span className={shared.kvLabel} style={{ color: isSidebar ? '#fff' : hColor }}>{keyLabel}:</span>
+                      <span className={shared.kvValue}> {valText}</span>
+                    </div>
+                  );
+                }
+                return (
+                  <div key={idx} style={{ marginBottom: '2px', fontSize: isSidebar ? '0.85em' : '0.93em' }}>
+                    {line}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }
+
+        if (section.type === 'skills') {
+          const items = section.content.split(',').map((v) => v.trim()).filter(Boolean);
+          return (
+            <div style={{ lineHeight: 1.8, display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '4px' }}>
+              {items.map((t, idx) => (
+                <span
+                  key={idx}
+                  className={shared.skillPill}
+                  style={{
+                    background: isSidebar ? 'rgba(255, 255, 255, 0.18)' : hColor,
+                    color: isSidebar ? 'inherit' : '#fff',
+                    fontSize: `${bodySize * 0.8}px`,
+                    opacity: isSidebar ? 1 : 0.85,
+                    margin: 0
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          );
+        }
+
+        if (section.type === 'timeline') {
+          const blocks: { date: string; title: string; desc: string }[] = [];
+          let cur: { date: string; title: string; desc: string } | null = null;
+          lines.forEach((line) => {
+            const tr = line.trim();
+            if (!tr) return;
+            const pi = tr.indexOf('|');
+            if (pi > 0) {
+              if (cur) blocks.push(cur);
+              cur = { date: tr.substring(0, pi).trim(), title: tr.substring(pi + 1).trim(), desc: '' };
+            } else {
+              if (cur) cur.desc += (cur.desc ? ' ' : '') + tr;
+            }
+          });
+          if (cur) blocks.push(cur);
+
+          return (
+            <div>
+              {blocks.map((b, idx) => (
+                <div key={idx} className={shared.timelineBlock} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>
+                  <div className={shared.timelineRow}>
+                    <span className={shared.timelineTitle}>{b.title}</span>
+                    <span className={shared.timelineDate}>{b.date}</span>
+                  </div>
+                  {b.desc && (
+                    <div className={shared.timelineDesc}>{b.desc}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          );
+        }
+
+        return (
+          <div className={shared.customContent} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>
+            <p>{section.content}</p>
+          </div>
+        );
+      };
+
+      return (
+        <React.Fragment key={key}>
+          {!ignoreSpacers && spacers[key] && (
+            <div style={{ height: `${spacers[key]}px` }} />
+          )}
+          <div id={`entry-${key}`} className={shared.entryBlock}>
+            {renderCustomContent()}
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    switch (key) {
+      case 'summary':
+        if (!summary) return null;
+        return (
+          <div key={key} style={{ fontSize: isSidebar ? '0.9em' : 'inherit', lineHeight: lineH }}>
+            {summary}
+          </div>
+        );
+
+      case 'education':
+        if (education.length === 0) return null;
+        return (
+          <div key={key}>
+            {education.map((e, idx) => (
+              <React.Fragment key={e.id || idx}>
+                {!ignoreSpacers && spacers[e.id] && (
+                  <div style={{ height: `${spacers[e.id]}px` }} />
+                )}
+                <div id={`entry-${e.id}`} className={shared.eduBlock} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>
+                  <div className={shared.eduRow} style={{ flexDirection: isSidebar ? 'column' : 'row', alignItems: 'stretch' }}>
+                    <span className={shared.eduTitle}>{e.degree}</span>
+                    <span className={shared.entryDates} style={{ opacity: 0.8 }}>{e.dates}</span>
+                  </div>
+                  <div className={shared.eduSub}>
+                    {e.school}{e.gpa ? ` | ${e.gpa}` : ''}
+                  </div>
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+        );
+
+      case 'skills':
+        if (skillGroups.length === 0) return null;
+        return <div key={key}>{renderSkills(isSidebar)}</div>;
+
+      case 'experience':
+        if (experience.length === 0) return null;
+        return (
+          <div key={key}>
+            {experience.map((x, idx) => (
+              <React.Fragment key={x.id || idx}>
+                {!ignoreSpacers && spacers[x.id] && (
+                  <div style={{ height: `${spacers[x.id]}px` }} />
+                )}
+                <div id={`entry-${x.id}`} className={shared.entryBlock} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>
+                  <div className={shared.entryRow} style={{ flexDirection: isSidebar ? 'column' : 'row', alignItems: 'stretch' }}>
+                    <span className={shared.entryRole}>{x.role}</span>
+                    <span className={shared.entryDates} style={{ opacity: 0.8 }}>{x.dates}</span>
+                  </div>
+                  <div className={shared.entrySub}>{x.company}</div>
+                  <ul className={shared.points}>
+                    {x.points.filter(Boolean).map((pt, pIdx) => (
+                      <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
+                    ))}
+                  </ul>
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+        );
+
+      case 'projects':
+        if (projects.length === 0) return null;
+        return (
+          <div key={key}>
+            {projects.map((p, idx) => (
+              <React.Fragment key={p.id || idx}>
+                {!ignoreSpacers && spacers[p.id] && (
+                  <div style={{ height: `${spacers[p.id]}px` }} />
+                )}
+                <div id={`entry-${p.id}`} className={shared.entryBlock} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>
+                  <div className={shared.entryRow} style={{ flexDirection: isSidebar ? 'column' : 'row', alignItems: 'stretch' }}>
+                    <span className={shared.entryRole}>
+                      {p.name}{p.tech ? ` | ${p.tech}` : ''}
+                    </span>
+                    <span className={shared.entryDates} style={{ opacity: 0.8 }}>{p.dates}</span>
+                  </div>
+                  <ul className={shared.points}>
+                    {p.points.filter(Boolean).map((pt, pIdx) => (
+                      <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
+                    ))}
+                  </ul>
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+        );
+
+      case 'achievements':
+        const filteredAch = achievements.filter(Boolean);
+        if (filteredAch.length === 0) return null;
+        return (
+          <React.Fragment key={key}>
+            {!ignoreSpacers && spacers['achievements'] && (
+              <div style={{ height: `${spacers['achievements']}px` }} />
+            )}
+            <div id="entry-achievements">
+              <ul className={shared.achievementList}>
+                {filteredAch.map((ach, idx) => (
+                  <li key={idx} style={{ fontSize: isSidebar ? '0.9em' : 'inherit', lineHeight: lineH }}>{ach}</li>
+                ))}
+              </ul>
+            </div>
+          </React.Fragment>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div 
+      className={styles.container} 
+      style={{ '--sb-width': `${state.sbW}px` } as any}
+    >
+      {/* Sidebar Column (Dark bg) */}
+      <div 
+        className={styles.sidebar}
+        style={{ 
+          padding: `${isExport ? 0 : state.mT}px ${state.sbPad}px ${isExport ? 0 : state.mB}px ${state.sbPad}px`,
+          background: state.sidebarBg,
+          color: state.sidebarText
+        }}
+      >
+        {/* Header Block in sidebar */}
+        <div className={styles.headerBlock}>
+          {renderPhoto(true)}
+          <h1 className={styles.name} style={{ fontSize: `${nameSize * 0.65}px`, fontFamily: 'var(--p-heading-font)' }}>
+            {name}
+          </h1>
+          <div className={styles.title}>{title}</div>
+        </div>
+
+        {/* Contact info in sidebar */}
+        <div>
+          <h3 className={styles.sbHeading}>Contact Details</h3>
+          {state.gmContact ? renderContactGM() : renderContactInline()}
+        </div>
+
+        {/* Dynamic Sidebar Sections */}
+        {sidebarSections.map((key) => {
+          if (!secVis[key]) return null;
+          return (
+            <div key={key}>
+              <h3 className={styles.sbHeading}>{secNames[key] || key}</h3>
+              {renderSectionContent(key, true)}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Main Column (White bg) */}
+      <div 
+        className={styles.main}
+        style={{ 
+          padding: `${isExport ? 0 : state.mT}px ${state.mR}px ${isExport ? 0 : state.mB}px ${state.mainPad}px`,
+          background: state.bgColor,
+          color: state.tColor
+        }}
+      >
+        {/* Accent Bar */}
+        {accentBar === 'top' && (
+          <div 
+            className={shared.accentBar} 
+            style={{ height: `${accentH}px`, background: hColor, marginBottom: '14px', marginLeft: `-${state.mainPad}px`, width: `calc(100% + ${state.mainPad}px + ${state.mR}px)` }} 
+          />
+        )}
+
+        {/* Inline Photo if set to top position in main content */}
+        {renderPhoto(false)}
+
+        {/* Dynamic Main Sections */}
+        {mainSections.map((key) => {
+          if (!secVis[key]) return null;
+          return (
+            <div key={key} className={shared.entryBlock}>
+              <h3 
+                className={styles.mainHeading}
+                style={{ 
+                  color: hColor, 
+                  fontFamily: 'var(--p-heading-font)',
+                  fontSize: `${headSize}px`,
+                  marginTop: `${secSp}px`,
+                  borderColor: hColor
+                }}
+              >
+                {secNames[key] || key}
+              </h3>
+              {renderSectionContent(key, false)}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default memo(SidebarTemplate);

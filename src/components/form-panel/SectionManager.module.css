@@ -1,0 +1,124 @@
+/* ===== Section Manager Styling ===== */
+
+.managerContainer {
+  margin-top: 8px;
+}
+
+.classicList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.twoZonesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.zone {
+  border-radius: var(--radius-md);
+  padding: 12px;
+  min-height: 180px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.zoneTitle {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.zoneOver {
+  border-color: var(--accent-primary);
+  background: rgba(108, 99, 255, 0.03);
+  box-shadow: var(--shadow-glow);
+}
+
+.sectionItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.sectionItem:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.sectionNameInput {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 4px;
+  border-radius: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sectionNameInput:focus {
+  outline: none;
+  background: var(--bg-tertiary);
+  box-shadow: 0 0 0 1px var(--border-focus);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.actionBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+}
+
+.actionBtn:hover {
+  color: var(--text-primary);
+}
+
+.actionBtnActive {
+  color: var(--accent-primary);
+}
+
+.delBtn {
+  color: var(--danger);
+  opacity: 0.7;
+}
+
+.delBtn:hover {
+  color: var(--danger);
+  opacity: 1;
+}
+
+.emptyPlaceholder {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  margin-top: 40px;
+}

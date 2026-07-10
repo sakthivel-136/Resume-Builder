@@ -1,0 +1,59 @@
+/* ===== Classic Template T1 Specific Styles ===== */
+
+.container {
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  margin-bottom: 12px;
+}
+
+.name {
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+.title {
+  font-weight: 600;
+  margin: 2px 0 5px;
+  letter-spacing: 0.03em;
+  opacity: 0.9;
+  font-size: 0.95em;
+}
+
+/* Sections */
+.sectionHeading {
+  font-size: var(--heading-size, 11px);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid var(--p-heading-color, #122644);
+  padding-bottom: 5px;
+  margin-top: var(--sec-spacing, 14px);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+/* Photo layout flex containers */
+.flexHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.flexHeaderRev {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-direction: row-reverse;
+  margin-bottom: 8px;
+}
+
+.centerHeader {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

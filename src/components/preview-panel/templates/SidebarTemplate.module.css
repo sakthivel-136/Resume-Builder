@@ -1,0 +1,78 @@
+/* ===== Sidebar Template T2 Specific Styles ===== */
+
+.container {
+  display: grid;
+  height: 100%;
+  min-height: 100%;
+  grid-template-columns: var(--sb-width, 200px) 1fr;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  background: var(--p-sidebar-bg, #122644);
+  color: var(--p-sidebar-text, #ffffff);
+  --p-heading-color: var(--p-sidebar-text, #ffffff);
+  --p-text-color: var(--p-sidebar-text, #ffffff);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.main {
+  background: var(--p-bg-color, #ffffff);
+  color: var(--p-text-color, #20262f);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Header inside Sidebar */
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.25;
+  width: 100%;
+}
+
+.title {
+  opacity: 0.85;
+  font-weight: 500;
+  font-size: 0.85em;
+  margin-top: 2px;
+}
+
+/* Sidebar Section Headers */
+.sbHeading {
+  font-size: var(--heading-size, 11px);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0 0 12px 0;
+  color: inherit;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 6px;
+  page-break-after: avoid;
+}
+
+/* Main Area Section Headers */
+.mainHeading {
+  font-size: var(--heading-size, 11px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid var(--p-heading-color, #122644);
+  padding-bottom: 5px;
+  margin-top: var(--sec-spacing, 14px);
+  margin-bottom: 6px;
+  font-weight: 700;
+}

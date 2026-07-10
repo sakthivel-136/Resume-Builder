@@ -1,0 +1,283 @@
+/* ===== Resume Template Shared Style System ===== */
+
+.resumeContainer {
+  width: 794px;
+  min-height: 100%;
+  background: var(--p-bg-color, #ffffff);
+  color: var(--p-text-color, #20262f);
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Photo shape rules */
+.photo {
+  object-fit: cover;
+  display: block;
+}
+
+.photoCircle {
+  border-radius: 50%;
+}
+
+.sectionTitle {
+  font-size: var(--heading-size, 12px);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--p-heading-color);
+  border-bottom: 1px solid var(--p-accent-color);
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  page-break-after: avoid;
+}
+
+.entryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+  page-break-after: avoid;
+}
+
+.photoRounded {
+  border-radius: 8px;
+}
+
+.photoSquare {
+  border-radius: 0;
+}
+
+/* Entries and items */
+.entryBlock {
+  margin-bottom: 8px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.entryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.entryRole {
+  font-weight: 700;
+  color: var(--p-text-color, #20262f);
+}
+
+.entryDates {
+  font-size: 0.88em;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+
+.entrySub {
+  font-style: normal;
+  opacity: 0.85;
+  font-size: 0.92em;
+  margin-bottom: 4px;
+}
+
+.points {
+  margin: 2px 0 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.points li {
+  margin-bottom: 2px;
+  position: relative;
+  padding-left: 14px;
+}
+
+.points li::before {
+  content: var(--p-bullet-char, "•");
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: var(--p-bullet-size, inherit);
+  color: var(--p-bullet-color, inherit);
+  line-height: var(--line-height, 1.4);
+  display: inline-block;
+  text-align: center;
+  width: 10px;
+}
+
+/* Education blocks */
+.eduBlock {
+  margin-bottom: 6px;
+}
+
+.eduRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1px;
+}
+
+.eduTitle {
+  font-weight: 700;
+  color: var(--p-text-color, #20262f);
+}
+
+.eduSub {
+  font-size: 0.94em;
+  opacity: 0.85;
+}
+
+/* Achievements block */
+.achievementList {
+  margin: 0;
+  padding-left: 14px;
+  list-style-type: var(--p-bullet-type, disc);
+}
+
+.achievementList li {
+  margin-bottom: 2px;
+}
+
+.achievementList li::marker {
+  font-size: var(--p-bullet-size, inherit);
+  color: var(--p-bullet-color, inherit);
+}
+
+/* Skills display modes */
+.skillsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skillCat {
+  font-weight: 700;
+  color: var(--p-heading-color, #122644);
+}
+
+.skillVals {
+  color: var(--p-text-color, #20262f);
+}
+
+.skillPill {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--p-heading-color, #122644);
+  color: #fff;
+  font-size: 0.82em;
+  font-weight: 600;
+  border-radius: 12px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
+/* Grid Labeled Contact Details (T2/T3 Sidebar styles) */
+.gmContact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gmItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gmLabel {
+  font-size: 0.7em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+}
+
+.gmValue {
+  font-size: 0.86em;
+  word-break: break-all;
+  line-height: 1.35;
+}
+
+/* Inline contact row (Classic T1 style) */
+.contactInline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 6px;
+  text-align: center;
+  font-size: 0.9em;
+  opacity: 0.8;
+  margin-bottom: 14px;
+}
+
+.contactInline span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.contactInline span:not(:last-child)::after {
+  content: "|";
+  color: #aab3bd;
+  margin-left: 12px;
+}
+
+/* Dynamic Accent Bar */
+.accentBar {
+  width: 100%;
+  display: block;
+}
+
+/* Custom Section Rendering */
+.customContent {
+  font-size: 1em;
+  line-height: inherit;
+}
+
+.customContent p {
+  margin-bottom: 6px;
+}
+
+/* Key-value custom layout */
+.kvRow {
+  margin-bottom: 3px;
+  line-height: var(--line-height, 1.45);
+}
+
+.kvLabel {
+  font-weight: 700;
+  color: var(--p-heading-color);
+}
+
+.kvValue {
+  color: var(--p-text-color);
+}
+
+/* Timeline custom layout */
+.timelineBlock {
+  margin-bottom: 6px;
+}
+
+.timelineRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.timelineTitle {
+  font-weight: 700;
+  color: var(--p-text-color);
+}
+
+.timelineDate {
+  opacity: 0.7;
+  white-space: nowrap;
+  font-size: 0.88em;
+}
+
+.timelineDesc {
+  opacity: 0.85;
+  margin-top: 1px;
+  font-size: 0.93em;
+}

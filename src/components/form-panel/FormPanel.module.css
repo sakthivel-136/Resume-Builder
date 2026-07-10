@@ -1,0 +1,208 @@
+/* ===== Form Panel Styling ===== */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.header {
+  padding: 16px 20px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userGreet {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profileNameInput {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  max-width: 160px;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.profileNameInput:hover {
+  border-color: var(--border);
+}
+
+.profileNameInput:focus {
+  outline: none;
+  background: var(--bg-tertiary);
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-glow);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Auto save indicator */
+.saveIndicator {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.saveIndicatorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+.saveIndicatorSaving {
+  background: var(--warning);
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+.profileRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.profileSelect {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  max-width: 200px;
+}
+
+.profileSelect:focus {
+  border-color: var(--border-focus);
+}
+
+.utils {
+  display: flex;
+  gap: 6px;
+}
+
+.utilBtn {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.utilBtn:hover {
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.utilBtnDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profileRow1 {
+  display: flex;
+  gap: 10px;
+}
+
+.profileRow1 .profileNameInput {
+  max-width: none;
+  font-size: 13.5px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+}
+
+.profileRow1 .profileSelect {
+  max-width: none;
+  width: 100%;
+}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.actionBtn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.actionBtn svg {
+  flex-shrink: 0;
+}
