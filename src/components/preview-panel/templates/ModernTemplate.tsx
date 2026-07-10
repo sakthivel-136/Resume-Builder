@@ -144,11 +144,20 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
                   {items.map((v, sIdx) => (
                     <span 
                       key={sIdx} 
-                      className={shared.skillPill}
-                      style={{ 
-                        background: hColor, 
+                      style={{
+                        display: 'inline-block',
+                        verticalAlign: 'middle',
+                        padding: '4px 10px',
+                        background: hColor,
                         color: '#fff',
                         fontSize: `${bodySize * 0.8}px`,
+                        fontWeight: 600,
+                        lineHeight: '1.2',
+                        whiteSpace: 'nowrap',
+                        borderRadius: '100px',
+                        marginRight: '6px',
+                        marginBottom: '6px',
+                        textAlign: 'center',
                         opacity: 0.85
                       }}
                     >
@@ -259,11 +268,20 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
               {items.map((t, idx) => (
                 <span
                   key={idx}
-                  className={shared.skillPill}
                   style={{
+                    display: 'inline-block',
+                    verticalAlign: 'middle',
+                    padding: '4px 10px',
                     background: hColor,
                     color: '#fff',
                     fontSize: `${bodySize * 0.8}px`,
+                    fontWeight: 600,
+                    lineHeight: '1.2',
+                    whiteSpace: 'nowrap',
+                    borderRadius: '100px',
+                    marginRight: '6px',
+                    marginBottom: '6px',
+                    textAlign: 'center',
                     opacity: 0.85
                   }}
                 >

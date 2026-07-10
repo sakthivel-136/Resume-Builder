@@ -144,11 +144,20 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                   {items.map((v, sIdx) => (
                     <span 
                       key={sIdx} 
-                      className={shared.skillPill}
-                      style={{ 
-                        background: isSidebar ? 'rgba(255, 255, 255, 0.18)' : hColor, 
+                      style={{
+                        display: 'inline-block',
+                        verticalAlign: 'middle',
+                        padding: '4px 10px',
+                        background: isSidebar ? 'rgba(255, 255, 255, 0.18)' : hColor,
                         color: isSidebar ? 'inherit' : '#fff',
-                        fontSize: `${bodySize * 0.8}px` 
+                        fontSize: `${bodySize * 0.8}px`,
+                        fontWeight: 600,
+                        lineHeight: '1.2',
+                        whiteSpace: 'nowrap',
+                        borderRadius: '100px',
+                        marginRight: '6px',
+                        marginBottom: '6px',
+                        textAlign: 'center',
                       }}
                     >
                       {v}
@@ -258,11 +267,20 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
               {items.map((t, idx) => (
                 <span
                   key={idx}
-                  className={shared.skillPill}
                   style={{
+                    display: 'inline-block',
+                    verticalAlign: 'middle',
+                    padding: '4px 10px',
                     background: isSidebar ? 'rgba(255, 255, 255, 0.18)' : hColor,
                     color: isSidebar ? 'inherit' : '#fff',
                     fontSize: `${bodySize * 0.8}px`,
+                    fontWeight: 600,
+                    lineHeight: '1.2',
+                    whiteSpace: 'nowrap',
+                    borderRadius: '100px',
+                    marginRight: '6px',
+                    marginBottom: '6px',
+                    textAlign: 'center',
                     opacity: isSidebar ? 1 : 0.85
                   }}
                 >
