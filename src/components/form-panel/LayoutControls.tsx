@@ -201,6 +201,13 @@ const LayoutControls = () => {
           </select>
         </div>
 
+        <div style={{ marginTop: '4px' }}>
+          <ColorPicker
+            label="Bullet Color"
+            value={state.bulletColor || state.hColor}
+            onChange={(val) => dispatch({ type: 'SET_FIELD', field: 'bulletColor', value: val })}
+          />
+        </div>
       </div>
 
       {/* Sidebar Specific Layout Options */}
