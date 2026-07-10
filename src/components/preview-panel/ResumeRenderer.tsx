@@ -93,8 +93,20 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
 
   return (
     <div id="resume-content-wrapper" style={{ position: 'relative' }}>
-      {/* Off-screen Export Container (Always 100% scale, page-split, for html2pdf capture) */}
-      <div style={{ position: 'absolute', top: '-9999px', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden', pointerEvents: 'none' }}>
+      {/* Export Container (Hidden behind the visible layout, fully rendered to apply CSS styles) */}
+      <div 
+        style={{ 
+          position: 'absolute', 
+          top: 0, 
+          left: 0, 
+          width: '794px', 
+          height: `${pageCount * 1123}px`, 
+          opacity: 0, 
+          pointerEvents: 'none', 
+          zIndex: -9999, 
+          overflow: 'hidden' 
+        }}
+      >
         <div 
           id="resume-export"
           style={{
