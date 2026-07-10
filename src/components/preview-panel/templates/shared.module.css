@@ -171,19 +171,19 @@
 }
 
 .skillPill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  vertical-align: middle;
   padding: 4px 10px;
   background: var(--p-heading-color, #122644);
   color: #fff;
   font-size: 0.85em;
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.2;
   white-space: nowrap;
   border-radius: 100px;
-  margin-right: 4px;
-  margin-bottom: 4px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  text-align: center;
 }
 
 /* Grid Labeled Contact Details (T2/T3 Sidebar styles) */

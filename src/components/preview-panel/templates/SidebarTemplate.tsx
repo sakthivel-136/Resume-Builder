@@ -140,7 +140,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
             return (
               <div key={s.id || idx} style={{ marginBottom: '4px' }}>
                 <div className={shared.skillCat} style={{ color: isSidebar ? '#fff' : hColor, marginBottom: '4px' }}>{s.category}</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                <div style={{ display: 'block', marginTop: '4px' }}>
                   {items.map((v, sIdx) => (
                     <span 
                       key={sIdx} 
@@ -254,7 +254,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         if (section.type === 'skills') {
           const items = section.content.split(',').map((v) => v.trim()).filter(Boolean);
           return (
-            <div style={{ lineHeight: 1.8, display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '4px' }}>
+            <div style={{ display: 'block', marginTop: '4px' }}>
               {items.map((t, idx) => (
                 <span
                   key={idx}
@@ -263,8 +263,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     background: isSidebar ? 'rgba(255, 255, 255, 0.18)' : hColor,
                     color: isSidebar ? 'inherit' : '#fff',
                     fontSize: `${bodySize * 0.8}px`,
-                    opacity: isSidebar ? 1 : 0.85,
-                    margin: 0
+                    opacity: isSidebar ? 1 : 0.85
                   }}
                 >
                   {t}
