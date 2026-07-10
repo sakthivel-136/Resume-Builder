@@ -90,6 +90,7 @@
   margin-bottom: 2px;
   position: relative;
   padding-left: 14px;
+  text-align: justify;
 }
 
 .points li::before {
@@ -129,17 +130,28 @@
 /* Achievements block */
 .achievementList {
   margin: 0;
-  padding-left: 14px;
-  list-style-type: var(--p-bullet-type, disc);
+  padding-left: 0;
+  list-style-type: none;
 }
 
 .achievementList li {
   margin-bottom: 2px;
+  position: relative;
+  padding-left: 14px;
+  text-align: justify;
 }
 
-.achievementList li::marker {
+.achievementList li::before {
+  content: var(--p-bullet-char, "•");
+  position: absolute;
+  left: 0;
+  top: 0;
   font-size: var(--p-bullet-size, inherit);
   color: var(--p-bullet-color, inherit);
+  line-height: var(--line-height, 1.4);
+  display: inline-block;
+  text-align: center;
+  width: 10px;
 }
 
 /* Skills display modes */
@@ -233,6 +245,7 @@
 .customContent {
   font-size: 1em;
   line-height: inherit;
+  text-align: justify;
 }
 
 .customContent p {
