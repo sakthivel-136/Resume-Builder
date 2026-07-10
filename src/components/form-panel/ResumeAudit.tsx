@@ -131,7 +131,7 @@ const ResumeAudit = () => {
   }
 
   return (
-    <Card title="Resume Health Audit" collapsible defaultCollapsed={false}>
+    <Card title="Resume Health Audit" collapsible defaultCollapsed={true}>
       <div className={styles.auditContainer}>
         {/* Health Gauge Ring / Bar */}
         <div className={styles.gaugeBlock}>
