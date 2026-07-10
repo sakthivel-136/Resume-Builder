@@ -468,3 +468,225 @@
 .features {
   animation: fadeUp 600ms ease 350ms both;
 }
+
+/* ===== Guide Section ===== */
+.guideSection {
+  width: 100%;
+  max-width: 680px;
+  margin-top: 12px;
+  animation: fadeUp 600ms ease 450ms both;
+}
+
+.guideDivider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.4), rgba(78, 205, 196, 0.3), transparent);
+  margin-bottom: 28px;
+}
+
+.guideTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #e8eaf0;
+  margin: 0 0 22px 0;
+  letter-spacing: 0.2px;
+}
+
+.guideTitleIcon {
+  font-size: 20px;
+}
+
+/* Steps Grid */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stepCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.stepCard:hover {
+  background: rgba(108, 99, 255, 0.08);
+  border-color: rgba(108, 99, 255, 0.25);
+}
+
+.stepNumber {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6c63ff, #4ecdc4);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(108, 99, 255, 0.4);
+}
+
+.stepContent {
+  flex: 1;
+}
+
+.stepTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #d4d8e8;
+  margin-bottom: 5px;
+}
+
+.stepDesc {
+  font-size: 12px;
+  color: rgba(200, 205, 220, 0.72);
+  line-height: 1.55;
+}
+
+.stepDesc b {
+  color: #a5a0ff;
+  font-weight: 600;
+}
+
+/* Import Guide Card */
+.importGuide {
+  display: flex;
+  gap: 16px;
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.07), rgba(108, 99, 255, 0.06));
+  border: 1px solid rgba(78, 205, 196, 0.2);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.importIcon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(78, 205, 196, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4ecdc4;
+}
+
+.importContent {
+  flex: 1;
+}
+
+.importTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #d4d8e8;
+  margin-bottom: 12px;
+}
+
+.importSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.importStep {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(200, 205, 220, 0.72);
+  line-height: 1.55;
+}
+
+.importStep b {
+  color: #4ecdc4;
+  font-weight: 600;
+}
+
+.importStep code {
+  background: rgba(78, 205, 196, 0.12);
+  color: #4ecdc4;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: monospace;
+}
+
+.importBadge {
+  flex-shrink: 0;
+  background: rgba(78, 205, 196, 0.18);
+  color: #4ecdc4;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* Quick Reference Grid */
+.quickRef {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.quickRefTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c8d0e0;
+  margin-bottom: 14px;
+}
+
+.quickRefGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.quickRefItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  color: rgba(190, 195, 215, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 8px 10px;
+  transition: background 0.2s;
+}
+
+.quickRefItem:hover {
+  background: rgba(108, 99, 255, 0.1);
+  color: #c8ccf0;
+}
+
+.quickRefItem span {
+  font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .stepsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .quickRefGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .importGuide {
+    flex-direction: column;
+  }
+}

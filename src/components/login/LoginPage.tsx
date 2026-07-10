@@ -259,6 +259,86 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
+
+        {/* ===== How to Use Guide ===== */}
+        <div className={styles.guideSection}>
+          <div className={styles.guideDivider} />
+          <h3 className={styles.guideTitle}>
+            <span className={styles.guideTitleIcon}>📖</span>
+            How to Use — Quick Guide
+          </h3>
+
+          {/* Steps */}
+          <div className={styles.stepsGrid}>
+            <div className={styles.stepCard}>
+              <div className={styles.stepNumber}>1</div>
+              <div className={styles.stepContent}>
+                <div className={styles.stepTitle}>Enter Your Name &amp; Get Started</div>
+                <div className={styles.stepDesc}>Type any name in the box above and click <b>Get Started</b>. Your data is saved locally in your browser — no account needed!</div>
+              </div>
+            </div>
+            <div className={styles.stepCard}>
+              <div className={styles.stepNumber}>2</div>
+              <div className={styles.stepContent}>
+                <div className={styles.stepTitle}>Fill in Your Details</div>
+                <div className={styles.stepDesc}>Add your personal info, experience, education, skills and projects from the left panel. The resume preview updates live on the right.</div>
+              </div>
+            </div>
+            <div className={styles.stepCard}>
+              <div className={styles.stepNumber}>3</div>
+              <div className={styles.stepContent}>
+                <div className={styles.stepTitle}>Pick a Template &amp; Color</div>
+                <div className={styles.stepDesc}>Choose from <b>Classic</b>, <b>Sidebar</b> or <b>Modern</b> template. Then select a color palette — Navy Gold, Steel Blue, Forest and more!</div>
+              </div>
+            </div>
+            <div className={styles.stepCard}>
+              <div className={styles.stepNumber}>4</div>
+              <div className={styles.stepContent}>
+                <div className={styles.stepTitle}>Download Your Resume</div>
+                <div className={styles.stepDesc}>Hit the <b>Download PDF</b> button in the top toolbar. Your resume downloads instantly as a pixel-perfect, print-ready PDF file!</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Import section */}
+          <div className={styles.importGuide}>
+            <div className={styles.importIcon}>
+              <DocIcon />
+            </div>
+            <div className={styles.importContent}>
+              <div className={styles.importTitle}>📂 Already have a resume? Import it in seconds!</div>
+              <div className={styles.importSteps}>
+                <div className={styles.importStep}>
+                  <span className={styles.importBadge}>Step 1</span>
+                  Open the builder and click <b>Export JSON</b> from the top left panel to save your current resume data as a <code>.json</code> file.
+                </div>
+                <div className={styles.importStep}>
+                  <span className={styles.importBadge}>Step 2</span>
+                  Next time, click <b>Import JSON</b> and select that file — all your data (experience, skills, projects) loads instantly!
+                </div>
+                <div className={styles.importStep}>
+                  <span className={styles.importBadge}>Tip</span>
+                  Use <b>Duplicate Profile</b> to create multiple resume versions for different job roles without starting over!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Features quick ref */}
+          <div className={styles.quickRef}>
+            <div className={styles.quickRefTitle}>⚡ Quick Feature Reference</div>
+            <div className={styles.quickRefGrid}>
+              <div className={styles.quickRefItem}><span>🎨</span> 6 Color Palettes</div>
+              <div className={styles.quickRefItem}><span>📐</span> 3 Templates</div>
+              <div className={styles.quickRefItem}><span>📸</span> Profile Photo Upload</div>
+              <div className={styles.quickRefItem}><span>🔢</span> ATS Score Checker</div>
+              <div className={styles.quickRefItem}><span>↕️</span> Drag &amp; Drop Sections</div>
+              <div className={styles.quickRefItem}><span>🖋️</span> Custom Fonts &amp; Spacing</div>
+              <div className={styles.quickRefItem}><span>💾</span> Multiple Resume Profiles</div>
+              <div className={styles.quickRefItem}><span>📄</span> 1-Click PDF Download</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
