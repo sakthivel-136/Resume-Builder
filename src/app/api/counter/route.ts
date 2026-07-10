@@ -8,11 +8,31 @@ export const dynamic = 'force-dynamic';
 const counterDir = path.join(process.cwd(), 'data');
 const counterFilePath = path.join(counterDir, 'counter.txt');
 
-// Helper to calculate time-based drift since July 1, 2026
+// Helper to calculate weekdays elapsed since July 1, 2026 and multiply by 17
 function getTimeDrift(): number {
-  const START_DATE = new Date('2026-07-01').getTime();
-  const daysElapsed = Math.max(0, Math.floor((Date.now() - START_DATE) / (1000 * 60 * 60 * 24)));
-  return daysElapsed * 5; // Simulates 5 downloads per day
+  try {
+    const START_DATE = new Date('2026-07-01');
+    const CURRENT_DATE = new Date();
+    
+    // Normalize dates to midnight
+    const curDate = new Date(START_DATE.getFullYear(), START_DATE.getMonth(), START_DATE.getDate());
+    const endDate = new Date(CURRENT_DATE.getFullYear(), CURRENT_DATE.getMonth(), CURRENT_DATE.getDate());
+    
+    let weekdaysCount = 0;
+    while (curDate <= endDate) {
+      const dayOfWeek = curDate.getDay();
+      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6; // 0 = Sunday, 6 = Saturday
+      if (!isWeekend) {
+        weekdaysCount++;
+      }
+      curDate.setDate(curDate.getDate() + 1);
+    }
+    
+    return weekdaysCount * 17;
+  } catch (err) {
+    console.error('Error calculating time drift:', err);
+    return 0;
+  }
 }
 
 // Helper to safely read count
