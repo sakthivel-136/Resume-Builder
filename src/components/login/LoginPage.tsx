@@ -367,6 +367,63 @@ export default function LoginPage() {
           </div>
         </div>
 
+        {/* ===== SEO Keywords & FAQ Section ===== */}
+        <section className={styles.seoSection}>
+          <div className={styles.seoDivider} />
+          
+          <div className={styles.seoHeader}>
+            <h3 className={styles.seoMainTitle}>About Resume Builder Pro</h3>
+            <p className={styles.seoSubtitleText}>
+              Create professional, ATS-optimized resumes and CVs online in minutes. 
+              Our free resume builder helps job seekers design print-ready resumes that pass 
+              applicant tracking systems (ATS) with ease. Choose from classic, modern, and sidebar resume formats, 
+              customize layout spacing, select from 20+ professional fonts, check your ATS score, and download 
+              your resume instantly as a PDF.
+            </p>
+          </div>
+
+          <div className={styles.faqContainer}>
+            <h4 className={styles.faqMainTitle}>Frequently Asked Questions (FAQ)</h4>
+            <div className={styles.faqGrid}>
+              <div className={styles.faqCard}>
+                <h5 className={styles.faqQuestion}>How do I make an ATS-friendly resume?</h5>
+                <p className={styles.faqAnswer}>
+                  To create an ATS-friendly resume, use simple layout structures (like our Classic or Sidebar formats), 
+                  select standard professional fonts (like Inter, Open Sans, or Roboto), avoid placing essential information 
+                  in text boxes or headers, and align margins properly. Our builder automatically uses clean semantic HTML structures 
+                  that ATS parsers read perfectly.
+                </p>
+              </div>
+
+              <div className={styles.faqCard}>
+                <h5 className={styles.faqQuestion}>How can I download my resume as a PDF?</h5>
+                <p className={styles.faqAnswer}>
+                  Once you enter your details in our cv maker, click the <b>Download PDF</b> button in the top toolbar. 
+                  Your resume will instantly compile and download as a high-quality, print-ready PDF file.
+                </p>
+              </div>
+
+              <div className={styles.faqCard}>
+                <h5 className={styles.faqQuestion}>Is my resume data safe and private?</h5>
+                <p className={styles.faqAnswer}>
+                  Yes, 100%! We prioritize your privacy. All resume details and personal information are stored strictly 
+                  on your local device using browser storage (localStorage). No data is sent to external databases or tracking servers, 
+                  making it fully secure and private.
+                </p>
+              </div>
+
+              <div className={styles.faqCard}>
+                <h5 className={styles.faqQuestion}>How do I fit my resume on a single page?</h5>
+                <p className={styles.faqAnswer}>
+                  Use our live <b>Section Spacing</b> and <b>Page Margin</b> controls to adjust document spacing dynamically. 
+                  Decreasing font sizes slightly or shrinking bullet list margins will immediately compress the layout to fit 
+                  onto exactly one page while maintaining clean visual alignment.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ===== Minimalist Branded Footer with subtle color trick ===== */}
         <footer className={styles.footer}>
           <div className={styles.footerText}>
