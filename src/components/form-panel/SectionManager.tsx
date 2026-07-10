@@ -74,7 +74,6 @@ const SortableSectionItem = ({
       ref={setNodeRef} 
       style={style} 
       className={`${styles.sectionItem} ${isSelected ? styles.selectedItem : ''}`}
-      onClick={isPinned ? undefined : onClick}
     >
       {isPinned ? (
         <div className={styles.actionBtn} style={{ cursor: 'default' }} title="Pinned Section">
@@ -84,15 +83,27 @@ const SortableSectionItem = ({
           </svg>
         </div>
       ) : (
-        <div {...attributes} {...listeners} className={styles.dragHandle} title="Drag to reorder section" onClick={(e) => e.stopPropagation()}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="9" cy="5" r="1" />
-            <circle cx="15" cy="5" r="1" />
-            <circle cx="9" cy="12" r="1" />
-            <circle cx="15" cy="12" r="1" />
-            <circle cx="9" cy="19" r="1" />
-            <circle cx="15" cy="19" r="1" />
-          </svg>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          {/* Dedicated mobile tap selector button */}
+          <button
+            type="button"
+            className={`${styles.swapSelector} ${isSelected ? styles.swapSelectorActive : ''}`}
+            onClick={onClick}
+            title="Tap to select / swap section order"
+          >
+            {isSelected ? '🎯' : '⇄'}
+          </button>
+          
+          <div {...attributes} {...listeners} className={styles.dragHandle} title="Drag to reorder section" onClick={(e) => e.stopPropagation()}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="9" cy="5" r="1" />
+              <circle cx="15" cy="5" r="1" />
+              <circle cx="9" cy="12" r="1" />
+              <circle cx="15" cy="12" r="1" />
+              <circle cx="9" cy="19" r="1" />
+              <circle cx="15" cy="19" r="1" />
+            </svg>
+          </div>
         </div>
       )}
 

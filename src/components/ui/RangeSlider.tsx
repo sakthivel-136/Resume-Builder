@@ -69,9 +69,24 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
           aria-label={label}
         />
       </div>
-      <span className={styles.rangeValue} aria-hidden="true">
-        {displayValue}
-      </span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexShrink: 0 }}>
+        <input
+          type="number"
+          className={styles.rangeValueInput}
+          min={min}
+          max={max * 3}
+          step={step}
+          value={value}
+          onChange={(e) => {
+            const val = Number(e.target.value);
+            if (!isNaN(val)) {
+              onChange(val);
+            }
+          }}
+          aria-label={`${label} input value`}
+        />
+        {unit && <span style={{ fontSize: '10px', color: 'var(--text-muted)', fontWeight: 700 }}>{unit}</span>}
+      </div>
     </div>
   );
 };
