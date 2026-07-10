@@ -127,6 +127,7 @@ export default function LoginPage() {
         return;
       }
       setError('');
+      sessionStorage.setItem('login_type', 'new');
       login(trimmed);
       router.push('/builder');
     },
@@ -136,6 +137,7 @@ export default function LoginPage() {
   const handleUserClick = useCallback(
     (username: string) => {
       const displayName = getUserDisplayName(username);
+      sessionStorage.setItem('login_type', 'returning');
       login(displayName);
       router.push('/builder');
     },

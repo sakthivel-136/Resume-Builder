@@ -18,7 +18,7 @@ function BuilderContent() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit');
   const [isMobile, setIsMobile] = useState(false);
-  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [modalType, setModalType] = useState<'new' | 'returning' | null>(null);
 
   // Check viewport width for responsive tabs
   useEffect(() => {
@@ -31,12 +31,16 @@ function BuilderContent() {
   }, []);
 
   useEffect(() => {
-    // Show onboarding popup if the user hasn't seen it yet
-    const seen = localStorage.getItem('has_seen_onboarding');
-    if (!seen) {
-      setShowOnboarding(true);
+    if (loading) return;
+    const type = sessionStorage.getItem('login_type');
+    if (type === 'new') {
+      setModalType('new');
+      sessionStorage.removeItem('login_type');
+    } else if (type === 'returning') {
+      setModalType('returning');
+      sessionStorage.removeItem('login_type');
     }
-  }, []);
+  }, [loading]);
 
   useEffect(() => {
     if (!user) return;
@@ -46,9 +50,11 @@ function BuilderContent() {
       if (lastId) {
         const loaded = loadProfile(user.name, lastId);
         if (loaded) {
-          // Force reset cached sample profile to the clean empty inputs schema
+          // Force reset cached sample profile to the pre-populated inputs schema
           if (loaded.profileName === 'Sample Resume' && loaded.experience.length > 0) {
             const cleanSample = createSampleResume();
+            cleanSample.profileName = `${user.displayName || user.name || 'My'} Resume`;
+            cleanSample.name = user.displayName || user.name || 'Sakthi Vel C';
             saveProfile(user.name, cleanSample);
             dispatch({ type: 'LOAD_PROFILE', data: cleanSample });
           } else {
@@ -59,6 +65,8 @@ function BuilderContent() {
     } else {
       // Pre-fill with sample resume for demo to wow the user!
       const sample = createSampleResume();
+      sample.profileName = `${user.displayName || user.name || 'My'} Resume`;
+      sample.name = user.displayName || user.name || 'Sakthi Vel C';
       saveProfile(user.name, sample);
       dispatch({ type: 'LOAD_PROFILE', data: sample });
       addToast('Welcome! We pre-filled a professional template for you.', 'info');
@@ -90,7 +98,10 @@ function BuilderContent() {
   });
 
   const renderOnboardingModal = () => {
-    if (!showOnboarding) return null;
+    if (!modalType) return null;
+    
+    const isNew = modalType === 'new';
+    
     return (
       <div 
         style={{
@@ -127,7 +138,8 @@ function BuilderContent() {
               gap: '8px',
             }}
           >
-            <span style={{ fontSize: '20px' }}>🚀</span> Welcome to Resume Builder Pro!
+            <span style={{ fontSize: '20px' }}>{isNew ? '🚀' : '✨'}</span> 
+            {isNew ? 'Welcome to Resume Builder Pro!' : `Happy to see you again, ${user?.displayName || 'user'}!`}
           </h3>
           <p 
             style={{
@@ -137,15 +149,22 @@ function BuilderContent() {
               margin: '0 0 20px 0',
             }}
           >
-            We've preloaded a sample template to help you see how the resume looks.
-            <br /><br />
-            <b>💡 Tip:</b> To maintain your own resume details, create a personal version by clicking <b>"Create New Profile"</b> in the top-left section manager. This saves your personal CV data under your own private profile!
+            {isNew ? (
+              <>
+                We've preloaded a sample template with your name (<b>{user?.displayName}</b>) to help you get started.
+                <br /><br />
+                <b>💡 Tip:</b> Create custom profile versions by clicking <b>"Create New Profile"</b> in the top-left section manager to keep your different job application CV data perfectly structured!
+              </>
+            ) : (
+              <>
+                Welcome back to your workspace! We have successfully loaded your last edited profile: <b>{state.profileName}</b>.
+                <br /><br />
+                Feel free to continue updating your sections, modifying layout designs, or downloading your print-ready PDF resume.
+              </>
+            )}
           </p>
           <button
-            onClick={() => {
-              localStorage.setItem('has_seen_onboarding', 'true');
-              setShowOnboarding(false);
-            }}
+            onClick={() => setModalType(null)}
             style={{
               width: '100%',
               background: 'var(--accent-primary)',
@@ -161,7 +180,7 @@ function BuilderContent() {
             onMouseOver={(e) => (e.currentTarget.style.filter = 'brightness(1.15)')}
             onMouseOut={(e) => (e.currentTarget.style.filter = 'none')}
           >
-            Got it, let's build!
+            {isNew ? "Got it, let's build!" : 'Close'}
           </button>
         </div>
       </div>
