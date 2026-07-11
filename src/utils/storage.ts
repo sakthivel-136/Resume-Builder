@@ -112,10 +112,72 @@ export function exportResumeJSON(data: ResumeData): string {
 export function importResumeJSON(jsonStr: string): ResumeData | null {
   try {
     const data = JSON.parse(jsonStr);
-    if (data && data.name !== undefined && data.tpl !== undefined) {
-      return data as ResumeData;
+    if (!data || data.name === undefined || data.tpl === undefined) {
+      return null;
     }
-    return null;
+
+    const standardKeys = new Set([
+      'profileId', 'profileName', 'lastEdited', 'tpl', 'pal', 'lineH', 'secSp',
+      'nameSize', 'headSize', 'bodySize', 'skillMode', 'photoShape', 'photoPos',
+      'photoSize', 'accentBar', 'accentH', 'mT', 'mR', 'mB', 'mL', 'sbW', 'sbPad',
+      'mainPad', 'gmContact', 'sectionOrder', 'sidebarSections', 'mainSections',
+      'secVis', 'secNames', 'name', 'title', 'phone', 'email', 'linkedin',
+      'github', 'website', 'photo', 'summary', 'education', 'skillGroups',
+      'experience', 'projects', 'achievements', 'customSections', 'customContacts',
+      'hFont', 'bFont', 'hColor', 'tColor', 'bgColor', 'sidebarBg', 'sidebarText',
+      'leftBg', 'aColor', 'bulletType', 'bulletSize', 'bulletColor'
+    ]);
+
+    // Ensure customSections and management fields exist
+    if (!data.customSections) data.customSections = {};
+    if (!data.secVis) data.secVis = {};
+    if (!data.secNames) data.secNames = {};
+    if (!data.sectionOrder) data.sectionOrder = [];
+    if (!data.mainSections) data.mainSections = [];
+
+    // Detect and parse any non-standard root level keys
+    Object.keys(data).forEach((key) => {
+      if (!standardKeys.has(key)) {
+        const val = data[key];
+        if (val === null || val === undefined) return;
+
+        const customId = key.startsWith('custom_') ? key : `custom_${key}`;
+        let type: 'text' | 'list' = 'text';
+        let content = '';
+
+        if (Array.isArray(val)) {
+          type = 'list';
+          content = val
+            .map((item) => (typeof item === 'string' ? item : JSON.stringify(item)))
+            .join('\n');
+        } else if (typeof val === 'object') {
+          content = JSON.stringify(val, null, 2);
+        } else {
+          content = String(val);
+        }
+
+        // Save custom section content
+        data.customSections[customId] = { type, content };
+
+        // Generate a readable section header name
+        const readableName = key
+          .replace(/([A-Z])/g, ' $1')
+          .replace(/^./, (str) => str.toUpperCase());
+
+        data.secNames[customId] = readableName;
+        data.secVis[customId] = true;
+
+        // Push to ordering list maps
+        if (!data.sectionOrder.includes(customId)) {
+          data.sectionOrder.push(customId);
+        }
+        if (!data.mainSections.includes(customId)) {
+          data.mainSections.push(customId);
+        }
+      }
+    });
+
+    return data as ResumeData;
   } catch {
     return null;
   }
