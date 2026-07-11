@@ -6,7 +6,92 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Modal from '@/components/ui/Modal';
 import styles from './cards.module.css';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
+/* ===== Sortable Custom List Entry Component ===== */
+interface SortableEntryProps {
+  id: string;
+  index: number;
+  value: string;
+  placeholder: string;
+  onRemove: (idx: number) => void;
+  onUpdate: (idx: number, val: string) => void;
+}
+
+const SortableCustomListEntry = ({
+  id,
+  index,
+  value,
+  placeholder,
+  onRemove,
+  onUpdate,
+}: SortableEntryProps) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <div ref={setNodeRef} style={{ ...style, marginBottom: '10px' }} className={styles.pointRow}>
+      <div {...attributes} {...listeners} className={styles.dragHandle} title="Drag to reorder item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="9" cy="5" r="1" />
+          <circle cx="15" cy="5" r="1" />
+          <circle cx="9" cy="12" r="1" />
+          <circle cx="15" cy="12" r="1" />
+          <circle cx="9" cy="19" r="1" />
+          <circle cx="15" cy="19" r="1" />
+        </svg>
+      </div>
+      <input
+        className={styles.input}
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onUpdate(index, e.target.value)}
+        onFocus={(e) => e.target.select()}
+      />
+      <button
+        type="button"
+        className={styles.pointDel}
+        onClick={() => onRemove(index)}
+        title="Delete item"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <polyline points="3 6 5 6 21 6" />
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        </svg>
+      </button>
+    </div>
+  );
+};
+
+/* ===== Main CustomSectionCard Component ===== */
 interface CustomSectionCardProps {
   id: string;
 }
@@ -17,6 +102,17 @@ const CustomSectionCard = ({ id }: CustomSectionCardProps) => {
 
   const section = state.customSections[id];
   const sectionName = state.secNames[id] || 'Custom Section';
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   if (!section) return null;
 
@@ -46,6 +142,21 @@ const CustomSectionCard = ({ id }: CustomSectionCardProps) => {
       dispatch({ type: 'SET_CUSTOM_SECTION_CONTENT', id, content: ' ' });
     } else {
       dispatch({ type: 'SET_CUSTOM_SECTION_CONTENT', id, content: section.content + '\n ' });
+    }
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (over && active.id !== over.id) {
+      const fromIndex = parseInt(active.id.toString().split('-').pop() || '0', 10);
+      const toIndex = parseInt(over.id.toString().split('-').pop() || '0', 10);
+      
+      const items = [...listItems];
+      const result = Array.from(items);
+      const [removed] = result.splice(fromIndex, 1);
+      result.splice(toIndex, 0, removed);
+      
+      dispatch({ type: 'SET_CUSTOM_SECTION_CONTENT', id, content: result.join('\n') });
     }
   };
 
@@ -123,41 +234,46 @@ const CustomSectionCard = ({ id }: CustomSectionCardProps) => {
         </div>
       </div>
 
-      {/* Render individual text boxes for Bullet List mode */}
+      {/* Render sortable list elements for Bullet List mode */}
       {section.type === 'list' ? (
         <div>
           {listItems.length === 0 && (
             <p className={styles.emptyHint}>No items added yet. Add one below.</p>
           )}
-          {listItems.map((item, idx) => (
-            <div key={idx} style={{ marginBottom: '10px' }} className={styles.pointRow}>
-              <input
-                className={styles.input}
-                type="text"
-                placeholder={`${sectionName} item ${idx + 1}`}
-                value={item}
-                onChange={(e) => updateListItem(idx, e.target.value)}
-                onFocus={(e) => e.target.select()}
-              />
-              <button
-                type="button"
-                className={styles.pointDel}
-                onClick={() => removeListItem(idx)}
-                title={`Delete ${sectionName.toLowerCase()} item`}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="3 6 5 6 21 6" />
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                </svg>
-              </button>
-            </div>
-          ))}
+          
+          <DndContext
+            id={`custom-dnd-${id}`}
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={listItems.map((_, idx) => `item-${idx}`)}
+              strategy={verticalListSortingStrategy}
+            >
+              <div>
+                {listItems.map((item, idx) => (
+                  <SortableCustomListEntry
+                    key={`item-${idx}`}
+                    id={`item-${idx}`}
+                    index={idx}
+                    value={item}
+                    placeholder={`${sectionName} item ${idx + 1}`}
+                    onRemove={removeListItem}
+                    onUpdate={updateListItem}
+                  />
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
+
           <Button
             type="button"
             variant="secondary"
             onClick={addListItem}
             fullWidth
             className={styles.addBtn}
+            style={{ marginTop: '8px' }}
           >
             + Add {sectionName}
           </Button>
