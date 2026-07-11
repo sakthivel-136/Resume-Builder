@@ -148,13 +148,16 @@
   content: var(--p-bullet-char, "•");
   position: absolute;
   left: 0;
-  top: 0.3em;
+  top: 0;
+  height: calc(var(--line-height, 1.45) * 1em);
   font-size: var(--p-bullet-size, inherit);
   color: var(--p-bullet-color, inherit);
-  line-height: 1;
-  display: inline-block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 10px;
+  line-height: 1;
+  margin-top: -0.07em;
 }
 
 /* Skills display modes */
