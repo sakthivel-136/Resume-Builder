@@ -460,7 +460,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         {sidebarSections.map((key) => {
           if (!secVis[key]) return null;
           return (
-            <div key={key}>
+            <div id={`entry-${key}`} key={key}>
               <h3 className={styles.sbHeading}>{secNames[key] || key}</h3>
               {renderSectionContent(key, true)}
             </div>
@@ -492,7 +492,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         {mainSections.map((key) => {
           if (!secVis[key]) return null;
           return (
-            <div key={key} className={shared.entryBlock}>
+            <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
               <h3 
                 className={styles.mainHeading}
                 style={{ 
