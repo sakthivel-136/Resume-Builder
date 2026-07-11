@@ -100,7 +100,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           left: '-9999px', 
           top: 0, 
           width: '794px', 
-          height: '1123px', 
+          height: `${pageCount * 1123}px`, 
           pointerEvents: 'none', 
           overflow: 'hidden',
         }}
@@ -111,7 +111,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
             ...cssVarsStyle,
             position: 'relative',
             width: '794px',
-            height: '1123px',
+            height: `${pageCount * 1123}px`,
             background: state.bgColor || '#ffffff',
             boxSizing: 'border-box',
             fontFamily: state.bFont,

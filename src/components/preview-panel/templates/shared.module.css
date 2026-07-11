@@ -108,6 +108,8 @@
 /* Education blocks */
 .eduBlock {
   margin-bottom: calc(var(--p-sec-sp, 12px) * 0.45) !important;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .eduRow {
@@ -272,6 +274,8 @@
 /* Timeline custom layout */
 .timelineBlock {
   margin-bottom: 6px;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .timelineRow {
