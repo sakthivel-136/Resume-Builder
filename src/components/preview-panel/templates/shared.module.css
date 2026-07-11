@@ -98,7 +98,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  height: 1.45em;
+  height: calc(var(--line-height, 1.45) * 1em);
   font-size: var(--p-bullet-size, inherit);
   color: var(--p-bullet-color, inherit);
   display: flex;
