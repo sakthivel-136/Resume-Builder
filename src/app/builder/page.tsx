@@ -7,7 +7,7 @@ import { ResumeProvider, useResume } from '@/context/ResumeContext';
 import { useToast } from '@/context/ToastContext';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { loadProfile, saveProfile, getLastEditedProfileId, getUserProfiles } from '@/utils/storage';
-import { createSampleResume, createAntigravityResume } from '@/data/defaultResume';
+import { createSampleResume } from '@/data/defaultResume';
 import FormPanel from '@/components/form-panel/FormPanel';
 import PreviewPanel from '@/components/preview-panel/PreviewPanel';
 
@@ -45,7 +45,6 @@ function BuilderContent() {
   useEffect(() => {
     if (!user) return;
     const profiles = getUserProfiles(user.name);
-    const isAntigravity = user.name.toLowerCase() === 'antigravity';
 
     if (profiles.length > 0) {
       const lastId = getLastEditedProfileId(user.name);
@@ -57,11 +56,9 @@ function BuilderContent() {
       }
     } else {
       // Pre-fill with sample resume for demo to wow the user!
-      const sample = isAntigravity ? createAntigravityResume() : createSampleResume();
-      sample.profileName = isAntigravity ? 'Antigravity AI Resume' : `${user.displayName || user.name || 'My'} Resume`;
-      if (!isAntigravity) {
-        sample.name = user.displayName || user.name || 'Sakthi Vel C';
-      }
+      const sample = createSampleResume();
+      sample.profileName = `${user.displayName || user.name || 'My'} Resume`;
+      sample.name = user.displayName || user.name || 'Sakthi Vel C';
       saveProfile(user.name, sample);
       dispatch({ type: 'LOAD_PROFILE', data: sample });
       addToast('Welcome! We pre-filled a professional template for you.', 'info');
