@@ -57,7 +57,7 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
           filename: `${state.name.replace(/\s+/g, '_').toLowerCase() || 'resume'}_cv.pdf`,
           image: { type: 'jpeg' as const, quality: 0.98 },
           html2canvas: { 
-            scale: 2, 
+            scale: 3.125, 
             useCORS: true, 
             logging: false
           },
