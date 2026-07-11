@@ -98,15 +98,11 @@
   position: absolute;
   left: 0;
   top: 0;
-  height: calc(var(--line-height, 1.45) * 1em);
   font-size: var(--p-bullet-size, inherit);
   color: var(--p-bullet-color, inherit);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: inherit;
   width: 10px;
-  line-height: 1;
-  margin-top: -0.07em;
+  text-align: center;
 }
 
 /* Education blocks */
@@ -149,15 +145,11 @@
   position: absolute;
   left: 0;
   top: 0;
-  height: calc(var(--line-height, 1.45) * 1em);
   font-size: var(--p-bullet-size, inherit);
   color: var(--p-bullet-color, inherit);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: inherit;
   width: 10px;
-  line-height: 1;
-  margin-top: -0.07em;
+  text-align: center;
 }
 
 /* Skills display modes */
