@@ -209,7 +209,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
     runAdjustment();
   }, [state, contentHeight]);
 
-  const renderPageSheet = (pageIndex: number, isExport = false) => {
+  const renderPageSheet = (pageIndex: number) => {
     return (
       <div 
         key={pageIndex}
@@ -221,10 +221,8 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           position: 'relative',
           boxSizing: 'border-box',
           overflow: 'hidden',
-          ...(isExport ? {} : {
-            boxShadow: '0 4px 24px rgba(20, 30, 50, 0.12)',
-            marginBottom: pageIndex === pageCount - 1 ? '0' : '24px',
-          })
+          boxShadow: '0 4px 24px rgba(20, 30, 50, 0.12)',
+          marginBottom: pageIndex === pageCount - 1 ? '0' : '24px',
         }}
       >
         {/* Sliced template content */}
@@ -236,28 +234,26 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
             boxSizing: 'border-box' 
           }}
         >
-          {renderActiveTemplate(true)}
+          {renderActiveTemplate(false)}
         </div>
 
         {/* Page Number Indicator (Hidden in PDF export) */}
-        {!isExport && (
-          <div style={{
-            position: 'absolute',
-            bottom: '12px',
-            right: '16px',
-            fontSize: '10.5px',
-            color: 'rgba(0, 0, 0, 0.4)',
-            fontWeight: 600,
-            userSelect: 'none',
-            background: 'rgba(255, 255, 255, 0.85)',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
-            padding: '2px 8px',
-            borderRadius: '4px',
-            zIndex: 60,
-          }}>
-            Page {pageIndex + 1} of {pageCount}
-          </div>
-        )}
+        <div style={{
+          position: 'absolute',
+          bottom: '12px',
+          right: '16px',
+          fontSize: '10.5px',
+          color: 'rgba(0, 0, 0, 0.4)',
+          fontWeight: 600,
+          userSelect: 'none',
+          background: 'rgba(255, 255, 255, 0.85)',
+          border: '1px solid rgba(0, 0, 0, 0.08)',
+          padding: '2px 8px',
+          borderRadius: '4px',
+          zIndex: 60,
+        }}>
+          Page {pageIndex + 1} of {pageCount}
+        </div>
       </div>
     );
   };
@@ -280,12 +276,11 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           boxSizing: 'border-box',
         }}
       >
-        {renderActiveTemplate(true)}
+        {renderActiveTemplate(false)}
       </div>
 
       {/* Export Container (Off-screen but fully rendered for html2canvas capture) */}
       <div 
-        id="resume-export"
         style={{ 
           position: 'fixed', 
           left: '-9999px', 
@@ -294,11 +289,25 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           height: `${pageCount * PAGE_HEIGHT}px`, 
           pointerEvents: 'none', 
           overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
         }}
       >
-        {Array.from({ length: pageCount }).map((_, i) => renderPageSheet(i, true))}
+        <div 
+          id="resume-export"
+          style={{
+            ...cssVarsStyle,
+            position: 'relative',
+            width: `${PAGE_WIDTH}px`,
+            height: `${pageCount * PAGE_HEIGHT}px`,
+            background: state.bgColor || '#ffffff',
+            boxSizing: 'border-box',
+            fontFamily: state.bFont,
+            fontSize: `${state.bodySize}px`,
+            color: state.tColor,
+            overflow: 'hidden',
+          }}
+        >
+          {renderActiveTemplate(false)}
+        </div>
       </div>
 
       {/* Visible Split-Page Preview */}
@@ -315,7 +324,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           color: state.tColor,
         }}
       >
-        {Array.from({ length: pageCount }).map((_, i) => renderPageSheet(i, false))}
+        {Array.from({ length: pageCount }).map((_, i) => renderPageSheet(i))}
       </div>
     </div>
   );
