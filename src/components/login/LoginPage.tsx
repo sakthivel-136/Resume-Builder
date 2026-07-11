@@ -83,16 +83,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [downloadCount, setDownloadCount] = useState(142);
   const [showDisclaimer, setShowDisclaimer] = useState(false);
-  const [dontShowAgain, setDontShowAgain] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const hidden = localStorage.getItem('hideDisclaimerPopup');
-      if (hidden !== 'true') {
-        setShowDisclaimer(true);
-      }
-    }
-  }, []);
+  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
 
   useEffect(() => {
     fetch('/api/counter')
@@ -138,9 +129,19 @@ export default function LoginPage() {
         return;
       }
       setError('');
-      sessionStorage.setItem('login_type', 'new');
-      login(trimmed);
-      router.push('/builder');
+
+      const usernameKey = trimmed.toLowerCase();
+      const profiles = getUserProfiles(usernameKey);
+
+      if (profiles.length > 0) {
+        // Existing user: Directly log in
+        sessionStorage.setItem('login_type', 'returning');
+        login(trimmed);
+        router.push('/builder');
+      } else {
+        // Brand new user: Show disclaimer first
+        setShowDisclaimer(true);
+      }
     },
     [name, login, router]
   );
@@ -491,8 +492,8 @@ export default function LoginPage() {
             </h3>
             <p 
               style={{
-                fontSize: '13.5px',
-                color: '#9ca3af',
+                fontSize: '14.5px',
+                color: '#d1d5db',
                 lineHeight: '1.6',
                 margin: '0 0 20px 0',
               }}
@@ -502,14 +503,14 @@ export default function LoginPage() {
             
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px' }}>
               <input
-                id="dont-show-disclaimer"
+                id="accept-disclaimer"
                 type="checkbox"
-                checked={dontShowAgain}
-                onChange={(e) => setDontShowAgain(e.target.checked)}
+                checked={disclaimerAccepted}
+                onChange={(e) => setDisclaimerAccepted(e.target.checked)}
                 style={{ width: '16px', height: '16px', cursor: 'pointer' }}
               />
               <label 
-                htmlFor="dont-show-disclaimer"
+                htmlFor="accept-disclaimer"
                 style={{
                   fontSize: '13px',
                   color: '#9ca3af',
@@ -517,33 +518,38 @@ export default function LoginPage() {
                   userSelect: 'none'
                 }}
               >
-                Don't show this message again
+                I have scrolled down and viewed all disclaimers
               </label>
             </div>
             
             <button
+              disabled={!disclaimerAccepted}
               onClick={() => {
-                if (dontShowAgain) {
-                  localStorage.setItem('hideDisclaimerPopup', 'true');
-                }
+                sessionStorage.setItem('login_type', 'new');
+                login(name.trim());
+                router.push('/builder');
                 setShowDisclaimer(false);
               }}
               style={{
                 width: '100%',
-                background: '#6366f1',
-                color: '#ffffff',
+                background: disclaimerAccepted ? '#6366f1' : '#374151',
+                color: disclaimerAccepted ? '#ffffff' : '#9ca3af',
                 border: 'none',
                 padding: '10px 16px',
                 borderRadius: '6px',
                 fontSize: '13px',
                 fontWeight: 600,
-                cursor: 'pointer',
+                cursor: disclaimerAccepted ? 'pointer' : 'not-allowed',
                 transition: 'all 0.2s ease',
               }}
-              onMouseOver={(e) => (e.currentTarget.style.filter = 'brightness(1.15)')}
-              onMouseOut={(e) => (e.currentTarget.style.filter = 'none')}
+              onMouseOver={(e) => {
+                if (disclaimerAccepted) e.currentTarget.style.filter = 'brightness(1.15)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.filter = 'none';
+              }}
             >
-              Acknowledge & Close
+              Get Started →
             </button>
           </div>
         </div>
