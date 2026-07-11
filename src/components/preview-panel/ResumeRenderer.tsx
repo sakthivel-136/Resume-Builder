@@ -1,6 +1,6 @@
 'use client';
 
-import React, { memo, useRef, useEffect, useState } from 'react';
+import React, { memo, useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { useResume } from '@/context/ResumeContext';
 import ClassicTemplate from './templates/ClassicTemplate';
 import SidebarTemplate from './templates/SidebarTemplate';
@@ -93,14 +93,66 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
   const PAGE_WIDTH = 794;
   const marginTop = Number(state.mT) || 24;
   const marginBottom = Number(state.mB) || 24;
-  const printableHeight = PAGE_HEIGHT - marginTop - marginBottom;
   
-  const pageCount = Math.max(1, Math.ceil(contentHeight / printableHeight));
+  const pageCount = Math.max(1, Math.ceil(contentHeight / PAGE_HEIGHT));
+
+  // Layout adjustment script to push blocks out of margin/page break boundaries
+  useLayoutEffect(() => {
+    const runAdjustment = () => {
+      const containers = document.querySelectorAll(
+        '#resume-measure-container, #resume-export, #resume-content'
+      );
+      
+      containers.forEach((container) => {
+        const blocks = container.querySelectorAll<HTMLElement>(
+          '[class*="entryBlock"], .eduBlock, .timelineBlock, .achievementList, .skillGroup'
+        );
+        
+        // 1. Reset margins
+        blocks.forEach((el) => {
+          el.style.marginTop = '';
+        });
+
+        // 2. Cascade adjustments (up to 5 passes)
+        for (let pass = 0; pass < 5; pass++) {
+          let adjusted = false;
+          
+          const items = Array.from(blocks).map((el) => {
+            const offsetTop = el.offsetTop;
+            const offsetHeight = el.offsetHeight;
+            return { el, top: offsetTop, bottom: offsetTop + offsetHeight };
+          });
+
+          for (const item of items) {
+            const startPage = Math.floor(item.top / PAGE_HEIGHT);
+            const boundary = (startPage + 1) * PAGE_HEIGHT;
+            const marginBoundary = boundary - marginBottom;
+
+            if (item.bottom > marginBoundary) {
+              const itemHeight = item.bottom - item.top;
+              const fitsOnPage = itemHeight <= (PAGE_HEIGHT - marginTop - marginBottom);
+              
+              if (fitsOnPage && item.top < marginBoundary) {
+                const pushAmount = (boundary + marginTop) - item.top;
+                item.el.style.marginTop = `${pushAmount}px`;
+                adjusted = true;
+                break;
+              }
+            }
+          }
+          if (!adjusted) break;
+        }
+      });
+    };
+
+    runAdjustment();
+  }, [state, contentHeight]);
 
   const renderPageSheet = (pageIndex: number, isExport = false) => {
     return (
       <div 
         key={pageIndex}
+        className="resume-page-sheet"
         style={{
           width: `${PAGE_WIDTH}px`,
           height: `${PAGE_HEIGHT}px`,
@@ -114,29 +166,16 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           })
         }}
       >
-        {/* Printable Content Area with Margins */}
-        <div
-          style={{
-            position: 'absolute',
-            top: `${marginTop}px`,
-            left: 0,
-            width: `${PAGE_WIDTH}px`,
-            height: `${printableHeight}px`,
-            overflow: 'hidden',
-            boxSizing: 'border-box',
+        {/* Sliced template content */}
+        <div 
+          style={{ 
+            ...cssVarsStyle, 
+            width: '100%', 
+            transform: `translateY(-${pageIndex * PAGE_HEIGHT}px)`,
+            boxSizing: 'border-box' 
           }}
         >
-          {/* Inner Template translation wrapper */}
-          <div
-            style={{
-              ...cssVarsStyle,
-              width: '100%',
-              transform: `translateY(-${pageIndex * printableHeight}px)`,
-              boxSizing: 'border-box',
-            }}
-          >
-            {renderActiveTemplate(true)}
-          </div>
+          {renderActiveTemplate(true)}
         </div>
 
         {/* Page Number Indicator (Hidden in PDF export) */}
@@ -166,6 +205,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
     <div id="resume-content-wrapper" style={{ position: 'relative' }}>
       {/* Hidden Measure Container (auto height to get natural continuous height) */}
       <div
+        id="resume-measure-container"
         ref={measureRef}
         style={{
           ...cssVarsStyle,
