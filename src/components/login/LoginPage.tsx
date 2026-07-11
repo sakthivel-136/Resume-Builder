@@ -108,9 +108,24 @@ export default function LoginPage() {
         setHasScrolledToBottom(true);
       }
     };
+
+    const checkScrollable = () => {
+      // If the total document height is less than or equal to window height, scroll is not possible
+      const isScrollable = document.documentElement.scrollHeight > window.innerHeight;
+      if (!isScrollable) {
+        setHasScrolledToBottom(true);
+      }
+    };
+    
+    // Initial check
+    checkScrollable();
     
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', checkScrollable);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkScrollable);
+    };
   }, [isNewUser]);
 
   useEffect(() => {

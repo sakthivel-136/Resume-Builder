@@ -525,6 +525,55 @@ const SectionManager = () => {
         + Create Custom Section
       </Button>
 
+      {/* Restore Predefined Sections Panel */}
+      {(() => {
+        const standardSections = ['summary', 'education', 'skills', 'experience', 'projects', 'achievements'];
+        const deletedStandardSections = standardSections.filter(key => !state.sectionOrder.includes(key));
+        if (deletedStandardSections.length === 0) return null;
+        return (
+          <div style={{ marginTop: '16px', borderTop: '1px dashed rgba(255, 255, 255, 0.08)', paddingTop: '16px' }}>
+            <span style={{ display: 'block', fontSize: '10px', fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>
+              Restore Predefined Sections
+            </span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {deletedStandardSections.map((key) => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => {
+                    dispatch({ type: 'RESTORE_PREDEFINED_SECTION', key });
+                    addToast(`Restored "${state.secNames[key] || key}" section!`, 'success');
+                  }}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.04)',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    borderRadius: '6px',
+                    padding: '6px 12px',
+                    fontSize: '11px',
+                    color: 'var(--text-primary)',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    transition: 'all 0.15s ease',
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  }}
+                >
+                  + {state.secNames[key] || key}
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
       {/* Add Custom Section Modal */}
       <Modal
         isOpen={isAddModalOpen}

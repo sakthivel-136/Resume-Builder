@@ -91,6 +91,16 @@ function resumeReducer(data: ResumeData, action: ResumeAction): ResumeData {
       };
     }
 
+    case 'RESTORE_PREDEFINED_SECTION': {
+      if (data.sectionOrder.includes(action.key)) return data;
+      return {
+        ...data,
+        secVis: { ...data.secVis, [action.key]: true },
+        sectionOrder: [...data.sectionOrder, action.key],
+        mainSections: [...data.mainSections, action.key],
+      };
+    }
+
     // Education
     case 'ADD_EDUCATION':
       return { ...data, education: [...data.education, { id: generateId(), degree: '', school: '', dates: '', gpa: '' }] };

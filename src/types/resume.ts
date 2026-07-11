@@ -142,6 +142,7 @@ export type ResumeAction =
   | { type: 'RENAME_SECTION'; key: string; name: string }
   | { type: 'ADD_CUSTOM_SECTION'; id: string; name: string }
   | { type: 'REMOVE_CUSTOM_SECTION'; id: string }
+  | { type: 'RESTORE_PREDEFINED_SECTION'; key: string }
 
   // Education
   | { type: 'ADD_EDUCATION' }
