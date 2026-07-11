@@ -1,6 +1,6 @@
 'use client';
 
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { useResume } from '@/context/ResumeContext';
 import { useToast } from '@/context/ToastContext';
 import Card from '@/components/ui/Card';
@@ -183,6 +183,12 @@ const SectionManager = () => {
   const [selectedSectionId, setSelectedSectionId] = useState<string | null>(null);
   const [customName, setCustomName] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isAddModalOpen) {
+      setCustomName('');
+    }
+  }, [isAddModalOpen]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {

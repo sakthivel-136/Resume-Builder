@@ -41,13 +41,22 @@ const Modal: React.FC<ModalProps> = ({
   const [closing, setClosing] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // Open: mount immediately
+  // Open/Close: sync visibility state with isOpen prop
   useEffect(() => {
     if (isOpen) {
       setVisible(true);
       setClosing(false);
+    } else {
+      if (visible && !closing) {
+        setClosing(true);
+        const timer = setTimeout(() => {
+          setVisible(false);
+          setClosing(false);
+        }, CLOSE_DURATION);
+        return () => clearTimeout(timer);
+      }
     }
-  }, [isOpen]);
+  }, [isOpen, visible, closing]);
 
   // Close: play exit animation, then unmount
   const handleClose = useCallback(() => {
