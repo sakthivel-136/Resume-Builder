@@ -290,6 +290,9 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           visibility: 'hidden',
           pointerEvents: 'none',
           boxSizing: 'border-box',
+          fontFamily: state.bFont,
+          fontSize: `${state.bodySize}px`,
+          color: state.tColor,
         }}
       >
         {renderActiveTemplate(false)}
