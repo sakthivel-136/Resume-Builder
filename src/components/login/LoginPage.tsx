@@ -82,8 +82,36 @@ export default function LoginPage() {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [downloadCount, setDownloadCount] = useState(142);
-  const [showDisclaimer, setShowDisclaimer] = useState(false);
-  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
+  const [hasScrolledToBottom, setHasScrolledToBottom] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const isNewUser = useMemo(() => {
+    const trimmed = name.trim().toLowerCase();
+    if (!trimmed || trimmed.length < 2) return false;
+    const profiles = getUserProfiles(trimmed);
+    return profiles.length === 0;
+  }, [name]);
+
+  // Reset scroll and check state if username is changed
+  useEffect(() => {
+    setHasScrolledToBottom(false);
+    setIsChecked(false);
+  }, [name]);
+
+  useEffect(() => {
+    if (!isNewUser) return;
+    
+    const handleScroll = () => {
+      const threshold = 120;
+      const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - threshold;
+      if (isBottom) {
+        setHasScrolledToBottom(true);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isNewUser]);
 
   useEffect(() => {
     fetch('/api/counter')
@@ -134,14 +162,12 @@ export default function LoginPage() {
       const profiles = getUserProfiles(usernameKey);
 
       if (profiles.length > 0) {
-        // Existing user: Directly log in
         sessionStorage.setItem('login_type', 'returning');
-        login(trimmed);
-        router.push('/builder');
       } else {
-        // Brand new user: Show disclaimer first
-        setShowDisclaimer(true);
+        sessionStorage.setItem('login_type', 'new');
       }
+      login(trimmed);
+      router.push('/builder');
     },
     [name, login, router]
   );
@@ -200,7 +226,45 @@ export default function LoginPage() {
             />
           </div>
           {error && <p className={styles.errorText}>{error}</p>}
-          <button className={styles.submitBtn} type="submit">
+
+          {isNewUser && (
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginTop: '14px', marginBottom: '14px', textAlign: 'left' }}>
+              <input
+                id="disclaimer-checkbox"
+                type="checkbox"
+                checked={isChecked}
+                disabled={!hasScrolledToBottom}
+                onChange={(e) => setIsChecked(e.target.checked)}
+                style={{ marginTop: '3px', cursor: hasScrolledToBottom ? 'pointer' : 'not-allowed', width: '16px', height: '16px' }}
+              />
+              <label 
+                htmlFor="disclaimer-checkbox"
+                style={{
+                  fontSize: '12px',
+                  color: isChecked ? 'var(--text-secondary)' : '#ef4444',
+                  cursor: hasScrolledToBottom ? 'pointer' : 'not-allowed',
+                  userSelect: 'none',
+                  lineHeight: '1.4',
+                  fontWeight: isChecked ? 500 : 600
+                }}
+              >
+                {!hasScrolledToBottom 
+                  ? "⚠️ Kindly scroll down to the bottom of the page to read all precautions/guidelines to enable this checkbox."
+                  : "✅ I have reviewed all guide disclaimers below."
+                }
+              </label>
+            </div>
+          )}
+
+          <button 
+            className={styles.submitBtn} 
+            type="submit"
+            disabled={isNewUser && !isChecked}
+            style={{
+              opacity: (isNewUser && !isChecked) ? 0.5 : 1,
+              cursor: (isNewUser && !isChecked) ? 'not-allowed' : 'pointer'
+            }}
+          >
             Get Started →
           </button>
           <div className={styles.desktopAdvice}>
@@ -450,110 +514,6 @@ export default function LoginPage() {
           </div>
         </footer>
       </div>
-
-      {showDisclaimer && (
-        <div 
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 99999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'rgba(3, 7, 18, 0.75)',
-            backdropFilter: 'blur(8px)',
-          }}
-        >
-          <div 
-            style={{
-              background: '#111827',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderRadius: '12px',
-              padding: '30px',
-              maxWidth: '440px',
-              width: '90%',
-              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(108, 99, 255, 0.1)',
-              fontFamily: 'inherit',
-            }}
-          >
-            <h3 
-              style={{
-                fontSize: '18px',
-                fontWeight: 700,
-                color: '#f9fafb',
-                margin: '0 0 12px 0',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-              }}
-            >
-              <span style={{ fontSize: '20px' }}>📢</span> 
-              Disclaimer Notice
-            </h3>
-            <p 
-              style={{
-                fontSize: '14.5px',
-                color: '#d1d5db',
-                lineHeight: '1.6',
-                margin: '0 0 20px 0',
-              }}
-            >
-              Kindly view all the disclaimers we have given below, just scroll and see.
-            </p>
-            
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px' }}>
-              <input
-                id="accept-disclaimer"
-                type="checkbox"
-                checked={disclaimerAccepted}
-                onChange={(e) => setDisclaimerAccepted(e.target.checked)}
-                style={{ width: '16px', height: '16px', cursor: 'pointer' }}
-              />
-              <label 
-                htmlFor="accept-disclaimer"
-                style={{
-                  fontSize: '13px',
-                  color: '#9ca3af',
-                  cursor: 'pointer',
-                  userSelect: 'none'
-                }}
-              >
-                I have scrolled down and viewed all disclaimers
-              </label>
-            </div>
-            
-            <button
-              disabled={!disclaimerAccepted}
-              onClick={() => {
-                sessionStorage.setItem('login_type', 'new');
-                login(name.trim());
-                router.push('/builder');
-                setShowDisclaimer(false);
-              }}
-              style={{
-                width: '100%',
-                background: disclaimerAccepted ? '#6366f1' : '#374151',
-                color: disclaimerAccepted ? '#ffffff' : '#9ca3af',
-                border: 'none',
-                padding: '10px 16px',
-                borderRadius: '6px',
-                fontSize: '13px',
-                fontWeight: 600,
-                cursor: disclaimerAccepted ? 'pointer' : 'not-allowed',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseOver={(e) => {
-                if (disclaimerAccepted) e.currentTarget.style.filter = 'brightness(1.15)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.filter = 'none';
-              }}
-            >
-              Get Started →
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
