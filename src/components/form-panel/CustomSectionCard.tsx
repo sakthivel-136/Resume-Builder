@@ -25,33 +25,28 @@ const CustomSectionCard = ({ id }: CustomSectionCardProps) => {
   };
 
   // --- Individual list item helpers ---
-  const listItems = section.type === 'list'
-    ? section.content.split('\n').filter((line) => line.trim() !== '')
-    : [];
+  const listItems = section.content === ''
+    ? []
+    : section.content.split('\n');
 
   const updateListItem = (index: number, value: string) => {
-    const items = section.content.split('\n');
-    const nonEmptyIndexes: number[] = [];
-    items.forEach((line, i) => {
-      if (line.trim() !== '') nonEmptyIndexes.push(i);
-    });
-    if (index < nonEmptyIndexes.length) {
-      items[nonEmptyIndexes[index]] = value;
-    }
+    const items = [...listItems];
+    items[index] = value;
     dispatch({ type: 'SET_CUSTOM_SECTION_CONTENT', id, content: items.join('\n') });
   };
 
   const removeListItem = (index: number) => {
-    const newItems = [...listItems];
-    newItems.splice(index, 1);
-    dispatch({ type: 'SET_CUSTOM_SECTION_CONTENT', id, content: newItems.join('\n') });
+    const items = [...listItems];
+    items.splice(index, 1);
+    dispatch({ type: 'SET_CUSTOM_SECTION_CONTENT', id, content: items.join('\n') });
   };
 
   const addListItem = () => {
-    const newContent = section.content.trim() === ''
-      ? ''
-      : section.content + '\n';
-    dispatch({ type: 'SET_CUSTOM_SECTION_CONTENT', id, content: newContent });
+    if (section.content === '') {
+      dispatch({ type: 'SET_CUSTOM_SECTION_CONTENT', id, content: ' ' });
+    } else {
+      dispatch({ type: 'SET_CUSTOM_SECTION_CONTENT', id, content: section.content + '\n ' });
+    }
   };
 
   const TYPE_LABELS: Record<string, string> = {
