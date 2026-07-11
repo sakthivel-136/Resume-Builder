@@ -19,8 +19,6 @@ function BuilderContent() {
   const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit');
   const [isMobile, setIsMobile] = useState(false);
   const [modalType, setModalType] = useState<'new' | 'returning' | null>(null);
-  const [showDisclaimer, setShowDisclaimer] = useState(false);
-  const [dontShowAgain, setDontShowAgain] = useState(false);
 
   // Check viewport width for responsive tabs
   useEffect(() => {
@@ -30,15 +28,6 @@ function BuilderContent() {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const hidden = localStorage.getItem('hideDisclaimerPopup');
-      if (hidden !== 'true') {
-        setShowDisclaimer(true);
-      }
-    }
   }, []);
 
   useEffect(() => {
@@ -198,109 +187,6 @@ function BuilderContent() {
     );
   };
 
-  const renderDisclaimerModal = () => {
-    if (!showDisclaimer) return null;
-    
-    return (
-      <div 
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 99999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: 'rgba(3, 7, 18, 0.75)',
-          backdropFilter: 'blur(8px)',
-        }}
-      >
-        <div 
-          style={{
-            background: 'var(--bg-secondary)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            borderRadius: 'var(--radius-lg)',
-            padding: '30px',
-            maxWidth: '440px',
-            width: '90%',
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(108, 99, 255, 0.1)',
-            fontFamily: 'inherit',
-          }}
-        >
-          <h3 
-            style={{
-              fontSize: '18px',
-              fontWeight: 700,
-              color: 'var(--text-primary)',
-              margin: '0 0 12px 0',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-            }}
-          >
-            <span style={{ fontSize: '20px' }}>📢</span> 
-            Disclaimer Notice
-          </h3>
-          <p 
-            style={{
-              fontSize: '13.5px',
-              color: 'var(--text-secondary)',
-              lineHeight: '1.6',
-              margin: '0 0 20px 0',
-            }}
-          >
-            Kindly view all the disclaimers we have given below, just scroll and see.
-          </p>
-          
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px' }}>
-            <input
-              id="dont-show-disclaimer"
-              type="checkbox"
-              checked={dontShowAgain}
-              onChange={(e) => setDontShowAgain(e.target.checked)}
-              style={{ width: '16px', height: '16px', cursor: 'pointer' }}
-            />
-            <label 
-              htmlFor="dont-show-disclaimer"
-              style={{
-                fontSize: '13px',
-                color: 'var(--text-secondary)',
-                cursor: 'pointer',
-                userSelect: 'none'
-              }}
-            >
-              Don't show this message again
-            </label>
-          </div>
-          
-          <button
-            onClick={() => {
-              if (dontShowAgain) {
-                localStorage.setItem('hideDisclaimerPopup', 'true');
-              }
-              setShowDisclaimer(false);
-            }}
-            style={{
-              width: '100%',
-              background: 'var(--accent-primary)',
-              color: '#ffffff',
-              border: 'none',
-              padding: '10px 16px',
-              borderRadius: 'var(--radius-sm)',
-              fontSize: '13px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.filter = 'brightness(1.15)')}
-            onMouseOut={(e) => (e.currentTarget.style.filter = 'none')}
-          >
-            Acknowledge & Close
-          </button>
-        </div>
-      </div>
-    );
-  };
-
   if (loading) {
     return (
       <div 
@@ -333,7 +219,6 @@ function BuilderContent() {
           )}
         </div>
         {renderOnboardingModal()}
-        {renderDisclaimerModal()}
       </div>
     );
   }
@@ -351,7 +236,6 @@ function BuilderContent() {
       <FormPanel />
       <PreviewPanel />
       {renderOnboardingModal()}
-      {renderDisclaimerModal()}
     </div>
   );
 }
