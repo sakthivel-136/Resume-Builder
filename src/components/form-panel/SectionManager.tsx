@@ -139,7 +139,7 @@ const SortableSectionItem = ({
           )}
         </button>
 
-        {isCustom && (
+        {!isPinned && (
           <button
             type="button"
             onClick={(e) => {
@@ -147,7 +147,7 @@ const SortableSectionItem = ({
               onDeleteCustom(id);
             }}
             className={`${styles.actionBtn} ${styles.delBtn}`}
-            title="Delete custom section"
+            title="Delete section"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="3 6 5 6 21 6" />
