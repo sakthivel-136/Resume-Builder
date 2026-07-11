@@ -89,98 +89,132 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
     '--p-sec-sp': `${state.secSp}px`,
   } as React.CSSProperties;
 
-  const pageCount = Math.max(1, Math.ceil((contentHeight + 6) / 1123));
+  const PAGE_HEIGHT = 1123;
+  const PAGE_WIDTH = 794;
+  const marginTop = Number(state.mT) || 24;
+  const marginBottom = Number(state.mB) || 24;
+  const printableHeight = PAGE_HEIGHT - marginTop - marginBottom;
+  
+  const pageCount = Math.max(1, Math.ceil(contentHeight / printableHeight));
+
+  const renderPageSheet = (pageIndex: number, isExport = false) => {
+    return (
+      <div 
+        key={pageIndex}
+        style={{
+          width: `${PAGE_WIDTH}px`,
+          height: `${PAGE_HEIGHT}px`,
+          background: state.bgColor || '#ffffff',
+          position: 'relative',
+          boxSizing: 'border-box',
+          overflow: 'hidden',
+          ...(isExport ? {} : {
+            boxShadow: '0 4px 24px rgba(20, 30, 50, 0.12)',
+            marginBottom: pageIndex === pageCount - 1 ? '0' : '24px',
+          })
+        }}
+      >
+        {/* Printable Content Area with Margins */}
+        <div
+          style={{
+            position: 'absolute',
+            top: `${marginTop}px`,
+            left: 0,
+            width: `${PAGE_WIDTH}px`,
+            height: `${printableHeight}px`,
+            overflow: 'hidden',
+            boxSizing: 'border-box',
+          }}
+        >
+          {/* Inner Template translation wrapper */}
+          <div
+            style={{
+              ...cssVarsStyle,
+              width: '100%',
+              transform: `translateY(-${pageIndex * printableHeight}px)`,
+              boxSizing: 'border-box',
+            }}
+          >
+            {renderActiveTemplate(true)}
+          </div>
+        </div>
+
+        {/* Page Number Indicator (Hidden in PDF export) */}
+        {!isExport && (
+          <div style={{
+            position: 'absolute',
+            bottom: '12px',
+            right: '16px',
+            fontSize: '10.5px',
+            color: 'rgba(0, 0, 0, 0.4)',
+            fontWeight: 600,
+            userSelect: 'none',
+            background: 'rgba(255, 255, 255, 0.85)',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            padding: '2px 8px',
+            borderRadius: '4px',
+            zIndex: 60,
+          }}>
+            Page {pageIndex + 1} of {pageCount}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div id="resume-content-wrapper" style={{ position: 'relative' }}>
+      {/* Hidden Measure Container (auto height to get natural continuous height) */}
+      <div
+        ref={measureRef}
+        style={{
+          ...cssVarsStyle,
+          position: 'fixed',
+          left: '-9999px',
+          top: 0,
+          width: `${PAGE_WIDTH}px`,
+          height: 'auto',
+          visibility: 'hidden',
+          pointerEvents: 'none',
+          boxSizing: 'border-box',
+        }}
+      >
+        {renderActiveTemplate(true)}
+      </div>
+
       {/* Export Container (Off-screen but fully rendered for html2canvas capture) */}
       <div 
+        id="resume-export"
         style={{ 
           position: 'fixed', 
           left: '-9999px', 
           top: 0, 
-          width: '794px', 
-          height: `${pageCount * 1123}px`, 
+          width: `${PAGE_WIDTH}px`, 
+          height: `${pageCount * PAGE_HEIGHT}px`, 
           pointerEvents: 'none', 
           overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
-        <div 
-          id="resume-export"
-          style={{
-            ...cssVarsStyle,
-            position: 'relative',
-            width: '794px',
-            height: `${pageCount * 1123}px`,
-            background: state.bgColor || '#ffffff',
-            boxSizing: 'border-box',
-            fontFamily: state.bFont,
-            fontSize: `${state.bodySize}px`,
-            color: state.tColor,
-            overflow: 'hidden',
-          }}
-        >
-          {renderActiveTemplate(false)}
-        </div>
+        {Array.from({ length: pageCount }).map((_, i) => renderPageSheet(i, true))}
       </div>
 
-      {/* Visible Pageless Preview */}
+      {/* Visible Split-Page Preview */}
       <div 
         id="resume-content"
         style={{
-          width: '794px',
-          height: `${pageCount * 1123}px`,
-          background: state.bgColor || '#ffffff',
-          boxShadow: '0 4px 24px rgba(20, 30, 50, 0.12)',
-          position: 'relative',
-          marginBottom: '24px',
+          width: `${PAGE_WIDTH}px`,
+          display: 'flex',
+          flexDirection: 'column',
+          background: 'transparent',
           boxSizing: 'border-box',
           fontFamily: state.bFont,
           fontSize: `${state.bodySize}px`,
           color: state.tColor,
         }}
       >
-        <div 
-          ref={measureRef} 
-          style={{ ...cssVarsStyle, width: '100%', height: 'auto', boxSizing: 'border-box' }}
-        >
-          {renderActiveTemplate(false)}
-        </div>
-
-        {/* Page Break Indicators */}
-        {pageCount > 1 && Array.from({ length: pageCount }).map((_, i) => {
-          if (i === 0) return null;
-          return (
-            <div
-              key={i}
-              style={{
-                position: 'absolute',
-                top: `${i * 1123}px`,
-                left: 0,
-                right: 0,
-                height: '0px',
-                borderTop: '2px dashed rgba(0, 0, 0, 0.2)',
-                zIndex: 50,
-                pointerEvents: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <span style={{ 
-                background: '#fff', 
-                padding: '2px 6px', 
-                fontSize: '10px', 
-                color: '#666',
-                borderRadius: '4px',
-                transform: 'translateY(-50%)',
-                marginRight: '8px',
-                fontWeight: 600,
-                border: '1px solid #ddd',
-              }}>Page Break</span>
-            </div>
-          );
-        })}
+        {Array.from({ length: pageCount }).map((_, i) => renderPageSheet(i, false))}
       </div>
     </div>
   );
