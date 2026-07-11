@@ -100,7 +100,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           top: 0, 
           left: 0, 
           width: '794px', 
-          height: `${pageCount * 1123}px`, 
+          height: '1123px', 
           opacity: 0.01, 
           pointerEvents: 'none', 
           zIndex: -9999, 
@@ -114,12 +114,13 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
             ...cssVarsStyle,
             position: 'relative',
             width: '794px',
-            height: `${pageCount * 1123}px`,
+            height: '1123px',
             background: state.bgColor || '#ffffff',
             boxSizing: 'border-box',
             fontFamily: state.bFont,
             fontSize: `${state.bodySize}px`,
             color: state.tColor,
+            overflow: 'hidden',
           }}
         >
           {renderActiveTemplate(false)}

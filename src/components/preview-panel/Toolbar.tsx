@@ -59,10 +59,12 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
           html2canvas: { 
             scale: 2, 
             useCORS: true, 
-            logging: false
+            logging: false,
+            height: 1123,
+            windowHeight: 1123
           },
           jsPDF: { unit: 'px', format: [794, 1123] as [number, number], hotfixes: ['px_scaling'] },
-          pagebreak: { mode: ['css', 'legacy'] }
+          pagebreak: { mode: ['avoid-all'] as string[] }
         };
 
         // Run generator
