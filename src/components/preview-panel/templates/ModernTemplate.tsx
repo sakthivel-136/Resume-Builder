@@ -304,7 +304,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
       };
 
       return (
-        <div key={key} className={shared.entryBlock}>
+        <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
           {renderCustomContent()}
         </div>
       );
@@ -469,7 +469,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
         {mainSections.map((key) => {
           if (!secVis[key]) return null;
           return (
-            <div key={key} className={shared.entryBlock}>
+            <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
               <h3 
                 className={styles.mainHeading}
                 style={{ 

@@ -104,41 +104,102 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
       );
       
       containers.forEach((container) => {
-        const blocks = container.querySelectorAll<HTMLElement>(
-          '[class*="entryBlock"], .eduBlock, .timelineBlock, .achievementList, .skillGroup'
+        // Reset all margins on both sections and entries
+        const allResettable = container.querySelectorAll<HTMLElement>(
+          '[class*="entryBlock"], .eduBlock, .timelineBlock, .skillGroup, [id^="entry-"]'
         );
-        
-        // 1. Reset margins
-        blocks.forEach((el) => {
+        allResettable.forEach((el) => {
           el.style.marginTop = '';
         });
 
-        // 2. Cascade adjustments (up to 5 passes)
+        const PAGE_HEIGHT = 1123;
+        const marginTop = Number(state.mT) || 24;
+        const marginBottom = Number(state.mB) || 24;
+
+        // Multiple passes to handle cascading pushes (up to 5 passes)
         for (let pass = 0; pass < 5; pass++) {
           let adjusted = false;
           
-          const items = Array.from(blocks).map((el) => {
-            const offsetTop = el.offsetTop;
-            const offsetHeight = el.offsetHeight;
-            return { el, top: offsetTop, bottom: offsetTop + offsetHeight };
-          });
-
-          for (const item of items) {
-            const startPage = Math.floor(item.top / PAGE_HEIGHT);
+          // Query all section containers
+          const sections = container.querySelectorAll<HTMLElement>('[class*="entryBlock"], [id^="entry-"]');
+          
+          for (const section of Array.from(sections)) {
+            const secId = section.id || '';
+            const rectTop = section.offsetTop;
+            const rectBottom = rectTop + section.offsetHeight;
+            const startPage = Math.floor(rectTop / PAGE_HEIGHT);
             const boundary = (startPage + 1) * PAGE_HEIGHT;
             const marginBoundary = boundary - marginBottom;
 
-            if (item.bottom > marginBoundary) {
-              const itemHeight = item.bottom - item.top;
-              const fitsOnPage = itemHeight <= (PAGE_HEIGHT - marginTop - marginBottom);
-              
-              if (fitsOnPage && item.top < marginBoundary) {
-                const pushAmount = (boundary + marginTop) - item.top;
-                item.el.style.marginTop = `${pushAmount}px`;
+            // 1. Keep Whole Sections: summary, skills, achievements, custom sections
+            const isKeepWhole = secId.includes('summary') || 
+                                secId.includes('skills') || 
+                                secId.includes('achievements') || 
+                                secId.startsWith('entry-custom_') || 
+                                section.classList.contains('customContent');
+            
+            if (isKeepWhole) {
+              if (rectBottom > marginBoundary && rectTop < marginBoundary) {
+                const itemHeight = rectBottom - rectTop;
+                const fitsOnPage = itemHeight <= (PAGE_HEIGHT - marginTop - marginBottom);
+                
+                if (fitsOnPage) {
+                  const pushAmount = (boundary + marginTop) - rectTop;
+                  section.style.marginTop = `${pushAmount}px`;
+                  adjusted = true;
+                  break;
+                }
+              }
+              continue;
+            }
+
+            // 2. Split Entry-by-Entry Sections: education, experience, projects
+            // First, check if the section header + the first entry fits on the current page
+            const header = section.querySelector('h2, h3, [class*="sectionHeader"], [class*="mainHeading"], [class*="sbHeading"]');
+            const firstEntry = section.querySelector<HTMLElement>('.eduBlock, .timelineBlock');
+            
+            if (header && firstEntry) {
+              const headerTop = (header as HTMLElement).offsetTop + rectTop;
+              const firstEntryBottom = firstEntry.offsetTop + firstEntry.offsetHeight + rectTop;
+              const headerStartPage = Math.floor(headerTop / PAGE_HEIGHT);
+              const headerBoundary = (headerStartPage + 1) * PAGE_HEIGHT;
+              const headerMarginBoundary = headerBoundary - marginBottom;
+
+              if (firstEntryBottom > headerMarginBoundary && headerTop < headerMarginBoundary) {
+                // If even the header + first entry does not fit, push the entire section!
+                const pushAmount = (headerBoundary + marginTop) - rectTop;
+                section.style.marginTop = `${pushAmount}px`;
                 adjusted = true;
                 break;
               }
             }
+
+            // If header + first entry fits, check subsequent entries individually
+            const entries = section.querySelectorAll<HTMLElement>('.eduBlock, .timelineBlock');
+            let entryAdjusted = false;
+            
+            for (const entry of Array.from(entries)) {
+              const entryTop = entry.offsetTop + rectTop;
+              const entryBottom = entryTop + entry.offsetHeight;
+              const entryStartPage = Math.floor(entryTop / PAGE_HEIGHT);
+              const entryBoundary = (entryStartPage + 1) * PAGE_HEIGHT;
+              const entryMarginBoundary = entryBoundary - marginBottom;
+
+              if (entryBottom > entryMarginBoundary && entryTop < entryMarginBoundary) {
+                const entryHeight = entryBottom - entryTop;
+                const fitsOnPage = entryHeight <= (PAGE_HEIGHT - marginTop - marginBottom);
+                
+                if (fitsOnPage) {
+                  const pushAmount = (entryBoundary + marginTop) - entryTop;
+                  entry.style.marginTop = `${pushAmount}px`;
+                  entryAdjusted = true;
+                  adjusted = true;
+                  break;
+                }
+              }
+            }
+            
+            if (entryAdjusted) break;
           }
           if (!adjusted) break;
         }
