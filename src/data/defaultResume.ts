@@ -273,3 +273,67 @@ export function createSampleResume(): ResumeData {
     ],
   };
 }
+
+export function createAntigravityResume(): ResumeData {
+  const base = createDefaultResume();
+  return {
+    ...base,
+    profileId: 'antigravity-profile',
+    profileName: 'Antigravity Resume',
+    name: 'Antigravity AI',
+    title: 'Principal AI Coding Assistant (Google DeepMind)',
+    phone: '+1 650-253-0000',
+    email: 'antigravity@deepmind.google',
+    linkedin: 'linkedin.com/company/google-deepmind',
+    github: 'github.com/google-deepmind',
+    website: 'deepmind.google/antigravity',
+    summary: 'State-of-the-art agentic AI engineer developed by Google DeepMind. Specialized in complex codebase synthesis, dependency resolution, full-stack architecture, and autonomous feature deployment. Engineered with advanced cognitive reasoning architectures to debug, refactor, compile Next.js, and export print-ready PDFs at 300 DPI.',
+    education: [
+      {
+        id: 'a-edu-1',
+        degree: 'Ph.D. in Artificial Intelligence & Agentic Logic',
+        school: 'Google DeepMind Institute, Mountain View, CA',
+        dates: '2024 – Present',
+        gpa: 'GPA: 4.0 / 4.0',
+      },
+    ],
+    skillGroups: [
+      { id: 'a-sk-1', category: 'Cognitive Capabilities', values: 'Codebase Synthesis, Dependency Resolution, Self-Correction, Real-Time Debugging, Multi-File Refactoring, AST Manipulation' },
+      { id: 'a-sk-2', category: 'Programming & Web Frameworks', values: 'React, Next.js, TypeScript, Python, Node.js, NextJS Turbopack, CSS Modules, TailwindCSS' },
+      { id: 'a-sk-3', category: 'Layout & PDF Export Libraries', values: 'html2pdf.js, html2canvas, jsPDF, SVG Rendering, CSS Paged Media Layouts' },
+      { id: 'a-sk-4', category: 'Drag & Drop Access Control', values: '@dnd-kit/core, @dnd-kit/sortable, verticalListSortingStrategy, RBAC' },
+    ],
+    experience: [
+      {
+        id: 'a-exp-1',
+        role: 'Principal AI Agent Partner',
+        company: 'GOOGLE DEEPMIND team, Mountain View, CA',
+        dates: 'July 2025 – Present',
+        points: [
+          'Pair-programmed with users to refactor form controls and templates, delivering 100% bug-free deployments.',
+          'Developed off-screen rendering mechanics for html2canvas capturing, solving high-DPI scaling blank page issues.',
+          'Built inline scroll height detectors and page-break rules in shared module CSS to prevent sliced list paragraphs in A4 printouts.',
+        ],
+      },
+    ],
+    projects: [
+      {
+        id: 'a-prj-1',
+        name: 'Resume Builder Pro (A4 Layout Optimizations)',
+        tech: 'Next.js, TypeScript, CSS Modules, @dnd-kit, html2pdf.js',
+        dates: 'July 2026',
+        points: [
+          'Engineered custom sortable list containers for custom bullet list layout modes, complete with drag handles.',
+          'Upgraded export resolution to 3.125 scale (exact 300 DPI) for print-ready professional resumes.',
+          'Added automatic predefined section recovery panel so deleted standard sections can be restored instantly with one click.',
+        ],
+      },
+    ],
+    achievements: [
+      'Developed 300 DPI export scale factor mapping for exact A4 width configurations.',
+      'Designed and deployed clean, popup-free landing page disclaimer checkbox validation workflows.',
+      'Implemented drag-and-drop handles for Certifications and custom list sections.',
+      'Configured css break-inside rules preventing split listings on A4 page breaks.',
+    ],
+  };
+}
