@@ -98,6 +98,17 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
 
   // Layout adjustment script to push blocks out of margin/page break boundaries
   useLayoutEffect(() => {
+    // Helper to get absolute offsetTop relative to a container, traversing offsetParents
+    const getAbsoluteOffsetTop = (el: HTMLElement, targetContainer: HTMLElement): number => {
+      let top = 0;
+      let current: HTMLElement | null = el;
+      while (current && current !== targetContainer) {
+        top += current.offsetTop;
+        current = current.offsetParent as HTMLElement | null;
+      }
+      return top;
+    };
+
     const runAdjustment = () => {
       const containers = document.querySelectorAll(
         '#resume-measure-container, #resume-export, #resume-content'
@@ -125,11 +136,20 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           
           for (const section of Array.from(sections)) {
             const secId = section.id || '';
-            const rectTop = section.offsetTop;
+            const rectTop = getAbsoluteOffsetTop(section, container as HTMLElement);
             const rectBottom = rectTop + section.offsetHeight;
             const startPage = Math.floor(rectTop / PAGE_HEIGHT);
             const boundary = (startPage + 1) * PAGE_HEIGHT;
             const marginBoundary = boundary - marginBottom;
+            const topMarginBoundary = startPage * PAGE_HEIGHT + marginTop;
+
+            // 0. Check if the section starts inside the top margin of its page (for page 2 or later)
+            if (startPage > 0 && rectTop < topMarginBoundary) {
+              const pushAmount = topMarginBoundary - rectTop;
+              section.style.marginTop = `${pushAmount}px`;
+              adjusted = true;
+              break;
+            }
 
             // 1. Keep Whole Sections: summary, skills, achievements, custom sections
             const isKeepWhole = secId.includes('summary') || 
@@ -159,8 +179,8 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
             const firstEntry = section.querySelector<HTMLElement>('.eduBlock, .timelineBlock');
             
             if (header && firstEntry) {
-              const headerTop = (header as HTMLElement).offsetTop + rectTop;
-              const firstEntryBottom = firstEntry.offsetTop + firstEntry.offsetHeight + rectTop;
+              const headerTop = getAbsoluteOffsetTop(header as HTMLElement, container as HTMLElement);
+              const firstEntryBottom = getAbsoluteOffsetTop(firstEntry, container as HTMLElement) + firstEntry.offsetHeight;
               const headerStartPage = Math.floor(headerTop / PAGE_HEIGHT);
               const headerBoundary = (headerStartPage + 1) * PAGE_HEIGHT;
               const headerMarginBoundary = headerBoundary - marginBottom;
@@ -179,11 +199,21 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
             let entryAdjusted = false;
             
             for (const entry of Array.from(entries)) {
-              const entryTop = entry.offsetTop + rectTop;
+              const entryTop = getAbsoluteOffsetTop(entry, container as HTMLElement);
               const entryBottom = entryTop + entry.offsetHeight;
               const entryStartPage = Math.floor(entryTop / PAGE_HEIGHT);
               const entryBoundary = (entryStartPage + 1) * PAGE_HEIGHT;
               const entryMarginBoundary = entryBoundary - marginBottom;
+              const entryTopMarginBoundary = entryStartPage * PAGE_HEIGHT + marginTop;
+
+              // Check if entry starts inside the top margin of its page
+              if (entryStartPage > 0 && entryTop < entryTopMarginBoundary) {
+                const pushAmount = entryTopMarginBoundary - entryTop;
+                entry.style.marginTop = `${pushAmount}px`;
+                entryAdjusted = true;
+                adjusted = true;
+                break;
+              }
 
               if (entryBottom > entryMarginBoundary && entryTop < entryMarginBoundary) {
                 const entryHeight = entryBottom - entryTop;
@@ -201,6 +231,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
             
             if (entryAdjusted) break;
           }
+          
           if (!adjusted) break;
         }
       });
