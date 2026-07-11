@@ -151,25 +151,40 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
               
               // Only push if it fits on a single page (otherwise it has to split anyway)
               if (fitsOnPage && item.top < unsafeEnd) {
-                // If it is education, experience, or projects, we only push if it is an individual entry block
-                // or if it is the section header + first entry.
-                const isSectionBlock = item.el.classList.contains('entryBlock') || item.el.id.startsWith('entry-');
-                const isKeepWholeSec = secId.includes('summary') || secId.includes('skills') || secId.includes('achievements') || secId.startsWith('entry-custom_');
+                const parentSectionIds = [
+                  'entry-summary', 'entry-education', 'entry-skills', 'entry-experience', 
+                  'entry-projects', 'entry-achievements'
+                ];
+                const isParentSection = parentSectionIds.includes(secId) || secId.startsWith('entry-custom_');
                 
-                if (isSectionBlock && !isKeepWholeSec) {
-                  // For education/experience sections, let individual entries push instead of the whole section,
-                  // UNLESS the header itself doesn't fit on the page.
-                  const header = item.el.querySelector('h2, h3, [class*="sectionHeader"]');
-                  if (header) {
-                    const headerTop = getAbsoluteOffsetTop(header as HTMLElement, measureContainer);
-                    if (headerTop < unsafeEnd) {
-                      const pushAmount = unsafeEnd - item.top;
-                      item.el.style.marginTop = `${pushAmount}px`;
-                      adjusted = true;
+                if (isParentSection) {
+                  const isKeepWholeSec = secId.includes('summary') || secId.includes('skills') || secId.includes('achievements') || secId.startsWith('entry-custom_');
+                  
+                  if (isKeepWholeSec) {
+                    // Push the entire section container
+                    const pushAmount = unsafeEnd - item.top;
+                    item.el.style.marginTop = `${pushAmount}px`;
+                    adjusted = true;
+                  } else {
+                    // For split sections (education, experience, projects), check if header + first entry fits
+                    const header = item.el.querySelector('h2, h3, [class*="sectionHeader"], [class*="mainHeading"], [class*="sbHeading"]');
+                    const firstEntry = item.el.querySelector<HTMLElement>('.eduBlock, .timelineBlock, [id^="entry-"]');
+                    
+                    if (header && firstEntry) {
+                      const headerTop = getAbsoluteOffsetTop(header as HTMLElement, measureContainer);
+                      const firstEntryBottom = getAbsoluteOffsetTop(firstEntry, measureContainer) + firstEntry.offsetHeight;
+                      
+                      if (firstEntryBottom > unsafeStart && headerTop < unsafeEnd) {
+                        // Even the header + first entry does not fit, push the entire section container
+                        const pushAmount = unsafeEnd - item.top;
+                        item.el.style.marginTop = `${pushAmount}px`;
+                        adjusted = true;
+                      }
                     }
                   }
                 } else {
-                  // Push individual entry or keep-whole section
+                  // This is an individual entry block (e.g. .eduBlock, a specific experience job, or a specific project entry)
+                  // Push it to start cleanly on the next page
                   const pushAmount = unsafeEnd - item.top;
                   item.el.style.marginTop = `${pushAmount}px`;
                   adjusted = true;
