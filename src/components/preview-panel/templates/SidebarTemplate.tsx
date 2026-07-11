@@ -4,6 +4,7 @@ import React, { memo } from 'react';
 import { ResumeData } from '@/types/resume';
 import styles from './SidebarTemplate.module.css';
 import shared from './shared.module.css';
+import { getContactHref } from '@/utils/helpers';
 
 interface SidebarTemplateProps {
   state: ResumeData;
@@ -89,12 +90,28 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
 
     return (
       <div className={shared.gmContact}>
-        {items.map((it, idx) => (
-          <div key={idx} className={shared.gmItem}>
-            <div className={shared.gmLabel}>{it.l}</div>
-            <div className={shared.gmValue}>{it.v}</div>
-          </div>
-        ))}
+        {items.map((it, idx) => {
+          const href = getContactHref(it.v);
+          return (
+            <div key={idx} className={shared.gmItem}>
+              <div className={shared.gmLabel}>{it.l}</div>
+              <div className={shared.gmValue}>
+                {href ? (
+                  <a 
+                    href={href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    style={{ color: 'inherit', textDecoration: 'none' }}
+                  >
+                    {it.v}
+                  </a>
+                ) : (
+                  it.v
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   };
@@ -111,9 +128,25 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
     if (cp.length === 0) return null;
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85em' }}>
-        {cp.map((c, idx) => (
-          <div key={idx} style={{ wordBreak: 'break-all' }}>{c}</div>
-        ))}
+        {cp.map((c, idx) => {
+          const href = getContactHref(c);
+          return (
+            <div key={idx} style={{ wordBreak: 'break-all' }}>
+              {href ? (
+                <a 
+                  href={href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                >
+                  {c}
+                </a>
+              ) : (
+                c
+              )}
+            </div>
+          );
+        })}
       </div>
     );
   };

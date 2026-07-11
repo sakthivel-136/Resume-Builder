@@ -61,3 +61,35 @@ export function timeAgo(timestamp: number): string {
   if (days < 7) return `${days}d ago`;
   return new Date(timestamp).toLocaleDateString();
 }
+
+/** Get link href for contact detail strings */
+export function getContactHref(val: string): string | null {
+  const clean = val.trim();
+  if (!clean) return null;
+  
+  // Email
+  if (clean.includes('@') && !clean.includes(' ')) {
+    return `mailto:${clean}`;
+  }
+  
+  // Phone
+  const isPhone = /^[+\d\s().-]{7,25}$/.test(clean);
+  if (isPhone) {
+    return `tel:${clean.replace(/[^\d+]/g, '')}`;
+  }
+  
+  // URL pattern
+  const isUrl = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/.test(clean) ||
+                clean.includes('linkedin.com') ||
+                clean.includes('github.com') ||
+                clean.startsWith('http');
+                
+  if (isUrl) {
+    if (clean.startsWith('http://') || clean.startsWith('https://')) {
+      return clean;
+    }
+    return `https://${clean}`;
+  }
+  
+  return null;
+}
