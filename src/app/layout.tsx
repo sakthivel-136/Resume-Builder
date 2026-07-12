@@ -65,7 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={inter.variable} data-scroll-behavior="smooth">
       <head>
         <meta name="google-site-verification" content="GMSc7WP_QRhVY75Sa24pdfeME6f6rSefy8xvAe68-uw" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
