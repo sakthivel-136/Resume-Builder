@@ -221,7 +221,20 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
       syncTargetMargins(document.getElementById('resume-export'));
     };
 
+    let active = true;
     runAdjustment();
+
+    if (typeof window !== 'undefined' && document.fonts) {
+      document.fonts.ready.then(() => {
+        if (active) {
+          runAdjustment();
+        }
+      });
+    }
+
+    return () => {
+      active = false;
+    };
   }, [state, contentHeight]);
 
   const renderPageSheet = (pageIndex: number) => {
