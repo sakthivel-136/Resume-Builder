@@ -213,15 +213,18 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
         if (!adjusted) break;
       }
 
-      // 3. Sync calculated margin-top values from measure container to preview sheets and export container
       const syncTargetMargins = (targetContainer: HTMLElement | null) => {
         if (!targetContainer) return;
         const targetBlocks = targetContainer.querySelectorAll<HTMLElement>(
           '[class*="entryBlock"], .eduBlock, .timelineBlock, .skillGroup, [id^="entry-"]'
         );
+        console.log(`[LayoutEngine] Syncing margins to sheet. Source blocks: ${sourceBlocks.length}, Target blocks: ${targetBlocks.length}`);
         sourceBlocks.forEach((srcEl, index) => {
           const targetEl = targetBlocks[index];
           if (targetEl) {
+            if (srcEl.style.marginTop) {
+              console.log(`[LayoutEngine] Copying margin-top: ${srcEl.style.marginTop} from source block index ${index} (${srcEl.id || srcEl.className}) to target block (${targetEl.id || targetEl.className})`);
+            }
             targetEl.style.marginTop = srcEl.style.marginTop;
           }
         });
