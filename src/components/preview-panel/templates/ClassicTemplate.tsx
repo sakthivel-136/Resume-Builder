@@ -488,7 +488,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                 <div id={`entry-${p.id}`} className={shared.entryBlock}>
                   <div className={shared.entryRow}>
                     <span className={shared.entryRole}>
-                      <span style={{ borderBottom: '1px solid currentColor', paddingBottom: '1px', display: 'inline-block' }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
+                      <span style={{ fontWeight: 'bold', color: hColor }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
                     </span>
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>
