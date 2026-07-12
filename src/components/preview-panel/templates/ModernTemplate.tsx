@@ -112,7 +112,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
               </div>
               <div className={shared.gmValue}>
                 {href ? (
-                  <LinkRenderer url={href} label={it.v} />
+                  <LinkRenderer url={href} label={it.v} showIcon={false} />
                 ) : (
                   it.v
                 )}
@@ -141,7 +141,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
           return (
             <div key={idx} style={{ wordBreak: 'break-all' }}>
               {href ? (
-                <LinkRenderer url={href} label={c} />
+                <LinkRenderer url={href} label={c} showIcon={false} />
               ) : (
                 c
               )}

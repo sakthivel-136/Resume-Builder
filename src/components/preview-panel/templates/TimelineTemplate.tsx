@@ -107,7 +107,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
               </div>
               <div className={shared.gmValue} style={{ fontSize: '0.9em', wordBreak: 'break-all' }}>
                 {href ? (
-                  <LinkRenderer url={href} label={it.v} />
+                  <LinkRenderer url={href} label={it.v} showIcon={false} />
                 ) : (
                   it.v
                 )}
@@ -136,7 +136,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           return (
             <div key={idx} style={{ wordBreak: 'break-all' }}>
               {href ? (
-                <LinkRenderer url={href} label={c} />
+                <LinkRenderer url={href} label={c} showIcon={false} />
               ) : (
                 c
               )}
