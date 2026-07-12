@@ -124,8 +124,8 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
         el.style.marginTop = '';
       });
 
-      // 2. Cascade adjustments on measure container (up to 5 passes)
-      for (let pass = 0; pass < 5; pass++) {
+      // 2. Cascade adjustments on measure container (up to 20 passes)
+      for (let pass = 0; pass < 20; pass++) {
         let adjusted = false;
         
         const items = Array.from(sourceBlocks).map((el) => {

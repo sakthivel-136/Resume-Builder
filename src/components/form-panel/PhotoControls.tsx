@@ -243,10 +243,10 @@ const PhotoControls = () => {
             <select
               id="p-pos-sel"
               className={styles.select}
-              value={(state.tpl === 2 || state.tpl === 3) && state.photoPos !== 'hidden' ? 'sidebar' : state.photoPos}
+              value={(state.tpl === 2 || state.tpl === 3 || state.tpl === 4) && state.photoPos !== 'hidden' ? 'sidebar' : state.photoPos}
               onChange={(e) => handlePosChange(e.target.value)}
             >
-              {state.tpl === 2 || state.tpl === 3 ? (
+              {state.tpl === 2 || state.tpl === 3 || state.tpl === 4 ? (
                 <>
                   <option value="sidebar">Sidebar Column</option>
                   <option value="hidden">Hidden</option>

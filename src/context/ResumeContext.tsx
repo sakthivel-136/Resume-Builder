@@ -30,8 +30,12 @@ interface HistoryState {
 
 function resumeReducer(data: ResumeData, action: ResumeAction): ResumeData {
   switch (action.type) {
-    case 'SET_TEMPLATE':
-      return { ...data, tpl: action.tpl };
+    case 'SET_TEMPLATE': {
+      const nextPhotoPos = (action.tpl === 2 || action.tpl === 3 || action.tpl === 4)
+        ? (data.photoPos === 'hidden' ? 'hidden' : 'sidebar')
+        : (data.photoPos === 'sidebar' ? 'top-center' : data.photoPos);
+      return { ...data, tpl: action.tpl, photoPos: nextPhotoPos };
+    }
 
     case 'SET_PALETTE': {
       const group = PALETTES[data.tpl] || PALETTES[1];
