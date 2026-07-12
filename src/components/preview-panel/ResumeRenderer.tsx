@@ -332,16 +332,17 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
       {/* Render measurement and export containers outside scaled preview workspace */}
       {isMounted && createPortal(
         <>
-          {/* 0x0 Clipped Parent wrapper to prevent any body scroll stretching / ghost scrollbars */}
+          {/* Viewport-fixed hidden parent wrapper to prevent scrolling stretch while guaranteeing full layout activation in mobile Safari */}
           <div
             style={{
-              position: 'absolute',
+              position: 'fixed',
               left: 0,
               top: 0,
-              width: 0,
-              height: 0,
+              width: '100vw',
+              height: '100vh',
               overflow: 'hidden',
               pointerEvents: 'none',
+              visibility: 'hidden',
               zIndex: -9999,
             }}
           >
