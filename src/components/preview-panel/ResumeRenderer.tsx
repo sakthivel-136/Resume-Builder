@@ -232,13 +232,20 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
     };
 
     let active = true;
-    runAdjustment();
+    
+    const triggerAdjust = () => {
+      if (active) {
+        runAdjustment();
+      }
+    };
+
+    triggerAdjust();
+    // Run after a short paint delay to handle React DOM updates
+    setTimeout(triggerAdjust, 60);
 
     if (typeof window !== 'undefined' && document.fonts) {
       document.fonts.ready.then(() => {
-        if (active) {
-          runAdjustment();
-        }
+        setTimeout(triggerAdjust, 120);
       });
     }
 
