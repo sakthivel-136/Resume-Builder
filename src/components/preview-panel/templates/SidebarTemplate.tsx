@@ -389,19 +389,13 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     </span>
                     <span className={shared.entryDates} style={{ opacity: 0.8 }}>{p.dates}</span>
                   </div>
-                  {(p.githubUrl || p.liveUrl) && (
-                    <div style={{ display: 'flex', gap: '12px', fontSize: isSidebar ? '0.85em' : '0.9em', marginTop: '2px', marginBottom: '4px' }}>
-                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} />}
-                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} />}
-                    </div>
-                  )}
                   {p.problemStatement && (
-                    <div style={{ fontSize: isSidebar ? '0.9em' : 'inherit', marginTop: '4px', marginBottom: '2px', fontStyle: 'italic' }}>
+                    <div style={{ fontSize: isSidebar ? '0.9em' : 'inherit', marginTop: '4px', marginBottom: '2px' }}>
                       <strong>Problem:</strong> {p.problemStatement}
                     </div>
                   )}
                   {p.proposedSolution && (
-                    <div style={{ fontSize: isSidebar ? '0.9em' : 'inherit', marginTop: '2px', marginBottom: '4px', fontStyle: 'italic' }}>
+                    <div style={{ fontSize: isSidebar ? '0.9em' : 'inherit', marginTop: '2px', marginBottom: '4px' }}>
                       <strong>Solution:</strong> {p.proposedSolution}
                     </div>
                   )}
@@ -410,6 +404,12 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                       <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
                     ))}
                   </ul>
+                  {(p.githubUrl || p.liveUrl) && (
+                    <div style={{ display: 'flex', gap: '12px', fontSize: isSidebar ? '0.85em' : '0.9em', marginTop: '4px', marginBottom: '2px' }}>
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} />}
+                    </div>
+                  )}
                 </div>
               </React.Fragment>
             ))}

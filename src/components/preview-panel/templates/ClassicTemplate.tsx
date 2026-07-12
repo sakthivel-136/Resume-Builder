@@ -492,19 +492,13 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     </span>
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>
-                  {(p.githubUrl || p.liveUrl) && (
-                    <div style={{ display: 'flex', gap: '12px', fontSize: `${bodySize * 0.85}px`, marginTop: '2px', marginBottom: '4px' }}>
-                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} />}
-                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} />}
-                    </div>
-                  )}
                   {p.problemStatement && (
-                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '4px', marginBottom: '2px', fontStyle: 'italic' }}>
+                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '4px', marginBottom: '2px' }}>
                       <strong>Problem:</strong> {p.problemStatement}
                     </div>
                   )}
                   {p.proposedSolution && (
-                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '2px', marginBottom: '4px', fontStyle: 'italic' }}>
+                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '2px', marginBottom: '4px' }}>
                       <strong>Solution:</strong> {p.proposedSolution}
                     </div>
                   )}
@@ -513,6 +507,12 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                       <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
                     ))}
                   </ul>
+                  {(p.githubUrl || p.liveUrl) && (
+                    <div style={{ display: 'flex', gap: '12px', fontSize: `${bodySize * 0.85}px`, marginTop: '4px', marginBottom: '2px' }}>
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} />}
+                    </div>
+                  )}
                 </div>
               </React.Fragment>
             ))}

@@ -387,19 +387,13 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                     </span>
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>
-                  {(p.githubUrl || p.liveUrl) && (
-                    <div style={{ display: 'flex', gap: '12px', fontSize: '0.9em', marginTop: '2px', marginBottom: '4px' }}>
-                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} />}
-                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} />}
-                    </div>
-                  )}
                   {p.problemStatement && (
-                    <div style={{ fontSize: 'inherit', marginTop: '4px', marginBottom: '2px', fontStyle: 'italic' }}>
+                    <div style={{ fontSize: 'inherit', marginTop: '4px', marginBottom: '2px' }}>
                       <strong>Problem:</strong> {p.problemStatement}
                     </div>
                   )}
                   {p.proposedSolution && (
-                    <div style={{ fontSize: 'inherit', marginTop: '2px', marginBottom: '4px', fontStyle: 'italic' }}>
+                    <div style={{ fontSize: 'inherit', marginTop: '2px', marginBottom: '4px' }}>
                       <strong>Solution:</strong> {p.proposedSolution}
                     </div>
                   )}
@@ -408,6 +402,12 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                       <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
                     ))}
                   </ul>
+                  {(p.githubUrl || p.liveUrl) && (
+                    <div style={{ display: 'flex', gap: '12px', fontSize: '0.9em', marginTop: '4px', marginBottom: '2px' }}>
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} />}
+                    </div>
+                  )}
                 </div>
               </React.Fragment>
             ))}
