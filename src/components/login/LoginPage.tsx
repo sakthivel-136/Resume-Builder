@@ -359,9 +359,9 @@ export default function LoginPage() {
             <div className={`${styles.featureIcon} ${styles.featureIconTeal}`}>
               <ChartIcon />
             </div>
-            <div className={styles.featureTitle}>ATS Scoring</div>
+            <div className={styles.featureTitle}>LaTeX &amp; JSON Sync</div>
             <div className={styles.featureDesc}>
-              Real-time score with keyword analysis
+              Two-way data binding. Edit raw LaTeX code and watch it sync live
             </div>
           </div>
 
@@ -371,7 +371,7 @@ export default function LoginPage() {
             </div>
             <div className={styles.featureTitle}>PDF Export</div>
             <div className={styles.featureDesc}>
-              One-click download in perfect quality
+              One-click download in perfect quality with SVG platform logos
             </div>
           </div>
         </div>
@@ -426,19 +426,19 @@ export default function LoginPage() {
               <div className={styles.importSteps}>
                 <div className={styles.importStep}>
                   <span className={styles.importBadge}>Step 1</span>
-                  Open the builder and click <b>Export JSON</b> from the top left panel to save your current resume data as a <code>.json</code> file.
+                  Open the builder and click <b>Export</b> from the top left panel to save your current resume data as a <code>.json</code> backup or <code>.tex</code> LaTeX source.
                 </div>
                 <div className={styles.importStep}>
                   <span className={styles.importBadge}>Step 2</span>
-                  Next time, click <b>Import JSON</b> and select that file — all your data (experience, skills, projects) loads instantly!
+                  Next time, click <b>Import</b> and select that JSON or LaTeX file — all your data loads and updates instantly in the UI editing panels!
                 </div>
                 <div className={styles.importStep}>
-                  <span className={styles.importBadge}>Tip</span>
-                  Use <b>Duplicate Profile</b> to create multiple resume versions for different job roles without starting over!
+                  <span className={styles.importBadge}>LaTeX Support</span>
+                  Manually edit your <code>.tex</code> source (e.g. add new bullets, modify descriptions, or append custom sections), import it back, and the UI panels will instantly sync!
                 </div>
                 <div className={styles.importStep + ' ' + styles.importWarning}>
                   <span className={styles.importBadgeWarn}>⚠️ Warning</span>
-                  <span><b>Clearing browser cache will delete all your resume data!</b> Before clearing cache or switching devices, always click <b>Export JSON</b> to download a backup of your resume first.</span>
+                  <span><b>Clearing browser cache will delete all your resume data!</b> Before clearing cache or switching devices, always click <b>Export</b> to download a backup of your resume first.</span>
                 </div>
               </div>
             </div>
@@ -452,9 +452,9 @@ export default function LoginPage() {
               <div className={styles.quickRefItem}><span>📐</span> 4 Templates</div>
               <div className={styles.quickRefItem}><span>📸</span> Profile Photo Upload</div>
               <div className={styles.quickRefItem}><span>🔢</span> ATS Score Checker</div>
-              <div className={styles.quickRefItem}><span>↕️</span> Drag &amp; Drop Sections</div>
-              <div className={styles.quickRefItem}><span>🖋️</span> Custom Fonts &amp; Spacing</div>
-              <div className={styles.quickRefItem}><span>💾</span> Multiple Resume Profiles</div>
+              <div className={styles.quickRefItem}><span>🛠️</span> Two-Way LaTeX Parsing</div>
+              <div className={styles.quickRefItem}><span>⚙️</span> JSON Backup Import/Export</div>
+              <div className={styles.quickRefItem}><span>🔗</span> Dynamic SVG Brand Logos</div>
               <div className={styles.quickRefItem}><span>📄</span> 1-Click PDF Download</div>
             </div>
           </div>

@@ -4,8 +4,6 @@ import React, { memo, useState } from 'react';
 import { useResume } from '@/context/ResumeContext';
 import { useToast } from '@/context/ToastContext';
 import Button from '@/components/ui/Button';
-import { exportToJson, exportToLatex } from '@/utils/exportService';
-import { importFromJson, importFromLatex } from '@/utils/importService';
 
 interface ToolbarProps {
   contentHeight: number;
@@ -20,55 +18,6 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
   const { state, dispatch } = useResume();
   const { addToast } = useToast();
   const [showBackupPrompt, setShowBackupPrompt] = useState(false);
-  const [showExportDropdown, setShowExportDropdown] = useState(false);
-
-  const handleExportJSON = () => {
-    try {
-      exportToJson(state);
-      addToast('JSON backup downloaded!', 'success');
-    } catch (e) {
-      addToast('Failed to export JSON', 'error');
-    }
-  };
-
-  const handleExportLaTeX = () => {
-    try {
-      exportToLatex(state);
-      addToast('LaTeX file downloaded!', 'success');
-    } catch (e) {
-      addToast('Failed to export LaTeX', 'error');
-    }
-  };
-
-  const handleImportFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const text = event.target?.result as string;
-      if (!text) return;
-
-      try {
-        if (file.name.endsWith('.json')) {
-          const importedData = importFromJson(text);
-          dispatch({ type: 'LOAD_PROFILE', data: importedData });
-          addToast('JSON profile loaded successfully!', 'success');
-        } else if (file.name.endsWith('.tex')) {
-          const importedData = importFromLatex(text, state);
-          dispatch({ type: 'LOAD_PROFILE', data: importedData });
-          addToast('LaTeX source imported and mapped successfully!', 'success');
-        } else {
-          addToast('Unsupported file format. Please upload .json or .tex', 'error');
-        }
-      } catch (err: any) {
-        console.error(err);
-        addToast(err.message || 'Failed to parse file', 'error');
-      }
-    };
-    reader.readAsText(file);
-    e.target.value = '';
-  };
 
   // Zoom options
   const handleZoomOut = () => {
@@ -266,75 +215,14 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
           </Button>
 
           <Button 
-            variant="secondary" 
+            variant="primary" 
             size="sm" 
-            onClick={() => document.getElementById('import-file-input')?.click()}
+            onClick={downloadPDF} 
+            loading={isExporting}
             style={{ fontSize: '12px' }}
           >
-            📥 Import
+            Download PDF
           </Button>
-          <input 
-            id="import-file-input"
-            type="file"
-            accept=".json,.tex"
-            style={{ display: 'none' }}
-            onChange={handleImportFile}
-          />
-
-          <div style={{ position: 'relative' }}>
-            <Button 
-              variant="primary" 
-              size="sm" 
-              onClick={() => setShowExportDropdown(!showExportDropdown)} 
-              loading={isExporting}
-              style={{ fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}
-            >
-              📤 Export {showExportDropdown ? '▲' : '▼'}
-            </Button>
-            {showExportDropdown && (
-              <div 
-                style={{
-                  position: 'absolute',
-                  right: 0,
-                  top: 'calc(100% + 4px)',
-                  background: 'var(--bg-secondary)',
-                  border: '1px solid var(--border)',
-                  borderRadius: 'var(--radius-sm)',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                  zIndex: 100,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  minWidth: '160px',
-                  overflow: 'hidden'
-                }}
-              >
-                <button 
-                  onClick={() => { downloadPDF(); setShowExportDropdown(false); }}
-                  style={{ background: 'none', border: 'none', color: 'var(--text-primary)', padding: '10px 12px', textAlign: 'left', cursor: 'pointer', fontSize: '12px', width: '100%', font: 'inherit' }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-tertiary)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'none'}
-                >
-                  📄 Download PDF
-                </button>
-                <button 
-                  onClick={() => { handleExportJSON(); setShowExportDropdown(false); }}
-                  style={{ background: 'none', border: 'none', color: 'var(--text-primary)', padding: '10px 12px', textAlign: 'left', cursor: 'pointer', fontSize: '12px', width: '100%', font: 'inherit' }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-tertiary)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'none'}
-                >
-                  ⚙️ Download JSON Backup
-                </button>
-                <button 
-                  onClick={() => { handleExportLaTeX(); setShowExportDropdown(false); }}
-                  style={{ background: 'none', border: 'none', color: 'var(--text-primary)', padding: '10px 12px', textAlign: 'left', cursor: 'pointer', fontSize: '12px', width: '100%', font: 'inherit' }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-tertiary)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'none'}
-                >
-                  🛠️ Download LaTeX Source
-                </button>
-              </div>
-            )}
-          </div>
         </div>
       </div>
 

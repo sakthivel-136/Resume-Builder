@@ -10,9 +10,9 @@ import {
   getUserProfiles,
   deleteProfile,
   loadProfile,
-  exportResumeJSON,
-  importResumeJSON,
 } from '@/utils/storage';
+import { exportToJson, exportToLatex } from '@/utils/exportService';
+import { importFromJson, importFromLatex } from '@/utils/importService';
 import { createDefaultResume, createSampleResume } from '@/data/defaultResume';
 import Button from '@/components/ui/Button';
 
@@ -50,6 +50,7 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
   const [profileList, setProfileList] = useState<any[]>([]);
   const [saveStatus, setSaveStatus] = useState<'saved' | 'saving'>('saved');
   const [lastSavedTime, setLastSavedTime] = useState<string>('just now');
+  const [showExportDropdown, setShowExportDropdown] = useState(false);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -139,41 +140,53 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
   };
 
   // Import / Export JSON
+  // Import / Export
   const handleExportJSON = () => {
-    const jsonStr = exportResumeJSON(state);
-    const blob = new Blob([jsonStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `resume-${state.profileName.replace(/\s+/g, '-').toLowerCase()}.json`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-    addToast('JSON exported successfully!', 'success');
+    try {
+      exportToJson(state);
+      addToast('JSON backup downloaded successfully!', 'success');
+    } catch (e) {
+      addToast('Failed to export JSON', 'error');
+    }
   };
 
-  const handleImportJSONClick = () => {
-    fileInputRef.current?.click();
+  const handleExportLaTeX = () => {
+    try {
+      exportToLatex(state);
+      addToast('LaTeX source file downloaded successfully!', 'success');
+    } catch (e) {
+      addToast('Failed to export LaTeX', 'error');
+    }
   };
 
-  const handleImportJSON = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImportFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     const reader = new FileReader();
     reader.onload = (event) => {
-      const content = event.target?.result as string;
-      const imported = importResumeJSON(content);
-      if (imported) {
-        dispatch({ type: 'LOAD_PROFILE', data: imported });
-        addToast('JSON imported successfully!', 'success');
-      } else {
-        addToast('Invalid JSON file format', 'error');
+      const text = event.target?.result as string;
+      if (!text) return;
+
+      try {
+        if (file.name.endsWith('.json')) {
+          const importedData = importFromJson(text);
+          dispatch({ type: 'LOAD_PROFILE', data: importedData });
+          addToast('JSON profile loaded successfully!', 'success');
+        } else if (file.name.endsWith('.tex')) {
+          const importedData = importFromLatex(text, state);
+          dispatch({ type: 'LOAD_PROFILE', data: importedData });
+          addToast('LaTeX source imported and mapped successfully!', 'success');
+        } else {
+          addToast('Unsupported file format. Please upload .json or .tex', 'error');
+        }
+      } catch (err: any) {
+        console.error(err);
+        addToast(err.message || 'Failed to parse file', 'error');
       }
     };
     reader.readAsText(file);
-    e.target.value = ''; // Reset input
+    e.target.value = '';
   };
 
   // Render cards in order
@@ -289,27 +302,69 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
               </svg>
               Delete
             </button>
-            <button className={styles.actionBtn} onClick={handleExportJSON} title="Export as JSON file">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="17 8 12 3 7 8" />
-                <line x1="12" y1="3" x2="12" y2="15" />
-              </svg>
-              Export JSON
-            </button>
-            <button className={styles.actionBtn} onClick={handleImportJSONClick} title="Import JSON file">
+            <div style={{ position: 'relative' }}>
+              <button 
+                className={styles.actionBtn} 
+                onClick={() => setShowExportDropdown(!showExportDropdown)} 
+                title="Export resume code"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="17 8 12 3 7 8" />
+                  <line x1="12" y1="3" x2="12" y2="15" />
+                </svg>
+                Export {showExportDropdown ? '▲' : '▼'}
+              </button>
+              {showExportDropdown && (
+                <div 
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: 'calc(100% + 4px)',
+                    background: 'var(--bg-secondary)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 'var(--radius-sm)',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                    zIndex: 100,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    minWidth: '160px',
+                    overflow: 'hidden'
+                  }}
+                >
+                  <button 
+                    onClick={() => { handleExportJSON(); setShowExportDropdown(false); }}
+                    style={{ background: 'none', border: 'none', color: 'var(--text-primary)', padding: '10px 12px', textAlign: 'left', cursor: 'pointer', fontSize: '11px', width: '100%', font: 'inherit' }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-tertiary)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = 'none'}
+                  >
+                    ⚙️ Export JSON Backup
+                  </button>
+                  <button 
+                    onClick={() => { handleExportLaTeX(); setShowExportDropdown(false); }}
+                    style={{ background: 'none', border: 'none', color: 'var(--text-primary)', padding: '10px 12px', textAlign: 'left', cursor: 'pointer', fontSize: '11px', width: '100%', font: 'inherit' }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-tertiary)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = 'none'}
+                  >
+                    🛠️ Export LaTeX Source
+                  </button>
+                </div>
+              )}
+            </div>
+            
+            <button className={styles.actionBtn} onClick={() => fileInputRef.current?.click()} title="Import file (.json or .tex)">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              Import JSON
+              Import
             </button>
             <input
               ref={fileInputRef}
               type="file"
-              accept=".json"
-              onChange={handleImportJSON}
+              accept=".json,.tex"
+              onChange={handleImportFile}
               style={{ display: 'none' }}
             />
           </div>
