@@ -69,14 +69,14 @@
   letter-spacing: 0.06em;
   border-bottom: 1.5px solid var(--p-h-color, #122644);
   padding-bottom: 5px;
-  margin-bottom: 12px;
+  margin-bottom: calc(var(--p-sec-sp, 12px) * 0.8) !important;
   font-size: 13px;
 }
 
 /* Main Section Wrapper (Each holds a header and its entries) */
 .mainSection {
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: calc(var(--p-sec-sp, 12px) * 1.6) !important;
 }
 
 /* Main Section Headers */
@@ -86,7 +86,7 @@
   letter-spacing: 0.06em;
   border-bottom: 1.5px solid var(--p-h-color, #122644);
   padding-bottom: 5px;
-  margin-bottom: 16px;
+  margin-bottom: calc(var(--p-sec-sp, 12px) * 0.9) !important;
   font-size: 13px;
   margin-top: 0;
 }
