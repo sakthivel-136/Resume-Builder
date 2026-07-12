@@ -67,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable} data-scroll-behavior="smooth">
       <head>
-        <meta name="google-site-verification" content="GMSc7WP_QRhVY75Sa24pdfeME6f6rSefy8xvAe68-uw" />
+        <meta name="google-site-verification" content="oURF7UlcnFRd50fuB8YtvKtpUxJx0aIJkcAYTBZkVog" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href={GOOGLE_FONTS_URL} />
