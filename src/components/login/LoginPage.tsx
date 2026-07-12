@@ -519,10 +519,15 @@ export default function LoginPage() {
           </div>
         </section>
 
-        {/* ===== Minimalist Branded Footer with SAKTHI VEL C credit ===== */}
+        {/* ===== Minimalist Branded Footer with subtle color trick ===== */}
         <footer className={styles.footer}>
           <div className={styles.footerText}>
-            Designed &amp; Developed by SAKTHI VEL C | Python Full Stack Developer
+            <span className={styles.secretLetter}>M</span><span className={styles.normalLetters}>aking</span>{' '}
+            <span className={styles.secretLetter}>E</span><span className={styles.normalLetters}>xcellent</span>{' '}
+            <span className={styles.secretLetter}>R</span><span className={styles.normalLetters}>esumes</span>{' '}
+            <span className={styles.secretLetter}>C</span><span className={styles.normalLetters}>rafted for</span>{' '}
+            <span className={styles.secretLetter}>Y</span><span className={styles.normalLetters}>ou</span>{' '}
+            <span className={styles.creditAccent}>— By SAKTHI</span>
           </div>
         </footer>
       </div>
