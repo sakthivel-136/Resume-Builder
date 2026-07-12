@@ -4,6 +4,8 @@ interface LinkRendererProps {
   url: string;
   label?: string; // fallback if platform name isn't obvious
   color?: string; // to inherit text color
+  showIcon?: boolean;
+  prefix?: string;
 }
 
 const ICONS = {
@@ -38,7 +40,7 @@ const ICONS = {
   ),
 };
 
-export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 'currentColor' }) => {
+export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 'currentColor', showIcon = true, prefix }) => {
   if (!url) return null;
   
   let type: keyof typeof ICONS = 'link';
@@ -79,16 +81,23 @@ export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 
         lineHeight: '1.2'
       }}
     >
-      <span style={{ 
-        display: 'inline-block', 
-        verticalAlign: 'middle', 
-        marginRight: '4px', 
-        lineHeight: 0, 
-        position: 'relative', 
-        top: '-1px' 
-      }}>
-        {ICONS[type](color)}
-      </span>
+      {prefix && (
+        <span style={{ marginRight: '4px', fontWeight: 'bold' }}>
+          {prefix}
+        </span>
+      )}
+      {showIcon && (
+        <span style={{ 
+          display: 'inline-block', 
+          verticalAlign: 'middle', 
+          marginRight: '4px', 
+          lineHeight: 0, 
+          position: 'relative', 
+          top: '-1px' 
+        }}>
+          {ICONS[type](color)}
+        </span>
+      )}
       <span 
         style={{ 
           display: 'inline-block',
