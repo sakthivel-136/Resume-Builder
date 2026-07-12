@@ -42,7 +42,7 @@ export interface ResumeData {
   lastEdited: number;
 
   // Template & Styling
-  tpl: 1 | 2 | 3;
+  tpl: 1 | 2 | 3 | 4;
   pal: number;
   lineH: number;
   secSp: number;
@@ -131,7 +131,7 @@ export interface User {
 
 export type ResumeAction =
   // Template & Styling
-  | { type: 'SET_TEMPLATE'; tpl: 1 | 2 | 3 }
+  | { type: 'SET_TEMPLATE'; tpl: 1 | 2 | 3 | 4 }
   | { type: 'SET_PALETTE'; pal: number }
   | { type: 'SET_FIELD'; field: keyof ResumeData; value: unknown }
 

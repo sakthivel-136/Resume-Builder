@@ -1,0 +1,134 @@
+/* ===== Timeline Template T4 Specific Styles ===== */
+
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  background: var(--p-bg-color, #ffffff);
+}
+
+/* Left Sidebar Column */
+.leftCol {
+  width: var(--sb-width, 240px);
+  min-width: var(--sb-width, 240px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-right: 1.5px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Right Main Column (contains the vertical timeline border) */
+.rightCol {
+  flex: 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Vertical Timeline separator axis */
+.timelineAxis {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--p-h-color, #122644);
+  transform: translateX(-1px); /* Center exactly on the boundary line */
+  z-index: 10;
+}
+
+/* Header Area (full width at the top) */
+.headerBlock {
+  margin-bottom: 22px;
+  width: 100%;
+}
+
+.name {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 13.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+/* Sidebar Section Headers */
+.sbHeading {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1.5px solid var(--p-h-color, #122644);
+  padding-bottom: 5px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+/* Main Section Wrapper (Each holds a header and its entries) */
+.mainSection {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+/* Main Section Headers */
+.mainHeading {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1.5px solid var(--p-h-color, #122644);
+  padding-bottom: 5px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  margin-top: 0;
+}
+
+/* Timeline Circular Badge Icon */
+.badge {
+  position: absolute;
+  left: -16px; /* Centered exactly on the timelineAxis (border-left) */
+  top: -6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--p-h-color, #122644);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  box-shadow: 0 0 0 4px #ffffff;
+}
+
+/* Timeline Entry connection Node Dot */
+.nodeDot {
+  position: absolute;
+  left: -5px; /* Centered on the border axis */
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--p-h-color, #122644);
+  border: 2px solid #ffffff;
+  z-index: 20;
+}
+
+.timelineEndDot {
+  position: absolute;
+  left: -4px;
+  bottom: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--p-h-color, #122644);
+  border: 2px solid #ffffff;
+  z-index: 20;
+}

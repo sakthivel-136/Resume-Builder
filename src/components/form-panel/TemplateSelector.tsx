@@ -8,13 +8,13 @@ import styles from './cards.module.css';
 const TemplateSelector = () => {
   const { state, dispatch } = useResume();
 
-  const handleSelect = (tpl: 1 | 2 | 3) => {
+  const handleSelect = (tpl: 1 | 2 | 3 | 4) => {
     dispatch({ type: 'SET_TEMPLATE', tpl });
   };
 
   return (
     <Card title="Choose Template">
-      <div className={styles.row3} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+      <div className={styles.row3} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
         {/* T1 - Classic */}
         <button
           type="button"
@@ -39,7 +39,7 @@ const TemplateSelector = () => {
               <div style={{ flex: 1, height: '16px', background: '#fff', border: '1px solid #e2e5e8', borderRadius: '2px' }} />
             </div>
           </div>
-          <span style={{ fontSize: '10.5px', fontWeight: 700, color: state.tpl === 1 ? 'var(--text-primary)' : 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          <span style={{ fontSize: '10.2px', fontWeight: 700, color: state.tpl === 1 ? 'var(--text-primary)' : 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
             Classic
           </span>
         </button>
@@ -71,7 +71,7 @@ const TemplateSelector = () => {
               <div style={{ height: '14px', background: '#fff', border: '1px solid #e2e5e8', borderRadius: '2px' }} />
             </div>
           </div>
-          <span style={{ fontSize: '10.5px', fontWeight: 700, color: state.tpl === 2 ? 'var(--text-primary)' : 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          <span style={{ fontSize: '10.2px', fontWeight: 700, color: state.tpl === 2 ? 'var(--text-primary)' : 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
             Sidebar
           </span>
         </button>
@@ -103,8 +103,50 @@ const TemplateSelector = () => {
               <div style={{ height: '14px', background: '#fff', border: '1px solid #e2e5e8', borderRadius: '2px' }} />
             </div>
           </div>
-          <span style={{ fontSize: '10.5px', fontWeight: 700, color: state.tpl === 3 ? 'var(--text-primary)' : 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          <span style={{ fontSize: '10.2px', fontWeight: 700, color: state.tpl === 3 ? 'var(--text-primary)' : 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
             Modern
+          </span>
+        </button>
+
+        {/* T4 - Timeline */}
+        <button
+          type="button"
+          onClick={() => handleSelect(4)}
+          style={{
+            background: state.tpl === 4 ? 'rgba(108, 99, 255, 0.1)' : 'var(--bg-tertiary)',
+            border: '2px solid',
+            borderColor: state.tpl === 4 ? 'var(--accent-primary)' : 'var(--border)',
+            borderRadius: '10px',
+            padding: '10px 8px',
+            cursor: 'pointer',
+            textAlign: 'center',
+            transition: 'all var(--transition-fast)',
+            outline: 'none',
+          }}
+        >
+          <div style={{ height: '56px', background: '#f8f9fa', borderRadius: '4px', overflow: 'hidden', display: 'flex' }}>
+            {/* Sidebar Column */}
+            <div style={{ width: '30%', padding: '4px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <div style={{ width: '80%', height: '4px', background: '#ccd0d5', borderRadius: '0.5px' }} />
+              <div style={{ width: '60%', height: '2px', background: '#e2e5e8', borderRadius: '0.5px' }} />
+              <div style={{ width: '80%', height: '4px', background: '#ccd0d5', borderRadius: '0.5px' }} />
+            </div>
+            {/* Vertical timeline divider line */}
+            <div style={{ width: '1px', background: '#122644', position: 'relative', height: '100%' }}>
+              <div style={{ width: '4px', height: '4px', background: '#122644', borderRadius: '50%', position: 'absolute', left: '-1.5px', top: '10px' }} />
+              <div style={{ width: '4px', height: '4px', background: '#122644', borderRadius: '50%', position: 'absolute', left: '-1.5px', top: '24px' }} />
+              <div style={{ width: '4px', height: '4px', background: '#122644', borderRadius: '50%', position: 'absolute', left: '-1.5px', top: '38px' }} />
+            </div>
+            {/* Main Area */}
+            <div style={{ width: '70%', padding: '6px', display: 'flex', flexDirection: 'column', gap: '4px', paddingLeft: '8px' }}>
+              <div style={{ height: '4px', background: '#122644', width: '60%', borderRadius: '1px' }} />
+              <div style={{ height: '10px', background: '#fff', border: '1px solid #e2e5e8', borderRadius: '2px' }} />
+              <div style={{ height: '4px', background: '#122644', width: '80%', borderRadius: '1px' }} />
+              <div style={{ height: '10px', background: '#fff', border: '1px solid #e2e5e8', borderRadius: '2px' }} />
+            </div>
+          </div>
+          <span style={{ fontSize: '10.2px', fontWeight: 700, color: state.tpl === 4 ? 'var(--text-primary)' : 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            Timeline
           </span>
         </button>
       </div>

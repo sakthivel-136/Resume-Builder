@@ -5,6 +5,7 @@ import { useResume } from '@/context/ResumeContext';
 import ClassicTemplate from './templates/ClassicTemplate';
 import SidebarTemplate from './templates/SidebarTemplate';
 import ModernTemplate from './templates/ModernTemplate';
+import TimelineTemplate from './templates/TimelineTemplate';
 import { SAMPLE_RESUME_DATA } from '@/data/defaultResume';
 
 interface ResumeRendererProps {
@@ -60,6 +61,8 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
         return <SidebarTemplate state={stateWithFallbacks} isExport={isExport} />;
       case 3:
         return <ModernTemplate state={stateWithFallbacks} isExport={isExport} />;
+      case 4:
+        return <TimelineTemplate state={stateWithFallbacks} isExport={isExport} />;
       default:
         return <ClassicTemplate state={stateWithFallbacks} isExport={isExport} />;
     }
