@@ -6,6 +6,7 @@ interface LinkRendererProps {
   color?: string; // to inherit text color
   showIcon?: boolean;
   prefix?: string;
+  noMargin?: boolean;
 }
 
 const ICONS = {
@@ -40,7 +41,7 @@ const ICONS = {
   ),
 };
 
-export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 'currentColor', showIcon = true, prefix }) => {
+export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 'currentColor', showIcon = true, prefix, noMargin }) => {
   if (!url) return null;
   
   let type: keyof typeof ICONS = 'link';
@@ -75,7 +76,7 @@ export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 
       rel="noopener noreferrer" 
       style={{ 
         display: 'inline-block', 
-        marginRight: '12px',
+        marginRight: noMargin ? '0px' : '12px',
         color: 'inherit', 
         textDecoration: 'none',
         lineHeight: '1.2'
