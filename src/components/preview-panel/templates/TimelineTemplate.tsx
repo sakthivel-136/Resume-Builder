@@ -302,7 +302,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
       };
 
       return (
-        <div id={`entry-${key}`} className={shared.entryBlock}>
+        <div className={shared.entryBlock}>
           {renderCustomContent()}
         </div>
       );

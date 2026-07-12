@@ -309,7 +309,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           {!ignoreSpacers && spacers[key] && (
             <div style={{ height: `${spacers[key]}px` }} />
           )}
-          <div id={`entry-${key}`} className={shared.entryBlock}>
+          <div className={shared.entryBlock}>
             {renderCustomContent()}
           </div>
         </React.Fragment>

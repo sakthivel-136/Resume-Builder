@@ -305,7 +305,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
       };
 
       return (
-        <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
+        <div key={key} className={shared.entryBlock}>
           {renderCustomContent()}
         </div>
       );
