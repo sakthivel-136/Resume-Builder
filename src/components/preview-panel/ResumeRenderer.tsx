@@ -170,6 +170,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
                   if (isKeepWholeSec) {
                     // Push the entire section container
                     const pushAmount = unsafeEnd - item.top;
+                    console.log(`[LayoutEngine] Pushing keep-whole section ${secId} by ${pushAmount}px (top: ${item.top}, bottom: ${item.bottom}, unsafeStart: ${unsafeStart})`);
                     item.el.style.marginTop = `${pushAmount}px`;
                     adjusted = true;
                   } else {
@@ -193,6 +194,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
                   // This is an individual entry block (e.g. .eduBlock, a specific experience job, or a specific project entry)
                   // Push it to start cleanly on the next page
                   const pushAmount = unsafeEnd - item.top;
+                  console.log(`[LayoutEngine] Pushing individual entry block ${item.el.id || item.el.className} by ${pushAmount}px (top: ${item.top}, bottom: ${item.bottom}, unsafeStart: ${unsafeStart})`);
                   item.el.style.marginTop = `${pushAmount}px`;
                   adjusted = true;
                 }
