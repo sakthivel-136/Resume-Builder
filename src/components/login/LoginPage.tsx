@@ -283,7 +283,7 @@ export default function LoginPage() {
             Get Started →
           </button>
           <div className={styles.desktopAdvice}>
-            💻 <b>Best Experienced on Desktop:</b> Resume layout precision and editing are easiest on a larger screen. You can still use mobile to view or make quick edits!
+            💻 <b>Highly Recommended on Laptop/Desktop:</b> To build a pixel-perfect resume with advanced layout tuning, please use a laptop or desktop computer. Desktop view provides full screen spacing controls for precise formatting!
           </div>
         </form>
 
@@ -349,9 +349,9 @@ export default function LoginPage() {
             <div className={`${styles.featureIcon} ${styles.featureIconPurple}`}>
               <LayoutIcon />
             </div>
-            <div className={styles.featureTitle}>3 Templates</div>
+            <div className={styles.featureTitle}>4 Templates</div>
             <div className={styles.featureDesc}>
-              Classic, sidebar, and two-column layouts
+              Classic, Sidebar, Modern, and Timeline formats
             </div>
           </div>
 
@@ -404,7 +404,7 @@ export default function LoginPage() {
               <div className={styles.stepNumber}>3</div>
               <div className={styles.stepContent}>
                 <div className={styles.stepTitle}>Pick a Template &amp; Color</div>
-                <div className={styles.stepDesc}>Choose from <b>Classic</b>, <b>Sidebar</b> or <b>Modern</b> template. Then select a color palette — Navy Gold, Steel Blue, Forest and more!</div>
+                <div className={styles.stepDesc}>Choose from <b>Classic</b>, <b>Sidebar</b>, <b>Modern</b>, or <b>Timeline</b> template. Then select a color palette — Navy Gold, Steel Blue, Forest and more!</div>
               </div>
             </div>
             <div className={styles.stepCard}>
@@ -449,7 +449,7 @@ export default function LoginPage() {
             <div className={styles.quickRefTitle}>⚡ Quick Feature Reference</div>
             <div className={styles.quickRefGrid}>
               <div className={styles.quickRefItem}><span>🎨</span> 6 Color Palettes</div>
-              <div className={styles.quickRefItem}><span>📐</span> 3 Templates</div>
+              <div className={styles.quickRefItem}><span>📐</span> 4 Templates</div>
               <div className={styles.quickRefItem}><span>📸</span> Profile Photo Upload</div>
               <div className={styles.quickRefItem}><span>🔢</span> ATS Score Checker</div>
               <div className={styles.quickRefItem}><span>↕️</span> Drag &amp; Drop Sections</div>
@@ -469,7 +469,7 @@ export default function LoginPage() {
             <p className={styles.seoSubtitleText}>
               Create professional, ATS-optimized resumes and CVs online in minutes. 
               Our free resume builder helps job seekers design print-ready resumes that pass 
-              applicant tracking systems (ATS) with ease. Choose from classic, modern, and sidebar resume formats, 
+              applicant tracking systems (ATS) with ease. Choose from classic, modern, sidebar, and timeline resume formats, 
               customize layout spacing, select from 20+ professional fonts, check your ATS score, and download 
               your resume instantly as a PDF.
             </p>
