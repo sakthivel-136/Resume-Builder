@@ -54,7 +54,7 @@
 
 .title {
   font-weight: 700;
-  font-size: 13.5px;
+  font-size: 0.9em;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-top: 4px;
@@ -68,7 +68,7 @@
   border-bottom: 1.5px solid var(--p-h-color, #122644);
   padding-bottom: 5px;
   margin-bottom: calc(var(--p-sec-sp, 12px) * 0.8) !important;
-  font-size: 13px;
+  font-size: var(--heading-size, 11px);
 }
 
 /* Main Section Wrapper (Each holds a header and its entries) */
@@ -85,7 +85,7 @@
   border-bottom: 1.5px solid var(--p-h-color, #122644);
   padding-bottom: 5px;
   margin-bottom: calc(var(--p-sec-sp, 12px) * 0.9) !important;
-  font-size: 13px;
+  font-size: var(--heading-size, 11px);
   margin-top: 0;
 }
 
