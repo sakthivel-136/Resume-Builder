@@ -377,8 +377,8 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
                   </div>
                   {(p.githubUrl || p.liveUrl) && (
                     <div style={{ display: 'flex', gap: '12px', fontSize: isLeftCol ? '0.85em' : '0.9em', marginTop: '2px', marginBottom: '4px' }}>
-                      {p.githubUrl && <LinkRenderer url={p.githubUrl} />}
-                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label="Live Link" />}
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} />}
                     </div>
                   )}
                   {p.problemStatement && (

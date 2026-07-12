@@ -494,8 +494,8 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                   </div>
                   {(p.githubUrl || p.liveUrl) && (
                     <div style={{ display: 'flex', gap: '12px', fontSize: `${bodySize * 0.85}px`, marginTop: '2px', marginBottom: '4px' }}>
-                      {p.githubUrl && <LinkRenderer url={p.githubUrl} color={hColor} />}
-                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label="Live Link" color={hColor} />}
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} />}
                     </div>
                   )}
                   {p.problemStatement && (
