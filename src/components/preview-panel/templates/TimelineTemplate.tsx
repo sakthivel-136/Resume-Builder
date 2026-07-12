@@ -162,8 +162,10 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
     }
 
     if (skillMode === 'pills') {
-      const activeGroups = skillGroups.filter(sg => sg.values.split(',').map(v => v.trim()).filter(Boolean).length > 0);
-      if (activeGroups.length === 0) return null;
+      const allItems = skillGroups.flatMap((sg) =>
+        sg.values.split(',').map((v) => v.trim()).filter(Boolean)
+      );
+      if (allItems.length === 0) return null;
       return (
         <div 
           className={shared.skillsContainer}
@@ -174,11 +176,18 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
             fontSize: `${bodySize * 0.95}px`
           }}
         >
-          {activeGroups.map((sg, idx) => {
-            const vals = sg.values.split(',').map((v) => v.trim()).filter(Boolean).join(', ');
-            return (
-              <React.Fragment key={idx}>
-                {idx > 0 && (
+          {allItems.map((v, sIdx) => (
+            <React.Fragment key={sIdx}>
+              {sIdx > 0 && ' '}
+              <span 
+                style={{ 
+                  whiteSpace: 'nowrap', 
+                  display: 'inline-block',
+                  verticalAlign: 'middle'
+                }}
+              >
+                <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>{v}</span>
+                {sIdx < allItems.length - 1 && (
                   <span 
                     style={{ 
                       color: state.bulletColor || hColor, 
@@ -193,13 +202,9 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                     •
                   </span>
                 )}
-                <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                  <span className={shared.skillCat} style={{ color: hColor, fontWeight: 700 }}>{sg.category}: </span>
-                  <span className={shared.skillVals} style={{ fontSize: '0.95em' }}>{vals}</span>
-                </span>
-              </React.Fragment>
-            );
-          })}
+              </span>
+            </React.Fragment>
+          ))}
         </div>
       );
     }
