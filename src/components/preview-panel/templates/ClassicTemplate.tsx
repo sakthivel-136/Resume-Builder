@@ -88,7 +88,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
   const renderContactInline = () => {
     if (contacts.length === 0) return null;
     return (
-      <div className={shared.contactInline} style={{ fontSize: `${bodySize * 0.9}px` }}>
+      <div className={shared.contactInline} style={{ fontSize: `${bodySize * 0.8}px` }}>
         {contacts.map((c, idx) => {
           const href = getContactHref(c);
           return (
