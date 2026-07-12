@@ -433,7 +433,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                 <div id={`entry-${p.id}`} className={shared.entryBlock} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>
                   <div className={shared.entryRow} style={{ flexDirection: isSidebar ? 'column' : 'row', alignItems: 'stretch' }}>
                     <span className={shared.entryRole}>
-                      <span style={{ textDecoration: 'underline' }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
+                      <span style={{ borderBottom: '1px solid currentColor', paddingBottom: '1px', display: 'inline-block' }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
                     </span>
                     <span className={shared.entryDates} style={{ opacity: 0.8 }}>{p.dates}</span>
                   </div>

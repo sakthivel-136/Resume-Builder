@@ -431,7 +431,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                   <div className={styles.nodeDot} />
                   <div className={shared.entryRow}>
                     <span className={shared.entryRole}>
-                      <span style={{ textDecoration: 'underline' }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
+                      <span style={{ borderBottom: '1px solid currentColor', paddingBottom: '1px', display: 'inline-block' }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
                     </span>
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>

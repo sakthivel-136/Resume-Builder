@@ -75,35 +75,34 @@ export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 
       target="_blank" 
       rel="noopener noreferrer" 
       style={{ 
-        display: 'inline-block', 
+        display: 'inline-flex', 
+        alignItems: 'center',
         marginRight: noMargin ? '0px' : '12px',
         color: 'inherit', 
         textDecoration: 'none',
-        lineHeight: '1.2'
+        lineHeight: '1'
       }}
     >
       {prefix && (
-        <span style={{ marginRight: '4px', fontWeight: 'bold' }}>
+        <span style={{ marginRight: '4px', fontWeight: 'bold', display: 'inline-flex', alignItems: 'center' }}>
           {prefix}
         </span>
       )}
       {showIcon && (
         <span style={{ 
-          display: 'inline-block', 
-          verticalAlign: 'middle', 
+          display: 'inline-flex', 
+          alignItems: 'center',
           marginRight: '4px', 
-          lineHeight: 0, 
-          position: 'relative', 
-          top: '-1px' 
+          lineHeight: 0
         }}>
           {ICONS[type](color)}
         </span>
       )}
       <span 
         style={{ 
-          display: 'inline-block',
-          verticalAlign: 'middle',
-          lineHeight: '1.2',
+          display: 'inline-flex',
+          alignItems: 'center',
+          lineHeight: '1',
           borderBottom: '1px solid transparent', 
           transition: 'border-color 0.2s' 
         }} 
