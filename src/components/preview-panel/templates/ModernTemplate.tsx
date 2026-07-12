@@ -153,7 +153,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
   };
 
   const renderSkills = () => {
-    if (skillMode === 'text' || skillMode === 'pills') {
+    if (skillMode === 'text') {
       return (
         <div className={shared.skillsContainer}>
           {skillGroups.map((s, idx) => (
@@ -162,6 +162,49 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
               <span className={shared.skillVals}>{s.values}</span>
             </div>
           ))}
+        </div>
+      );
+    }
+
+    if (skillMode === 'pills') {
+      const activeGroups = skillGroups.filter(sg => sg.values.split(',').map(v => v.trim()).filter(Boolean).length > 0);
+      if (activeGroups.length === 0) return null;
+      return (
+        <div 
+          className={shared.skillsContainer}
+          style={{ 
+            display: 'block', 
+            marginTop: '4px', 
+            lineHeight: 1.5,
+            fontSize: `${bodySize * 0.95}px`
+          }}
+        >
+          {activeGroups.map((sg, idx) => {
+            const vals = sg.values.split(',').map((v) => v.trim()).filter(Boolean).join(', ');
+            return (
+              <React.Fragment key={idx}>
+                {idx > 0 && (
+                  <span 
+                    style={{ 
+                      color: state.bulletColor || hColor, 
+                      marginLeft: '6px', 
+                      marginRight: '6px', 
+                      fontWeight: 'bold',
+                      display: 'inline-block',
+                      verticalAlign: 'middle',
+                      lineHeight: 1
+                    }}
+                  >
+                    •
+                  </span>
+                )}
+                <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                  <span className={shared.skillCat} style={{ color: hColor, fontWeight: 'bold' }}>{sg.category}: </span>
+                  <span className={shared.skillVals}>{vals}</span>
+                </span>
+              </React.Fragment>
+            );
+          })}
         </div>
       );
     }
