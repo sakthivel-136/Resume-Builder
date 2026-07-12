@@ -30,6 +30,20 @@ function BuilderContent() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Lock global html/body scroll to prevent mobile Safari ghost window dragging
+  useEffect(() => {
+    const origBodyOverflow = document.body.style.overflow;
+    const origHtmlOverflow = document.documentElement.style.overflow;
+    
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    
+    return () => {
+      document.body.style.overflow = origBodyOverflow;
+      document.documentElement.style.overflow = origHtmlOverflow;
+    };
+  }, []);
+
   useEffect(() => {
     if (loading) return;
     const type = sessionStorage.getItem('login_type');
