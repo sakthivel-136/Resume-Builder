@@ -338,8 +338,8 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
             ref={measureRef}
             style={{
               ...cssVarsStyle,
-              position: 'absolute',
-              left: 0,
+              position: 'fixed',
+              left: '-9999px',
               top: 0,
               width: `${PAGE_WIDTH}px`,
               height: 'auto',
