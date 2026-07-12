@@ -11,7 +11,8 @@ import {
   DndContext,
   closestCenter,
   KeyboardSensor,
-  PointerSensor,
+  MouseSensor,
+  TouchSensor,
   useSensor,
   useSensors,
   DragEndEvent,
@@ -39,6 +40,7 @@ interface SortableSectionProps {
   onRename: (key: string, name: string) => void;
   onDeleteCustom: (key: string) => void;
   onClick?: () => void;
+  onMoveZone?: () => void;
 }
 
 const SortableSectionItem = ({
@@ -52,6 +54,7 @@ const SortableSectionItem = ({
   onRename,
   onDeleteCustom,
   onClick,
+  onMoveZone,
 }: SortableSectionProps) => {
   const {
     attributes,
@@ -139,6 +142,22 @@ const SortableSectionItem = ({
           )}
         </button>
 
+        {!isPinned && onMoveZone && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onMoveZone();
+            }}
+            className={styles.actionBtn}
+            title="Move to other column (Sidebar / Main Area)"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ transform: 'rotate(90deg)' }}>
+              <path d="M17 4v16M17 4l3 3M17 20l3-3M7 20V4M7 20L4 17M7 4L4 7" />
+            </svg>
+          </button>
+        )}
+
         {!isPinned && (
           <button
             type="button"
@@ -191,9 +210,15 @@ const SectionManager = () => {
   }, [isAddModalOpen]);
 
   const sensors = useSensors(
-    useSensor(PointerSensor, {
+    useSensor(MouseSensor, {
       activationConstraint: {
         distance: 8,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 150,
+        tolerance: 8,
       },
     }),
     useSensor(KeyboardSensor, {
@@ -286,6 +311,28 @@ const SectionManager = () => {
       }
       setSelectedSectionId(null);
     }
+  };
+
+  const handleMoveZone = (key: string, targetZone: 'sidebar' | 'main') => {
+    if (key === 'contact') return;
+
+    let sidebar = [...state.sidebarSections];
+    let main = [...state.mainSections];
+
+    if (targetZone === 'sidebar') {
+      main = main.filter((k) => k !== key);
+      if (!sidebar.includes(key)) {
+        sidebar.push(key);
+      }
+    } else {
+      sidebar = sidebar.filter((k) => k !== key);
+      if (!main.includes(key)) {
+        main.push(key);
+      }
+    }
+
+    dispatch({ type: 'SET_ZONES', sidebar, main });
+    addToast(`Moved "${state.secNames[key] || key}" to ${targetZone === 'sidebar' ? 'Sidebar' : 'Main Area'}`, 'success');
   };
 
   // Drag handlers
@@ -448,6 +495,7 @@ const SectionManager = () => {
                         onRename={handleRename}
                         onDeleteCustom={handleDeleteCustom}
                         onClick={() => handleSectionClick(key)}
+                        onMoveZone={() => handleMoveZone(key, 'main')}
                       />
                     ))}
                     {state.sidebarSections.length === 0 && (
@@ -458,7 +506,7 @@ const SectionManager = () => {
                   </DroppableZone>
                 </SortableContext>
               </div>
-
+ 
               {/* Main Content Zone */}
               <div className={styles.zone}>
                 <h4 className={styles.zoneTitle}>Main Area</h4>
@@ -479,6 +527,7 @@ const SectionManager = () => {
                         onRename={handleRename}
                         onDeleteCustom={handleDeleteCustom}
                         onClick={() => handleSectionClick(key)}
+                        onMoveZone={() => handleMoveZone(key, 'sidebar')}
                       />
                     ))}
                     {state.mainSections.length === 0 && (
