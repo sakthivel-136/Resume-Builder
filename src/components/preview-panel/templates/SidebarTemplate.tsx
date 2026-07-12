@@ -453,7 +453,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     ))}
                   </ul>
                   {(p.githubUrl || p.liveUrl) && (
-                    <div style={{ display: 'flex', gap: '12px', fontSize: isSidebar ? '0.85em' : '0.9em', marginTop: '4px', marginBottom: '2px' }}>
+                    <div style={{ fontSize: isSidebar ? '0.85em' : '0.9em', marginTop: '4px', marginBottom: '2px' }}>
                       {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} />}
                       {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} />}
                     </div>

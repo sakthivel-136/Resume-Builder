@@ -73,25 +73,27 @@ export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 
       rel="noopener noreferrer" 
       style={{ 
         display: 'inline-block', 
-        position: 'relative', 
-        paddingLeft: '16px', 
+        marginRight: '12px',
         color: 'inherit', 
         textDecoration: 'none',
-        lineHeight: 'inherit'
+        lineHeight: '1.2'
       }}
     >
       <span style={{ 
-        position: 'absolute', 
-        left: 0, 
-        top: '0.15em',
-        height: '12px',
-        lineHeight: 0,
-        display: 'block'
+        display: 'inline-block', 
+        verticalAlign: 'middle', 
+        marginRight: '4px', 
+        lineHeight: 0, 
+        position: 'relative', 
+        top: '-1px' 
       }}>
         {ICONS[type](color)}
       </span>
       <span 
         style={{ 
+          display: 'inline-block',
+          verticalAlign: 'middle',
+          lineHeight: '1.2',
           borderBottom: '1px solid transparent', 
           transition: 'border-color 0.2s' 
         }} 
