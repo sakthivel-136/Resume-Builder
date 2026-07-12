@@ -225,8 +225,8 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  column-gap: 8px;
-  row-gap: 4px;
+  column-gap: 16px;
+  row-gap: 6px;
   text-align: center;
   font-size: 0.85em;
   opacity: 0.85;
@@ -237,12 +237,6 @@
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-}
-
-.contactInline span:not(:last-child)::after {
-  content: "|";
-  color: #aab3bd;
-  margin-left: 8px;
 }
 
 /* Dynamic Accent Bar */
