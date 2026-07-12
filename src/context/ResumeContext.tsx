@@ -135,7 +135,7 @@ function resumeReducer(data: ResumeData, action: ResumeAction): ResumeData {
 
     // Projects
     case 'ADD_PROJECT':
-      return { ...data, projects: [...data.projects, { id: generateId(), name: '', tech: '', dates: '', points: [''] }] };
+      return { ...data, projects: [...data.projects, { id: generateId(), name: '', tech: '', dates: '', points: [''], githubUrl: '', liveUrl: '', problemStatement: '', proposedSolution: '' }] };
     case 'REMOVE_PROJECT':
       return { ...data, projects: data.projects.filter((_, i) => i !== action.index) };
     case 'UPDATE_PROJECT':
@@ -223,7 +223,11 @@ function resumeReducer(data: ResumeData, action: ResumeAction): ResumeData {
           ...p,
           id: p.id || generateId(),
           dates: p.dates || p.duration || '',
-          points: p.points || p.bullets || (p.details ? [p.details] : [])
+          points: p.points || p.bullets || (p.details ? [p.details] : []),
+          githubUrl: p.githubUrl || '',
+          liveUrl: p.liveUrl || '',
+          problemStatement: p.problemStatement || '',
+          proposedSolution: p.proposedSolution || ''
         })),
         skillGroups: (d.skillGroups || []).map((sg: any) => ({
           ...sg,

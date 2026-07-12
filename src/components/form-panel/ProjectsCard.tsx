@@ -1,6 +1,6 @@
 'use client';
 
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useResume } from '@/context/ResumeContext';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -114,6 +114,10 @@ interface SortableEntryProps {
   tech: string;
   dates: string;
   points: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+  problemStatement?: string;
+  proposedSolution?: string;
   onRemove: (idx: number) => void;
   onUpdate: (idx: number, field: string, val: string) => void;
   onAddPoint: (idx: number) => void;
@@ -129,6 +133,10 @@ const SortableProjectEntry = ({
   tech,
   dates,
   points,
+  githubUrl = '',
+  liveUrl = '',
+  problemStatement = '',
+  proposedSolution = '',
   onRemove,
   onUpdate,
   onAddPoint,
@@ -144,6 +152,10 @@ const SortableProjectEntry = ({
     transition,
     isDragging,
   } = useSortable({ id });
+
+  const [showGithub, setShowGithub] = useState(!!githubUrl);
+  const [showLive, setShowLive] = useState(!!liveUrl);
+  const [detailsOpen, setDetailsOpen] = useState(false);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -260,46 +272,101 @@ const SortableProjectEntry = ({
         />
       </div>
 
-      {/* Bullet points DnD list */}
-      <div className={styles.pointsContainer}>
-        <div className={styles.pointsTitle}>Project Details & Key Features</div>
-        {points.length === 0 && (
-          <p className={styles.emptyHint}>No bullet points added yet. Add one below.</p>
-        )}
-        <DndContext
-          id={`proj-points-dnd-${id}`}
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handlePointDragEnd}
-        >
-          <SortableContext
-            items={points.map((_, pIdx) => `proj-pt-${id}-${pIdx}`)}
-            strategy={verticalListSortingStrategy}
-          >
-            <div>
-              {points.map((pt, pIdx) => (
-                <SortableBulletPoint
-                  key={`proj-pt-${id}-${pIdx}`}
-                  id={`proj-pt-${id}-${pIdx}`}
-                  pointIndex={pIdx}
-                  projIndex={index}
-                  value={pt}
-                  onRemovePoint={onRemovePoint}
-                  onUpdatePoint={onUpdatePoint}
-                />
-              ))}
+      <div className={styles.togglesRow} style={{ display: 'flex', gap: '16px', marginTop: '12px' }}>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px' }}>
+          <input type="checkbox" checked={showGithub} onChange={(e) => {
+            setShowGithub(e.target.checked);
+            if (!e.target.checked) onUpdate(index, 'githubUrl', '');
+          }} /> GitHub Link
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px' }}>
+          <input type="checkbox" checked={showLive} onChange={(e) => {
+            setShowLive(e.target.checked);
+            if (!e.target.checked) onUpdate(index, 'liveUrl', '');
+          }} /> Live Link
+        </label>
+      </div>
+
+      {(showGithub || showLive) && (
+        <div className={styles.row2} style={{ marginTop: '8px' }}>
+          {showGithub && (
+            <div className={styles.field}>
+              <label>GitHub URL</label>
+              <input className={styles.input} type="text" placeholder="https://github.com/..." value={githubUrl} onChange={(e) => onUpdate(index, 'githubUrl', e.target.value)} />
             </div>
-          </SortableContext>
-        </DndContext>
-        <Button
-          type="button"
-          variant="ghost"
-          size="sm"
-          onClick={() => onAddPoint(index)}
-          style={{ marginTop: '4px', fontSize: '11px' }}
+          )}
+          {showLive && (
+            <div className={styles.field}>
+              <label>Live URL</label>
+              <input className={styles.input} type="text" placeholder="https://..." value={liveUrl} onChange={(e) => onUpdate(index, 'liveUrl', e.target.value)} />
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className={styles.field} style={{ marginTop: '12px' }}>
+        <label>Problem Statement</label>
+        <textarea className={styles.input} rows={2} placeholder="Describe the problem..." value={problemStatement} onChange={(e) => onUpdate(index, 'problemStatement', e.target.value)} style={{ resize: 'vertical' }} />
+      </div>
+      <div className={styles.field}>
+        <label>Proposed Solution</label>
+        <textarea className={styles.input} rows={2} placeholder="Describe your solution..." value={proposedSolution} onChange={(e) => onUpdate(index, 'proposedSolution', e.target.value)} style={{ resize: 'vertical' }} />
+      </div>
+
+      {/* Collapsible Project Details */}
+      <div className={styles.pointsContainer} style={{ marginTop: '12px', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '12px' }}>
+        <div 
+          className={styles.pointsTitle} 
+          style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: 0 }}
+          onClick={() => setDetailsOpen(!detailsOpen)}
         >
-          + Add Bullet Point
-        </Button>
+          <span>Project Details & Key Features</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ transform: detailsOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        
+        {detailsOpen && (
+          <div style={{ marginTop: '12px' }}>
+            {points.length === 0 && (
+              <p className={styles.emptyHint}>No bullet points added yet. Add one below.</p>
+            )}
+            <DndContext
+              id={`proj-points-dnd-${id}`}
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handlePointDragEnd}
+            >
+              <SortableContext
+                items={points.map((_, pIdx) => `proj-pt-${id}-${pIdx}`)}
+                strategy={verticalListSortingStrategy}
+              >
+                <div>
+                  {points.map((pt, pIdx) => (
+                    <SortableBulletPoint
+                      key={`proj-pt-${id}-${pIdx}`}
+                      id={`proj-pt-${id}-${pIdx}`}
+                      pointIndex={pIdx}
+                      projIndex={index}
+                      value={pt}
+                      onRemovePoint={onRemovePoint}
+                      onUpdatePoint={onUpdatePoint}
+                    />
+                  ))}
+                </div>
+              </SortableContext>
+            </DndContext>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => onAddPoint(index)}
+              style={{ marginTop: '4px', fontSize: '11px' }}
+            >
+              + Add Bullet Point
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -384,6 +451,10 @@ const ProjectsCard = () => {
                 tech={item.tech}
                 dates={item.dates}
                 points={item.points}
+                githubUrl={item.githubUrl}
+                liveUrl={item.liveUrl}
+                problemStatement={item.problemStatement}
+                proposedSolution={item.proposedSolution}
                 onRemove={handleRemove}
                 onUpdate={handleUpdate}
                 onAddPoint={handleAddPoint}

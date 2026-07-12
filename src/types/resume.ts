@@ -28,6 +28,10 @@ export interface Project {
   tech: string;
   dates: string;
   points: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+  problemStatement?: string;
+  proposedSolution?: string;
 }
 
 export interface CustomSection {

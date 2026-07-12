@@ -5,6 +5,7 @@ import { ResumeData } from '@/types/resume';
 import styles from './TimelineTemplate.module.css';
 import shared from './shared.module.css';
 import { getContactHref } from '@/utils/helpers';
+import LinkRenderer from '@/components/ui/LinkRenderer';
 
 interface TimelineTemplateProps {
   state: ResumeData;
@@ -98,14 +99,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
               <div className={shared.gmLabel} style={{ fontSize: '0.85em', color: hColor, fontWeight: 700 }}>{it.l}</div>
               <div className={shared.gmValue} style={{ fontSize: '0.9em', wordBreak: 'break-all' }}>
                 {href ? (
-                  <a 
-                    href={href} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    style={{ color: 'inherit', textDecoration: 'none' }}
-                  >
-                    {it.v}
-                  </a>
+                  <LinkRenderer url={href} label={it.v} />
                 ) : (
                   it.v
                 )}
@@ -134,14 +128,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           return (
             <div key={idx} style={{ wordBreak: 'break-all' }}>
               {href ? (
-                <a 
-                  href={href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                >
-                  {c}
-                </a>
+                <LinkRenderer url={href} label={c} />
               ) : (
                 c
               )}
@@ -392,6 +379,22 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                     </span>
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>
+                  {(p.githubUrl || p.liveUrl) && (
+                    <div style={{ display: 'flex', gap: '12px', fontSize: '0.9em', marginTop: '2px', marginBottom: '4px' }}>
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label="Live Link" />}
+                    </div>
+                  )}
+                  {p.problemStatement && (
+                    <div style={{ fontSize: 'inherit', marginTop: '4px', marginBottom: '2px', fontStyle: 'italic' }}>
+                      <strong>Problem:</strong> {p.problemStatement}
+                    </div>
+                  )}
+                  {p.proposedSolution && (
+                    <div style={{ fontSize: 'inherit', marginTop: '2px', marginBottom: '4px', fontStyle: 'italic' }}>
+                      <strong>Solution:</strong> {p.proposedSolution}
+                    </div>
+                  )}
                   <ul className={shared.points} style={{ paddingLeft: '14px' }}>
                     {p.points.filter(Boolean).map((pt, pIdx) => (
                       <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>

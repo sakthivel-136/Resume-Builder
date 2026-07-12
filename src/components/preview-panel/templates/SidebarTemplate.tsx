@@ -5,6 +5,7 @@ import { ResumeData } from '@/types/resume';
 import styles from './SidebarTemplate.module.css';
 import shared from './shared.module.css';
 import { getContactHref } from '@/utils/helpers';
+import LinkRenderer from '@/components/ui/LinkRenderer';
 
 interface SidebarTemplateProps {
   state: ResumeData;
@@ -98,14 +99,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
               <div className={shared.gmLabel}>{it.l}</div>
               <div className={shared.gmValue}>
                 {href ? (
-                  <a 
-                    href={href} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    style={{ color: 'inherit', textDecoration: 'none' }}
-                  >
-                    {it.v}
-                  </a>
+                  <LinkRenderer url={href} label={it.v} />
                 ) : (
                   it.v
                 )}
@@ -134,14 +128,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           return (
             <div key={idx} style={{ wordBreak: 'break-all' }}>
               {href ? (
-                <a 
-                  href={href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                >
-                  {c}
-                </a>
+                <LinkRenderer url={href} label={c} />
               ) : (
                 c
               )}
@@ -394,6 +381,22 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     </span>
                     <span className={shared.entryDates} style={{ opacity: 0.8 }}>{p.dates}</span>
                   </div>
+                  {(p.githubUrl || p.liveUrl) && (
+                    <div style={{ display: 'flex', gap: '12px', fontSize: isSidebar ? '0.85em' : '0.9em', marginTop: '2px', marginBottom: '4px' }}>
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label="Live Link" />}
+                    </div>
+                  )}
+                  {p.problemStatement && (
+                    <div style={{ fontSize: isSidebar ? '0.9em' : 'inherit', marginTop: '4px', marginBottom: '2px', fontStyle: 'italic' }}>
+                      <strong>Problem:</strong> {p.problemStatement}
+                    </div>
+                  )}
+                  {p.proposedSolution && (
+                    <div style={{ fontSize: isSidebar ? '0.9em' : 'inherit', marginTop: '2px', marginBottom: '4px', fontStyle: 'italic' }}>
+                      <strong>Solution:</strong> {p.proposedSolution}
+                    </div>
+                  )}
                   <ul className={shared.points}>
                     {p.points.filter(Boolean).map((pt, pIdx) => (
                       <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>

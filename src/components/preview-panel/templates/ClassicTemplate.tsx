@@ -6,6 +6,7 @@ import styles from './ClassicTemplate.module.css';
 import shared from './shared.module.css';
 
 import { getContactHref } from '@/utils/helpers';
+import LinkRenderer from '@/components/ui/LinkRenderer';
 
 interface ClassicTemplateProps {
   state: ResumeData;
@@ -93,14 +94,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           return (
             <span key={idx}>
               {href ? (
-                <a 
-                  href={href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                >
-                  {c}
-                </a>
+                <LinkRenderer url={href} label={c} color={hColor} />
               ) : (
                 c
               )}
@@ -498,6 +492,22 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     </span>
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>
+                  {(p.githubUrl || p.liveUrl) && (
+                    <div style={{ display: 'flex', gap: '12px', fontSize: `${bodySize * 0.85}px`, marginTop: '2px', marginBottom: '4px' }}>
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} color={hColor} />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label="Live Link" color={hColor} />}
+                    </div>
+                  )}
+                  {p.problemStatement && (
+                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '4px', marginBottom: '2px', fontStyle: 'italic' }}>
+                      <strong>Problem:</strong> {p.problemStatement}
+                    </div>
+                  )}
+                  {p.proposedSolution && (
+                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '2px', marginBottom: '4px', fontStyle: 'italic' }}>
+                      <strong>Solution:</strong> {p.proposedSolution}
+                    </div>
+                  )}
                   <ul className={shared.points}>
                     {p.points.filter(Boolean).map((pt, pIdx) => (
                       <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
