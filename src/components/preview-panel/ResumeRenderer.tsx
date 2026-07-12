@@ -249,6 +249,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           style={{ 
             ...cssVarsStyle, 
             width: '100%', 
+            height: `${pageCount * PAGE_HEIGHT}px`,
             transform: `translateY(-${pageIndex * PAGE_HEIGHT}px)`,
             boxSizing: 'border-box' 
           }}

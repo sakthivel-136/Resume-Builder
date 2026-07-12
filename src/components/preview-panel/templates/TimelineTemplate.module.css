@@ -94,7 +94,7 @@
 /* Timeline Circular Badge Icon */
 .badge {
   position: absolute;
-  left: -16px; /* Centered exactly on the timelineAxis (border-left) */
+  left: -48px; /* Centered exactly on the timelineAxis (border-left) */
   top: -6px;
   width: 32px;
   height: 32px;
@@ -111,7 +111,7 @@
 /* Timeline Entry connection Node Dot */
 .nodeDot {
   position: absolute;
-  left: -5px; /* Centered on the border axis */
+  left: -37px; /* Centered on the border axis */
   top: 6px;
   width: 10px;
   height: 10px;
@@ -123,7 +123,7 @@
 
 .timelineEndDot {
   position: absolute;
-  left: -4px;
+  left: -36px;
   bottom: 0;
   width: 8px;
   height: 8px;
