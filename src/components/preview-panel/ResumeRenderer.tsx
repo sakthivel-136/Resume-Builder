@@ -336,13 +336,13 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           <div
             style={{
               position: 'fixed',
-              left: 0,
+              left: '-9999px',
               top: 0,
-              width: '100vw',
+              width: `${PAGE_WIDTH}px`,
               height: '100vh',
               overflow: 'hidden',
               pointerEvents: 'none',
-              visibility: 'hidden',
+              opacity: 0,
               zIndex: -9999,
             }}
           >
