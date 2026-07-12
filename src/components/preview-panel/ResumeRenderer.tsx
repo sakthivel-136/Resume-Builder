@@ -312,12 +312,13 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
         ref={measureRef}
         style={{
           ...cssVarsStyle,
-          position: 'fixed',
-          left: '-9999px',
+          position: 'absolute',
+          left: 0,
           top: 0,
           width: `${PAGE_WIDTH}px`,
           height: 'auto',
-          visibility: 'hidden',
+          opacity: 0,
+          zIndex: -9999,
           pointerEvents: 'none',
           boxSizing: 'border-box',
           fontFamily: state.bFont,
