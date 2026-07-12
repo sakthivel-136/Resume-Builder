@@ -7,8 +7,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
 }
 
 /* --- Design Tokens --- */
@@ -45,8 +45,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
 }
 
 body {
@@ -56,8 +56,8 @@ body {
   line-height: 1.5;
   min-height: 100vh;
   overflow-x: hidden;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
 }
 
 /* --- Links --- */
