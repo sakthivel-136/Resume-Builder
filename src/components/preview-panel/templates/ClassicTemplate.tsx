@@ -493,13 +493,13 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>
                   {p.problemStatement && (
-                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '4px', marginBottom: '2px' }}>
-                      <strong>Problem:</strong> {p.problemStatement}
+                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '4px', marginBottom: '2px', textAlign: 'justify' }}>
+                      <strong>PROBLEM:</strong> {p.problemStatement}
                     </div>
                   )}
                   {p.proposedSolution && (
-                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '2px', marginBottom: '4px' }}>
-                      <strong>Solution:</strong> {p.proposedSolution}
+                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '2px', marginBottom: '4px', textAlign: 'justify' }}>
+                      <strong>SOLUTION:</strong> {p.proposedSolution}
                     </div>
                   )}
                   <ul className={shared.points}>
