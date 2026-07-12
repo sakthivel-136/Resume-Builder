@@ -77,15 +77,14 @@ export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 
         paddingLeft: '16px', 
         color: 'inherit', 
         textDecoration: 'none',
-        lineHeight: '1.2'
+        lineHeight: 'inherit'
       }}
     >
       <span style={{ 
         position: 'absolute', 
         left: 0, 
-        top: '50%',
+        top: '0.15em',
         height: '12px',
-        marginTop: '-6px',
         lineHeight: 0,
         display: 'block'
       }}>
@@ -93,9 +92,6 @@ export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 
       </span>
       <span 
         style={{ 
-          display: 'inline-block',
-          verticalAlign: 'middle',
-          lineHeight: '1.2',
           borderBottom: '1px solid transparent', 
           transition: 'border-color 0.2s' 
         }} 
