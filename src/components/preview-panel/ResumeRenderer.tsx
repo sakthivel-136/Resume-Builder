@@ -40,7 +40,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [onHeightChange, state]);
+  }, [onHeightChange, state, isMounted]);
 
   const renderActiveTemplate = (isExport = false) => {
     const stateWithFallbacks = {
