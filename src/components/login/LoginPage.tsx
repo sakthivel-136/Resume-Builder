@@ -212,9 +212,9 @@ export default function LoginPage() {
               className={styles.logoImg}
             />
           </div>
-          <h1 className={styles.title}>Resume Builder Pro</h1>
+          <h1 className={styles.title}>Custom Resume Builder</h1>
           <p className={styles.subtitle}>
-            Create stunning, ATS-optimized resumes in minutes
+            Build your own professional, ATS-optimized resume with complete control
           </p>
           <div className={styles.statsBadge}>
             🔥 {downloadCount} Resumes Generated & Exported
@@ -467,12 +467,12 @@ export default function LoginPage() {
           <div className={styles.seoDivider} />
           
           <div className={styles.seoHeader}>
-            <h3 className={styles.seoMainTitle}>About Resume Builder Pro</h3>
+            <h3 className={styles.seoMainTitle}>About Custom Resume Builder</h3>
             <p className={styles.seoSubtitleText}>
-              Create professional, ATS-optimized resumes and CVs online in minutes. 
-              Our free resume builder helps job seekers design print-ready resumes that pass 
-              applicant tracking systems (ATS) with ease. Choose from classic, modern, sidebar, and timeline resume formats, 
-              customize layout spacing, select from 20+ professional fonts, check your ATS score, and download 
+              Build your professional, ATS-optimized resume by yourself. 
+              Our self-built resume app gives job seekers complete manual control to design and customize 
+              layouts, spacing, and fonts with no automated writers. Choose from classic, modern, sidebar, and timeline resume formats, 
+              adjust page margins, select from 20+ professional fonts, audit your ATS score, and download 
               your resume instantly as a PDF.
             </p>
           </div>
@@ -519,15 +519,10 @@ export default function LoginPage() {
           </div>
         </section>
 
-        {/* ===== Minimalist Branded Footer with subtle color trick ===== */}
+        {/* ===== Minimalist Branded Footer with SAKTHI VEL C credit ===== */}
         <footer className={styles.footer}>
           <div className={styles.footerText}>
-            <span className={styles.secretLetter}>M</span><span className={styles.normalLetters}>aking</span>{' '}
-            <span className={styles.secretLetter}>E</span><span className={styles.normalLetters}>xcellent</span>{' '}
-            <span className={styles.secretLetter}>R</span><span className={styles.normalLetters}>esumes</span>{' '}
-            <span className={styles.secretLetter}>C</span><span className={styles.normalLetters}>rafted for</span>{' '}
-            <span className={styles.secretLetter}>Y</span><span className={styles.normalLetters}>ou</span>{' '}
-            <span className={styles.creditAccent}>— By SAKTHI</span>
+            Designed &amp; Developed by SAKTHI VEL C | Python Full Stack Developer
           </div>
         </footer>
       </div>

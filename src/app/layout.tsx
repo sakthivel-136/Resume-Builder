@@ -50,9 +50,24 @@ const GOOGLE_FONTS_URL =
   '&display=swap';
 
 export const metadata: Metadata = {
-  title: 'Resume Builder Pro - Create Your CV',
+  title: 'Custom Resume Builder | Engineered by SAKTHI VEL C',
   description:
-    'Build your professional resume quickly with Resume Builder Pro. Create stunning, ATS-optimized resumes with multiple templates, real-time preview, and PDF export. Free and open-source.',
+    'Build and fully customize your professional, ATS-friendly resume by yourself. A personalized developer project engineered by Python Full Stack Developer SAKTHI VEL C.',
+  keywords: [
+    'SAKTHI VEL C',
+    'resume.sakthi-dev.in',
+    'Sakthivel C Custom Resume Builder',
+    'Build Your Own Resume',
+    'Personalized Resume Generator',
+    'Self Built Resume App',
+    'Python Full Stack Developer Project'
+  ],
+  openGraph: {
+    title: 'Custom Resume Builder | SAKTHI VEL C',
+    description: 'Build and customize your own professional resume with complete control. Designed and deployed by SAKTHI VEL C.',
+    url: 'https://resume.sakthi-dev.in',
+    type: 'website',
+  },
   icons: {
     icon: '/tgs-logo.png',
     apple: '/tgs-logo.png',
