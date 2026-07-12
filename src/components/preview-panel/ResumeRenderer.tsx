@@ -1,6 +1,7 @@
 'use client';
 
 import React, { memo, useRef, useEffect, useState, useLayoutEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useResume } from '@/context/ResumeContext';
 import ClassicTemplate from './templates/ClassicTemplate';
 import SidebarTemplate from './templates/SidebarTemplate';
@@ -15,7 +16,12 @@ interface ResumeRendererProps {
 const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
   const { state } = useResume();
   const [contentHeight, setContentHeight] = useState(1123);
+  const [isMounted, setIsMounted] = useState(false);
   const measureRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Measure content height and report back
   useEffect(() => {
@@ -306,60 +312,6 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
 
   return (
     <div id="resume-content-wrapper" style={{ position: 'relative' }}>
-      {/* Hidden Measure Container (auto height to get natural continuous height) */}
-      <div
-        id="resume-measure-container"
-        ref={measureRef}
-        style={{
-          ...cssVarsStyle,
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          width: `${PAGE_WIDTH}px`,
-          height: 'auto',
-          opacity: 0,
-          zIndex: -9999,
-          pointerEvents: 'none',
-          boxSizing: 'border-box',
-          fontFamily: state.bFont,
-          fontSize: `${state.bodySize}px`,
-          color: state.tColor,
-        }}
-      >
-        {renderActiveTemplate(false)}
-      </div>
-
-      {/* Export Container (Off-screen but fully rendered for html2canvas capture) */}
-      <div 
-        style={{ 
-          position: 'fixed', 
-          left: '-9999px', 
-          top: 0, 
-          width: `${PAGE_WIDTH}px`, 
-          height: `${pageCount * PAGE_HEIGHT}px`, 
-          pointerEvents: 'none', 
-          overflow: 'hidden',
-        }}
-      >
-        <div 
-          id="resume-export"
-          style={{
-            ...cssVarsStyle,
-            position: 'relative',
-            width: `${PAGE_WIDTH}px`,
-            height: `${pageCount * PAGE_HEIGHT}px`,
-            background: state.bgColor || '#ffffff',
-            boxSizing: 'border-box',
-            fontFamily: state.bFont,
-            fontSize: `${state.bodySize}px`,
-            color: state.tColor,
-            overflow: 'hidden',
-          }}
-        >
-          {renderActiveTemplate(false)}
-        </div>
-      </div>
-
       {/* Visible Split-Page Preview */}
       <div 
         id="resume-content"
@@ -376,6 +328,66 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
       >
         {Array.from({ length: pageCount }).map((_, i) => renderPageSheet(i))}
       </div>
+
+      {/* Render measurement and export containers outside scaled preview workspace */}
+      {isMounted && createPortal(
+        <>
+          {/* Hidden Measure Container (auto height to get natural continuous height) */}
+          <div
+            id="resume-measure-container"
+            ref={measureRef}
+            style={{
+              ...cssVarsStyle,
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: `${PAGE_WIDTH}px`,
+              height: 'auto',
+              opacity: 0,
+              zIndex: -9999,
+              pointerEvents: 'none',
+              boxSizing: 'border-box',
+              fontFamily: state.bFont,
+              fontSize: `${state.bodySize}px`,
+              color: state.tColor,
+            }}
+          >
+            {renderActiveTemplate(false)}
+          </div>
+
+          {/* Export Container (Off-screen but fully rendered for html2canvas capture) */}
+          <div 
+            style={{ 
+              position: 'fixed', 
+              left: '-9999px', 
+              top: 0, 
+              width: `${PAGE_WIDTH}px`, 
+              height: `${pageCount * PAGE_HEIGHT}px`, 
+              pointerEvents: 'none', 
+              overflow: 'hidden',
+            }}
+          >
+            <div 
+              id="resume-export"
+              style={{
+                ...cssVarsStyle,
+                position: 'relative',
+                width: `${PAGE_WIDTH}px`,
+                height: `${pageCount * PAGE_HEIGHT}px`,
+                background: state.bgColor || '#ffffff',
+                boxSizing: 'border-box',
+                fontFamily: state.bFont,
+                fontSize: `${state.bodySize}px`,
+                color: state.tColor,
+                overflow: 'hidden',
+              }}
+            >
+              {renderActiveTemplate(false)}
+            </div>
+          </div>
+        </>,
+        document.body
+      )}
     </div>
   );
 };
