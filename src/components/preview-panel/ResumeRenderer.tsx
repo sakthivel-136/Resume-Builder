@@ -332,27 +332,38 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
       {/* Render measurement and export containers outside scaled preview workspace */}
       {isMounted && createPortal(
         <>
-          {/* Hidden Measure Container (auto height to get natural continuous height) */}
+          {/* 0x0 Clipped Parent wrapper to prevent any body scroll stretching / ghost scrollbars */}
           <div
-            id="resume-measure-container"
-            ref={measureRef}
             style={{
-              ...cssVarsStyle,
-              position: 'fixed',
-              left: '-9999px',
+              position: 'absolute',
+              left: 0,
               top: 0,
-              width: `${PAGE_WIDTH}px`,
-              height: 'auto',
-              opacity: 0,
-              zIndex: -9999,
+              width: 0,
+              height: 0,
+              overflow: 'hidden',
               pointerEvents: 'none',
-              boxSizing: 'border-box',
-              fontFamily: state.bFont,
-              fontSize: `${state.bodySize}px`,
-              color: state.tColor,
+              zIndex: -9999,
             }}
           >
-            {renderActiveTemplate(false)}
+            {/* Hidden Measure Container (auto height to get natural continuous height) */}
+            <div
+              id="resume-measure-container"
+              ref={measureRef}
+              style={{
+                ...cssVarsStyle,
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: `${PAGE_WIDTH}px`,
+                height: 'auto',
+                boxSizing: 'border-box',
+                fontFamily: state.bFont,
+                fontSize: `${state.bodySize}px`,
+                color: state.tColor,
+              }}
+            >
+              {renderActiveTemplate(false)}
+            </div>
           </div>
 
           {/* Export Container (Off-screen but fully rendered for html2canvas capture) */}
