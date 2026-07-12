@@ -96,7 +96,15 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           const href = getContactHref(it.v);
           return (
             <div key={idx} className={shared.gmItem} style={{ marginBottom: '6px' }}>
-              <div className={shared.gmLabel} style={{ fontSize: '0.85em', color: hColor, fontWeight: 700 }}>{it.l}</div>
+              <div className={shared.gmLabel} style={{ fontSize: '0.85em', color: hColor, fontWeight: 700 }}>
+                {href ? (
+                  <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    {it.l}
+                  </a>
+                ) : (
+                  it.l
+                )}
+              </div>
               <div className={shared.gmValue} style={{ fontSize: '0.9em', wordBreak: 'break-all' }}>
                 {href ? (
                   <LinkRenderer url={href} label={it.v} />

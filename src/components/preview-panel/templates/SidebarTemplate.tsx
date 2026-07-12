@@ -96,7 +96,15 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           const href = getContactHref(it.v);
           return (
             <div key={idx} className={shared.gmItem}>
-              <div className={shared.gmLabel}>{it.l}</div>
+              <div className={shared.gmLabel}>
+                {href ? (
+                  <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    {it.l}
+                  </a>
+                ) : (
+                  it.l
+                )}
+              </div>
               <div className={shared.gmValue}>
                 {href ? (
                   <LinkRenderer url={href} label={it.v} />

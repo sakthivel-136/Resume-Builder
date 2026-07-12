@@ -79,7 +79,7 @@ export function getContactHref(val: string): string | null {
   }
   
   // URL pattern
-  const isUrl = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)\/?$/.test(clean) ||
+  const isUrl = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(\/.*)?$/.test(clean) ||
                 clean.includes('linkedin.com') ||
                 clean.includes('github.com') ||
                 clean.startsWith('http');

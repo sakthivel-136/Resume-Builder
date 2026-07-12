@@ -5,6 +5,7 @@ import { ResumeData } from '@/types/resume';
 import styles from './ModernTemplate.module.css';
 import shared from './shared.module.css';
 import { getContactHref } from '@/utils/helpers';
+import LinkRenderer from '@/components/ui/LinkRenderer';
 
 interface ModernTemplateProps {
   state: ResumeData;
@@ -95,8 +96,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
           const href = getContactHref(it.v);
           return (
             <div key={idx} className={shared.gmItem}>
-              <div className={shared.gmLabel} style={{ color: hColor }}>{it.l}</div>
-              <div className={shared.gmValue}>
+              <div className={shared.gmLabel} style={{ color: hColor }}>
                 {href ? (
                   <a 
                     href={href} 
@@ -104,8 +104,15 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
                     rel="noopener noreferrer" 
                     style={{ color: 'inherit', textDecoration: 'none' }}
                   >
-                    {it.v}
+                    {it.l}
                   </a>
+                ) : (
+                  it.l
+                )}
+              </div>
+              <div className={shared.gmValue}>
+                {href ? (
+                  <LinkRenderer url={href} label={it.v} />
                 ) : (
                   it.v
                 )}
@@ -134,14 +141,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
           return (
             <div key={idx} style={{ wordBreak: 'break-all' }}>
               {href ? (
-                <a 
-                  href={href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                >
-                  {c}
-                </a>
+                <LinkRenderer url={href} label={c} />
               ) : (
                 c
               )}
@@ -369,17 +369,33 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
           <div key={key}>
             {projects.map((p, idx) => (
               <div key={p.id || idx} className={shared.entryBlock} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
-                <div className={shared.entryRow} style={{ flexDirection: isLeftCol ? 'column' : 'row', alignItems: 'stretch' }}>
-                  <span className={shared.entryRole}>
-                    {p.name}{p.tech ? ` | ${p.tech}` : ''}
-                  </span>
-                  <span className={shared.entryDates} style={{ opacity: 0.8 }}>{p.dates}</span>
-                </div>
-                <ul className={shared.points}>
-                  {p.points.filter(Boolean).map((pt, pIdx) => (
-                    <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
-                  ))}
-                </ul>
+                  <div className={shared.entryRow} style={{ flexDirection: isLeftCol ? 'column' : 'row', alignItems: 'stretch' }}>
+                    <span className={shared.entryRole}>
+                      {p.name}{p.tech ? ` | ${p.tech}` : ''}
+                    </span>
+                    <span className={shared.entryDates} style={{ opacity: 0.8 }}>{p.dates}</span>
+                  </div>
+                  {(p.githubUrl || p.liveUrl) && (
+                    <div style={{ display: 'flex', gap: '12px', fontSize: isLeftCol ? '0.85em' : '0.9em', marginTop: '2px', marginBottom: '4px' }}>
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label="Live Link" />}
+                    </div>
+                  )}
+                  {p.problemStatement && (
+                    <div style={{ fontSize: isLeftCol ? '0.9em' : 'inherit', marginTop: '4px', marginBottom: '2px', fontStyle: 'italic' }}>
+                      <strong>Problem:</strong> {p.problemStatement}
+                    </div>
+                  )}
+                  {p.proposedSolution && (
+                    <div style={{ fontSize: isLeftCol ? '0.9em' : 'inherit', marginTop: '2px', marginBottom: '4px', fontStyle: 'italic' }}>
+                      <strong>Solution:</strong> {p.proposedSolution}
+                    </div>
+                  )}
+                  <ul className={shared.points}>
+                    {p.points.filter(Boolean).map((pt, pIdx) => (
+                      <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
+                    ))}
+                  </ul>
               </div>
             ))}
           </div>
