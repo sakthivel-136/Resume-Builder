@@ -50,8 +50,6 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
   const [profileList, setProfileList] = useState<any[]>([]);
   const [saveStatus, setSaveStatus] = useState<'saved' | 'saving'>('saved');
   const [lastSavedTime, setLastSavedTime] = useState<string>('just now');
-  const [showExportDropdown, setShowExportDropdown] = useState(false);
-  
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Get active username safely
@@ -140,22 +138,12 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
   };
 
   // Import / Export JSON
-  // Import / Export
   const handleExportJSON = () => {
     try {
       exportToJson(state);
       addToast('JSON backup downloaded successfully!', 'success');
     } catch (e) {
       addToast('Failed to export JSON', 'error');
-    }
-  };
-
-  const handleExportLaTeX = () => {
-    try {
-      exportToLatex(state);
-      addToast('LaTeX source file downloaded successfully!', 'success');
-    } catch (e) {
-      addToast('Failed to export LaTeX', 'error');
     }
   };
 
@@ -173,12 +161,8 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
           const importedData = importFromJson(text);
           dispatch({ type: 'LOAD_PROFILE', data: importedData });
           addToast('JSON profile loaded successfully!', 'success');
-        } else if (file.name.endsWith('.tex')) {
-          const importedData = importFromLatex(text, state);
-          dispatch({ type: 'LOAD_PROFILE', data: importedData });
-          addToast('LaTeX source imported and mapped successfully!', 'success');
         } else {
-          addToast('Unsupported file format. Please upload .json or .tex', 'error');
+          addToast('Unsupported file format. Please upload .json', 'error');
         }
       } catch (err: any) {
         console.error(err);
@@ -302,68 +286,27 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
               </svg>
               Delete
             </button>
-            <div style={{ position: 'relative' }}>
-              <button 
-                className={styles.actionBtn} 
-                onClick={() => setShowExportDropdown(!showExportDropdown)} 
-                title="Export resume code"
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="17 8 12 3 7 8" />
-                  <line x1="12" y1="3" x2="12" y2="15" />
-                </svg>
-                Export {showExportDropdown ? '▲' : '▼'}
-              </button>
-              {showExportDropdown && (
-                <div 
-                  style={{
-                    position: 'absolute',
-                    left: 0,
-                    top: 'calc(100% + 4px)',
-                    background: 'var(--bg-secondary)',
-                    border: '1px solid var(--border)',
-                    borderRadius: 'var(--radius-sm)',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                    zIndex: 100,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    minWidth: '160px',
-                    overflow: 'hidden'
-                  }}
-                >
-                  <button 
-                    onClick={() => { handleExportJSON(); setShowExportDropdown(false); }}
-                    style={{ background: 'none', border: 'none', color: 'var(--text-primary)', padding: '10px 12px', textAlign: 'left', cursor: 'pointer', fontSize: '11px', width: '100%', font: 'inherit' }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-tertiary)'}
-                    onMouseLeave={(e) => e.currentTarget.style.background = 'none'}
-                  >
-                    ⚙️ Export JSON Backup
-                  </button>
-                  <button 
-                    onClick={() => { handleExportLaTeX(); setShowExportDropdown(false); }}
-                    style={{ background: 'none', border: 'none', color: 'var(--text-primary)', padding: '10px 12px', textAlign: 'left', cursor: 'pointer', fontSize: '11px', width: '100%', font: 'inherit' }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-tertiary)'}
-                    onMouseLeave={(e) => e.currentTarget.style.background = 'none'}
-                  >
-                    🛠️ Export LaTeX Source
-                  </button>
-                </div>
-              )}
-            </div>
+            <button className={styles.actionBtn} onClick={handleExportJSON} title="Export resume to JSON backup">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+              Export JSON
+            </button>
             
-            <button className={styles.actionBtn} onClick={() => fileInputRef.current?.click()} title="Import file (.json or .tex)">
+            <button className={styles.actionBtn} onClick={() => fileInputRef.current?.click()} title="Import JSON profile backup">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              Import
+              Import JSON
             </button>
             <input
               ref={fileInputRef}
               type="file"
-              accept=".json,.tex"
+              accept=".json"
               onChange={handleImportFile}
               style={{ display: 'none' }}
             />
