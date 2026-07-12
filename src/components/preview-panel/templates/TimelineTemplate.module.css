@@ -24,8 +24,6 @@
 .rightCol {
   flex: 1;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
   position: relative;
 }
 
