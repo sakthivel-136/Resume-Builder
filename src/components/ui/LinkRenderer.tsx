@@ -47,10 +47,21 @@ export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 
       href={finalUrl} 
       target="_blank" 
       rel="noopener noreferrer" 
-      style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: 'inherit', textDecoration: 'none' }}
+      style={{ display: 'inline-block', verticalAlign: 'middle', color: 'inherit', textDecoration: 'none' }}
     >
-      {ICONS[type](color)}
-      <span style={{ borderBottom: '1px solid transparent', transition: 'border-color 0.2s' }} onMouseEnter={(e) => (e.currentTarget.style.borderBottomColor = color)} onMouseLeave={(e) => (e.currentTarget.style.borderBottomColor = 'transparent')}>
+      <span style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px', lineHeight: 0, position: 'relative', top: '-1px' }}>
+        {ICONS[type](color)}
+      </span>
+      <span 
+        style={{ 
+          display: 'inline-block', 
+          verticalAlign: 'middle', 
+          borderBottom: '1px solid transparent', 
+          transition: 'border-color 0.2s' 
+        }} 
+        onMouseEnter={(e) => (e.currentTarget.style.borderBottomColor = color)} 
+        onMouseLeave={(e) => (e.currentTarget.style.borderBottomColor = 'transparent')}
+      >
         {displayText}
       </span>
     </a>
