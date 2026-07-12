@@ -11,15 +11,15 @@
 }
 
 .twoZonesGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .zone {
   border-radius: var(--radius-md);
   padding: 12px;
-  min-height: 180px;
+  min-height: 120px;
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
   transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
