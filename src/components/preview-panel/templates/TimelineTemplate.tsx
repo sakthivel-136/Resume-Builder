@@ -70,7 +70,8 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           width: `${photoSize}px`,
           height: `${photoSize}px`,
           border: `1.5px solid ${hColor}`,
-          margin: '0 0 10px 0',
+          margin: '0 auto 12px auto',
+          display: 'block',
         }}
       />
     );

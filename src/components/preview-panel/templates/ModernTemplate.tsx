@@ -71,6 +71,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
           height: `${photoSize}px`,
           border: `2px solid ${hColor}`,
           margin: isLeftCol ? '0 auto 6px' : '0 0 10px 0',
+          display: 'block',
         }}
       />
     );

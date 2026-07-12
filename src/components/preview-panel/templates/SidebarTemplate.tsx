@@ -71,6 +71,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           height: `${photoSize}px`,
           border: isSidebar ? '2.5px solid rgba(255, 255, 255, 0.25)' : `1.5px solid ${hColor}`,
           margin: isSidebar ? '24px auto 6px' : '0 0 10px 0',
+          display: 'block',
         }}
       />
     );

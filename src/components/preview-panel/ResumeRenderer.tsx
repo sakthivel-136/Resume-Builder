@@ -101,15 +101,11 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
 
   // Layout adjustment script to push blocks out of margin/page break boundaries
   useLayoutEffect(() => {
-    // Helper to get absolute offsetTop relative to a container, traversing offsetParents
+    // Helper to get absolute offsetTop relative to a container using bounding rects
     const getAbsoluteOffsetTop = (el: HTMLElement, targetContainer: HTMLElement): number => {
-      let top = 0;
-      let current: HTMLElement | null = el;
-      while (current && current !== targetContainer) {
-        top += current.offsetTop;
-        current = current.offsetParent as HTMLElement | null;
-      }
-      return top;
+      const elRect = el.getBoundingClientRect();
+      const containerRect = targetContainer.getBoundingClientRect();
+      return elRect.top - containerRect.top;
     };
 
     const runAdjustment = () => {
