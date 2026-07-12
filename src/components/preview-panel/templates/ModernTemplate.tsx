@@ -419,7 +419,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
               <div key={p.id || idx} className={shared.entryBlock} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
                   <div className={shared.entryRow} style={{ flexDirection: isLeftCol ? 'column' : 'row', alignItems: 'stretch' }}>
                     <span className={shared.entryRole}>
-                      {p.name}{p.tech ? ` | ${p.tech}` : ''}
+                      <span style={{ textDecoration: 'underline' }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
                     </span>
                     <span className={shared.entryDates} style={{ opacity: 0.8 }}>{p.dates}</span>
                   </div>
