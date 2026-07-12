@@ -438,6 +438,9 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
         }}
       >
         {renderPhoto(true)}
+        {!(photo && photoPos !== 'hidden') && (
+          <div style={{ height: `${Math.max(60, nameSize * 1.2 + 8)}px` }} />
+        )}
 
         {/* Contact list in sidebar */}
         <div>

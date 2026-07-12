@@ -419,6 +419,9 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
       >
         {/* Profile photo inside left column */}
         {renderPhoto(true)}
+        {!(photo && photoPos !== 'hidden') && (
+          <div style={{ height: `${Math.max(60, nameSize * 1.2 + 8)}px` }} />
+        )}
 
         {/* Contact list inside left column */}
         <div>
