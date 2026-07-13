@@ -75,6 +75,8 @@
 .mainSection {
   position: relative;
   margin-bottom: calc(var(--p-sec-sp, 12px) * 1.1) !important;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 /* Main Section Headers */

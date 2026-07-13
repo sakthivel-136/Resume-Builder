@@ -23,7 +23,7 @@ const LayoutControls = () => {
     dispatch({ type: 'SET_FIELD', field: 'accentBar', value: mode });
   };
 
-  const showSidebarOptions = state.tpl === 2 || state.tpl === 3;
+  const showSidebarOptions = state.tpl === 2 || state.tpl === 3 || state.tpl === 4;
 
   return (
     <Card title="Layout & Margins" collapsible>

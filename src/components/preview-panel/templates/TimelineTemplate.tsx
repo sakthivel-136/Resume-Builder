@@ -355,7 +355,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
       case 'summary':
         if (!summary) return null;
         return (
-          <div key={key} style={{ fontSize: 'inherit', lineHeight: lineH }}>
+          <div key={key} style={{ fontSize: 'inherit', lineHeight: lineH }} className={shared.customContent}>
             {summary}
           </div>
         );
@@ -493,7 +493,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
       <div 
         className={styles.leftCol}
         style={{ 
-          paddingRight: '20px',
+          paddingRight: `${state.sbPad}px`,
           borderColor: 'rgba(0, 0, 0, 0.08)'
         }}
       >
@@ -534,8 +534,8 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
       <div 
         className={styles.rightCol}
         style={{ 
-          paddingLeft: '32px',
-          marginLeft: '20px',
+          paddingLeft: `${state.mainPad}px`,
+          marginLeft: `${state.sbPad}px`,
           color: state.tColor
         }}
       >

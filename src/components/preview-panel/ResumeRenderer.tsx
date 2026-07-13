@@ -122,6 +122,32 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
       return top;
     };
 
+    const isWholeSection = (id: string) => {
+      return id === 'entry-summary' || 
+             id === 'entry-skills' || 
+             id === 'entry-achievements' || 
+             id === 'entry-education' || 
+             id.startsWith('entry-custom_');
+    };
+
+    const isSplittableSection = (id: string) => {
+      return id === 'entry-experience' || id === 'entry-projects';
+    };
+
+    const getParentSectionId = (el: HTMLElement): string | null => {
+      let parent = el.parentElement;
+      while (parent) {
+        if (parent.id && parent.id.startsWith('entry-')) {
+          const id = parent.id;
+          if (isWholeSection(id) || isSplittableSection(id)) {
+            return id;
+          }
+        }
+        parent = parent.parentElement;
+      }
+      return null;
+    };
+
     const runAdjustment = () => {
       const measureContainer = document.getElementById('resume-measure-container');
       if (!measureContainer) return;
@@ -130,114 +156,129 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
       const marginTop = Number(state.mT) || 24;
       const marginBottom = Number(state.mB) || 24;
 
-      // 1. Query resettable items in measure container and reset
-      const sourceBlocks = measureContainer.querySelectorAll<HTMLElement>(
-        '[class*="entryBlock"], .eduBlock, .timelineBlock, .skillGroup, [id^="entry-"]'
-      );
-      sourceBlocks.forEach((el) => {
+      // 1. Reset all source blocks in measure container to their natural state
+      // (clearing inline marginTop resets them to their original continuous layout positions)
+      const allEntryEls = measureContainer.querySelectorAll<HTMLElement>('[id^="entry-"]');
+      allEntryEls.forEach((el) => {
         el.style.marginTop = '';
       });
 
-      // 2. Cascade adjustments on measure container (up to 20 passes)
-      for (let pass = 0; pass < 20; pass++) {
-        let adjusted = false;
-        
-        const items = Array.from(sourceBlocks).map((el) => {
-          const offsetTop = getAbsoluteOffsetTop(el, measureContainer);
-          const offsetHeight = el.offsetHeight;
-          return { el, top: offsetTop, bottom: offsetTop + offsetHeight };
-        });
-
-        for (const item of items) {
-          const secId = item.el.id || '';
-          
-          // Check if this item falls in the unsafe boundary zone of ANY page break
-          // Max 4 pages check to keep it safe and bounded
-          for (let pageIndex = 1; pageIndex <= 4; pageIndex++) {
-            const boundary = pageIndex * PAGE_HEIGHT;
-            const unsafeStart = boundary - marginBottom;
-            const unsafeEnd = boundary + marginTop;
-
-            if (item.bottom > unsafeStart && item.top < unsafeEnd) {
-              const itemHeight = item.bottom - item.top;
-              const fitsOnPage = itemHeight <= (PAGE_HEIGHT - marginTop - marginBottom);
-              
-              // Only push if it fits on a single page (otherwise it has to split anyway)
-              if (fitsOnPage && item.top < unsafeEnd) {
-                const parentSectionIds = [
-                  'entry-summary', 'entry-education', 'entry-skills', 'entry-experience', 
-                  'entry-projects', 'entry-achievements'
-                ];
-                const isParentSection = parentSectionIds.includes(secId) || secId.startsWith('entry-custom_');
-                
-                if (isParentSection) {
-                  const isKeepWholeSec = secId.includes('summary') || secId.includes('skills') || secId.includes('achievements') || secId.includes('education') || secId.startsWith('entry-custom_');
-                  
-                  if (isKeepWholeSec) {
-                    // Push the entire section container
-                    const pushAmount = unsafeEnd - item.top;
-                    console.log(`[LayoutEngine] Pushing keep-whole section ${secId} by ${pushAmount}px (top: ${item.top}, bottom: ${item.bottom}, unsafeStart: ${unsafeStart})`);
-                    item.el.style.marginTop = `${pushAmount}px`;
-                    adjusted = true;
-                  } else {
-                    // For split sections (education, experience, projects), check if header + first entry fits
-                    const header = item.el.querySelector('h2, h3, [class*="sectionHeader"], [class*="mainHeading"], [class*="sbHeading"]');
-                    const firstEntry = item.el.querySelector<HTMLElement>('.eduBlock, .timelineBlock, [id^="entry-"]');
-                    
-                    if (header && firstEntry) {
-                      const headerTop = getAbsoluteOffsetTop(header as HTMLElement, measureContainer);
-                      const firstEntryBottom = getAbsoluteOffsetTop(firstEntry, measureContainer) + firstEntry.offsetHeight;
-                      
-                      if (firstEntryBottom > unsafeStart && headerTop < unsafeEnd) {
-                        // Even the header + first entry does not fit, push the entire section container
-                        const pushAmount = unsafeEnd - item.top;
-                        item.el.style.marginTop = `${pushAmount}px`;
-                        adjusted = true;
-                      }
-                    }
-                  }
-                } else {
-                  // This is an individual entry block (e.g. .eduBlock, a specific experience job, or a specific project entry)
-                  // Push it to start cleanly on the next page
-                  const pushAmount = unsafeEnd - item.top;
-                  console.log(`[LayoutEngine] Pushing individual entry block ${item.el.id || item.el.className} by ${pushAmount}px (top: ${item.top}, bottom: ${item.bottom}, unsafeStart: ${unsafeStart})`);
-                  item.el.style.marginTop = `${pushAmount}px`;
-                  adjusted = true;
-                }
-                break;
-              }
-            }
+      // 2. Filter elements to measure (only sections, and entries belonging to experience or projects)
+      const blocksToMeasure: HTMLElement[] = [];
+      allEntryEls.forEach((el) => {
+        const id = el.id;
+        if (isWholeSection(id) || isSplittableSection(id)) {
+          blocksToMeasure.push(el);
+        } else {
+          const parentSecId = getParentSectionId(el);
+          if (parentSecId === 'entry-experience' || parentSecId === 'entry-projects') {
+            blocksToMeasure.push(el);
           }
-          if (adjusted) break;
         }
-        if (!adjusted) break;
+      });
+
+      // 3. Extract details of each block
+      interface MeasureItem {
+        id: string;
+        el: HTMLElement;
+        naturalTop: number;
+        naturalBottom: number;
+        height: number;
+        type: 'whole' | 'splittable-container' | 'entry';
       }
 
-      const syncTargetMargins = (targetContainer: HTMLElement | null) => {
-        if (!targetContainer) return;
-        const targetBlocks = targetContainer.querySelectorAll<HTMLElement>(
-          '[class*="entryBlock"], .eduBlock, .timelineBlock, .skillGroup, [id^="entry-"]'
-        );
-        console.log(`[LayoutEngine] Syncing margins to sheet. Source blocks: ${sourceBlocks.length}, Target blocks: ${targetBlocks.length}`);
-        sourceBlocks.forEach((srcEl, index) => {
-          const targetEl = targetBlocks[index];
-          if (targetEl) {
-            if (srcEl.style.marginTop) {
-              console.log(`[LayoutEngine] Copying margin-top: ${srcEl.style.marginTop} from source block index ${index} (${srcEl.id || srcEl.className}) to target block (${targetEl.id || targetEl.className})`);
+      const items: MeasureItem[] = blocksToMeasure.map((el) => {
+        const top = getAbsoluteOffsetTop(el, measureContainer);
+        const height = el.offsetHeight;
+        const id = el.id;
+        
+        let type: 'whole' | 'splittable-container' | 'entry' = 'entry';
+        if (isWholeSection(id)) {
+          type = 'whole';
+        } else if (isSplittableSection(id)) {
+          type = 'splittable-container';
+        }
+
+        return {
+          id,
+          el,
+          naturalTop: top,
+          naturalBottom: top + height,
+          height,
+          type,
+        };
+      });
+
+      // 4. Compute push amounts. We track cumulative pushes.
+      const pushMap = new Map<string, number>();
+      let cumulativePush = 0;
+
+      for (const item of items) {
+        const simTop = item.naturalTop + cumulativePush;
+        const simBottom = item.naturalBottom + cumulativePush;
+
+        // Check page breaks for pages 1 to 4
+        for (let pageIndex = 1; pageIndex <= 4; pageIndex++) {
+          const boundary = pageIndex * PAGE_HEIGHT;
+          const unsafeStart = boundary - marginBottom;
+          const unsafeEnd = boundary + marginTop;
+
+          if (simBottom > unsafeStart && simTop < unsafeEnd) {
+            const fitsOnPage = item.height <= (PAGE_HEIGHT - marginTop - marginBottom);
+            if (!fitsOnPage) break; // If too big, let it split naturally across pages
+
+            if (item.type === 'splittable-container') {
+              // Only push the splittable container if the header + first entry does not fit
+              const headerEl = item.el.querySelector<HTMLElement>('h2, h3, [class*="sectionHeader"], [class*="mainHeading"], [class*="sbHeading"]');
+              const firstEntryEl = item.el.querySelector<HTMLElement>('[id^="entry-"]:not(h2):not(h3)');
+              
+              const hTop = (headerEl ? getAbsoluteOffsetTop(headerEl, measureContainer) : item.naturalTop) + cumulativePush;
+              const fBottom = (firstEntryEl ? (getAbsoluteOffsetTop(firstEntryEl, measureContainer) + firstEntryEl.offsetHeight) : item.naturalBottom) + cumulativePush;
+
+              if (fBottom > unsafeStart && hTop < unsafeEnd) {
+                const push = unsafeEnd - simTop;
+                pushMap.set(item.id, push);
+                cumulativePush += push;
+              }
+            } else {
+              // For whole sections or individual entries, push it to next page
+              const push = unsafeEnd - simTop;
+              pushMap.set(item.id, push);
+              cumulativePush += push;
             }
-            targetEl.style.marginTop = srcEl.style.marginTop;
+            break; // Handle only the first boundary this block crosses
+          }
+        }
+      }
+
+      // 5. Apply Computed Pushes to Visible Sheets & Export Container
+      const applyPushesToContainer = (container: HTMLElement | null) => {
+        if (!container) return;
+
+        // Reset first
+        const blocks = container.querySelectorAll<HTMLElement>('[id^="entry-"]');
+        blocks.forEach((el) => {
+          el.style.marginTop = '';
+        });
+
+        // Apply
+        pushMap.forEach((pushAmount, id) => {
+          if (!id) return;
+          const el = container.querySelector<HTMLElement>(`[id="${CSS.escape(id)}"]`);
+          if (el) {
+            el.style.marginTop = `${pushAmount}px`;
           }
         });
       };
 
-      // Sync to visible page sheets (might contain multiple copies)
+      // Sync to all visible page sheets
       const visibleSheets = document.querySelectorAll('#resume-content .resume-page-sheet');
       visibleSheets.forEach((sheet) => {
-        syncTargetMargins(sheet as HTMLElement);
+        applyPushesToContainer(sheet as HTMLElement);
       });
 
       // Sync to export container
-      syncTargetMargins(document.getElementById('resume-export'));
+      applyPushesToContainer(document.getElementById('resume-export'));
     };
 
     let active = true;

@@ -363,7 +363,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       case 'summary':
         if (!summary) return null;
         return (
-          <div key={key} style={{ fontSize: isSidebar ? '0.9em' : 'inherit', lineHeight: lineH }}>
+          <div key={key} style={{ fontSize: isSidebar ? '0.9em' : 'inherit', lineHeight: lineH }} className={shared.customContent}>
             {summary}
           </div>
         );
