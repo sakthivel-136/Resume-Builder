@@ -409,7 +409,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       case 'summary':
         if (!summary) return null;
         return (
-          <div key={key} className={shared.entryBlock}>
+          <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
             {heading}
             <div style={{ lineHeight: lineH }} className={shared.customContent}>{summary}</div>
           </div>
@@ -418,7 +418,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       case 'education':
         if (education.length === 0) return null;
         return (
-          <div key={key} className={shared.entryBlock}>
+          <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
             {heading}
             {education.map((e, idx) => (
               <React.Fragment key={e.id || idx}>
@@ -442,7 +442,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       case 'skills':
         if (skillGroups.length === 0) return null;
         return (
-          <div key={key} className={shared.entryBlock}>
+          <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
             {heading}
             {renderSkills()}
           </div>
@@ -451,7 +451,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       case 'experience':
         if (experience.length === 0) return null;
         return (
-          <div key={key} className={shared.entryBlock}>
+          <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
             {heading}
             {experience.map((x, idx) => (
               <React.Fragment key={x.id || idx}>
@@ -478,7 +478,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       case 'projects':
         if (projects.length === 0) return null;
         return (
-          <div key={key} className={shared.entryBlock}>
+          <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
             {heading}
             {projects.map((p, idx) => (
               <React.Fragment key={p.id || idx}>

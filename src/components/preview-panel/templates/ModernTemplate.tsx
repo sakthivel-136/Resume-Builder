@@ -497,7 +497,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
         {sidebarSections.map((key) => {
           if (!secVis[key]) return null;
           return (
-            <div key={key}>
+            <div id={`entry-${key}`} key={key}>
               <h3 className={styles.sbHeading} style={{ color: hColor, borderColor: hColor }}>{secNames[key] || key}</h3>
               {renderSectionContent(key, true)}
             </div>

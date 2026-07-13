@@ -171,7 +171,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
                 const isParentSection = parentSectionIds.includes(secId) || secId.startsWith('entry-custom_');
                 
                 if (isParentSection) {
-                  const isKeepWholeSec = secId.includes('summary') || secId.includes('skills') || secId.includes('achievements') || secId.startsWith('entry-custom_');
+                  const isKeepWholeSec = secId.includes('summary') || secId.includes('skills') || secId.includes('achievements') || secId.includes('education') || secId.startsWith('entry-custom_');
                   
                   if (isKeepWholeSec) {
                     // Push the entire section container
