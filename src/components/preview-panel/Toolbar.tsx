@@ -39,52 +39,67 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
     setIsExporting(true);
     addToast('Generating your PDF...', 'info');
 
-    // Small delay to ensure state and DOM are synchronized
-    setTimeout(async () => {
-      const element = document.getElementById('resume-export');
-      if (!element) {
-        addToast('Resume content not found', 'error');
-        setIsExporting(false);
-        return;
+    // Ensure the export container exists
+    const element = document.getElementById('resume-export');
+    if (!element) {
+      addToast('Resume content not found', 'error');
+      setIsExporting(false);
+      return;
+    }
+
+    try {
+      // Wait for font system to be ready (downloads finished)
+      if (document.fonts?.ready) {
+        await document.fonts.ready;
       }
 
-      try {
-        const html2pdf = (await import('html2pdf.js')).default;
-        
-        // Configure export settings
-        const opt = {
-          margin: 0,
-          filename: `${state.name.replace(/\s+/g, '_').toLowerCase() || 'resume'}_cv.pdf`,
-          image: { type: 'jpeg' as const, quality: 0.98 },
-          html2canvas: { 
-            scale: 3.125, 
-            useCORS: true, 
-            logging: false
-          },
-          jsPDF: { unit: 'px', format: [794, 1123] as [number, number], hotfixes: ['px_scaling'] },
-          pagebreak: { mode: ['css', 'legacy'] }
-        };
-
-        // Run generator
-        await html2pdf().set(opt).from(element).save();
-        addToast('PDF downloaded successfully!', 'success');
-
-        // Show backup prompt modal after 3.5 seconds
-        setTimeout(() => {
-          setShowBackupPrompt(true);
-        }, 3500);
-
-        // Increment global PDF download counter
-        await fetch('/api/counter', { method: 'POST' }).catch((err) =>
-          console.error('Failed to increment global counter:', err)
-        );
-      } catch (err) {
-        console.error(err);
-        addToast('Failed to export PDF', 'error');
-      } finally {
-        setIsExporting(false);
+      // Try to load specific fonts to ensure metrics match runtime
+      if (document.fonts?.load) {
+        await Promise.all([
+          document.fonts.load(`1em ${state.bFont}`),
+          document.fonts.load(`1em ${state.hFont}`),
+        ]).catch(() => undefined);
       }
-    }, 50);
+
+      // Wait two paints so browser has applied metrics and reflowed
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+      const html2pdf = (await import('html2pdf.js')).default;
+      
+      // Configure export settings (enable letterRendering for accurate letter-spaced text)
+      const opt = {
+        margin: 0,
+        filename: `${state.name.replace(/\s+/g, '_').toLowerCase() || 'resume'}_cv.pdf`,
+        image: { type: 'jpeg' as const, quality: 0.98 },
+        html2canvas: { 
+          scale: 3.125, 
+          useCORS: true, 
+          logging: false,
+          letterRendering: true,
+        },
+        jsPDF: { unit: 'px', format: [794, 1123] as [number, number], hotfixes: ['px_scaling'] },
+        pagebreak: { mode: ['css', 'legacy'] }
+      };
+
+      // Run generator
+      await html2pdf().set(opt).from(element).save();
+      addToast('PDF downloaded successfully!', 'success');
+
+      // Show backup prompt modal after 3.5 seconds
+      setTimeout(() => {
+        setShowBackupPrompt(true);
+      }, 3500);
+
+      // Increment global PDF download counter
+      await fetch('/api/counter', { method: 'POST' }).catch((err) =>
+        console.error('Failed to increment global counter:', err)
+      );
+    } catch (err) {
+      console.error(err);
+      addToast('Failed to export PDF', 'error');
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   // Auto-fit spacing algorithms

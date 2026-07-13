@@ -92,11 +92,14 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         {contacts.map((c, idx) => {
           const href = getContactHref(c);
           return (
-            <span key={idx}>
+            <span key={idx} style={{ display: 'inline-flex', alignItems: 'center' }}>
               {href ? (
-                <LinkRenderer url={href} label={c} color={hColor} noMargin={true} showIcon={true} />
+                <LinkRenderer url={href} label={c} color={hColor} noMargin={true} showIcon={false} />
               ) : (
                 c
+              )}
+              {idx < contacts.length - 1 && (
+                <span style={{ margin: '0 10px', opacity: 0.7 }}>|</span>
               )}
             </span>
           );
