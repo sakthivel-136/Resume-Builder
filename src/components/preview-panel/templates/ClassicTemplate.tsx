@@ -260,7 +260,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
 
     const heading = (
       <h3 
-        className={styles.sectionHeading}
+        className={`${styles.sectionHeading} ${shared.sectionHeaderLine}`}
         style={{ 
           color: hColor, 
           fontFamily: 'var(--p-heading-font)',
@@ -296,7 +296,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
 
         if (section.type === 'simplelist') {
           return (
-            <div>
+            <div className={shared.justifiedContent}>
               {lines.filter((l) => l.trim()).map((item, idx) => (
                 <div key={idx} style={{ marginBottom: '2px', fontSize: '0.93em' }}>
                   {idx + 1}. {item}
@@ -308,7 +308,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
 
         if (section.type === 'text') {
           return (
-            <div className={shared.customContent}>
+            <div className={`${shared.customContent} ${shared.justifiedContent}`}>
               {section.content.split('\n\n').filter((p) => p.trim()).map((para, idx) => (
                 <p key={idx}>{para}</p>
               ))}
@@ -318,7 +318,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
 
         if (section.type === 'keyvalue') {
           return (
-            <div>
+            <div className={shared.justifiedContent}>
               {lines.filter((l) => l.trim()).map((line, idx) => {
                 const parts = line.split(':');
                 if (parts.length >= 2) {
@@ -344,7 +344,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         if (section.type === 'skills') {
           const items = section.content.split(',').map((v) => v.trim()).filter(Boolean);
           return (
-            <div style={{ display: 'block', marginTop: '4px', lineHeight: 1.45 }}>
+            <div className={shared.justifiedContent} style={{ display: 'block', marginTop: '4px', lineHeight: 1.45 }}>
               {items.map((t, idx) => (
                 <React.Fragment key={idx}>
                   {idx > 0 && <span style={{ color: hColor, margin: '0 6px', fontWeight: 'bold' }}>•</span>}
@@ -372,7 +372,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           if (cur) blocks.push(cur);
 
           return (
-            <div>
+            <div className={shared.justifiedContent}>
               {blocks.map((b, idx) => (
                 <div key={idx} className={shared.timelineBlock}>
                   <div className={shared.timelineRow}>
@@ -389,7 +389,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         }
 
         return (
-          <div className={shared.customContent}>
+          <div className={`${shared.customContent} ${shared.justifiedContent}`}>
             <p>{section.content}</p>
           </div>
         );
@@ -414,7 +414,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         return (
           <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
             {heading}
-            <div style={{ lineHeight: lineH }} className={shared.customContent}>{summary}</div>
+            <div style={{ lineHeight: lineH }} className={`${shared.customContent} ${shared.justifiedContent}`}>{summary}</div>
           </div>
         );
 
@@ -428,12 +428,12 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                 {!ignoreSpacers && spacers[e.id] && (
                   <div style={{ height: `${spacers[e.id]}px` }} />
                 )}
-                <div id={`entry-${e.id}`} className={shared.eduBlock}>
+                <div id={`entry-${e.id}`} className={`${shared.eduBlock} ${shared.justifiedContent}`}>
                   <div className={shared.eduRow}>
                     <span className={shared.eduTitle}>{e.degree}</span>
                     <span className={shared.entryDates}>{e.dates}</span>
                   </div>
-                  <div className={shared.eduSub}>
+                  <div className={`${shared.eduSub} ${shared.justifiedContent}`}>
                     {e.school}{e.gpa ? ` | ${e.gpa}` : ''}
                   </div>
                 </div>
@@ -447,7 +447,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         return (
           <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
             {heading}
-            {renderSkills()}
+            <div className={shared.justifiedContent}>{renderSkills()}</div>
           </div>
         );
 
@@ -461,12 +461,12 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                 {!ignoreSpacers && spacers[x.id] && (
                   <div style={{ height: `${spacers[x.id]}px` }} />
                 )}
-                <div id={`entry-${x.id}`} className={shared.entryBlock}>
+                <div id={`entry-${x.id}`} className={`${shared.entryBlock} ${shared.justifiedContent}`}>
                   <div className={shared.entryRow}>
                     <span className={shared.entryRole}>{x.role}</span>
                     <span className={shared.entryDates}>{x.dates}</span>
                   </div>
-                  <div className={shared.entrySub}>{x.company}</div>
+                  <div className={`${shared.entrySub} ${shared.justifiedContent}`}>{x.company}</div>
                   <ul className={shared.points}>
                     {x.points.filter(Boolean).map((pt, pIdx) => (
                       <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
@@ -488,7 +488,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                 {!ignoreSpacers && spacers[p.id] && (
                   <div style={{ height: `${spacers[p.id]}px` }} />
                 )}
-                <div id={`entry-${p.id}`} className={shared.entryBlock}>
+                <div id={`entry-${p.id}`} className={`${shared.entryBlock} ${shared.justifiedContent}`}>
                   <div className={shared.entryRow}>
                     <span className={shared.entryRole}>
                       <span style={{ fontWeight: 'bold', color: hColor }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}

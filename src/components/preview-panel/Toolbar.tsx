@@ -39,8 +39,8 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
     setIsExporting(true);
     addToast('Generating your PDF...', 'info');
 
-    // Ensure the export container exists
-    const element = document.getElementById('resume-export');
+    // Prefer using the visible preview container first, but fall back to the hidden export container if needed
+    const element = document.getElementById('resume-content') || document.getElementById('resume-export');
     if (!element) {
       addToast('Resume content not found', 'error');
       setIsExporting(false);
@@ -48,6 +48,7 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
     }
 
     try {
+      document.body.classList.add('exporting');
       // Wait for font system to be ready (downloads finished)
       if (document.fonts?.ready) {
         await document.fonts.ready;
@@ -67,6 +68,8 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
       const html2pdf = (await import('html2pdf.js')).default;
       
       // Configure export settings (enable letterRendering for accurate letter-spaced text)
+      const elementWidth = element.scrollWidth || element.clientWidth;
+      const elementHeight = element.scrollHeight || element.clientHeight;
       const opt = {
         margin: 0,
         filename: `${state.name.replace(/\s+/g, '_').toLowerCase() || 'resume'}_cv.pdf`,
@@ -76,6 +79,12 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
           useCORS: true, 
           logging: false,
           letterRendering: true,
+          width: elementWidth,
+          height: elementHeight,
+          windowWidth: elementWidth,
+          windowHeight: elementHeight,
+          scrollX: 0,
+          scrollY: 0,
         },
         jsPDF: { unit: 'px', format: [794, 1123] as [number, number], hotfixes: ['px_scaling'] },
         pagebreak: { mode: ['css', 'legacy'] }
@@ -99,6 +108,7 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
       addToast('Failed to export PDF', 'error');
     } finally {
       setIsExporting(false);
+      document.body.classList.remove('exporting');
     }
   };
 

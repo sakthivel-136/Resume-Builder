@@ -177,3 +177,7 @@ ol {
 .exporting #resume-measure {
   display: none !important;
 }
+
+.exporting .pdf-page-indicator {
+  display: none !important;
+}

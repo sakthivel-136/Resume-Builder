@@ -308,7 +308,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
 
         if (section.type === 'simplelist') {
           return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+            <div className={shared.justifiedContent} style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
               {lines.filter((l) => l.trim()).map((item, idx) => (
                 <div key={idx} style={{ marginBottom: '2px', fontSize: '0.93em', lineHeight: lineH }}>
                   {idx + 1}. {item}
@@ -318,17 +318,34 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           );
         }
 
+        if (section.type === 'text') {
+          return (
+            <div className={`${shared.customContent} ${shared.justifiedContent}`} style={{ fontSize: 'inherit', lineHeight: lineH }}>
+              {section.content.split('\n\n').filter((p) => p.trim()).map((para, idx) => (
+                <p key={idx}>{para}</p>
+              ))}
+            </div>
+          );
+        }
+
         if (section.type === 'keyvalue') {
           return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              {lines.filter((l) => l.trim()).map((item, idx) => {
-                const parts = item.split(':');
-                const label = parts[0];
-                const val = parts.slice(1).join(':');
+            <div className={shared.justifiedContent}>
+              {lines.filter((l) => l.trim()).map((line, idx) => {
+                const parts = line.split(':');
+                if (parts.length >= 2) {
+                  const keyLabel = parts.shift()?.trim() || '';
+                  const valText = parts.join(':').trim();
+                  return (
+                    <div key={idx} className={shared.kvRow} style={{ fontSize: '0.93em' }}>
+                      <span className={shared.kvLabel} style={{ color: hColor }}>{keyLabel}:</span>
+                      <span className={shared.kvValue}> {valText}</span>
+                    </div>
+                  );
+                }
                 return (
-                  <div key={idx} style={{ fontSize: '0.93em', lineHeight: lineH }}>
-                    {label && <strong style={{ color: hColor }}>{label}:</strong>}
-                    {val && <span> {val}</span>}
+                  <div key={idx} style={{ marginBottom: '2px', fontSize: '0.93em', lineHeight: lineH }}>
+                    {line}
                   </div>
                 );
               })}
@@ -336,16 +353,57 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           );
         }
 
-        // Default: text
+        if (section.type === 'skills') {
+          const items = section.content.split(',').map((v) => v.trim()).filter(Boolean);
+          return (
+            <div className={shared.justifiedContent} style={{ fontSize: '0.93em', marginTop: '4px', lineHeight: lineH }}>
+              {items.join(', ')}
+            </div>
+          );
+        }
+
+        if (section.type === 'timeline') {
+          const blocks: { date: string; title: string; desc: string }[] = [];
+          let cur: { date: string; title: string; desc: string } | null = null;
+          lines.forEach((line) => {
+            const tr = line.trim();
+            if (!tr) return;
+            const pi = tr.indexOf('|');
+            if (pi > 0) {
+              if (cur) blocks.push(cur);
+              cur = { date: tr.substring(0, pi).trim(), title: tr.substring(pi + 1).trim(), desc: '' };
+            } else {
+              if (cur) cur.desc += (cur.desc ? ' ' : '') + tr;
+            }
+          });
+          if (cur) blocks.push(cur);
+
+          return (
+            <div className={shared.justifiedContent}>
+              {blocks.map((b, idx) => (
+                <div key={idx} className={shared.timelineBlock}>
+                  <div className={shared.timelineRow}>
+                    <span className={shared.timelineTitle}>{b.title}</span>
+                    <span className={shared.timelineDate}>{b.date}</span>
+                  </div>
+                  {b.desc && (
+                    <div className={shared.timelineDesc}>{b.desc}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          );
+        }
+
         return (
-          <div className={shared.customContent} style={{ fontSize: 'inherit', lineHeight: lineH }}>
+          <div className={`${shared.customContent} ${shared.justifiedContent}`} style={{ fontSize: 'inherit', lineHeight: lineH }}>
             <p>{section.content}</p>
           </div>
         );
       };
 
       return (
-        <div className={shared.customSectionContent}>
+        <div key={key} className={`${shared.customSectionContent} ${shared.justifiedContent}`}>
           {renderCustomContent()}
         </div>
       );
@@ -355,7 +413,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
       case 'summary':
         if (!summary) return null;
         return (
-          <div key={key} style={{ fontSize: 'inherit', lineHeight: lineH }} className={shared.customContent}>
+          <div key={key} style={{ fontSize: 'inherit', lineHeight: lineH }} className={`${shared.customContent} ${shared.justifiedContent}`}>
             {summary}
           </div>
         );
@@ -365,54 +423,40 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
         return (
           <div key={key}>
             {education.map((e, idx) => (
-              <React.Fragment key={e.id || idx}>
-                {!ignoreSpacers && spacers[e.id] && (
-                  <div style={{ height: `${spacers[e.id]}px` }} />
-                )}
-                <div id={`entry-${e.id}`} className={shared.eduBlock} style={{ position: 'relative' }}>
-                  {/* Timeline Dot Node */}
-                  <div className={styles.nodeDot} />
-                  <div className={shared.eduRow}>
-                    <span className={shared.eduTitle}>{e.degree}</span>
-                    <span className={shared.entryDates} style={{ opacity: 0.8 }}>{e.dates}</span>
-                  </div>
-                  <div className={shared.eduSub}>
-                    {e.school}{e.gpa ? ` | ${e.gpa}` : ''}
-                  </div>
+              <div key={e.id || idx} className={`${shared.eduBlock} ${shared.justifiedContent}`}>
+                <div className={shared.eduRow}>
+                  <span className={shared.eduTitle}>{e.degree}</span>
+                  <span className={shared.entryDates}>{e.dates}</span>
                 </div>
-              </React.Fragment>
+                <div className={`${shared.eduSub} ${shared.justifiedContent}`}>
+                  {e.school}{e.gpa ? ` | ${e.gpa}` : ''}
+                </div>
+              </div>
             ))}
           </div>
         );
 
       case 'skills':
         if (skillGroups.length === 0) return null;
-        return <div key={key}>{renderSkills()}</div>;
+        return <div key={key} className={shared.justifiedContent}>{renderSkills()}</div>;
 
       case 'experience':
         if (experience.length === 0) return null;
         return (
           <div key={key}>
             {experience.map((x, idx) => (
-              <React.Fragment key={x.id || idx}>
-                {!ignoreSpacers && spacers[x.id] && (
-                  <div style={{ height: `${spacers[x.id]}px` }} />
-                )}
-                <div id={`entry-${x.id}`} className={shared.entryBlock} style={{ position: 'relative' }}>
-                  {/* Timeline Dot Node */}
-                  <div className={styles.nodeDot} />
-                  <div className={shared.entryRow}>
-                    <span className={shared.entryRole}>{x.role}</span>
-                    <span className={shared.entryDates}>{x.dates}</span>
-                  </div>
-                  <div className={shared.entrySub}>{x.company}</div>
-                  <ul className={shared.points} style={{ paddingLeft: '14px' }}>
-                    {x.points.filter(Boolean).map((pt, pIdx) => (
-                      <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
-                    ))}
-                  </ul>
+              <div id={`entry-${x.id || idx}`} key={x.id || idx} className={`${shared.entryBlock} ${shared.justifiedContent}`}>
+                <div className={shared.entryRow}>
+                  <span className={shared.entryRole}>{x.role}</span>
+                  <span className={shared.entryDates}>{x.dates}</span>
                 </div>
-              </React.Fragment>
+                <div className={`${shared.entrySub} ${shared.justifiedContent}`}>{x.company}</div>
+                <ul className={shared.points} style={{ paddingLeft: '14px' }}>
+                  {x.points.filter(Boolean).map((pt, pIdx) => (
+                    <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         );
@@ -422,13 +466,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
         return (
           <div key={key}>
             {projects.map((p, idx) => (
-              <React.Fragment key={p.id || idx}>
-                {!ignoreSpacers && spacers[p.id] && (
-                  <div style={{ height: `${spacers[p.id]}px` }} />
-                )}
-                <div id={`entry-${p.id}`} className={shared.entryBlock} style={{ position: 'relative' }}>
-                  {/* Timeline Dot Node */}
-                  <div className={styles.nodeDot} />
+              <div id={`entry-${p.id || idx}`} key={p.id || idx} className={`${shared.entryBlock} ${shared.justifiedContent}`}>
                   <div className={shared.entryRow}>
                     <span className={shared.entryRole}>
                       <span style={{ fontWeight: 'bold', color: hColor }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
@@ -436,12 +474,12 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>
                   {p.problemStatement && (
-                    <div style={{ fontSize: 'inherit', marginTop: '4px', marginBottom: '2px', textAlign: 'justify' }}>
+                    <div style={{ marginTop: '4px', marginBottom: '2px', textAlign: 'justify' }}>
                       <strong>PROBLEM:</strong> {p.problemStatement}
                     </div>
                   )}
                   {p.proposedSolution && (
-                    <div style={{ fontSize: 'inherit', marginTop: '2px', marginBottom: '4px', textAlign: 'justify' }}>
+                    <div style={{ marginTop: '2px', marginBottom: '4px', textAlign: 'justify' }}>
                       <strong>SOLUTION:</strong> {p.proposedSolution}
                     </div>
                   )}
@@ -451,13 +489,12 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                     ))}
                   </ul>
                   {(p.githubUrl || p.liveUrl) && (
-                    <div style={{ fontSize: `${bodySize * 0.85}px`, marginTop: '4px', marginBottom: '2px' }}>
+                    <div style={{ fontSize: '0.9em', marginTop: '4px', marginBottom: '2px' }}>
                       {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} showIcon={false} prefix="Github Link: " />}
                       {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} showIcon={false} prefix="Live In: " />}
                     </div>
                   )}
-                </div>
-              </React.Fragment>
+              </div>
             ))}
           </div>
         );
@@ -469,7 +506,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           <div key={key}>
             <ul className={shared.achievementList} style={{ paddingLeft: '14px' }}>
               {filteredAch.map((ach, idx) => (
-                <li key={idx} style={{ fontSize: 'inherit', lineHeight: lineH }}>{ach}</li>
+                <li key={idx} style={{ lineHeight: lineH }}>{ach}</li>
               ))}
             </ul>
           </div>
@@ -505,7 +542,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
 
         {/* Contact list in sidebar */}
         <div>
-          <h3 className={styles.sbHeading} style={{ color: hColor, borderColor: hColor, fontSize: `${headSize}px` }}>Contact</h3>
+          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor, fontSize: `${headSize}px` }}>Contact</h3>
           {state.gmContact ? renderContactGM() : renderContactInline()}
         </div>
 
@@ -515,7 +552,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           return (
             <div id={`entry-${key}`} key={key}>
               <h3 
-                className={styles.sbHeading}
+                className={`${styles.sbHeading} ${shared.sectionHeaderLine}`}
                 style={{ 
                   color: hColor, 
                   borderColor: hColor,

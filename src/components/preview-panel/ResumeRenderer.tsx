@@ -96,6 +96,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
     '--p-bullet-size': '1.35em',
     '--p-bullet-color': state.bulletColor || 'var(--p-heading-color)',
     '--p-sec-sp': `${state.secSp}px`,
+    '--sec-spacing': `${state.secSp}px`,
   } as React.CSSProperties;
 
   const PAGE_HEIGHT = 1123;
@@ -264,10 +265,10 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
         // Apply
         pushMap.forEach((pushAmount, id) => {
           if (!id) return;
-          const el = container.querySelector<HTMLElement>(`[id="${CSS.escape(id)}"]`);
-          if (el) {
+          const els = container.querySelectorAll<HTMLElement>(`[id="${CSS.escape(id)}"]`);
+          els.forEach((el) => {
             el.style.marginTop = `${pushAmount}px`;
-          }
+          });
         });
       };
 
@@ -334,7 +335,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
         </div>
 
         {/* Page Number Indicator (Hidden in PDF export) */}
-        <div style={{
+        <div className="pdf-page-indicator" style={{
           position: 'absolute',
           bottom: '12px',
           right: '16px',
@@ -349,6 +350,36 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           zIndex: 60,
         }}>
           Page {pageIndex + 1} of {pageCount}
+        </div>
+      </div>
+    );
+  };
+
+  const renderExportSheet = (pageIndex: number) => {
+    return (
+      <div 
+        key={pageIndex}
+        className="resume-page-sheet"
+        style={{
+          width: '100%',
+          height: `${PAGE_HEIGHT}px`,
+          overflow: 'hidden',
+          position: 'relative',
+          pageBreakAfter: 'always',
+          breakInside: 'avoid',
+          pageBreakInside: 'avoid',
+        }}
+      >
+        <div
+          style={{
+            ...cssVarsStyle,
+            width: '100%',
+            height: `${pageCount * PAGE_HEIGHT}px`,
+            transform: `translateY(-${pageIndex * PAGE_HEIGHT}px)`,
+            boxSizing: 'border-box',
+          }}
+        >
+          {renderActiveTemplate(false)}
         </div>
       </div>
     );
@@ -414,13 +445,15 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           {/* Export Container (Off-screen but fully rendered for html2canvas capture) */}
           <div 
             style={{ 
-              position: 'fixed', 
-              left: '-9999px', 
-              top: 0, 
+              position: 'absolute', 
+              left: 0, 
+              top: '-20000px', 
               width: `${PAGE_WIDTH}px`, 
               height: `${pageCount * PAGE_HEIGHT}px`, 
               pointerEvents: 'none', 
               overflow: 'hidden',
+              opacity: 1,
+              visibility: 'visible',
             }}
           >
             <div 
@@ -438,7 +471,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
                 overflow: 'hidden',
               }}
             >
-              {renderActiveTemplate(false)}
+              {Array.from({ length: pageCount }).map((_, i) => renderExportSheet(i))}
             </div>
           </div>
         </>,

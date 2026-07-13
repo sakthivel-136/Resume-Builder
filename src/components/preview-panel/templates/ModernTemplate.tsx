@@ -258,7 +258,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
 
         if (section.type === 'simplelist') {
           return (
-            <div>
+            <div className={shared.justifiedContent}>
               {lines.filter((l) => l.trim()).map((item, idx) => (
                 <div key={idx} style={{ marginBottom: '2px', fontSize: isLeftCol ? '0.85em' : '0.93em' }}>
                   {idx + 1}. {item}
@@ -270,7 +270,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
 
         if (section.type === 'text') {
           return (
-            <div className={shared.customContent} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
+            <div className={`${shared.customContent} ${shared.justifiedContent}`} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
               {section.content.split('\n\n').filter((p) => p.trim()).map((para, idx) => (
                 <p key={idx}>{para}</p>
               ))}
@@ -280,7 +280,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
 
         if (section.type === 'keyvalue') {
           return (
-            <div>
+            <div className={shared.justifiedContent}>
               {lines.filter((l) => l.trim()).map((line, idx) => {
                 const parts = line.split(':');
                 if (parts.length >= 2) {
@@ -306,7 +306,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
         if (section.type === 'skills') {
           const items = section.content.split(',').map((v) => v.trim()).filter(Boolean);
           return (
-            <div style={{ fontSize: isLeftCol ? '0.85em' : '0.93em', marginTop: '4px', lineHeight: 1.4 }}>
+            <div className={shared.justifiedContent} style={{ fontSize: isLeftCol ? '0.85em' : '0.93em', marginTop: '4px', lineHeight: 1.4 }}>
               {items.join(', ')}
             </div>
           );
@@ -329,7 +329,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
           if (cur) blocks.push(cur);
 
           return (
-            <div>
+            <div className={shared.justifiedContent}>
               {blocks.map((b, idx) => (
                 <div key={idx} className={shared.timelineBlock} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
                   <div className={shared.timelineRow}>
@@ -346,14 +346,14 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
         }
 
         return (
-          <div className={shared.customContent} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
+          <div className={`${shared.customContent} ${shared.justifiedContent}`} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
             <p>{section.content}</p>
           </div>
         );
       };
 
       return (
-        <div key={key} className={shared.customSectionContent}>
+        <div key={key} className={`${shared.customSectionContent} ${shared.justifiedContent}`}>
           {renderCustomContent()}
         </div>
       );
@@ -363,7 +363,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
       case 'summary':
         if (!summary) return null;
         return (
-          <div key={key} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit', lineHeight: lineH }} className={shared.customContent}>
+          <div key={key} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit', lineHeight: lineH }} className={`${shared.customContent} ${shared.justifiedContent}`}>
             {summary}
           </div>
         );
@@ -373,12 +373,12 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
         return (
           <div key={key}>
             {education.map((e, idx) => (
-              <div key={e.id || idx} className={shared.eduBlock} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
+              <div key={e.id || idx} className={`${shared.eduBlock} ${shared.justifiedContent}`} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
                 <div className={shared.eduRow} style={{ flexDirection: isLeftCol ? 'column' : 'row', alignItems: 'stretch' }}>
                   <span className={shared.eduTitle}>{e.degree}</span>
                   <span className={shared.entryDates} style={{ opacity: 0.8 }}>{e.dates}</span>
                 </div>
-                <div className={shared.eduSub}>
+                <div className={`${shared.eduSub} ${shared.justifiedContent}`}>
                   {e.school}{e.gpa ? ` | ${e.gpa}` : ''}
                 </div>
               </div>
@@ -388,19 +388,19 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
 
       case 'skills':
         if (skillGroups.length === 0) return null;
-        return <div key={key}>{renderSkills()}</div>;
+        return <div key={key} className={shared.justifiedContent}>{renderSkills()}</div>;
 
       case 'experience':
         if (experience.length === 0) return null;
         return (
           <div key={key}>
             {experience.map((x, idx) => (
-              <div key={x.id || idx} className={shared.entryBlock} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
+              <div id={`entry-${x.id || idx}`} key={x.id || idx} className={`${shared.entryBlock} ${shared.justifiedContent}`} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
                 <div className={shared.entryRow} style={{ flexDirection: isLeftCol ? 'column' : 'row', alignItems: 'stretch' }}>
                   <span className={shared.entryRole}>{x.role}</span>
                   <span className={shared.entryDates} style={{ opacity: 0.8 }}>{x.dates}</span>
                 </div>
-                <div className={shared.entrySub}>{x.company}</div>
+                <div className={`${shared.entrySub} ${shared.justifiedContent}`}>{x.company}</div>
                 <ul className={shared.points}>
                   {x.points.filter(Boolean).map((pt, pIdx) => (
                     <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
@@ -416,7 +416,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
         return (
           <div key={key}>
             {projects.map((p, idx) => (
-              <div key={p.id || idx} className={shared.entryBlock} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
+              <div id={`entry-${p.id || idx}`} key={p.id || idx} className={`${shared.entryBlock} ${shared.justifiedContent}`} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
                   <div className={shared.entryRow} style={{ flexDirection: isLeftCol ? 'column' : 'row', alignItems: 'stretch' }}>
                     <span className={shared.entryRole}>
                       <span style={{ fontWeight: 'bold', color: hColor }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
@@ -489,7 +489,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
 
         {/* Contact list inside left column */}
         <div>
-          <h3 className={styles.sbHeading} style={{ color: hColor, borderColor: hColor }}>Contact</h3>
+          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor }}>Contact</h3>
           {state.gmContact ? renderContactGM() : renderContactInline()}
         </div>
 
@@ -498,7 +498,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
           if (!secVis[key]) return null;
           return (
             <div id={`entry-${key}`} key={key}>
-              <h3 className={styles.sbHeading} style={{ color: hColor, borderColor: hColor }}>{secNames[key] || key}</h3>
+              <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor }}>{secNames[key] || key}</h3>
               {renderSectionContent(key, true)}
             </div>
           );

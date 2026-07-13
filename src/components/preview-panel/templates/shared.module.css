@@ -26,10 +26,26 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--p-heading-color);
-  border-bottom: 1px solid var(--p-accent-color);
-  padding-bottom: 4px;
+  padding-bottom: 0;
   margin-bottom: calc(var(--p-sec-sp, 12px) * 0.8) !important;
   page-break-after: avoid;
+  display: block;
+  line-height: 1.2;
+}
+
+.sectionHeaderLine {
+  display: block;
+  line-height: 1.2;
+  width: 100%;
+}
+
+.sectionHeaderLine::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  margin-top: 5px;
+  background: var(--p-heading-color, currentColor);
 }
 
 .entryHeader {
@@ -84,6 +100,8 @@
   opacity: 0.85;
   font-size: 0.92em;
   margin-bottom: calc(var(--p-sec-sp, 12px) * 0.3) !important;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .points {
@@ -132,6 +150,8 @@
 .eduSub {
   font-size: 0.94em;
   opacity: 0.85;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* Achievements block */
@@ -174,6 +194,8 @@
 
 .skillVals {
   color: var(--p-text-color, #20262f);
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .skillPill {
@@ -252,6 +274,11 @@
   text-align: justify;
 }
 
+.justifiedContent {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .customContent p {
   margin-bottom: 6px;
 }
@@ -269,6 +296,8 @@
 
 .kvValue {
   color: var(--p-text-color);
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* Timeline custom layout */
@@ -300,4 +329,5 @@
   margin-top: 1px;
   font-size: 0.93em;
   text-align: justify;
+  text-justify: inter-word;
 }

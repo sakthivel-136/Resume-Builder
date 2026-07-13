@@ -65,10 +65,11 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  border-bottom: 1.5px solid var(--p-h-color, #122644);
-  padding-bottom: 5px;
+  padding-bottom: 0;
   margin-bottom: calc(var(--p-sec-sp, 12px) * 0.8) !important;
   font-size: var(--heading-size, 11px);
+  display: block;
+  line-height: 1.2;
 }
 
 /* Main Section Wrapper (Each holds a header and its entries) */
@@ -84,11 +85,12 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  border-bottom: 1.5px solid var(--p-h-color, #122644);
-  padding-bottom: 5px;
+  padding-bottom: 0;
   margin-bottom: calc(var(--p-sec-sp, 12px) * 0.9) !important;
   font-size: var(--heading-size, 11px);
   margin-top: 0;
+  display: block;
+  line-height: 1.2;
 }
 
 /* Timeline Circular Badge Icon */
