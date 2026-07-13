@@ -485,6 +485,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
       className={styles.container} 
       style={{ 
         '--sb-width': `${state.sbW}px`,
+        '--p-main-pad': `${state.mainPad}px`,
         fontSize: `${bodySize}px`,
         padding: `${isExport ? 0 : state.mT}px ${state.mR}px ${isExport ? 0 : state.mB}px ${state.mL}px`
       } as any}

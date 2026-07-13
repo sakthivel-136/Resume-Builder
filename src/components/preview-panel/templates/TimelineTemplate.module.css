@@ -30,7 +30,7 @@
 /* Vertical Timeline separator axis */
 .timelineAxis {
   position: absolute;
-  left: 0;
+  left: calc(var(--p-main-pad, 32px) - 32px);
   top: 0;
   bottom: 0;
   width: 2px;
@@ -123,7 +123,7 @@
 
 .timelineEndDot {
   position: absolute;
-  left: -36px;
+  left: calc(var(--p-main-pad, 32px) - 36px);
   bottom: 0;
   width: 8px;
   height: 8px;
