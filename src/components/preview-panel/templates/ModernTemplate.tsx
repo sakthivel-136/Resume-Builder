@@ -489,7 +489,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
 
         {/* Contact list inside left column */}
         <div>
-          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor }}>Contact</h3>
+          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor, paddingBottom: '6px' }}>Contact</h3>
           {state.gmContact ? renderContactGM() : renderContactInline()}
         </div>
 
@@ -498,7 +498,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
           if (!secVis[key]) return null;
           return (
             <div id={`entry-${key}`} key={key}>
-              <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor }}>{secNames[key] || key}</h3>
+              <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor, paddingBottom: '6px' }}>{secNames[key] || key}</h3>
               {renderSectionContent(key, true)}
             </div>
           );

@@ -542,7 +542,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
 
         {/* Contact list in sidebar */}
         <div>
-          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor, fontSize: `${headSize}px` }}>Contact</h3>
+          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor, fontSize: `${headSize}px`, paddingBottom: '6px' }}>Contact</h3>
           {state.gmContact ? renderContactGM() : renderContactInline()}
         </div>
 
@@ -604,6 +604,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                   color: hColor, 
                   fontFamily: 'var(--p-heading-font)',
                   fontSize: `${headSize}px`,
+                  paddingBottom: '6px',
                   borderColor: hColor
                 }}
               >

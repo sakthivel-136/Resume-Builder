@@ -266,6 +266,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           fontFamily: 'var(--p-heading-font)',
           fontSize: `${headSize}px`,
           marginTop: `${secSp}px`,
+          paddingBottom: '6px',
           borderColor: hColor
         }}
       >

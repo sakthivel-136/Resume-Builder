@@ -53,6 +53,7 @@ export interface ResumeData {
   nameSize: number;
   headSize: number;
   bodySize: number;
+  detailSize: number;
   skillMode: 'text' | 'pills' | 'bullets';
   photoShape: 'circle' | 'rounded' | 'square';
   photoPos: 'top-center' | 'top-left' | 'top-right' | 'sidebar' | 'hidden';

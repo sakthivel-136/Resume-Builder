@@ -14,6 +14,7 @@ export function createDefaultResume(): ResumeData {
     nameSize: 31,
     headSize: 13.5,
     bodySize: 12,
+    detailSize: 11,
     skillMode: 'text',
     photoShape: 'circle',
     photoPos: 'top-center',

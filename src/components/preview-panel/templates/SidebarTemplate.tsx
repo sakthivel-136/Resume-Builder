@@ -487,7 +487,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
 
         {/* Contact info in sidebar */}
         <div>
-          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`}>Contact Details</h3>
+          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ paddingBottom: '6px' }}>Contact Details</h3>
           {state.gmContact ? renderContactGM() : renderContactInline()}
         </div>
 
@@ -496,7 +496,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           if (!secVis[key]) return null;
           return (
             <div id={`entry-${key}`} key={key}>
-              <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`}>{secNames[key] || key}</h3>
+              <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ paddingBottom: '6px' }}>{secNames[key] || key}</h3>
               {renderSectionContent(key, true)}
             </div>
           );

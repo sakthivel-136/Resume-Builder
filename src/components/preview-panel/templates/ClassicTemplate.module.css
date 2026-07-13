@@ -36,14 +36,7 @@
   display: block;
 }
 
-.sectionHeading::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 1.5px;
-  margin-top: 5px;
-  background: var(--p-heading-color, #122644);
-}
+/* underline handled globally via `sectionHeaderLine` in shared.module.css */
 
 /* Photo layout flex containers */
 .flexHeader {

@@ -111,6 +111,16 @@ const TypographyControls = () => {
           unit="px"
           onChange={(val) => handleSliderChange('bodySize', val)}
         />
+
+        <RangeSlider
+          label="Detail Text Size"
+          value={state.detailSize}
+          min={8}
+          max={14}
+          step={0.5}
+          unit="px"
+          onChange={(val) => handleSliderChange('detailSize', val)}
+        />
       </div>
     </Card>
   );
