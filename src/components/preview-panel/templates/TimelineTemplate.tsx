@@ -452,8 +452,8 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                   </ul>
                   {(p.githubUrl || p.liveUrl) && (
                     <div style={{ fontSize: `${bodySize * 0.85}px`, marginTop: '4px', marginBottom: '2px' }}>
-                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} showIcon={false} prefix="github link: " />}
-                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} showIcon={false} prefix="live at: " />}
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} showIcon={false} prefix="Github Link: " />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} showIcon={false} prefix="Live In: " />}
                     </div>
                   )}
                 </div>

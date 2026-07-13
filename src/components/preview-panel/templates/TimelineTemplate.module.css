@@ -41,7 +41,7 @@
 
 /* Header Area (full width at the top) */
 .headerBlock {
-  margin-bottom: 22px;
+  margin-bottom: 14px;
   width: 100%;
 }
 
@@ -74,7 +74,7 @@
 /* Main Section Wrapper (Each holds a header and its entries) */
 .mainSection {
   position: relative;
-  margin-bottom: calc(var(--p-sec-sp, 12px) * 1.6) !important;
+  margin-bottom: calc(var(--p-sec-sp, 12px) * 1.1) !important;
 }
 
 /* Main Section Headers */
