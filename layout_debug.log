@@ -1,0 +1,5193 @@
+// Clear
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 4,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 375,
+      "bottom": 670,
+      "height": 295,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 114,
+      "bottom": 224,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 233,
+      "bottom": 318,
+      "height": 85,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 268,
+      "bottom": 319,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 329,
+      "bottom": 568,
+      "height": 239,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 364,
+      "bottom": 495,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 500,
+      "bottom": 568,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 577,
+      "bottom": 1027,
+      "height": 450,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 612,
+      "bottom": 755,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 760,
+      "bottom": 922,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 928,
+      "bottom": 1027,
+      "height": 99,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1037,
+      "bottom": 1230,
+      "height": 193,
+      "marginTop": "10px"
+    }
+  ],
+  "contentHeight": 1263.640625,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 4,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 375,
+      "bottom": 670,
+      "height": 295,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 114,
+      "bottom": 224,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 233,
+      "bottom": 318,
+      "height": 85,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 268,
+      "bottom": 319,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 329,
+      "bottom": 568,
+      "height": 239,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 364,
+      "bottom": 495,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 500,
+      "bottom": 568,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 577,
+      "bottom": 1027,
+      "height": 450,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 612,
+      "bottom": 755,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 760,
+      "bottom": 922,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 928,
+      "bottom": 1027,
+      "height": 99,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1037,
+      "bottom": 1230,
+      "height": 193,
+      "marginTop": "10px"
+    }
+  ],
+  "contentHeight": 1263.75,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 4,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 375,
+      "bottom": 670,
+      "height": 295,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 114,
+      "bottom": 224,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 233,
+      "bottom": 318,
+      "height": 85,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 268,
+      "bottom": 319,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 329,
+      "bottom": 568,
+      "height": 239,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 364,
+      "bottom": 495,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 500,
+      "bottom": 568,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 577,
+      "bottom": 1027,
+      "height": 450,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 612,
+      "bottom": 755,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 760,
+      "bottom": 922,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 928,
+      "bottom": 1027,
+      "height": 99,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1037,
+      "bottom": 1230,
+      "height": 193,
+      "marginTop": "10px"
+    }
+  ],
+  "contentHeight": 1263.640625,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 4,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 375,
+      "bottom": 670,
+      "height": 295,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 114,
+      "bottom": 224,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 233,
+      "bottom": 318,
+      "height": 85,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 268,
+      "bottom": 319,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 329,
+      "bottom": 568,
+      "height": 239,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 364,
+      "bottom": 495,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 500,
+      "bottom": 568,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 577,
+      "bottom": 1027,
+      "height": 450,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 612,
+      "bottom": 755,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 760,
+      "bottom": 922,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 928,
+      "bottom": 1027,
+      "height": 99,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1037,
+      "bottom": 1230,
+      "height": 193,
+      "marginTop": "10px"
+    }
+  ],
+  "contentHeight": 1263.75,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 4,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 375,
+      "bottom": 670,
+      "height": 295,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 114,
+      "bottom": 224,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 233,
+      "bottom": 318,
+      "height": 85,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 268,
+      "bottom": 319,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 329,
+      "bottom": 568,
+      "height": 239,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 364,
+      "bottom": 495,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 500,
+      "bottom": 568,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 577,
+      "bottom": 1027,
+      "height": 450,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 612,
+      "bottom": 755,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 760,
+      "bottom": 922,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 928,
+      "bottom": 1027,
+      "height": 99,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1037,
+      "bottom": 1230,
+      "height": 193,
+      "marginTop": "10px"
+    }
+  ],
+  "contentHeight": 1263.75,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 4,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 375,
+      "bottom": 670,
+      "height": 295,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 114,
+      "bottom": 224,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 233,
+      "bottom": 318,
+      "height": 85,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 268,
+      "bottom": 319,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 329,
+      "bottom": 568,
+      "height": 239,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 364,
+      "bottom": 495,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 500,
+      "bottom": 568,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 577,
+      "bottom": 1027,
+      "height": 450,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 612,
+      "bottom": 755,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 760,
+      "bottom": 922,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 928,
+      "bottom": 1027,
+      "height": 99,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1037,
+      "bottom": 1230,
+      "height": 193,
+      "marginTop": "10px"
+    }
+  ],
+  "contentHeight": 1263.75,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 959,
+  "bottom": 1154,
+  "pushAmount": 188,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 3,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 316,
+      "bottom": 616,
+      "height": 300,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 86,
+      "bottom": 196,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 201,
+      "bottom": 275,
+      "height": 74,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 281,
+      "bottom": 526,
+      "height": 245,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 316,
+      "bottom": 447,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 452,
+      "bottom": 520,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 531,
+      "bottom": 954,
+      "height": 423,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 566,
+      "bottom": 709,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 714,
+      "bottom": 876,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 882,
+      "bottom": 948,
+      "height": 66,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1147,
+      "bottom": 1342,
+      "height": 195,
+      "marginTop": "188px"
+    }
+  ],
+  "contentHeight": 1263.75,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 959,
+  "bottom": 1154,
+  "pushAmount": 188,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 3,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 316,
+      "bottom": 616,
+      "height": 300,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 86,
+      "bottom": 196,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 201,
+      "bottom": 275,
+      "height": 74,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 281,
+      "bottom": 526,
+      "height": 245,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 316,
+      "bottom": 447,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 452,
+      "bottom": 520,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 531,
+      "bottom": 954,
+      "height": 423,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 566,
+      "bottom": 709,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 714,
+      "bottom": 876,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 882,
+      "bottom": 948,
+      "height": 66,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1147,
+      "bottom": 1342,
+      "height": 195,
+      "marginTop": "188px"
+    }
+  ],
+  "contentHeight": 1371,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 959,
+  "bottom": 1154,
+  "pushAmount": 188,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 3,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 316,
+      "bottom": 616,
+      "height": 300,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 86,
+      "bottom": 196,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 201,
+      "bottom": 275,
+      "height": 74,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 281,
+      "bottom": 526,
+      "height": 245,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 316,
+      "bottom": 447,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 452,
+      "bottom": 520,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 531,
+      "bottom": 954,
+      "height": 423,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 566,
+      "bottom": 709,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 714,
+      "bottom": 876,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 882,
+      "bottom": 948,
+      "height": 66,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1147,
+      "bottom": 1342,
+      "height": 195,
+      "marginTop": "188px"
+    }
+  ],
+  "contentHeight": 1371,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 959,
+  "bottom": 1154,
+  "pushAmount": 188,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 3,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 316,
+      "bottom": 616,
+      "height": 300,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 86,
+      "bottom": 196,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 201,
+      "bottom": 275,
+      "height": 74,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 281,
+      "bottom": 526,
+      "height": 245,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 316,
+      "bottom": 447,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 452,
+      "bottom": 520,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 531,
+      "bottom": 954,
+      "height": 423,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 566,
+      "bottom": 709,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 714,
+      "bottom": 876,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "shared-module__0Xoj-G__entryBlock",
+      "top": 882,
+      "bottom": 948,
+      "height": 66,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1147,
+      "bottom": 1342,
+      "height": 195,
+      "marginTop": "188px"
+    }
+  ],
+  "contentHeight": 1371,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 923,
+  "bottom": 1125,
+  "pushAmount": 224,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 2,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 313,
+      "bottom": 614,
+      "height": 301,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 24,
+      "bottom": 141,
+      "height": 117,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 146,
+      "bottom": 226,
+      "height": 80,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 187,
+      "bottom": 222,
+      "height": 35,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 232,
+      "bottom": 483,
+      "height": 251,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 273,
+      "bottom": 404,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 409,
+      "bottom": 477,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 488,
+      "bottom": 917,
+      "height": 429,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 530,
+      "bottom": 673,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 678,
+      "bottom": 840,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 846,
+      "bottom": 912,
+      "height": 66,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1147,
+      "bottom": 1349,
+      "height": 202,
+      "marginTop": "224px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1188,
+      "bottom": 1346,
+      "height": 158,
+      "marginTop": "0px"
+    }
+  ],
+  "contentHeight": 1371,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 923,
+  "bottom": 1125,
+  "pushAmount": 224,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 2,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 313,
+      "bottom": 614,
+      "height": 301,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 24,
+      "bottom": 141,
+      "height": 117,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 146,
+      "bottom": 226,
+      "height": 80,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 187,
+      "bottom": 222,
+      "height": 35,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 232,
+      "bottom": 483,
+      "height": 251,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 273,
+      "bottom": 404,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 409,
+      "bottom": 477,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 488,
+      "bottom": 917,
+      "height": 429,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 530,
+      "bottom": 673,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 678,
+      "bottom": 840,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 846,
+      "bottom": 912,
+      "height": 66,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1147,
+      "bottom": 1349,
+      "height": 202,
+      "marginTop": "224px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1188,
+      "bottom": 1346,
+      "height": 158,
+      "marginTop": "0px"
+    }
+  ],
+  "contentHeight": 1377.5,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 923,
+  "bottom": 1125,
+  "pushAmount": 224,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 2,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 313,
+      "bottom": 614,
+      "height": 301,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 24,
+      "bottom": 141,
+      "height": 117,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 146,
+      "bottom": 226,
+      "height": 80,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 187,
+      "bottom": 222,
+      "height": 35,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 232,
+      "bottom": 483,
+      "height": 251,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 273,
+      "bottom": 404,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 409,
+      "bottom": 477,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 488,
+      "bottom": 917,
+      "height": 429,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 530,
+      "bottom": 673,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 678,
+      "bottom": 840,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 846,
+      "bottom": 912,
+      "height": 66,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1147,
+      "bottom": 1349,
+      "height": 202,
+      "marginTop": "224px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1188,
+      "bottom": 1346,
+      "height": 158,
+      "marginTop": "0px"
+    }
+  ],
+  "contentHeight": 1377.5,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 923,
+  "bottom": 1125,
+  "pushAmount": 224,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 2,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 313,
+      "bottom": 614,
+      "height": 301,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 24,
+      "bottom": 141,
+      "height": 117,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 146,
+      "bottom": 226,
+      "height": 80,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 187,
+      "bottom": 222,
+      "height": 35,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 232,
+      "bottom": 483,
+      "height": 251,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 273,
+      "bottom": 404,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 409,
+      "bottom": 477,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 488,
+      "bottom": 917,
+      "height": 429,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 530,
+      "bottom": 673,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 678,
+      "bottom": 840,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 846,
+      "bottom": 912,
+      "height": 66,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1147,
+      "bottom": 1349,
+      "height": 202,
+      "marginTop": "224px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1188,
+      "bottom": 1346,
+      "height": 158,
+      "marginTop": "0px"
+    }
+  ],
+  "contentHeight": 1377.5,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 1,
+  "debugItems": [
+    {
+      "id": "entry-summary",
+      "top": 129,
+      "bottom": 203,
+      "height": 74,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 212,
+      "bottom": 275,
+      "height": 63,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 240,
+      "bottom": 275,
+      "height": 35,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-skills",
+      "top": 284,
+      "bottom": 415,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 424,
+      "bottom": 627,
+      "height": 203,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 452,
+      "bottom": 553,
+      "height": 101,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 558,
+      "bottom": 626,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 635,
+      "bottom": 936,
+      "height": 301,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 664,
+      "bottom": 762,
+      "height": 98,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 768,
+      "bottom": 880,
+      "height": 112,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 885,
+      "bottom": 936,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 945,
+      "bottom": 1132,
+      "height": 187,
+      "marginTop": "9px"
+    }
+  ],
+  "contentHeight": 1377.5,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 1,
+  "debugItems": [
+    {
+      "id": "entry-summary",
+      "top": 129,
+      "bottom": 203,
+      "height": 74,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 212,
+      "bottom": 275,
+      "height": 63,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 240,
+      "bottom": 275,
+      "height": 35,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-skills",
+      "top": 284,
+      "bottom": 415,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 424,
+      "bottom": 627,
+      "height": 203,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 452,
+      "bottom": 553,
+      "height": 101,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 558,
+      "bottom": 626,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 635,
+      "bottom": 936,
+      "height": 301,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 664,
+      "bottom": 762,
+      "height": 98,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 768,
+      "bottom": 880,
+      "height": 112,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 885,
+      "bottom": 936,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 945,
+      "bottom": 1132,
+      "height": 187,
+      "marginTop": "9px"
+    }
+  ],
+  "contentHeight": 1160.984375,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 1,
+  "debugItems": [
+    {
+      "id": "entry-summary",
+      "top": 129,
+      "bottom": 203,
+      "height": 74,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 212,
+      "bottom": 275,
+      "height": 63,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 240,
+      "bottom": 275,
+      "height": 35,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-skills",
+      "top": 284,
+      "bottom": 415,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 424,
+      "bottom": 627,
+      "height": 203,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 452,
+      "bottom": 553,
+      "height": 101,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 558,
+      "bottom": 626,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 635,
+      "bottom": 936,
+      "height": 301,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 664,
+      "bottom": 762,
+      "height": 98,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 768,
+      "bottom": 880,
+      "height": 112,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 885,
+      "bottom": 936,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 945,
+      "bottom": 1132,
+      "height": 187,
+      "marginTop": "9px"
+    }
+  ],
+  "contentHeight": 1160.984375,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 945,
+  "bottom": 1132,
+  "pushAmount": 202,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1138,
+  "bottom": 1325,
+  "pushAmount": 9,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 1,
+  "debugItems": [
+    {
+      "id": "entry-summary",
+      "top": 129,
+      "bottom": 203,
+      "height": 74,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 212,
+      "bottom": 275,
+      "height": 63,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 240,
+      "bottom": 275,
+      "height": 35,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-skills",
+      "top": 284,
+      "bottom": 415,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 424,
+      "bottom": 627,
+      "height": 203,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 452,
+      "bottom": 553,
+      "height": 101,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 558,
+      "bottom": 626,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 635,
+      "bottom": 936,
+      "height": 301,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 664,
+      "bottom": 762,
+      "height": 98,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 768,
+      "bottom": 880,
+      "height": 112,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 885,
+      "bottom": 936,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 945,
+      "bottom": 1132,
+      "height": 187,
+      "marginTop": "9px"
+    }
+  ],
+  "contentHeight": 1160.984375,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 4,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 375,
+      "bottom": 670,
+      "height": 295,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 114,
+      "bottom": 224,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 233,
+      "bottom": 318,
+      "height": 85,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 268,
+      "bottom": 319,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 329,
+      "bottom": 568,
+      "height": 239,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 364,
+      "bottom": 495,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 500,
+      "bottom": 568,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 577,
+      "bottom": 1027,
+      "height": 450,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 612,
+      "bottom": 755,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 760,
+      "bottom": 922,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 928,
+      "bottom": 1027,
+      "height": 99,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1037,
+      "bottom": 1230,
+      "height": 193,
+      "marginTop": "10px"
+    }
+  ],
+  "contentHeight": 1160.984375,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 4,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 375,
+      "bottom": 670,
+      "height": 295,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 114,
+      "bottom": 224,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 233,
+      "bottom": 318,
+      "height": 85,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 268,
+      "bottom": 319,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 329,
+      "bottom": 568,
+      "height": 239,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 364,
+      "bottom": 495,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 500,
+      "bottom": 568,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 577,
+      "bottom": 1027,
+      "height": 450,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 612,
+      "bottom": 755,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 760,
+      "bottom": 922,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 928,
+      "bottom": 1027,
+      "height": 99,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1037,
+      "bottom": 1230,
+      "height": 193,
+      "marginTop": "10px"
+    }
+  ],
+  "contentHeight": 1263.75,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 4,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 375,
+      "bottom": 670,
+      "height": 295,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 114,
+      "bottom": 224,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 233,
+      "bottom": 318,
+      "height": 85,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 268,
+      "bottom": 319,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 329,
+      "bottom": 568,
+      "height": 239,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 364,
+      "bottom": 495,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 500,
+      "bottom": 568,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 577,
+      "bottom": 1027,
+      "height": 450,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 612,
+      "bottom": 755,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 760,
+      "bottom": 922,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 928,
+      "bottom": 1027,
+      "height": 99,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1037,
+      "bottom": 1230,
+      "height": 193,
+      "marginTop": "10px"
+    }
+  ],
+  "contentHeight": 1263.75,
+  "pageCount": 2
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1037,
+  "bottom": 1230,
+  "pushAmount": 110,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "type": "calc_debug",
+  "secId": "entry-achievements",
+  "top": 1137,
+  "bottom": 1330,
+  "pushAmount": 10,
+  "unsafeStart": 1099,
+  "unsafeEnd": 1147,
+  "marginTop": 24
+}
+---
+{
+  "tpl": 4,
+  "debugItems": [
+    {
+      "id": "entry-skills",
+      "top": 375,
+      "bottom": 670,
+      "height": 295,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-summary",
+      "top": 114,
+      "bottom": 224,
+      "height": 110,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-education",
+      "top": 233,
+      "bottom": 318,
+      "height": 85,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-edu-1",
+      "top": 268,
+      "bottom": 319,
+      "height": 51,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-experience",
+      "top": 329,
+      "bottom": 568,
+      "height": 239,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-1",
+      "top": 364,
+      "bottom": 495,
+      "height": 131,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-exp-2",
+      "top": 500,
+      "bottom": 568,
+      "height": 68,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-projects",
+      "top": 577,
+      "bottom": 1027,
+      "height": 450,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-1",
+      "top": 612,
+      "bottom": 755,
+      "height": 143,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-2",
+      "top": 760,
+      "bottom": 922,
+      "height": 162,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-s-prj-3",
+      "top": 928,
+      "bottom": 1027,
+      "height": 99,
+      "marginTop": "0px"
+    },
+    {
+      "id": "entry-achievements",
+      "top": 1037,
+      "bottom": 1230,
+      "height": 193,
+      "marginTop": "10px"
+    }
+  ],
+  "contentHeight": 1263.75,
+  "pageCount": 2
+}
+---

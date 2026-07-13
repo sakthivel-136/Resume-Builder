@@ -94,7 +94,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           return (
             <span key={idx}>
               {href ? (
-                <LinkRenderer url={href} label={c} color={hColor} noMargin={true} showIcon={false} />
+                <LinkRenderer url={href} label={c} color={hColor} noMargin={true} showIcon={true} />
               ) : (
                 c
               )}
