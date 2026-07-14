@@ -77,6 +77,7 @@ export interface ResumeData {
   sbPad: number;
   mainPad: number;
   gmContact: boolean;
+  showContactIcons: boolean;
 
   // Section Management
   sectionOrder: string[];       // For T1 (Classic) — flat order

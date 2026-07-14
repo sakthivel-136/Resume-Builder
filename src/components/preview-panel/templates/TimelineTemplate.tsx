@@ -30,6 +30,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
     accentBar,
     accentH,
     hColor,
+    tColor,
     secNames,
     secVis,
     sidebarSections,
@@ -114,9 +115,9 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
               </div>
               <div className={shared.gmValue} style={{ fontSize: '0.9em', wordBreak: 'break-all' }}>
                 {href ? (
-                  <LinkRenderer url={href} label={it.display || it.v} showIcon={false} />
+                  <LinkRenderer url={href} label={it.display || it.v} showIcon={state.showContactIcons} />
                 ) : (
-                  it.v
+                  <LinkRenderer url={it.v} label={it.display || it.v} showIcon={state.showContactIcons} />
                 )}
               </div>
             </div>
@@ -141,13 +142,13 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
         {cp.map((c, idx) => {
           const href = getContactHref(c.value);
           return (
-            <div key={idx} style={{ wordBreak: 'break-all' }}>
+            <span key={idx} style={{ display: 'inline-flex', alignItems: 'center' }}>
               {href ? (
-                <LinkRenderer url={href} label={c.display || c.value} showIcon={false} />
+                <LinkRenderer url={href} label={c.display || c.value} color={tColor} noMargin={true} showIcon={state.showContactIcons} />
               ) : (
-                c.value
+                <LinkRenderer url={c.value} label={c.display || c.value} color={tColor} noMargin={true} showIcon={state.showContactIcons} />
               )}
-            </div>
+            </span>
           );
         })}
       </div>
@@ -468,9 +469,21 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                     ))}
                   </ul>
                   {(p.githubUrl || p.liveUrl) && (
-                    <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px' }}>
-                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color="#2563eb" showIcon={false} prefix="Github Link: " />}
-                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color="#2563eb" showIcon={false} prefix="Live In: " />}
+                    <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                      {p.githubUrl && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: hColor }}>
+                          <span>•</span>
+                          <span style={{ fontWeight: 600 }}>Github:</span>
+                          <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} showIcon={false} />
+                        </div>
+                      )}
+                      {p.liveUrl && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: hColor }}>
+                          <span>•</span>
+                          <span style={{ fontWeight: 600 }}>Live:</span>
+                          <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} showIcon={false} />
+                        </div>
+                      )}
                     </div>
                   )}
               </div>

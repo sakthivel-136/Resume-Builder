@@ -168,6 +168,12 @@ ol {
   border: 0;
 }
 /* --- html2pdf Exporting emulation resets --- */
+.exporting .resume-link-icon {
+  /* html2canvas draws inline SVG link icons slightly above the browser's
+     text baseline. This affects only the captured PDF, not the preview. */
+  transform: translateY(7px);
+}
+
 .exporting [id^="page-"] {
   margin-bottom: 0 !important;
   box-shadow: none !important;

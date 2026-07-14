@@ -150,6 +150,19 @@ const PersonalInfoCard = () => {
         />
       </div>
 
+      <div className={styles.field} style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+        <input
+          id="p-icons"
+          type="checkbox"
+          checked={state.showContactIcons || false}
+          onChange={(e) => handleChange('showContactIcons', e.target.checked as any)}
+          style={{ width: '16px', height: '16px', cursor: 'pointer', margin: 0 }}
+        />
+        <label htmlFor="p-icons" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', cursor: 'pointer', margin: 0, textTransform: 'none' }}>
+          Show Icons for Contact Details
+        </label>
+      </div>
+
       {/* Custom Contact Fields */}
       <div style={{ marginTop: '16px', borderTop: '1px dashed var(--border)', paddingTop: '16px' }}>
         <h4 style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: '10px' }}>Custom Links</h4>

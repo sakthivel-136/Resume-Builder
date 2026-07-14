@@ -147,7 +147,7 @@ const SkillsCard = () => {
   );
 
   React.useEffect(() => {
-    if ((state.tpl === 2 || state.tpl === 3) && state.skillMode === 'pills') {
+    if ((state.tpl === 2 || state.tpl === 3 || state.tpl === 4) && state.skillMode === 'pills') {
       dispatch({ type: 'SET_FIELD', field: 'skillMode', value: 'text' });
     }
   }, [state.tpl, state.skillMode, dispatch]);
@@ -182,7 +182,7 @@ const SkillsCard = () => {
     dispatch({ type: 'SET_FIELD', field: 'skillMode', value: mode });
   };
 
-  const allowedModes = (state.tpl === 2 || state.tpl === 3)
+  const allowedModes = (state.tpl === 2 || state.tpl === 3 || state.tpl === 4)
     ? (['text', 'bullets'] as const)
     : (['text', 'pills', 'bullets'] as const);
 

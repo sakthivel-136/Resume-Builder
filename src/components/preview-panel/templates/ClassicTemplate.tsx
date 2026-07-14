@@ -102,9 +102,9 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           return (
             <span key={idx} style={{ display: 'inline-flex', alignItems: 'center' }}>
               {href ? (
-                <LinkRenderer url={href} label={c.display || c.value} color={hColor} noMargin={true} showIcon={false} />
+                <LinkRenderer url={href} label={c.display || c.value} color={hColor} noMargin={true} showIcon={state.showContactIcons} />
               ) : (
-                c.value
+                <LinkRenderer url={c.value} label={c.display || c.value} color={hColor} noMargin={true} showIcon={state.showContactIcons} />
               )}
               {idx < contacts.length - 1 && (
                 <span style={{ margin: '0 10px', opacity: 0.7 }}>|</span>
@@ -519,9 +519,21 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     ))}
                   </ul>
                   {(p.githubUrl || p.liveUrl) && (
-                    <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px' }}>
-                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color="#2563eb" showIcon={false} prefix="Github Link: " />}
-                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color="#2563eb" showIcon={false} prefix="Live In: " />}
+                    <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                      {p.githubUrl && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: hColor }}>
+                          <span>•</span>
+                          <span style={{ fontWeight: 600 }}>Github:</span>
+                          <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} showIcon={false} />
+                        </div>
+                      )}
+                      {p.liveUrl && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: hColor }}>
+                          <span>•</span>
+                          <span style={{ fontWeight: 600 }}>Live:</span>
+                          <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} showIcon={false} />
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

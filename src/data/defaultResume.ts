@@ -37,6 +37,7 @@ export function createDefaultResume(): ResumeData {
     sbPad: 16,
     mainPad: 22,
     gmContact: true,
+    showContactIcons: false,
 
     sectionOrder: ['summary', 'education', 'skills', 'experience', 'projects', 'achievements'],
     sidebarSections: ['skills'],

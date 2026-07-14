@@ -9,10 +9,12 @@ interface LinkRendererProps {
   noMargin?: boolean;
 }
 
-// SVGs use display: inline-block; verticalAlign: middle so they sit on the same baseline as text
+// Keep each icon in a fixed flex item. Canvas PDF rendering calculates inline
+// `vertical-align: middle` differently from the browser, which made these icons
+// drift upward in exported resumes.
 const svgStyle: React.CSSProperties = {
-  display: 'inline-block',
-  verticalAlign: 'middle',
+  display: 'block',
+  flex: '0 0 auto',
 };
 
 const ICONS = {
@@ -81,17 +83,18 @@ export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 
       target="_blank" 
       rel="noopener noreferrer" 
       style={{ 
-        display: 'inline-block',
+        display: 'inline-flex',
+        alignItems: 'center',
         marginRight: noMargin ? '0px' : '12px',
         color,
         textDecoration: 'none',
-        lineHeight: 'normal',
+        lineHeight: 1.2,
       }}
     >
       {prefix && (
         <span style={{ 
-          display: 'inline-block',
-          verticalAlign: 'middle',
+          display: 'inline-flex',
+          alignItems: 'center',
           fontWeight: 'bold',
           marginRight: '2px',
         }}>
@@ -99,20 +102,22 @@ export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 
         </span>
       )}
       {showIcon && (
-        // Icon sits on same line as text via verticalAlign middle on the SVG itself
+        // The fixed-height flex wrapper is rendered identically by html2canvas.
         <span style={{ 
-          display: 'inline-block',
-          verticalAlign: 'middle',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '1em',
+          height: '1em',
           marginRight: '3px',
-          lineHeight: 1,
-        }}>
+          flex: '0 0 1em',
+        }} className="resume-link-icon">
           {ICONS[type](color)}
         </span>
       )}
       <span 
         style={{ 
-          display: 'inline-block',
-          verticalAlign: 'middle',
+          display: 'block',
           borderBottom: '1px solid transparent', 
           transition: 'border-color 0.2s',
         }} 

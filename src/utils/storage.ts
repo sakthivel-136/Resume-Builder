@@ -165,7 +165,7 @@ export function importResumeJSON(jsonStr: string): ResumeData | null {
       'educationDegreeSize', 'experienceRoleSize', 'experienceCompanySize',
       'projectNameSize', 'techStackSize', 'skillMode', 'photoShape', 'photoPos',
       'photoSize', 'accentBar', 'accentH', 'mT', 'mR', 'mB', 'mL', 'sbW', 'sbPad',
-      'mainPad', 'gmContact', 'sectionOrder', 'sidebarSections', 'mainSections',
+      'mainPad', 'gmContact', 'showContactIcons', 'sectionOrder', 'sidebarSections', 'mainSections',
       'secVis', 'secNames', 'name', 'title', 'phone', 'email', 'linkedin',
       'github', 'website', 'photo', 'summary', 'education', 'skillGroups',
       'experience', 'projects', 'achievements', 'customSections', 'customContacts',

@@ -95,7 +95,7 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
 
       for (const [index, page] of pages.entries()) {
         const canvas = await html2canvas(page, {
-          scale: 2,
+          scale: 4,
           useCORS: true,
           logging: false,
           backgroundColor: state.bgColor || '#ffffff',
@@ -114,7 +114,23 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
         });
 
         if (index > 0) pdf.addPage([PAGE_WIDTH, PAGE_HEIGHT], 'portrait');
-        pdf.addImage(canvas.toDataURL('image/jpeg', 0.98), 'JPEG', 0, 0, PAGE_WIDTH, PAGE_HEIGHT);
+        pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, PAGE_WIDTH, PAGE_HEIGHT);
+
+        // Add clickable links mapped from DOM to PDF
+        const links = page.querySelectorAll('a');
+        links.forEach((link) => {
+          if (!link.href) return;
+          const rect = link.getBoundingClientRect();
+          const pageRect = page.getBoundingClientRect();
+          const scaleRatio = PAGE_WIDTH / pageRect.width;
+          
+          const x = (rect.left - pageRect.left) * scaleRatio;
+          const y = (rect.top - pageRect.top) * scaleRatio;
+          const w = rect.width * scaleRatio;
+          const h = rect.height * scaleRatio;
+          
+          pdf.link(x, y, w, h, { url: link.href });
+        });
       }
 
       pdf.save(`${state.name.replace(/\s+/g, '_').toLowerCase() || 'resume'}_cv.pdf`);
