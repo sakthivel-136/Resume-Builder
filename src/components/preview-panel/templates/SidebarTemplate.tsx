@@ -536,7 +536,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           return (
             <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
               <h3 
-                className={styles.mainHeading}
+                className={`${styles.mainHeading} ${shared.sectionHeaderLine}`}
                 style={{ 
                   color: hColor, 
                   fontFamily: 'var(--p-heading-font)',
