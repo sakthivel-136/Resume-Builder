@@ -5,7 +5,7 @@ import styles from './ui.module.css';
 
 interface RangeSliderProps {
   label: string;
-  value: number;
+  value?: number;
   min: number;
   max: number;
   step?: number;
@@ -23,6 +23,9 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   onChange,
 }) => {
   const id = useId();
+  // Profiles created before a setting was introduced may omit its value briefly
+  // while hydration and migration complete. Keep both inputs controlled.
+  const safeValue = Number.isFinite(value) ? value! : min;
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,8 +37,8 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   // Percentage for the filled track gradient
   const pct = useMemo(() => {
     if (max === min) return 0;
-    return ((value - min) / (max - min)) * 100;
-  }, [value, min, max]);
+    return ((safeValue - min) / (max - min)) * 100;
+  }, [safeValue, min, max]);
 
   // Inline gradient for the track (WebKit needs this on the input itself)
   const trackStyle: React.CSSProperties = useMemo(
@@ -44,8 +47,6 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
     }),
     [pct]
   );
-
-  const displayValue = `${value}${unit}`;
 
   return (
     <div className={styles.rangeSlider}>
@@ -60,12 +61,12 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
           min={min}
           max={max}
           step={step}
-          value={value}
+          value={safeValue}
           onChange={handleChange}
           style={trackStyle}
           aria-valuemin={min}
           aria-valuemax={max}
-          aria-valuenow={value}
+          aria-valuenow={safeValue}
           aria-label={label}
         />
       </div>
@@ -76,7 +77,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
           min={min}
           max={max}
           step={step}
-          value={value}
+          value={safeValue}
           onChange={(e) => {
             const val = Number(e.target.value);
             if (!isNaN(val)) {

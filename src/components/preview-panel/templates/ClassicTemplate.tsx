@@ -45,8 +45,15 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
     lineH,
     secSp,
     nameSize,
+    titleSize,
+    contactSize,
     headSize,
     bodySize,
+    educationDegreeSize,
+    experienceRoleSize,
+    experienceCompanySize,
+    projectNameSize,
+    techStackSize,
     aColor,
     customContacts,
     bulletType,
@@ -88,7 +95,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
   const renderContactInline = () => {
     if (contacts.length === 0) return null;
     return (
-      <div className={shared.contactInline} style={{ fontSize: `${bodySize * 0.8}px` }}>
+      <div className={shared.contactInline} style={{ fontSize: `${contactSize}px` }}>
         {contacts.map((c, idx) => {
           const href = getContactHref(c);
           return (
@@ -128,6 +135,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         style={{ 
           color: hColor, 
           fontFamily: 'var(--p-heading-font)',
+          fontSize: `${titleSize}px`,
           textAlign: photoPos === 'top-left' ? 'left' : photoPos === 'top-right' ? 'right' : 'center'
         }}
       >
@@ -266,7 +274,6 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           fontFamily: 'var(--p-heading-font)',
           fontSize: `${headSize}px`,
           marginTop: `${secSp}px`,
-          paddingBottom: '6px',
           borderColor: hColor
         }}
       >
@@ -431,7 +438,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                 )}
                 <div id={`entry-${e.id}`} className={`${shared.eduBlock} ${shared.justifiedContent}`}>
                   <div className={shared.eduRow}>
-                    <span className={shared.eduTitle}>{e.degree}</span>
+                    <span className={shared.eduTitle} style={{ fontSize: `${educationDegreeSize}px` }}>{e.degree}</span>
                     <span className={shared.entryDates}>{e.dates}</span>
                   </div>
                   <div className={`${shared.eduSub} ${shared.justifiedContent}`}>
@@ -464,10 +471,10 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                 )}
                 <div id={`entry-${x.id}`} className={`${shared.entryBlock} ${shared.justifiedContent}`}>
                   <div className={shared.entryRow}>
-                    <span className={shared.entryRole}>{x.role}</span>
+                    <span className={shared.entryRole} style={{ fontSize: `${experienceRoleSize}px` }}>{x.role}</span>
                     <span className={shared.entryDates}>{x.dates}</span>
                   </div>
-                  <div className={`${shared.entrySub} ${shared.justifiedContent}`}>{x.company}</div>
+                  <div className={`${shared.entrySub} ${shared.justifiedContent}`} style={{ fontSize: `${experienceCompanySize}px` }}>{x.company}</div>
                   <ul className={shared.points}>
                     {x.points.filter(Boolean).map((pt, pIdx) => (
                       <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
@@ -492,7 +499,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                 <div id={`entry-${p.id}`} className={`${shared.entryBlock} ${shared.justifiedContent}`}>
                   <div className={shared.entryRow}>
                     <span className={shared.entryRole}>
-                      <span style={{ fontWeight: 'bold', color: hColor }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
+                      <span style={{ fontWeight: 'bold', color: hColor, fontSize: `${projectNameSize}px` }}>{p.name}</span>{p.tech ? <span style={{ fontSize: `${techStackSize}px` }}> | {p.tech}</span> : ''}
                     </span>
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>

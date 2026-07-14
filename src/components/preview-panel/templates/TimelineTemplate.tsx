@@ -45,8 +45,15 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
     lineH,
     secSp,
     nameSize,
+    titleSize,
+    contactSize,
     headSize,
     bodySize,
+    educationDegreeSize,
+    experienceRoleSize,
+    experienceCompanySize,
+    projectNameSize,
+    techStackSize,
     customContacts,
     bulletType,
   } = state;
@@ -91,7 +98,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
     if (items.length === 0) return null;
 
     return (
-      <div className={shared.gmContact}>
+      <div className={shared.gmContact} style={{ fontSize: `${contactSize}px` }}>
         {items.map((it, idx) => {
           const href = getContactHref(it.v);
           return (
@@ -130,7 +137,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
     ].filter(Boolean);
     if (cp.length === 0) return null;
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.9em' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: `${contactSize}px` }}>
         {cp.map((c, idx) => {
           const href = getContactHref(c);
           return (
@@ -425,7 +432,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
             {education.map((e, idx) => (
               <div key={e.id || idx} className={`${shared.eduBlock} ${shared.justifiedContent}`}>
                 <div className={shared.eduRow}>
-                  <span className={shared.eduTitle}>{e.degree}</span>
+                  <span className={shared.eduTitle} style={{ fontSize: `${educationDegreeSize}px` }}>{e.degree}</span>
                   <span className={shared.entryDates}>{e.dates}</span>
                 </div>
                 <div className={`${shared.eduSub} ${shared.justifiedContent}`}>
@@ -447,10 +454,10 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
             {experience.map((x, idx) => (
               <div id={`entry-${x.id || idx}`} key={x.id || idx} className={`${shared.entryBlock} ${shared.justifiedContent}`}>
                 <div className={shared.entryRow}>
-                  <span className={shared.entryRole}>{x.role}</span>
+                  <span className={shared.entryRole} style={{ fontSize: `${experienceRoleSize}px` }}>{x.role}</span>
                   <span className={shared.entryDates}>{x.dates}</span>
                 </div>
-                <div className={`${shared.entrySub} ${shared.justifiedContent}`}>{x.company}</div>
+                <div className={`${shared.entrySub} ${shared.justifiedContent}`} style={{ fontSize: `${experienceCompanySize}px` }}>{x.company}</div>
                 <ul className={shared.points} style={{ paddingLeft: '14px' }}>
                   {x.points.filter(Boolean).map((pt, pIdx) => (
                     <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
@@ -469,7 +476,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
               <div id={`entry-${p.id || idx}`} key={p.id || idx} className={`${shared.entryBlock} ${shared.justifiedContent}`}>
                   <div className={shared.entryRow}>
                     <span className={shared.entryRole}>
-                      <span style={{ fontWeight: 'bold', color: hColor }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
+                      <span style={{ fontWeight: 'bold', color: hColor, fontSize: `${projectNameSize}px` }}>{p.name}</span>{p.tech ? <span style={{ fontSize: `${techStackSize}px` }}> | {p.tech}</span> : ''}
                     </span>
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>
@@ -542,7 +549,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
 
         {/* Contact list in sidebar */}
         <div>
-          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor, fontSize: `${headSize}px`, paddingBottom: '6px' }}>Contact</h3>
+          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor, fontSize: `${headSize}px` }}>Contact</h3>
           {state.gmContact ? renderContactGM() : renderContactInline()}
         </div>
 
@@ -585,7 +592,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           <h1 className={styles.name} style={{ fontSize: `${nameSize}px`, color: hColor, fontFamily: 'var(--p-heading-font)' }}>
             {name}
           </h1>
-          <div className={styles.title} style={{ color: hColor }}>{title}</div>
+          <div className={styles.title} style={{ color: hColor, fontSize: `${titleSize}px` }}>{title}</div>
           <div style={{ height: '2px', background: hColor, marginTop: '8px', marginBottom: '8px', opacity: 0.15 }} />
         </div>
 
@@ -604,7 +611,6 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                   color: hColor, 
                   fontFamily: 'var(--p-heading-font)',
                   fontSize: `${headSize}px`,
-                  paddingBottom: '6px',
                   borderColor: hColor
                 }}
               >

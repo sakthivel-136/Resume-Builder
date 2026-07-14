@@ -118,7 +118,9 @@ export function importResumeJSON(jsonStr: string): ResumeData | null {
 
     const standardKeys = new Set([
       'profileId', 'profileName', 'lastEdited', 'tpl', 'pal', 'lineH', 'secSp',
-      'nameSize', 'headSize', 'bodySize', 'skillMode', 'photoShape', 'photoPos',
+      'nameSize', 'titleSize', 'contactSize', 'headSize', 'bodySize', 'detailSize',
+      'educationDegreeSize', 'experienceRoleSize', 'experienceCompanySize',
+      'projectNameSize', 'techStackSize', 'skillMode', 'photoShape', 'photoPos',
       'photoSize', 'accentBar', 'accentH', 'mT', 'mR', 'mB', 'mL', 'sbW', 'sbPad',
       'mainPad', 'gmContact', 'sectionOrder', 'sidebarSections', 'mainSections',
       'secVis', 'secNames', 'name', 'title', 'phone', 'email', 'linkedin',

@@ -93,6 +93,26 @@ const TypographyControls = () => {
         />
 
         <RangeSlider
+          label="Role / Title Size"
+          value={state.titleSize}
+          min={8}
+          max={24}
+          step={0.5}
+          unit="px"
+          onChange={(val) => handleSliderChange('titleSize', val)}
+        />
+
+        <RangeSlider
+          label="Contact Info Size"
+          value={state.contactSize}
+          min={8}
+          max={16}
+          step={0.5}
+          unit="px"
+          onChange={(val) => handleSliderChange('contactSize', val)}
+        />
+
+        <RangeSlider
           label="Heading Size"
           value={state.headSize}
           min={8}
@@ -120,6 +140,56 @@ const TypographyControls = () => {
           step={0.5}
           unit="px"
           onChange={(val) => handleSliderChange('detailSize', val)}
+        />
+
+        <RangeSlider
+          label="Degree / Certificate Size"
+          value={state.educationDegreeSize}
+          min={8}
+          max={18}
+          step={0.5}
+          unit="px"
+          onChange={(val) => handleSliderChange('educationDegreeSize', val)}
+        />
+
+        <RangeSlider
+          label="Job Role / Title Size"
+          value={state.experienceRoleSize}
+          min={8}
+          max={18}
+          step={0.5}
+          unit="px"
+          onChange={(val) => handleSliderChange('experienceRoleSize', val)}
+        />
+
+        <RangeSlider
+          label="Company / Organization Size"
+          value={state.experienceCompanySize}
+          min={8}
+          max={18}
+          step={0.5}
+          unit="px"
+          onChange={(val) => handleSliderChange('experienceCompanySize', val)}
+        />
+
+        <RangeSlider
+          label="Project Name Size"
+          value={state.projectNameSize}
+          min={8}
+          max={18}
+          step={0.5}
+          unit="px"
+          onChange={(val) => handleSliderChange('projectNameSize', val)}
+        />
+
+        <RangeSlider
+          label="Tech Stack Size"
+          value={state.techStackSize}
+          min={8}
+          max={18}
+          step={0.5}
+          unit="px"
+          onChange={(val) => handleSliderChange('techStackSize', val)}
         />
       </div>
     </Card>

@@ -45,8 +45,15 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
     lineH,
     secSp,
     nameSize,
+    titleSize,
+    contactSize,
     headSize,
     bodySize,
+    educationDegreeSize,
+    experienceRoleSize,
+    experienceCompanySize,
+    projectNameSize,
+    techStackSize,
     customContacts,
     bulletType,
   } = state;
@@ -91,7 +98,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
     if (items.length === 0) return null;
 
     return (
-      <div className={shared.gmContact}>
+      <div className={shared.gmContact} style={{ fontSize: `${contactSize}px` }}>
         {items.map((it, idx) => {
           const href = getContactHref(it.v);
           return (
@@ -135,7 +142,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
     ].filter(Boolean);
     if (cp.length === 0) return null;
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85em' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: `${contactSize}px` }}>
         {cp.map((c, idx) => {
           const href = getContactHref(c);
           return (
@@ -375,7 +382,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
             {education.map((e, idx) => (
               <div key={e.id || idx} className={`${shared.eduBlock} ${shared.justifiedContent}`} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
                 <div className={shared.eduRow} style={{ flexDirection: isLeftCol ? 'column' : 'row', alignItems: 'stretch' }}>
-                  <span className={shared.eduTitle}>{e.degree}</span>
+                  <span className={shared.eduTitle} style={{ fontSize: `${educationDegreeSize}px` }}>{e.degree}</span>
                   <span className={shared.entryDates} style={{ opacity: 0.8 }}>{e.dates}</span>
                 </div>
                 <div className={`${shared.eduSub} ${shared.justifiedContent}`}>
@@ -397,10 +404,10 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
             {experience.map((x, idx) => (
               <div id={`entry-${x.id || idx}`} key={x.id || idx} className={`${shared.entryBlock} ${shared.justifiedContent}`} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
                 <div className={shared.entryRow} style={{ flexDirection: isLeftCol ? 'column' : 'row', alignItems: 'stretch' }}>
-                  <span className={shared.entryRole}>{x.role}</span>
+                  <span className={shared.entryRole} style={{ fontSize: `${experienceRoleSize}px` }}>{x.role}</span>
                   <span className={shared.entryDates} style={{ opacity: 0.8 }}>{x.dates}</span>
                 </div>
-                <div className={`${shared.entrySub} ${shared.justifiedContent}`}>{x.company}</div>
+                <div className={`${shared.entrySub} ${shared.justifiedContent}`} style={{ fontSize: `${experienceCompanySize}px` }}>{x.company}</div>
                 <ul className={shared.points}>
                   {x.points.filter(Boolean).map((pt, pIdx) => (
                     <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
@@ -419,7 +426,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
               <div id={`entry-${p.id || idx}`} key={p.id || idx} className={`${shared.entryBlock} ${shared.justifiedContent}`} style={{ fontSize: isLeftCol ? '0.9em' : 'inherit' }}>
                   <div className={shared.entryRow} style={{ flexDirection: isLeftCol ? 'column' : 'row', alignItems: 'stretch' }}>
                     <span className={shared.entryRole}>
-                      <span style={{ fontWeight: 'bold', color: hColor }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
+                      <span style={{ fontWeight: 'bold', color: hColor, fontSize: `${projectNameSize}px` }}>{p.name}</span>{p.tech ? <span style={{ fontSize: `${techStackSize}px` }}> | {p.tech}</span> : ''}
                     </span>
                     <span className={shared.entryDates} style={{ opacity: 0.8 }}>{p.dates}</span>
                   </div>
@@ -489,7 +496,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
 
         {/* Contact list inside left column */}
         <div>
-          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor, paddingBottom: '6px' }}>Contact</h3>
+          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor }}>Contact</h3>
           {state.gmContact ? renderContactGM() : renderContactInline()}
         </div>
 
@@ -498,7 +505,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
           if (!secVis[key]) return null;
           return (
             <div id={`entry-${key}`} key={key}>
-              <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor, paddingBottom: '6px' }}>{secNames[key] || key}</h3>
+              <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ color: hColor, borderColor: hColor }}>{secNames[key] || key}</h3>
               {renderSectionContent(key, true)}
             </div>
           );
@@ -527,7 +534,7 @@ const ModernTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport =
           <h1 className={styles.name} style={{ fontSize: `${nameSize}px`, color: hColor, fontFamily: 'var(--p-heading-font)' }}>
             {name}
           </h1>
-          <div className={styles.title} style={{ color: hColor }}>{title}</div>
+          <div className={styles.title} style={{ color: hColor, fontSize: `${titleSize}px` }}>{title}</div>
         </div>
 
         {/* Inline Photo in right column if top position set */}

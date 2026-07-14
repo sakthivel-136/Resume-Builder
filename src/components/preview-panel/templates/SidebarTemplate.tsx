@@ -45,8 +45,15 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
     lineH,
     secSp,
     nameSize,
+    titleSize,
+    contactSize,
     headSize,
     bodySize,
+    educationDegreeSize,
+    experienceRoleSize,
+    experienceCompanySize,
+    projectNameSize,
+    techStackSize,
     customContacts,
     bulletType,
   } = state;
@@ -91,7 +98,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
     if (items.length === 0) return null;
 
     return (
-      <div className={shared.gmContact}>
+      <div className={shared.gmContact} style={{ fontSize: `${contactSize}px` }}>
         {items.map((it, idx) => {
           const href = getContactHref(it.v);
           return (
@@ -130,7 +137,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
     ].filter(Boolean);
     if (cp.length === 0) return null;
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85em' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: `${contactSize}px` }}>
         {cp.map((c, idx) => {
           const href = getContactHref(c);
           return (
@@ -370,7 +377,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
             {education.map((e, idx) => (
               <div key={e.id || idx} className={`${shared.eduBlock} ${shared.justifiedContent}`} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>
                 <div className={shared.eduRow} style={{ flexDirection: isSidebar ? 'column' : 'row', alignItems: 'stretch' }}>
-                  <span className={shared.eduTitle}>{e.degree}</span>
+                  <span className={shared.eduTitle} style={{ fontSize: `${educationDegreeSize}px` }}>{e.degree}</span>
                   <span className={shared.entryDates} style={{ opacity: 0.8 }}>{e.dates}</span>
                 </div>
                 <div className={`${shared.eduSub} ${shared.justifiedContent}`}>
@@ -392,10 +399,10 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
             {experience.map((x, idx) => (
               <div id={`entry-${x.id || idx}`} key={x.id || idx} className={`${shared.entryBlock} ${shared.justifiedContent}`} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>
                 <div className={shared.entryRow} style={{ flexDirection: isSidebar ? 'column' : 'row', alignItems: 'stretch' }}>
-                  <span className={shared.entryRole}>{x.role}</span>
+                  <span className={shared.entryRole} style={{ fontSize: `${experienceRoleSize}px` }}>{x.role}</span>
                   <span className={shared.entryDates} style={{ opacity: 0.8 }}>{x.dates}</span>
                 </div>
-                <div className={`${shared.entrySub} ${shared.justifiedContent}`}>{x.company}</div>
+                <div className={`${shared.entrySub} ${shared.justifiedContent}`} style={{ fontSize: `${experienceCompanySize}px` }}>{x.company}</div>
                 <ul className={shared.points}>
                   {x.points.filter(Boolean).map((pt, pIdx) => (
                     <li key={pIdx} style={{ lineHeight: lineH }}>{pt}</li>
@@ -414,7 +421,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
               <div id={`entry-${p.id || idx}`} key={p.id || idx} className={`${shared.entryBlock} ${shared.justifiedContent}`} style={{ fontSize: isSidebar ? '0.9em' : 'inherit' }}>
                   <div className={shared.entryRow} style={{ flexDirection: isSidebar ? 'column' : 'row', alignItems: 'stretch' }}>
                     <span className={shared.entryRole}>
-                      <span style={{ fontWeight: 'bold', color: isSidebar ? '#fff' : hColor }}>{p.name}</span>{p.tech ? ` | ${p.tech}` : ''}
+                      <span style={{ fontWeight: 'bold', color: isSidebar ? '#fff' : hColor, fontSize: `${projectNameSize}px` }}>{p.name}</span>{p.tech ? <span style={{ fontSize: `${techStackSize}px` }}> | {p.tech}</span> : ''}
                     </span>
                     <span className={shared.entryDates} style={{ opacity: 0.8 }}>{p.dates}</span>
                   </div>
@@ -482,12 +489,12 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           <h1 className={styles.name} style={{ fontSize: `${nameSize * 0.65}px`, fontFamily: 'var(--p-heading-font)' }}>
             {name}
           </h1>
-          <div className={styles.title}>{title}</div>
+          <div className={styles.title} style={{ fontSize: `${titleSize}px` }}>{title}</div>
         </div>
 
         {/* Contact info in sidebar */}
         <div>
-          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ paddingBottom: '6px' }}>Contact Details</h3>
+          <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`}>Contact Details</h3>
           {state.gmContact ? renderContactGM() : renderContactInline()}
         </div>
 
@@ -496,7 +503,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           if (!secVis[key]) return null;
           return (
             <div id={`entry-${key}`} key={key}>
-              <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`} style={{ paddingBottom: '6px' }}>{secNames[key] || key}</h3>
+              <h3 className={`${styles.sbHeading} ${shared.sectionHeaderLine}`}>{secNames[key] || key}</h3>
               {renderSectionContent(key, true)}
             </div>
           );

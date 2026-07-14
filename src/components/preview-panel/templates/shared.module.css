@@ -48,10 +48,9 @@
 /* Export-only tweaks: when exporting we add extra space so the underline stays lower in PDFs
    `Toolbar.downloadPDF` toggles `document.body.classList.add('exporting')` during export */
 :global(body.exporting) .sectionHeaderLine {
-  /* increase space between title text and border for exported PDF */
-  padding-bottom: 26px;
-  /* a bit more gap after the border so content doesn't appear too close */
-  margin-bottom: 8px;
+  /* Keep the title-to-rule gap visibly larger in html2canvas output. */
+  padding-bottom: 14px;
+  margin-bottom: 9px;
 }
 
 .entryHeader {

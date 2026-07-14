@@ -51,9 +51,16 @@ export interface ResumeData {
   lineH: number;
   secSp: number;
   nameSize: number;
+  titleSize: number;
+  contactSize: number;
   headSize: number;
   bodySize: number;
   detailSize: number;
+  educationDegreeSize: number;
+  experienceRoleSize: number;
+  experienceCompanySize: number;
+  projectNameSize: number;
+  techStackSize: number;
   skillMode: 'text' | 'pills' | 'bullets';
   photoShape: 'circle' | 'rounded' | 'square';
   photoPos: 'top-center' | 'top-left' | 'top-right' | 'sidebar' | 'hidden';

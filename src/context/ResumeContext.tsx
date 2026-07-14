@@ -205,6 +205,14 @@ function resumeReducer(data: ResumeData, action: ResumeAction): ResumeData {
       return {
         ...action.data,
         customContacts: action.data.customContacts || [],
+        detailSize: typeof d.detailSize === 'number' ? d.detailSize : 11,
+        titleSize: typeof d.titleSize === 'number' ? d.titleSize : 16,
+        contactSize: typeof d.contactSize === 'number' ? d.contactSize : 10,
+        educationDegreeSize: typeof d.educationDegreeSize === 'number' ? d.educationDegreeSize : 12,
+        experienceRoleSize: typeof d.experienceRoleSize === 'number' ? d.experienceRoleSize : 12,
+        experienceCompanySize: typeof d.experienceCompanySize === 'number' ? d.experienceCompanySize : 11,
+        projectNameSize: typeof d.projectNameSize === 'number' ? d.projectNameSize : 12,
+        techStackSize: typeof d.techStackSize === 'number' ? d.techStackSize : 11,
         education: (d.education || []).map((e: any) => ({ 
           ...e, 
           id: e.id || generateId(),
