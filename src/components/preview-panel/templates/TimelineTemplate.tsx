@@ -236,6 +236,33 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
     );
   };
 
+  const renderBadgeIcon = (key: string) => {
+    const props = {
+      width: 14,
+      height: 14,
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeWidth: '2.5',
+      strokeLinecap: 'round' as const,
+      strokeLinejoin: 'round' as const,
+    };
+
+    if (key === 'summary') {
+      return <svg {...props}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>;
+    }
+    if (key === 'experience') {
+      return <svg {...props}><rect width="20" height="14" x="2" y="7" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg>;
+    }
+    if (key === 'projects') {
+      return <svg {...props}><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>;
+    }
+    if (key === 'education') {
+      return <svg {...props}><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" /></svg>;
+    }
+    return <svg {...props}><circle cx="12" cy="12" r="10" /><line x1="12" x2="12" y1="8" y2="16" /><line x1="8" x2="16" y1="12" y2="12" /></svg>;
+  };
+
   const renderSectionContent = (key: string) => {
     // Custom section
     if (key.startsWith('custom_')) {
@@ -529,6 +556,8 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           color: state.tColor
         }}
       >
+        <div className={styles.timelineAxis} style={{ background: hColor }} />
+
         {/* Header Block in main content */}
         <div className={styles.headerBlock}>
           <h1 className={styles.name} style={{ fontSize: `${nameSize}px`, color: hColor, fontFamily: 'var(--p-heading-font)' }}>
@@ -543,6 +572,18 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           if (!secVis[key]) return null;
           return (
             <div id={`entry-${key}`} key={key} className={styles.mainSection}>
+              {key !== 'skills' && (
+                <div
+                  className={styles.badge}
+                  style={{
+                    background: hColor,
+                    boxShadow: `0 0 0 4px ${state.bgColor || '#ffffff'}`,
+                    top: `${Math.round((headSize * 1.2 - 32) / 2 + headSize * 0.2)}px`,
+                  }}
+                >
+                  {renderBadgeIcon(key)}
+                </div>
+              )}
               <h3 
                 className={styles.mainHeading}
                 style={{ 
@@ -558,6 +599,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
             </div>
           );
         })}
+        <div className={styles.timelineEndDot} style={{ background: hColor }} />
       </div>
     </div>
   );

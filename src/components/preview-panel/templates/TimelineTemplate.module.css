@@ -29,6 +29,17 @@
   position: relative;
 }
 
+.timelineAxis {
+  position: absolute;
+  left: calc(var(--p-main-pad, 32px) - 32px);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--p-h-color, #122644);
+  transform: translateX(-1px);
+  z-index: 10;
+}
+
 /* Header Area (full width at the top) */
 .headerBlock {
   margin-bottom: 14px;
@@ -81,4 +92,31 @@
   margin-top: 0;
   display: block;
   line-height: 1.2;
+}
+
+.badge {
+  position: absolute;
+  left: -48px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--p-h-color, #122644);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  box-shadow: 0 0 0 4px #ffffff;
+}
+
+.timelineEndDot {
+  position: absolute;
+  left: calc(var(--p-main-pad, 32px) - 36px);
+  bottom: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--p-h-color, #122644);
+  border: 2px solid #ffffff;
+  z-index: 20;
 }
