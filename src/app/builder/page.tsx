@@ -46,14 +46,17 @@ function BuilderContent() {
 
   useEffect(() => {
     if (loading) return;
-    const type = sessionStorage.getItem('login_type');
-    if (type === 'new') {
-      setModalType('new');
-      sessionStorage.removeItem('login_type');
-    } else if (type === 'returning') {
-      setModalType('returning');
-      sessionStorage.removeItem('login_type');
-    }
+    const timer = window.setTimeout(() => {
+      const type = sessionStorage.getItem('login_type');
+      if (type === 'new') {
+        setModalType('new');
+        sessionStorage.removeItem('login_type');
+      } else if (type === 'returning') {
+        setModalType('returning');
+        sessionStorage.removeItem('login_type');
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [loading]);
 
   useEffect(() => {
@@ -77,7 +80,8 @@ function BuilderContent() {
       dispatch({ type: 'LOAD_PROFILE', data: sample });
       addToast('Welcome! We pre-filled a professional template for you.', 'info');
     }
-    setLoading(false);
+    const timer = window.setTimeout(() => setLoading(false), 0);
+    return () => window.clearTimeout(timer);
   }, [user, dispatch, addToast]);
 
   // Bind keyboard shortcuts
@@ -91,15 +95,13 @@ function BuilderContent() {
       addToast('Redo action', 'info');
     },
     save: () => {
-      saveProfile(user?.name || 'anonymous', state);
-      addToast('Work saved!', 'success');
+      if (user?.name) {
+        saveProfile(user.name, state);
+        addToast('Work saved!', 'success');
+      }
     },
     exportPDF: () => {
-      // Trigger PDF download button in Toolbar
-      const el = document.getElementById('resume-content');
-      if (el) {
-        addToast('Export shortcut triggered', 'info');
-      }
+      document.getElementById('download-pdf')?.click();
     }
   });
 
@@ -157,9 +159,9 @@ function BuilderContent() {
           >
             {isNew ? (
               <>
-                We've preloaded a sample template with your name (<b>{user?.displayName}</b>) to help you get started.
+                We&apos;ve preloaded a sample template with your name (<b>{user?.displayName}</b>) to help you get started.
                 <br /><br />
-                <b>💡 Tip:</b> Create custom profile versions by clicking <b>"Create New Profile"</b> in the top-left section manager to keep your different job application CV data perfectly structured!
+                <b>💡 Tip:</b> Create custom profile versions by clicking <b>&quot;Create New Profile&quot;</b> in the top-left section manager to keep your different job application CV data perfectly structured!
               </>
             ) : (
               <>

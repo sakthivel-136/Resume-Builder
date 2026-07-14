@@ -3,6 +3,7 @@
 .container {
   display: flex;
   width: 100%;
+  height: 100%;
   min-height: 100%;
   box-sizing: border-box;
   position: relative;
@@ -97,7 +98,6 @@
 .badge {
   position: absolute;
   left: -48px; /* Centered exactly on the timelineAxis (border-left) */
-  top: -6px;
   width: 32px;
   height: 32px;
   border-radius: 50%;

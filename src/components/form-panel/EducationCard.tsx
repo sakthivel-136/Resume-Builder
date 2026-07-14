@@ -1,6 +1,7 @@
 'use client';
 
 import React, { memo } from 'react';
+import type { Education } from '@/types/resume';
 import { useResume } from '@/context/ResumeContext';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -31,7 +32,7 @@ interface SortableEntryProps {
   dates: string;
   gpa: string;
   onRemove: (idx: number) => void;
-  onUpdate: (idx: number, field: string, value: string) => void;
+  onUpdate: (idx: number, field: keyof Education, value: string) => void;
 }
 
 const SortableEducationEntry = ({
@@ -190,11 +191,11 @@ const EducationCard = () => {
     dispatch({ type: 'REMOVE_EDUCATION', index });
   };
 
-  const handleUpdate = (index: number, field: string, value: string) => {
+  const handleUpdate = (index: number, field: keyof Education, value: string) => {
     dispatch({
       type: 'UPDATE_EDUCATION',
       index,
-      field: field as any,
+      field,
       value,
     });
   };

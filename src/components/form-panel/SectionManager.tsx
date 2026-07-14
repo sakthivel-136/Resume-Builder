@@ -1,6 +1,6 @@
 'use client';
 
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState } from 'react';
 import { useResume } from '@/context/ResumeContext';
 import { useToast } from '@/context/ToastContext';
 import Card from '@/components/ui/Card';
@@ -203,12 +203,6 @@ const SectionManager = () => {
   const [customName, setCustomName] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  useEffect(() => {
-    if (!isAddModalOpen) {
-      setCustomName('');
-    }
-  }, [isAddModalOpen]);
-
   const sensors = useSensors(
     useSensor(MouseSensor, {
       activationConstraint: {
@@ -278,8 +272,8 @@ const SectionManager = () => {
         const container2 = findContainer(id);
 
         if (container1 && container2) {
-          let sidebar = [...state.sidebarSections];
-          let main = [...state.mainSections];
+          const sidebar = [...state.sidebarSections];
+          const main = [...state.mainSections];
 
           if (container1 === container2) {
             const arr = container1 === 'sidebar' ? sidebar : main;
@@ -626,7 +620,10 @@ const SectionManager = () => {
       {/* Add Custom Section Modal */}
       <Modal
         isOpen={isAddModalOpen}
-        onClose={() => setIsAddModalOpen(false)}
+        onClose={() => {
+          setCustomName('');
+          setIsAddModalOpen(false);
+        }}
         title="Add Custom Section"
         actions={
           <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', width: '100%' }}>

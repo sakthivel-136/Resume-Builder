@@ -1,6 +1,7 @@
 'use client';
 
 import React, { memo, useState } from 'react';
+import type { Project } from '@/types/resume';
 import { useResume } from '@/context/ResumeContext';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -119,7 +120,7 @@ interface SortableEntryProps {
   problemStatement?: string;
   proposedSolution?: string;
   onRemove: (idx: number) => void;
-  onUpdate: (idx: number, field: string, val: string) => void;
+  onUpdate: (idx: number, field: keyof Project, val: string) => void;
   onAddPoint: (idx: number) => void;
   onRemovePoint: (projIdx: number, ptIdx: number) => void;
   onUpdatePoint: (projIdx: number, ptIdx: number, val: string) => void;
@@ -404,11 +405,11 @@ const ProjectsCard = () => {
     dispatch({ type: 'REMOVE_PROJECT', index });
   };
 
-  const handleUpdate = (index: number, field: string, value: string) => {
+  const handleUpdate = (index: number, field: keyof Project, value: string) => {
     dispatch({
       type: 'UPDATE_PROJECT',
       index,
-      field: field as any,
+      field,
       value,
     });
   };

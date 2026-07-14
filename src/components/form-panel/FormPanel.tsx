@@ -14,6 +14,7 @@ import {
 import { exportToJson, exportToLatex } from '@/utils/exportService';
 import { importFromJson, importFromLatex } from '@/utils/importService';
 import { createDefaultResume, createSampleResume } from '@/data/defaultResume';
+import type { ProfileMeta } from '@/types/resume';
 import Button from '@/components/ui/Button';
 
 // Style imports
@@ -47,7 +48,7 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
   const redo = () => dispatch({ type: 'REDO' });
   const { addToast } = useToast();
   
-  const [profileList, setProfileList] = useState<any[]>([]);
+  const [profileList, setProfileList] = useState<ProfileMeta[]>([]);
   const [saveStatus, setSaveStatus] = useState<'saved' | 'saving'>('saved');
   const [lastSavedTime, setLastSavedTime] = useState<string>('just now');
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -61,7 +62,8 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
   }, [username]);
 
   useEffect(() => {
-    refreshProfiles();
+    const timer = window.setTimeout(refreshProfiles, 0);
+    return () => window.clearTimeout(timer);
   }, [refreshProfiles]);
 
   // Debounced auto-save logic
@@ -75,7 +77,19 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
     }
 
     setSaveStatus('saving');
-    saveProfile(username, state);
+    const result = saveProfile(username, state);
+    if (result !== 'saved') {
+      const timer = window.setTimeout(() => {
+        setSaveStatus('saved');
+        addToast(
+          result === 'saved_without_photo'
+            ? 'Resume saved, but the photo was removed from storage because browser storage is full.'
+            : 'Browser storage is full. Remove an old profile or export a backup, then try again.',
+          'error'
+        );
+      }, 0);
+      return () => window.clearTimeout(timer);
+    }
     
     const timer = setTimeout(() => {
       setSaveStatus('saved');
@@ -164,9 +178,9 @@ const FormPanel = ({ onToggleTab }: FormPanelProps) => {
         } else {
           addToast('Unsupported file format. Please upload .json', 'error');
         }
-      } catch (err: any) {
-        console.error(err);
-        addToast(err.message || 'Failed to parse file', 'error');
+      } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to parse file';
+        addToast(errorMessage, 'error');
       }
     };
     reader.readAsText(file);

@@ -11,18 +11,35 @@ interface PageInfoBarProps {
 const PageInfoBar = ({ contentHeight }: PageInfoBarProps) => {
   const { state } = useResume();
 
-  const A4_HEIGHT = 1123;
+  const PAGE_HEIGHT = 1123;
+  const PAGE_WIDTH = 794;
   const totalMargin = state.mT + state.mB;
   
-  // Calculate page statistics
-  const usableHeight = A4_HEIGHT;
-  const pageCount = Math.max(1, Math.ceil(contentHeight / usableHeight));
+  // Calculate page statistics based on actual layout with page breaks
+  // This accounts for the layout adjustment logic that pushes content to avoid page break margins
+  const usablePageHeight = PAGE_HEIGHT - totalMargin;
+  
+  // More accurate page calculation that considers page break adjustments
+  // This matches the logic in ResumeRenderer's layout adjustment system
+  let adjustedContentHeight = contentHeight;
+  
+  // Estimate additional height from page break adjustments
+  // Each page boundary can potentially add margin pushes
+  const estimatedPageBreaks = Math.floor(contentHeight / PAGE_HEIGHT);
+  const estimatedPushAdjustments = estimatedPageBreaks * (state.mT + state.mB) * 0.5; // Conservative estimate
+  adjustedContentHeight += estimatedPushAdjustments;
+  
+  const pageCount = Math.max(1, Math.ceil(adjustedContentHeight / PAGE_HEIGHT));
   const isMulti = pageCount > 1;
 
-  // Calculate fit status
-  const maxSinglePageHeight = pageCount * A4_HEIGHT;
-  const isOverflow = contentHeight > maxSinglePageHeight;
-  const overflowPx = isOverflow ? contentHeight - maxSinglePageHeight : 0;
+  // Calculate fit status based on adjusted height
+  const maxContentForPageCount = pageCount * PAGE_HEIGHT;
+  const isOverflow = adjustedContentHeight > maxContentForPageCount;
+  const overflowPx = isOverflow ? adjustedContentHeight - maxContentForPageCount : 0;
+
+  // Calculate actual usable space per page
+  const totalUsableSpace = pageCount * usablePageHeight;
+  const spaceUtilization = Math.min(100, (contentHeight / totalUsableSpace) * 100);
 
   return (
     <div 
@@ -52,7 +69,11 @@ const PageInfoBar = ({ contentHeight }: PageInfoBarProps) => {
           {pageCount} {pageCount === 1 ? 'Page' : 'Pages'}
         </span>
         <span style={{ color: 'var(--text-secondary)' }}>
-          Content Height: <strong style={{ color: 'var(--text-primary)' }}>{contentHeight}px</strong> / {A4_HEIGHT}px
+          Content: <strong style={{ color: 'var(--text-primary)' }}>{contentHeight}px</strong> 
+          {adjustedContentHeight !== contentHeight && (
+            <> → <strong style={{ color: 'var(--text-primary)' }}>{Math.round(adjustedContentHeight)}px</strong></>
+          )}
+          <span style={{ opacity: 0.7 }}> ({Math.round(spaceUtilization)}% used)</span>
         </span>
       </div>
 
@@ -64,14 +85,14 @@ const PageInfoBar = ({ contentHeight }: PageInfoBarProps) => {
               <line x1="12" y1="9" x2="12" y2="13" />
               <line x1="12" y1="17" x2="12.01" y2="17" />
             </svg>
-            Overflows page by {overflowPx}px
+            Estimated overflow: {Math.round(overflowPx)}px
           </span>
         ) : (
           <span style={{ color: 'var(--success)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            Perfect {pageCount === 1 ? 'single-page' : `${pageCount}-page`} fit!
+            {pageCount === 1 ? 'Single-page' : `${pageCount}-page`} layout ready
           </span>
         )}
       </div>

@@ -49,6 +49,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
     contactSize,
     headSize,
     bodySize,
+    detailSize,
     educationDegreeSize,
     experienceRoleSize,
     experienceCompanySize,
@@ -87,12 +88,12 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
 
   const renderContactGM = () => {
     const items = [
-      { l: 'Phone', v: phone },
-      { l: 'Email', v: email },
-      { l: 'LinkedIn', v: linkedin },
-      { l: 'GitHub', v: github },
-      { l: 'Website', v: website },
-      ...(customContacts || []).map(c => ({ l: c.label, v: c.value })),
+      { l: 'Phone', v: phone, display: phone },
+      { l: 'Email', v: email, display: email },
+      { l: 'LinkedIn', v: linkedin, display: linkedin },
+      { l: 'GitHub', v: github, display: github },
+      { l: 'Website', v: website, display: website },
+      ...(customContacts || []).map(c => ({ l: c.label, v: c.value, display: c.label || c.value })),
     ].filter(i => i.v);
 
     if (items.length === 0) return null;
@@ -114,7 +115,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
               </div>
               <div className={shared.gmValue}>
                 {href ? (
-                  <LinkRenderer url={href} label={it.v} showIcon={false} />
+                  <LinkRenderer url={href} label={it.display || it.v} showIcon={false} />
                 ) : (
                   it.v
                 )}
@@ -128,24 +129,24 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
 
   const renderContactInline = () => {
     const cp = [
-      phone,
-      email,
-      linkedin,
-      github,
-      website,
-      ...(customContacts || []).map(c => c.value),
-    ].filter(Boolean);
+      { value: phone, display: phone },
+      { value: email, display: email },
+      { value: linkedin, display: linkedin },
+      { value: github, display: github },
+      { value: website, display: website },
+      ...(customContacts || []).map(c => ({ value: c.value, display: c.label || c.value })),
+    ].filter(c => c.value);
     if (cp.length === 0) return null;
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: `${contactSize}px` }}>
         {cp.map((c, idx) => {
-          const href = getContactHref(c);
+          const href = getContactHref(c.value);
           return (
             <div key={idx} style={{ wordBreak: 'break-all' }}>
               {href ? (
-                <LinkRenderer url={href} label={c} showIcon={false} />
+                <LinkRenderer url={href} label={c.display || c.value} showIcon={false} />
               ) : (
-                c
+                c.value
               )}
             </div>
           );
@@ -224,7 +225,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           return (
             <div key={s.id || idx} style={{ marginBottom: '4px' }}>
               <div className={shared.skillCat} style={{ color: isSidebar ? '#fff' : hColor }}>{s.category}</div>
-              <ul className={shared.points}>
+              <ul className={`${shared.points} ${shared.skillPoints}`}>
                 {items.map((v, sIdx) => (
                   <li key={sIdx} style={{ fontSize: `${bodySize * 0.9}px` }}>{v}</li>
                 ))}
@@ -365,7 +366,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       case 'summary':
         if (!summary) return null;
         return (
-          <div key={key} style={{ fontSize: isSidebar ? '0.9em' : 'inherit', lineHeight: lineH }} className={`${shared.customContent} ${shared.justifiedContent}`}>
+          <div key={key} style={{ fontSize: `${detailSize}px`, lineHeight: lineH }} className={`${shared.customContent} ${shared.justifiedContent}`}>
             {summary}
           </div>
         );
@@ -390,7 +391,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
 
       case 'skills':
         if (skillGroups.length === 0) return null;
-        return <div key={key} className={shared.justifiedContent}>{renderSkills(isSidebar)}</div>;
+        return <div key={key}>{renderSkills(isSidebar)}</div>;
 
       case 'experience':
         if (experience.length === 0) return null;
@@ -426,12 +427,12 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     <span className={shared.entryDates} style={{ opacity: 0.8 }}>{p.dates}</span>
                   </div>
                   {p.problemStatement && (
-                    <div style={{ fontSize: isSidebar ? '0.9em' : 'inherit', marginTop: '4px', marginBottom: '2px', textAlign: 'justify' }}>
+                  <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px', textAlign: 'justify' }}>
                       <strong>PROBLEM:</strong> {p.problemStatement}
                     </div>
                   )}
                   {p.proposedSolution && (
-                    <div style={{ fontSize: isSidebar ? '0.9em' : 'inherit', marginTop: '2px', marginBottom: '4px', textAlign: 'justify' }}>
+                  <div style={{ fontSize: `${detailSize}px`, marginTop: '2px', marginBottom: '4px', textAlign: 'justify' }}>
                       <strong>SOLUTION:</strong> {p.proposedSolution}
                     </div>
                   )}
@@ -441,7 +442,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     ))}
                   </ul>
                   {(p.githubUrl || p.liveUrl) && (
-                    <div style={{ fontSize: `${bodySize * 0.85}px`, marginTop: '4px', marginBottom: '2px' }}>
+                    <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px' }}>
                       {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={isSidebar ? '#fff' : hColor} showIcon={false} prefix="Github Link: " />}
                       {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={isSidebar ? '#fff' : hColor} showIcon={false} prefix="Live In: " />}
                     </div>
@@ -472,13 +473,13 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
   return (
     <div 
       className={styles.container} 
-      style={{ '--sb-width': `${state.sbW}px` } as any}
+      style={{ '--sb-width': `${state.sbW}px` } as React.CSSProperties & Record<'--sb-width', string>}
     >
       {/* Sidebar Column (Dark bg) */}
       <div 
         className={styles.sidebar}
         style={{ 
-          padding: `${isExport ? 0 : state.mT}px ${state.sbPad}px ${isExport ? 0 : state.mB}px ${state.sbPad}px`,
+          padding: `${state.mT}px ${state.sbPad}px ${state.mB}px ${state.sbPad}px`,
           background: state.sidebarBg,
           color: state.sidebarText
         }}
@@ -514,7 +515,7 @@ const SidebarTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       <div 
         className={styles.main}
         style={{ 
-          padding: `${isExport ? 0 : state.mT}px ${state.mR}px ${isExport ? 0 : state.mB}px ${state.mainPad}px`,
+          padding: `${state.mT}px ${state.mR}px ${state.mB}px ${state.mainPad}px`,
           background: state.bgColor,
           color: state.tColor
         }}

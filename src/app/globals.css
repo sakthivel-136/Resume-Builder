@@ -181,3 +181,32 @@ ol {
 .exporting .pdf-page-indicator {
   display: none !important;
 }
+
+/* Resume export page styles for consistent PDF generation */
+.resume-export-page {
+  width: 794px !important;
+  height: 1123px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  page-break-after: always;
+  break-after: page;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  overflow: hidden;
+  position: relative;
+}
+
+.resume-export-page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+/* Ensure consistent rendering during export */
+.exporting .resume-export-page {
+  width: 794px !important;
+  height: 1123px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}

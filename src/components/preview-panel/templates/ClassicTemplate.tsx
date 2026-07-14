@@ -49,6 +49,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
     contactSize,
     headSize,
     bodySize,
+    detailSize,
     educationDegreeSize,
     experienceRoleSize,
     experienceCompanySize,
@@ -61,13 +62,13 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
 
   // Contact list filters out empty details
   const contacts = [
-    phone,
-    email,
-    linkedin,
-    github,
-    website,
-    ...(customContacts || []).map(c => c.value)
-  ].filter(Boolean);
+    { value: phone, display: phone },
+    { value: email, display: email },
+    { value: linkedin, display: linkedin },
+    { value: github, display: github },
+    { value: website, display: website },
+    ...(customContacts || []).map(c => ({ value: c.value, display: c.label || c.value })),
+  ].filter(c => c.value);
 
   // Photo Style helper
   const getPhotoClass = () => {
@@ -97,13 +98,13 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
     return (
       <div className={shared.contactInline} style={{ fontSize: `${contactSize}px` }}>
         {contacts.map((c, idx) => {
-          const href = getContactHref(c);
+          const href = getContactHref(c.value);
           return (
             <span key={idx} style={{ display: 'inline-flex', alignItems: 'center' }}>
               {href ? (
-                <LinkRenderer url={href} label={c} color={hColor} noMargin={true} showIcon={false} />
+                <LinkRenderer url={href} label={c.display || c.value} color={hColor} noMargin={true} showIcon={false} />
               ) : (
-                c
+                c.value
               )}
               {idx < contacts.length - 1 && (
                 <span style={{ margin: '0 10px', opacity: 0.7 }}>|</span>
@@ -206,7 +207,6 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
             display: 'block', 
             marginTop: '6px', 
             lineHeight: 1.4, 
-            textAlign: 'justify',
             fontSize: `${bodySize * 0.95}px`
           }}
         >
@@ -251,7 +251,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           return (
             <div key={s.id || idx} style={{ marginBottom: '4px' }}>
               <div className={shared.skillCat} style={{ color: hColor }}>{s.category}</div>
-              <ul className={shared.points}>
+              <ul className={`${shared.points} ${shared.skillPoints}`}>
                 {items.map((v, sIdx) => (
                   <li key={sIdx} style={{ fontSize: `${bodySize * 0.95}px` }}>{v}</li>
                 ))}
@@ -422,7 +422,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         return (
           <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
             {heading}
-            <div style={{ lineHeight: lineH }} className={`${shared.customContent} ${shared.justifiedContent}`}>{summary}</div>
+            <div style={{ fontSize: `${detailSize}px`, lineHeight: lineH }} className={`${shared.customContent} ${shared.justifiedContent}`}>{summary}</div>
           </div>
         );
 
@@ -455,7 +455,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
         return (
           <div id={`entry-${key}`} key={key} className={shared.entryBlock}>
             {heading}
-            <div className={shared.justifiedContent}>{renderSkills()}</div>
+            {renderSkills()}
           </div>
         );
 
@@ -504,12 +504,12 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>
                   {p.problemStatement && (
-                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '4px', marginBottom: '2px', textAlign: 'justify' }}>
+                    <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px', textAlign: 'justify' }}>
                       <strong>PROBLEM:</strong> {p.problemStatement}
                     </div>
                   )}
                   {p.proposedSolution && (
-                    <div style={{ fontSize: `${bodySize * 0.95}px`, marginTop: '2px', marginBottom: '4px', textAlign: 'justify' }}>
+                    <div style={{ fontSize: `${detailSize}px`, marginTop: '2px', marginBottom: '4px', textAlign: 'justify' }}>
                       <strong>SOLUTION:</strong> {p.proposedSolution}
                     </div>
                   )}
@@ -519,7 +519,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                     ))}
                   </ul>
                   {(p.githubUrl || p.liveUrl) && (
-                    <div style={{ fontSize: `${bodySize * 0.85}px`, marginTop: '4px', marginBottom: '2px' }}>
+                    <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px' }}>
                       {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} showIcon={false} prefix="Github Link: " />}
                       {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} showIcon={false} prefix="Live In: " />}
                     </div>
@@ -565,7 +565,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
       )}
 
       {/* Main layout */}
-      <div style={{ padding: `${isExport ? 0 : state.mT}px ${state.mR}px ${isExport ? 0 : state.mB}px ${state.mL}px` }}>
+      <div style={{ padding: `${state.mT}px ${state.mR}px ${state.mB}px ${state.mL}px` }}>
         {renderHeader()}
         {sectionOrder.map((key) => renderSection(key))}
       </div>

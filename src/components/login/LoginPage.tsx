@@ -94,8 +94,11 @@ export default function LoginPage() {
 
   // Reset scroll and check state if username is changed
   useEffect(() => {
-    setHasScrolledToBottom(false);
-    setIsChecked(false);
+    const timer = window.setTimeout(() => {
+      setHasScrolledToBottom(false);
+      setIsChecked(false);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [name]);
 
   useEffect(() => {
@@ -136,7 +139,9 @@ export default function LoginPage() {
           setDownloadCount(data.count);
         }
       })
-      .catch((err) => console.error('Failed to load global counter:', err));
+      .catch(() => {
+        // Silently fail if counter fetch fails
+      });
   }, []);
 
   // Build returning user data

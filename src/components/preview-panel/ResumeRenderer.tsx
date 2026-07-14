@@ -1,13 +1,12 @@
 'use client';
 
-import React, { memo, useRef, useEffect, useState, useLayoutEffect } from 'react';
+import React, { memo, useRef, useEffect, useState, useLayoutEffect, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import { useResume } from '@/context/ResumeContext';
 import ClassicTemplate from './templates/ClassicTemplate';
 import SidebarTemplate from './templates/SidebarTemplate';
 import ModernTemplate from './templates/ModernTemplate';
 import TimelineTemplate from './templates/TimelineTemplate';
-import { SAMPLE_RESUME_DATA } from '@/data/defaultResume';
 
 interface ResumeRendererProps {
   onHeightChange?: (height: number) => void;
@@ -16,12 +15,12 @@ interface ResumeRendererProps {
 const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
   const { state } = useResume();
   const [contentHeight, setContentHeight] = useState(1123);
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(
+    () => () => undefined,
+    () => true,
+    () => false,
+  );
   const measureRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Measure content height and report back
   useEffect(() => {
@@ -90,6 +89,7 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
     '--p-left-bg': state.leftBg,
     '--p-accent-color': state.aColor,
     '--body-size': `${state.bodySize}px`,
+    '--detail-size': `${state.detailSize}px`,
     '--heading-size': `${state.headSize}px`,
     '--line-height': state.lineH,
     '--p-bullet-char': bulletChar,
@@ -356,30 +356,44 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
   };
 
   const renderExportSheet = (pageIndex: number) => {
+    const isLastPage = pageIndex === pageCount - 1;
+
     return (
       <div 
         key={pageIndex}
-        className="resume-page-sheet"
+        className="resume-export-page"
         style={{
-          width: '100%',
+          width: `${PAGE_WIDTH}px`,
           height: `${PAGE_HEIGHT}px`,
           overflow: 'hidden',
           position: 'relative',
-          pageBreakAfter: 'always',
+          pageBreakAfter: isLastPage ? 'auto' : 'always',
+          breakAfter: isLastPage ? 'auto' : 'page',
           breakInside: 'avoid',
           pageBreakInside: 'avoid',
+          background: state.bgColor || '#ffffff',
+          boxSizing: 'border-box',
+          margin: 0,
+          padding: 0,
         }}
       >
+        {/* Match the visible preview's fixed page slice on every exported page. */}
         <div
           style={{
             ...cssVarsStyle,
-            width: '100%',
+            width: `${PAGE_WIDTH}px`,
             height: `${pageCount * PAGE_HEIGHT}px`,
             transform: `translateY(-${pageIndex * PAGE_HEIGHT}px)`,
             boxSizing: 'border-box',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            fontFamily: state.bFont,
+            fontSize: `${state.bodySize}px`,
+            color: state.tColor,
           }}
         >
-          {renderActiveTemplate(false)}
+          {renderActiveTemplate(true)}
         </div>
       </div>
     );
@@ -446,14 +460,15 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
           <div 
             style={{ 
               position: 'absolute', 
-              left: 0, 
-              top: '-20000px', 
+              left: '-10000px', 
+              top: 0, 
               width: `${PAGE_WIDTH}px`, 
               height: `${pageCount * PAGE_HEIGHT}px`, 
               pointerEvents: 'none', 
-              overflow: 'hidden',
+              overflow: 'visible',
               opacity: 1,
               visibility: 'visible',
+              zIndex: -1000,
             }}
           >
             <div 
@@ -463,14 +478,17 @@ const ResumeRenderer = ({ onHeightChange }: ResumeRendererProps) => {
                 position: 'relative',
                 width: `${PAGE_WIDTH}px`,
                 height: `${pageCount * PAGE_HEIGHT}px`,
+                minHeight: `${pageCount * PAGE_HEIGHT}px`,
                 background: state.bgColor || '#ffffff',
                 boxSizing: 'border-box',
+                overflow: 'visible',
+                display: 'block',
                 fontFamily: state.bFont,
                 fontSize: `${state.bodySize}px`,
                 color: state.tColor,
-                overflow: 'hidden',
               }}
             >
+              {/* Export the exact same fixed page slices used by the preview. */}
               {Array.from({ length: pageCount }).map((_, i) => renderExportSheet(i))}
             </div>
           </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { memo } from 'react';
+import type { SkillGroup } from '@/types/resume';
 import { useResume } from '@/context/ResumeContext';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -29,7 +30,7 @@ interface SortableGroupProps {
   category: string;
   values: string;
   onRemove: (idx: number) => void;
-  onUpdate: (idx: number, field: string, val: string) => void;
+  onUpdate: (idx: number, field: keyof SkillGroup, val: string) => void;
 }
 
 const SortableSkillGroup = ({
@@ -168,11 +169,11 @@ const SkillsCard = () => {
     dispatch({ type: 'REMOVE_SKILL_GROUP', index });
   };
 
-  const handleUpdate = (index: number, field: string, value: string) => {
+  const handleUpdate = (index: number, field: keyof SkillGroup, value: string) => {
     dispatch({
       type: 'UPDATE_SKILL_GROUP',
       index,
-      field: field as any,
+      field,
       value,
     });
   };

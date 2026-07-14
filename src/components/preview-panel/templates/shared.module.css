@@ -45,12 +45,115 @@
   margin-bottom: 3px;
 }
 
-/* Export-only tweaks: when exporting we add extra space so the underline stays lower in PDFs
-   `Toolbar.downloadPDF` toggles `document.body.classList.add('exporting')` during export */
+/* Keep export spacing identical to preview so the page-fit indicator matches PDF output.
+   `Toolbar.downloadPDF` toggles `document.body.classList.add('exporting')` during export. */
 :global(body.exporting) .sectionHeaderLine {
-  /* Keep the title-to-rule gap visibly larger in html2canvas output. */
-  padding-bottom: 14px;
-  margin-bottom: 9px;
+  padding-bottom: 10px;
+  margin-bottom: 3px;
+}
+
+/* Export-specific styles for PDF generation */
+.resumeExportPage {
+  width: 794px !important;
+  height: 1123px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  page-break-after: always;
+  break-after: page;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  overflow: hidden;
+  position: relative;
+}
+
+.resumeExportPage:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+/* Print media queries for consistent PDF rendering */
+@media print {
+  .resumeContainer {
+    width: 794px !important;
+    height: auto !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Force page breaks after approximately one page worth of content */
+  #resume-export {
+    width: 794px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure sections can break appropriately */
+  .sectionTitle {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .entryHeader {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  /* Allow controlled breaks for entry blocks if needed */
+  .entryBlock {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .customSectionContent {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Ensure consistent font rendering in PDF */
+  .sectionTitle,
+  .entryHeader,
+  .entryBlock,
+  .customSectionContent {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  /* Hide page indicators in print/PDF */
+  .pdf-page-indicator {
+    display: none !important;
+  }
+
+  /* Prevent content overflow in print */
+  .resumeContainer,
+  .resumeContainer * {
+    box-sizing: border-box !important;
+  }
+}
+
+/* Exporting class specific styles */
+:global(body.exporting) .resumeExportPage {
+  width: 794px !important;
+  height: 1123px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  page-break-after: always;
+  break-after: page;
+}
+
+:global(body.exporting) .resumeExportPage:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+:global(body.exporting) .pdf-page-indicator {
+  display: none !important;
+}
+
+:global(body.exporting) #resume-export {
+  background: white !important;
 }
 
 .entryHeader {
@@ -95,7 +198,7 @@
 }
 
 .entryDates {
-  font-size: 0.88em;
+  font-size: var(--detail-size, 11px);
   opacity: 0.75;
   white-space: nowrap;
 }
@@ -113,6 +216,7 @@
   margin: calc(var(--p-sec-sp, 12px) * 0.15) 0 0 !important;
   padding-left: 0;
   list-style-type: none;
+  font-size: var(--detail-size, 11px);
 }
 
 .points li {
@@ -153,7 +257,7 @@
 }
 
 .eduSub {
-  font-size: 0.94em;
+  font-size: var(--detail-size, 11px);
   opacity: 0.85;
   text-align: justify;
   text-justify: inter-word;
@@ -164,6 +268,7 @@
   margin: 0;
   padding-left: 0;
   list-style-type: none;
+  font-size: var(--detail-size, 11px);
 }
 
 .achievementList li {
@@ -190,6 +295,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  text-align: left;
 }
 
 .skillCat {
@@ -199,8 +305,11 @@
 
 .skillVals {
   color: var(--p-text-color, #20262f);
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
+}
+
+.skillPoints li {
+  text-align: left;
 }
 
 .skillPill {
@@ -274,7 +383,7 @@
 
 /* Custom Section Rendering */
 .customContent {
-  font-size: 1em;
+  font-size: var(--detail-size, 11px);
   line-height: inherit;
   text-align: justify;
 }

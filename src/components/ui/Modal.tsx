@@ -44,16 +44,22 @@ const Modal: React.FC<ModalProps> = ({
   // Open/Close: sync visibility state with isOpen prop
   useEffect(() => {
     if (isOpen) {
-      setVisible(true);
-      setClosing(false);
+      const timer = window.setTimeout(() => {
+        setVisible(true);
+        setClosing(false);
+      }, 0);
+      return () => window.clearTimeout(timer);
     } else {
       if (visible && !closing) {
-        setClosing(true);
         const timer = setTimeout(() => {
           setVisible(false);
           setClosing(false);
         }, CLOSE_DURATION);
-        return () => clearTimeout(timer);
+        const startClosingTimer = window.setTimeout(() => setClosing(true), 0);
+        return () => {
+          clearTimeout(timer);
+          window.clearTimeout(startClosingTimer);
+        };
       }
     }
   }, [isOpen, visible, closing]);

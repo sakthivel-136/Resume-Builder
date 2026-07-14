@@ -49,6 +49,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
     contactSize,
     headSize,
     bodySize,
+    detailSize,
     educationDegreeSize,
     experienceRoleSize,
     experienceCompanySize,
@@ -87,12 +88,12 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
 
   const renderContactGM = () => {
     const items = [
-      { l: 'Phone', v: phone },
-      { l: 'Email', v: email },
-      { l: 'LinkedIn', v: linkedin },
-      { l: 'GitHub', v: github },
-      { l: 'Website', v: website },
-      ...(customContacts || []).map(c => ({ l: c.label, v: c.value })),
+      { l: 'Phone', v: phone, display: phone },
+      { l: 'Email', v: email, display: email },
+      { l: 'LinkedIn', v: linkedin, display: linkedin },
+      { l: 'GitHub', v: github, display: github },
+      { l: 'Website', v: website, display: website },
+      ...(customContacts || []).map(c => ({ l: c.label, v: c.value, display: c.label || c.value })),
     ].filter(i => i.v);
 
     if (items.length === 0) return null;
@@ -114,7 +115,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
               </div>
               <div className={shared.gmValue} style={{ fontSize: '0.9em', wordBreak: 'break-all' }}>
                 {href ? (
-                  <LinkRenderer url={href} label={it.v} showIcon={false} />
+                  <LinkRenderer url={href} label={it.display || it.v} showIcon={false} />
                 ) : (
                   it.v
                 )}
@@ -128,24 +129,24 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
 
   const renderContactInline = () => {
     const cp = [
-      phone,
-      email,
-      linkedin,
-      github,
-      website,
-      ...(customContacts || []).map(c => c.value),
-    ].filter(Boolean);
+      { value: phone, display: phone },
+      { value: email, display: email },
+      { value: linkedin, display: linkedin },
+      { value: github, display: github },
+      { value: website, display: website },
+      ...(customContacts || []).map(c => ({ value: c.value, display: c.label || c.value })),
+    ].filter(c => c.value);
     if (cp.length === 0) return null;
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: `${contactSize}px` }}>
         {cp.map((c, idx) => {
-          const href = getContactHref(c);
+          const href = getContactHref(c.value);
           return (
             <div key={idx} style={{ wordBreak: 'break-all' }}>
               {href ? (
-                <LinkRenderer url={href} label={c} showIcon={false} />
+                <LinkRenderer url={href} label={c.display || c.value} showIcon={false} />
               ) : (
-                c
+                c.value
               )}
             </div>
           );
@@ -224,7 +225,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           return (
             <div key={s.id || idx} style={{ marginBottom: '6px' }}>
               <div className={shared.skillCat} style={{ color: hColor, fontWeight: 700 }}>{s.category}</div>
-              <ul className={shared.points} style={{ marginTop: '2px', paddingLeft: '14px' }}>
+              <ul className={`${shared.points} ${shared.skillPoints}`} style={{ marginTop: '2px', paddingLeft: '14px' }}>
                 {items.map((v, sIdx) => (
                   <li key={sIdx} style={{ fontSize: `${bodySize * 0.9}px` }}>{v}</li>
                 ))}
@@ -420,7 +421,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
       case 'summary':
         if (!summary) return null;
         return (
-          <div key={key} style={{ fontSize: 'inherit', lineHeight: lineH }} className={`${shared.customContent} ${shared.justifiedContent}`}>
+          <div key={key} style={{ fontSize: `${detailSize}px`, lineHeight: lineH }} className={`${shared.customContent} ${shared.justifiedContent}`}>
             {summary}
           </div>
         );
@@ -445,7 +446,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
 
       case 'skills':
         if (skillGroups.length === 0) return null;
-        return <div key={key} className={shared.justifiedContent}>{renderSkills()}</div>;
+        return <div key={key}>{renderSkills()}</div>;
 
       case 'experience':
         if (experience.length === 0) return null;
@@ -481,12 +482,12 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                     <span className={shared.entryDates}>{p.dates}</span>
                   </div>
                   {p.problemStatement && (
-                    <div style={{ marginTop: '4px', marginBottom: '2px', textAlign: 'justify' }}>
+                    <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px', textAlign: 'justify' }}>
                       <strong>PROBLEM:</strong> {p.problemStatement}
                     </div>
                   )}
                   {p.proposedSolution && (
-                    <div style={{ marginTop: '2px', marginBottom: '4px', textAlign: 'justify' }}>
+                    <div style={{ fontSize: `${detailSize}px`, marginTop: '2px', marginBottom: '4px', textAlign: 'justify' }}>
                       <strong>SOLUTION:</strong> {p.proposedSolution}
                     </div>
                   )}
@@ -496,7 +497,7 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
                     ))}
                   </ul>
                   {(p.githubUrl || p.liveUrl) && (
-                    <div style={{ fontSize: '0.9em', marginTop: '4px', marginBottom: '2px' }}>
+                    <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px' }}>
                       {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} showIcon={false} prefix="Github Link: " />}
                       {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} showIcon={false} prefix="Live In: " />}
                     </div>
@@ -531,8 +532,8 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
         '--sb-width': `${state.sbW}px`,
         '--p-main-pad': `${state.mainPad}px`,
         fontSize: `${bodySize}px`,
-        padding: `${isExport ? 0 : state.mT}px ${state.mR}px ${isExport ? 0 : state.mB}px ${state.mL}px`
-      } as any}
+        padding: `${state.mT}px ${state.mR}px ${state.mB}px ${state.mL}px`
+      } as React.CSSProperties & Record<'--sb-width' | '--p-main-pad', string>}
     >
       {/* Left Sidebar Column */}
       <div 
@@ -602,7 +603,15 @@ const TimelineTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport
           return (
             <div id={`entry-${key}`} key={key} className={styles.mainSection}>
               {/* Timeline circular section icon badge */}
-              <div className={styles.badge} style={{ background: hColor, boxShadow: `0 0 0 4px ${state.bgColor || '#ffffff'}` }}>
+              <div
+                className={styles.badge}
+                style={{
+                  background: hColor,
+                  boxShadow: `0 0 0 4px ${state.bgColor || '#ffffff'}`,
+                  // Position against the heading's visible glyph area, not a fixed page offset.
+                  top: `${Math.round((headSize * 1.2 - 32) / 2 + headSize * 0.2)}px`,
+                }}
+              >
                 {renderBadgeIcon(key)}
               </div>
               <h3 

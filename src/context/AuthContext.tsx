@@ -51,13 +51,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   // On mount, restore session from sessionStorage
   useEffect(() => {
-    setMounted(true);
-    const storedUser = getSessionUser();
-    if (storedUser) {
-      const displayName = getUserDisplayName(storedUser);
-      setUser({ name: storedUser, displayName });
-    }
-    setAllUsers(getAllUsers());
+    const timer = window.setTimeout(() => {
+      setMounted(true);
+      const storedUser = getSessionUser();
+      if (storedUser) {
+        const displayName = getUserDisplayName(storedUser);
+        setUser({ name: storedUser, displayName });
+      }
+      setAllUsers(getAllUsers());
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const login = useCallback((name: string) => {

@@ -12,7 +12,39 @@ const PhotoControls = () => {
   const { addToast } = useToast();
   const [isDragActive, setIsDragActive] = useState(false);
 
-  const handlePhotoUpload = (file: File) => {
+  const compressPhoto = (file: File): Promise<string> => new Promise((resolve, reject) => {
+    const image = new Image();
+    const url = URL.createObjectURL(file);
+
+    image.onload = () => {
+      URL.revokeObjectURL(url);
+      const maxDimension = 512;
+      const scale = Math.min(1, maxDimension / Math.max(image.width, image.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(image.width * scale));
+      canvas.height = Math.max(1, Math.round(image.height * scale));
+      const context = canvas.getContext('2d');
+
+      if (!context) {
+        reject(new Error('Unable to process image'));
+        return;
+      }
+
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL('image/jpeg', 0.82));
+    };
+
+    image.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error('Unable to read image'));
+    };
+
+    image.src = url;
+  });
+
+  const handlePhotoUpload = async (file: File) => {
     if (!file.type.startsWith('image/')) {
       addToast('Please upload an image file (PNG/JPG)', 'error');
       return;
@@ -22,14 +54,13 @@ const PhotoControls = () => {
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      if (e.target?.result) {
-        dispatch({ type: 'SET_FIELD', field: 'photo', value: e.target.result as string });
-        addToast('Photo uploaded successfully!', 'success');
-      }
-    };
-    reader.readAsDataURL(file);
+    try {
+      const compressedPhoto = await compressPhoto(file);
+      dispatch({ type: 'SET_FIELD', field: 'photo', value: compressedPhoto });
+      addToast('Photo uploaded and optimized for saving!', 'success');
+    } catch {
+      addToast('Unable to process this image. Please try another PNG or JPG.', 'error');
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,8 +95,8 @@ const PhotoControls = () => {
     dispatch({ type: 'SET_FIELD', field: 'photoShape', value: shape });
   };
 
-  const handlePosChange = (pos: string) => {
-    dispatch({ type: 'SET_FIELD', field: 'photoPos', value: pos as any });
+  const handlePosChange = (pos: 'top-center' | 'top-left' | 'top-right' | 'sidebar' | 'hidden') => {
+    dispatch({ type: 'SET_FIELD', field: 'photoPos', value: pos });
   };
 
   const handleSizeChange = (val: number) => {
@@ -244,7 +275,7 @@ const PhotoControls = () => {
               id="p-pos-sel"
               className={styles.select}
               value={(state.tpl === 2 || state.tpl === 3 || state.tpl === 4) && state.photoPos !== 'hidden' ? 'sidebar' : state.photoPos}
-              onChange={(e) => handlePosChange(e.target.value)}
+              onChange={(e) => handlePosChange(e.target.value as typeof state.photoPos)}
             >
               {state.tpl === 2 || state.tpl === 3 || state.tpl === 4 ? (
                 <>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { memo } from 'react';
+import type { ResumeData } from '@/types/resume';
 import { useResume } from '@/context/ResumeContext';
 import Card from '@/components/ui/Card';
 import RangeSlider from '@/components/ui/RangeSlider';
@@ -14,8 +15,8 @@ const TypographyControls = () => {
     dispatch({ type: 'SET_FIELD', field, value });
   };
 
-  const handleSliderChange = (field: string, value: number) => {
-    dispatch({ type: 'SET_FIELD', field: field as any, value });
+  const handleSliderChange = (field: keyof ResumeData, value: number) => {
+    dispatch({ type: 'SET_FIELD', field, value });
   };
 
   return (

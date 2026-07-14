@@ -1,6 +1,7 @@
 'use client';
 
 import React, { memo } from 'react';
+import type { ResumeData } from '@/types/resume';
 import { useResume } from '@/context/ResumeContext';
 import Card from '@/components/ui/Card';
 import RangeSlider from '@/components/ui/RangeSlider';
@@ -11,8 +12,8 @@ import styles from './cards.module.css';
 const LayoutControls = () => {
   const { state, dispatch } = useResume();
 
-  const handleSliderChange = (field: string, value: number) => {
-    dispatch({ type: 'SET_FIELD', field: field as any, value });
+  const handleSliderChange = (field: keyof ResumeData, value: number) => {
+    dispatch({ type: 'SET_FIELD', field, value });
   };
 
   const handleToggleContact = (checked: boolean) => {
@@ -181,7 +182,7 @@ const LayoutControls = () => {
           </label>
           <select
             value={state.bulletType || 'disc'}
-            onChange={(e) => dispatch({ type: 'SET_FIELD', field: 'bulletType', value: e.target.value as any })}
+            onChange={(e) => dispatch({ type: 'SET_FIELD', field: 'bulletType', value: e.target.value as ResumeData['bulletType'] })}
             style={{
               width: '100%',
               padding: '8px 12px',

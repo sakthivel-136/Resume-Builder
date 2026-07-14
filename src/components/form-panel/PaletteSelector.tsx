@@ -1,11 +1,11 @@
 'use client';
 
 import React, { memo } from 'react';
+import type { ResumeData } from '@/types/resume';
 import { useResume } from '@/context/ResumeContext';
 import Card from '@/components/ui/Card';
 import ColorPicker from '@/components/ui/ColorPicker';
 import { PALETTES } from '@/data/palettes';
-import styles from './cards.module.css';
 
 const PaletteSelector = () => {
   const { state, dispatch } = useResume();
@@ -16,8 +16,8 @@ const PaletteSelector = () => {
     dispatch({ type: 'SET_PALETTE', pal: idx });
   };
 
-  const handleCustomColor = (field: string, val: string) => {
-    dispatch({ type: 'SET_FIELD', field: field as any, value: val });
+  const handleCustomColor = (field: keyof ResumeData, val: string) => {
+    dispatch({ type: 'SET_FIELD', field, value: val });
   };
 
   return (

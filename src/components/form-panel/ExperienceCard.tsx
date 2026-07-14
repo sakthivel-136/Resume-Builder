@@ -1,6 +1,7 @@
 'use client';
 
 import React, { memo } from 'react';
+import type { Experience } from '@/types/resume';
 import { useResume } from '@/context/ResumeContext';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -111,7 +112,7 @@ interface SortableEntryProps {
   dates: string;
   points: string[];
   onRemove: (idx: number) => void;
-  onUpdate: (idx: number, field: string, val: string) => void;
+  onUpdate: (idx: number, field: keyof Experience, val: string) => void;
   onAddPoint: (idx: number) => void;
   onRemovePoint: (expIdx: number, ptIdx: number) => void;
   onUpdatePoint: (expIdx: number, ptIdx: number, val: string) => void;
@@ -328,11 +329,11 @@ const ExperienceCard = () => {
     dispatch({ type: 'REMOVE_EXPERIENCE', index });
   };
 
-  const handleUpdate = (index: number, field: string, value: string) => {
+  const handleUpdate = (index: number, field: keyof Experience, value: string) => {
     dispatch({
       type: 'UPDATE_EXPERIENCE',
       index,
-      field: field as any,
+      field,
       value,
     });
   };

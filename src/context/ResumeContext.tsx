@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useReducer, useEffect, useCallback, useMemo, useRef } from 'react';
-import { ResumeData, ResumeAction } from '@/types/resume';
+import { ResumeData, ResumeAction, Education, Experience, Project, SkillGroup } from '@/types/resume';
 import { createDefaultResume } from '@/data/defaultResume';
 import { useAuth } from '@/context/AuthContext';
 import { saveProfile, loadProfile, getLastEditedProfileId, getUserProfiles } from '@/utils/storage';
@@ -201,47 +201,76 @@ function resumeReducer(data: ResumeData, action: ResumeAction): ResumeData {
 
     // Profile
     case 'LOAD_PROFILE': {
-      const d = action.data as any;
+      const incomingData = action.data;
+      
+      // Type-safe helper functions
+      const ensureNumber = (value: unknown, defaultValue: number): number => 
+        typeof value === 'number' ? value : defaultValue;
+        
+      const ensureString = (value: unknown, defaultValue = ''): string =>
+        typeof value === 'string' ? value : defaultValue;
+        
+      const ensureArray = (value: unknown, defaultValue: unknown[] = []): unknown[] =>
+        Array.isArray(value) ? value : defaultValue;
+
+      const ensureRecord = (value: unknown): Record<string, unknown> =>
+        typeof value === 'object' && value !== null ? value as Record<string, unknown> : {};
+
       return {
-        ...action.data,
-        customContacts: action.data.customContacts || [],
-        detailSize: typeof d.detailSize === 'number' ? d.detailSize : 11,
-        titleSize: typeof d.titleSize === 'number' ? d.titleSize : 16,
-        contactSize: typeof d.contactSize === 'number' ? d.contactSize : 10,
-        educationDegreeSize: typeof d.educationDegreeSize === 'number' ? d.educationDegreeSize : 12,
-        experienceRoleSize: typeof d.experienceRoleSize === 'number' ? d.experienceRoleSize : 12,
-        experienceCompanySize: typeof d.experienceCompanySize === 'number' ? d.experienceCompanySize : 11,
-        projectNameSize: typeof d.projectNameSize === 'number' ? d.projectNameSize : 12,
-        techStackSize: typeof d.techStackSize === 'number' ? d.techStackSize : 11,
-        education: (d.education || []).map((e: any) => ({ 
+        ...incomingData,
+        customContacts: incomingData.customContacts || [],
+        detailSize: ensureNumber(incomingData.detailSize, 11),
+        titleSize: ensureNumber(incomingData.titleSize, 16),
+        contactSize: ensureNumber(incomingData.contactSize, 10),
+        educationDegreeSize: ensureNumber(incomingData.educationDegreeSize, 12),
+        experienceRoleSize: ensureNumber(incomingData.experienceRoleSize, 12),
+        experienceCompanySize: ensureNumber(incomingData.experienceCompanySize, 11),
+        projectNameSize: ensureNumber(incomingData.projectNameSize, 12),
+        techStackSize: ensureNumber(incomingData.techStackSize, 11),
+        education: ensureArray(incomingData.education).map((value): Education => {
+          const e = ensureRecord(value);
+          return {
           ...e, 
-          id: e.id || generateId(),
-          school: e.school || e.institution || '',
-          dates: e.dates || e.duration || '',
-          gpa: e.gpa || e.details || ''
-        })),
-        experience: (d.experience || []).map((e: any) => ({
+          id: ensureString(e.id) || generateId(),
+          school: ensureString(e.school ?? e.institution),
+          dates: ensureString(e.dates ?? e.duration),
+          gpa: ensureString(e.gpa ?? e.details),
+          degree: ensureString(e.degree)
+        }; }),
+        experience: ensureArray(incomingData.experience).map((value): Experience => {
+          const e = ensureRecord(value);
+          const company = ensureString(e.company);
+          const location = ensureString(e.location);
+          return {
           ...e,
-          id: e.id || generateId(),
-          dates: e.dates || e.duration || '',
-          points: e.points || e.bullets || (e.details ? [e.details] : []),
-          company: e.company + (e.location && !e.company?.includes(e.location) ? `, ${e.location}` : '')
-        })),
-        projects: (d.projects || []).map((p: any) => ({
+          id: ensureString(e.id) || generateId(),
+          dates: ensureString(e.dates ?? e.duration),
+          points: ensureArray(e.points ?? e.bullets ?? (e.details ? [e.details] : [])).map(point => ensureString(point)),
+          company: company + (location && !company.includes(location) ? `, ${location}` : ''),
+          role: ensureString(e.role)
+        }; }),
+        projects: ensureArray(incomingData.projects).map((value): Project => {
+          const p = ensureRecord(value);
+          return {
           ...p,
-          id: p.id || generateId(),
-          dates: p.dates || p.duration || '',
-          points: p.points || p.bullets || (p.details ? [p.details] : []),
-          githubUrl: p.githubUrl || '',
-          liveUrl: p.liveUrl || '',
-          problemStatement: p.problemStatement || '',
-          proposedSolution: p.proposedSolution || ''
-        })),
-        skillGroups: (d.skillGroups || []).map((sg: any) => ({
+          id: ensureString(p.id) || generateId(),
+          dates: ensureString(p.dates ?? p.duration),
+          points: ensureArray(p.points ?? p.bullets ?? (p.details ? [p.details] : [])).map(point => ensureString(point)),
+          githubUrl: ensureString(p.githubUrl),
+          liveUrl: ensureString(p.liveUrl),
+          problemStatement: ensureString(p.problemStatement),
+          proposedSolution: ensureString(p.proposedSolution),
+          name: ensureString(p.name),
+          tech: ensureString(p.tech)
+        }; }),
+        skillGroups: ensureArray(incomingData.skillGroups).map((value): SkillGroup => {
+          const sg = ensureRecord(value);
+          return {
           ...sg,
-          id: sg.id || generateId(),
-          values: sg.values || sg.items || ''
-        }))
+          id: ensureString(sg.id) || generateId(),
+          values: ensureString(sg.values ?? sg.items),
+          category: ensureString(sg.category)
+        }; })
       };
     }
     case 'RESET_PROFILE':
@@ -295,7 +324,7 @@ function historyReducer(history: HistoryState, action: ResumeAction): HistorySta
 
 export function ResumeProvider({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
-  const username = user?.name || 'anonymous';
+  const username = user?.name;
   const [history, dispatchHistory] = useReducer(historyReducer, {
     past: [],
     present: createDefaultResume(),

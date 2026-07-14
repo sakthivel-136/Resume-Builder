@@ -21,12 +21,12 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
 
   // Zoom options
   const handleZoomOut = () => {
-    if (zoom === 'fit' as any) setZoom(1.0);
+    if (zoom === 'fit') setZoom(1.0);
     else setZoom(Math.max(0.5, (zoom as number) - 0.15));
   };
 
   const handleZoomIn = () => {
-    if (zoom === 'fit' as any) setZoom(1.0);
+    if (zoom === 'fit') setZoom(1.0);
     else setZoom(Math.min(1.5, (zoom as number) + 0.15));
   };
 
@@ -39,8 +39,12 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
     setIsExporting(true);
     addToast('Generating your PDF...', 'info');
 
-    // Prefer using the visible preview container first, but fall back to the hidden export container if needed
-    const element = document.getElementById('resume-content') || document.getElementById('resume-export');
+    // Try export container first, fallback to preview content
+    let element = document.getElementById('resume-export');
+    if (!element || element.children.length === 0) {
+      element = document.getElementById('resume-content');
+    }
+    
     if (!element) {
       addToast('Resume content not found', 'error');
       setIsExporting(false);
@@ -49,6 +53,7 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
 
     try {
       document.body.classList.add('exporting');
+      
       // Wait for font system to be ready (downloads finished)
       if (document.fonts?.ready) {
         await document.fonts.ready;
@@ -62,20 +67,23 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
         ]).catch(() => undefined);
       }
 
-      // Wait two paints so browser has applied metrics and reflowed
+      // Wait for layout to stabilize
       await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
       const html2pdf = (await import('html2pdf.js')).default;
       
-      // Configure export settings (enable letterRendering for accurate letter-spaced text)
-      const elementWidth = element.scrollWidth || element.clientWidth;
+      // Configure export settings to match preview pagination exactly
+      const PAGE_WIDTH = 794;
+      const PAGE_HEIGHT = 1123;
+      const elementWidth = PAGE_WIDTH;
       const elementHeight = element.scrollHeight || element.clientHeight;
+      
       const opt = {
         margin: 0,
         filename: `${state.name.replace(/\s+/g, '_').toLowerCase() || 'resume'}_cv.pdf`,
         image: { type: 'jpeg' as const, quality: 0.98 },
         html2canvas: { 
-          scale: 3.125, 
+          scale: 2,
           useCORS: true, 
           logging: false,
           letterRendering: true,
@@ -85,9 +93,19 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
           windowHeight: elementHeight,
           scrollX: 0,
           scrollY: 0,
+          allowTaint: false,
+          backgroundColor: state.bgColor || '#ffffff',
         },
-        jsPDF: { unit: 'px', format: [794, 1123] as [number, number], hotfixes: ['px_scaling'] },
-        pagebreak: { mode: ['css', 'legacy'] }
+        jsPDF: { 
+          unit: 'px', 
+          format: [PAGE_WIDTH, PAGE_HEIGHT] as [number, number], 
+          hotfixes: ['px_scaling'],
+        },
+        pagebreak: {
+          // Each child is an A4-sized slice with an explicit CSS page break.
+          mode: ['css', 'legacy'],
+          avoid: 'img'
+        }
       };
 
       // Run generator
@@ -100,11 +118,10 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
       }, 3500);
 
       // Increment global PDF download counter
-      await fetch('/api/counter', { method: 'POST' }).catch((err) =>
-        console.error('Failed to increment global counter:', err)
-      );
+      await fetch('/api/counter', { method: 'POST' }).catch(() => {
+        // Silently fail if counter increment fails
+      });
     } catch (err) {
-      console.error(err);
       addToast('Failed to export PDF', 'error');
     } finally {
       setIsExporting(false);
@@ -240,6 +257,7 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
           </Button>
 
           <Button 
+            id="download-pdf"
             variant="primary" 
             size="sm" 
             onClick={downloadPDF} 

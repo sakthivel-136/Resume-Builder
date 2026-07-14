@@ -1,4 +1,4 @@
-import { ResumeData } from '@/types/resume';
+import { ResumeData, Education, Experience, Project, SkillGroup, CustomSection } from '@/types/resume';
 
 export function importFromJson(text: string): ResumeData {
   const data = JSON.parse(text);
@@ -98,7 +98,7 @@ export function importFromLatex(text: string, currentState: ResumeData): ResumeD
   const eduMatch = text.match(/%===EDUCATION===([\s\S]*?)(?=%===|$)/);
   if (eduMatch) {
     const block = eduMatch[1];
-    const eduList: any[] = [];
+    const eduList: Education[] = [];
     const eduRegex = /\\resumeSubheading\s*\{([^\}]+)\}\s*\{([^\}]+)\}\s*\{([^\}]+)\}\s*\{([^\}]*)\}/g;
     let m;
     while ((m = eduRegex.exec(block)) !== null) {
@@ -117,7 +117,7 @@ export function importFromLatex(text: string, currentState: ResumeData): ResumeD
   const expMatch = text.match(/%===EXPERIENCE===([\s\S]*?)(?=%===|$)/);
   if (expMatch) {
     const block = expMatch[1];
-    const expList: any[] = [];
+    const expList: Experience[] = [];
     const subheadings = block.split(/\\resumeSubheading/);
     subheadings.slice(1).forEach(subBlock => {
       const fullSubBlock = '\\resumeSubheading' + subBlock;
@@ -151,7 +151,7 @@ export function importFromLatex(text: string, currentState: ResumeData): ResumeD
   const projMatch = text.match(/%===PROJECTS===([\s\S]*?)(?=%===|$)/);
   if (projMatch) {
     const block = projMatch[1];
-    const projList: any[] = [];
+    const projList: Project[] = [];
     const subheadings = block.split(/\\resumeProjectHeading/);
     subheadings.slice(1).forEach(subBlock => {
       const fullSubBlock = '\\resumeProjectHeading' + subBlock;
@@ -198,7 +198,7 @@ export function importFromLatex(text: string, currentState: ResumeData): ResumeD
   const skillsMatch = text.match(/%===SKILLS===([\s\S]*?)(?=%===|$)/);
   if (skillsMatch) {
     const block = skillsMatch[1];
-    const skillGroups: any[] = [];
+    const skillGroups: SkillGroup[] = [];
     const skillLineRegex = /\\textbf\s*\{([^\}]+)\}\s*:\s*\{([^\}]+)\}/g;
     let m;
     while ((m = skillLineRegex.exec(block)) !== null) {
@@ -222,7 +222,7 @@ export function importFromLatex(text: string, currentState: ResumeData): ResumeD
     const block = cm[3];
 
     const startMatch = block.match(/\\resumeCustomSectionStart\s*\{[^\}]*\}\s*\{([^\}]+)\}/);
-    const type = startMatch ? (startMatch[1].trim() as any) : 'text';
+    const type = (startMatch ? startMatch[1].trim() : 'text') as CustomSection['type'];
 
     let content = '';
     if (type === 'list' || type === 'simplelist') {
@@ -234,7 +234,7 @@ export function importFromLatex(text: string, currentState: ResumeData): ResumeD
       }
       content = items.join('\n');
     } else {
-      let cleanBlock = block
+      const cleanBlock = block
         .replace(/\\resumeCustomSectionStart\s*\{[^\}]*\}\s*\{[^\}]*\}/g, '')
         .replace(/\\resumeCustomSectionEnd/g, '')
         .trim();

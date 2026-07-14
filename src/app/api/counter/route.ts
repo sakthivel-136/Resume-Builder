@@ -29,8 +29,7 @@ function getTimeDrift(): number {
     }
     
     return weekdaysCount * 17;
-  } catch (err) {
-    console.error('Error calculating time drift:', err);
+  } catch {
     return 0;
   }
 }
@@ -50,8 +49,7 @@ function getCount(): number {
     const validRecorded = isNaN(recorded) ? 0 : recorded;
     
     return 142 + getTimeDrift() + validRecorded;
-  } catch (err) {
-    console.error('Error reading counter file:', err);
+  } catch {
     return 142 + getTimeDrift();
   }
 }
@@ -73,8 +71,7 @@ function incrementCount(): number {
     const nextRecorded = currentRecorded + 1;
     fs.writeFileSync(counterFilePath, nextRecorded.toString(), 'utf-8');
     return 142 + getTimeDrift() + nextRecorded;
-  } catch (err) {
-    console.error('Error writing counter file:', err);
+  } catch {
     return getCount();
   }
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { memo } from 'react';
+import type { ResumeData } from '@/types/resume';
 import { useResume } from '@/context/ResumeContext';
 import Card from '@/components/ui/Card';
 import styles from './cards.module.css';
@@ -8,8 +9,8 @@ import styles from './cards.module.css';
 const PersonalInfoCard = () => {
   const { state, dispatch } = useResume();
 
-  const handleChange = (field: string, value: string) => {
-    dispatch({ type: 'SET_FIELD', field: field as any, value });
+  const handleChange = (field: keyof ResumeData, value: string) => {
+    dispatch({ type: 'SET_FIELD', field, value });
   };
 
   return (

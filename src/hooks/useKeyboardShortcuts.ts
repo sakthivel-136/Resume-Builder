@@ -20,7 +20,10 @@ interface ShortcutHandlers {
 export function useKeyboardShortcuts(handlers: ShortcutHandlers): void {
   // Use refs so the effect never re-registers on handler changes
   const handlersRef = useRef(handlers);
-  handlersRef.current = handlers;
+
+  useEffect(() => {
+    handlersRef.current = handlers;
+  }, [handlers]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     const mod = e.metaKey || e.ctrlKey;

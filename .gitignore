@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Development and debug files
+*.py
+*.log
+test_pagination.js
+layout_debug.log
+original_prompt.txt
+CLAUDE.md
+Screenshot*.png
+tgs-logo.png

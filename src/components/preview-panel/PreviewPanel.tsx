@@ -46,7 +46,7 @@ const PreviewPanel = ({ onToggleTab }: PreviewPanelProps) => {
         {/* Toolbar */}
         <Toolbar 
           contentHeight={contentHeight} 
-          zoom={zoom as any} 
+          zoom={zoom} 
           setZoom={setZoom} 
           isExporting={isExporting}
           setIsExporting={setIsExporting}
