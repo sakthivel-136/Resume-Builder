@@ -39,10 +39,11 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
     setIsExporting(true);
     addToast('Generating your PDF...', 'info');
 
-    // Try export container first, fallback to preview content
-    let element = document.getElementById('resume-export');
+    // Capture the rendered preview. It is visible and reliably available in
+    // production browsers, unlike an off-screen copy of the resume.
+    let element = document.getElementById('resume-content');
     if (!element || element.children.length === 0) {
-      element = document.getElementById('resume-content');
+      element = document.getElementById('resume-export');
     }
     
     if (!element) {
@@ -70,46 +71,53 @@ const Toolbar = ({ contentHeight, zoom, setZoom, isExporting, setIsExporting, on
       // Wait for layout to stabilize
       await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
-      const html2pdf = (await import('html2pdf.js')).default;
-      
-      // Configure export settings to match preview pagination exactly
+      const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
+        import('html2canvas'),
+        import('jspdf'),
+      ]);
+
+      const pages = Array.from(element.querySelectorAll<HTMLElement>('.resume-page-sheet, .resume-export-page'));
+      if (pages.length === 0) {
+        throw new Error('No resume pages found');
+      }
+
+      // Build the PDF one visible page at a time. This avoids html2pdf's
+      // automatic page splitting, which can produce blank pages in production.
       const PAGE_WIDTH = 794;
       const PAGE_HEIGHT = 1123;
-      const elementWidth = PAGE_WIDTH;
-      const elementHeight = element.scrollHeight || element.clientHeight;
-      
-      const opt = {
-        margin: 0,
-        filename: `${state.name.replace(/\s+/g, '_').toLowerCase() || 'resume'}_cv.pdf`,
-        image: { type: 'jpeg' as const, quality: 0.98 },
-        html2canvas: { 
-          scale: 2,
-          useCORS: true, 
-          logging: false,
-          letterRendering: true,
-          width: elementWidth,
-          height: elementHeight,
-          windowWidth: elementWidth,
-          windowHeight: elementHeight,
-          scrollX: 0,
-          scrollY: 0,
-          allowTaint: false,
-          backgroundColor: state.bgColor || '#ffffff',
-        },
-        jsPDF: { 
-          unit: 'px', 
-          format: [PAGE_WIDTH, PAGE_HEIGHT] as [number, number], 
-          hotfixes: ['px_scaling'],
-        },
-        pagebreak: {
-          // Each child is an A4-sized slice with an explicit CSS page break.
-          mode: ['css', 'legacy'],
-          avoid: 'img'
-        }
-      };
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: [PAGE_WIDTH, PAGE_HEIGHT],
+        hotfixes: ['px_scaling'],
+        compress: true,
+      });
 
-      // Run generator
-      await html2pdf().set(opt).from(element).save();
+      for (const [index, page] of pages.entries()) {
+        const canvas = await html2canvas(page, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          backgroundColor: state.bgColor || '#ffffff',
+          windowWidth: PAGE_WIDTH,
+          windowHeight: PAGE_HEIGHT,
+          onclone: (clonedDocument) => {
+            // The preview is visually scaled to fit the workspace. Remove that
+            // display-only scale in the capture clone so each page is full A4.
+            const clonedContent = clonedDocument.getElementById('resume-content');
+            const scaleContainer = clonedContent?.parentElement?.parentElement as HTMLElement | null;
+            if (scaleContainer) {
+              scaleContainer.style.transform = 'none';
+              scaleContainer.style.position = 'static';
+            }
+          },
+        });
+
+        if (index > 0) pdf.addPage([PAGE_WIDTH, PAGE_HEIGHT], 'portrait');
+        pdf.addImage(canvas.toDataURL('image/jpeg', 0.98), 'JPEG', 0, 0, PAGE_WIDTH, PAGE_HEIGHT);
+      }
+
+      pdf.save(`${state.name.replace(/\s+/g, '_').toLowerCase() || 'resume'}_cv.pdf`);
       addToast('PDF downloaded successfully!', 'success');
 
       // Show backup prompt modal after 3.5 seconds

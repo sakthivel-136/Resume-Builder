@@ -182,6 +182,22 @@ ol {
   display: none !important;
 }
 
+/* The live preview is also the PDF source. Keep its fixed A4 sheets intact
+   and remove only the on-screen presentation styling during capture. */
+.exporting #resume-content .resume-page-sheet {
+  margin-bottom: 0 !important;
+  box-shadow: none !important;
+  page-break-after: always;
+  break-after: page;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.exporting #resume-content .resume-page-sheet:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
 /* Resume export page styles for consistent PDF generation */
 .resume-export-page {
   width: 794px !important;
