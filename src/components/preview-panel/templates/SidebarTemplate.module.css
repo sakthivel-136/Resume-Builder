@@ -6,6 +6,7 @@
   min-height: 100%;
   grid-template-columns: var(--sb-width, 200px) 1fr;
   box-sizing: border-box;
+  line-height: var(--line-height, 1.45);
 }
 
 .sidebar {
@@ -15,7 +16,7 @@
   --p-text-color: var(--p-sidebar-text, #ffffff);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--p-sec-sp, 12px);
   box-sizing: border-box;
   overflow: hidden;
 }

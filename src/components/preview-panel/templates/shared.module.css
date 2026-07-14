@@ -39,17 +39,16 @@
   width: 100%;
   /* Use a real border so PDF renderers keep spacing consistent */
   border-bottom: 1.5px solid var(--p-heading-color, currentColor);
-  /* space between title text and the border */
-  padding-bottom: 10px;
-  /* small gap after the border before section content */
-  margin-bottom: 3px;
+  /* Keep the heading-to-content rhythm proportional to the section control. */
+  padding-bottom: calc(var(--p-sec-sp, 12px) * 0.45);
+  margin-bottom: calc(var(--p-sec-sp, 12px) * 0.2);
 }
 
 /* Keep export spacing identical to preview so the page-fit indicator matches PDF output.
    `Toolbar.downloadPDF` toggles `document.body.classList.add('exporting')` during export. */
 :global(body.exporting) .sectionHeaderLine {
-  padding-bottom: 10px;
-  margin-bottom: 3px;
+  padding-bottom: calc(var(--p-sec-sp, 12px) * 0.45);
+  margin-bottom: calc(var(--p-sec-sp, 12px) * 0.2);
 }
 
 /* Export-specific styles for PDF generation */
@@ -294,7 +293,7 @@
 .skillsContainer {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: calc(var(--p-sec-sp, 12px) * 0.25);
   text-align: left;
 }
 
@@ -332,13 +331,13 @@
 .gmContact {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: calc(var(--p-sec-sp, 12px) * 0.4);
 }
 
 .gmItem {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: calc(var(--p-sec-sp, 12px) * 0.1);
 }
 
 .gmLabel {

@@ -8,6 +8,7 @@
   box-sizing: border-box;
   position: relative;
   background: var(--p-bg-color, #ffffff);
+  line-height: var(--line-height, 1.45);
 }
 
 /* Left Sidebar Column */
@@ -17,7 +18,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--p-sec-sp, 12px);
   border-right: 1.5px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -26,18 +27,6 @@
   flex: 1;
   box-sizing: border-box;
   position: relative;
-}
-
-/* Vertical Timeline separator axis */
-.timelineAxis {
-  position: absolute;
-  left: calc(var(--p-main-pad, 32px) - 32px);
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--p-h-color, #122644);
-  transform: translateX(-1px); /* Center exactly on the boundary line */
-  z-index: 10;
 }
 
 /* Header Area (full width at the top) */
@@ -92,45 +81,4 @@
   margin-top: 0;
   display: block;
   line-height: 1.2;
-}
-
-/* Timeline Circular Badge Icon */
-.badge {
-  position: absolute;
-  left: -48px; /* Centered exactly on the timelineAxis (border-left) */
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--p-h-color, #122644);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-  box-shadow: 0 0 0 4px #ffffff;
-}
-
-/* Timeline Entry connection Node Dot */
-.nodeDot {
-  position: absolute;
-  left: -37px; /* Centered on the border axis */
-  top: 6px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--p-h-color, #122644);
-  border: 2px solid #ffffff;
-  z-index: 20;
-}
-
-.timelineEndDot {
-  position: absolute;
-  left: calc(var(--p-main-pad, 32px) - 36px);
-  bottom: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--p-h-color, #122644);
-  border: 2px solid #ffffff;
-  z-index: 20;
 }

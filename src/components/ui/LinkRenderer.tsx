@@ -83,7 +83,7 @@ export const LinkRenderer: React.FC<LinkRendererProps> = ({ url, label, color = 
       style={{ 
         display: 'inline-block',
         marginRight: noMargin ? '0px' : '12px',
-        color: 'inherit', 
+        color,
         textDecoration: 'none',
         lineHeight: 'normal',
       }}

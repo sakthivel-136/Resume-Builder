@@ -273,7 +273,7 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
           color: hColor, 
           fontFamily: 'var(--p-heading-font)',
           fontSize: `${headSize}px`,
-          marginTop: `${secSp}px`,
+          marginTop: `calc(${secSp}px * 0.4)`,
           borderColor: hColor
         }}
       >
@@ -520,8 +520,8 @@ const ClassicTemplate = ({ state, ignoreSpacers = false, spacers = {}, isExport 
                   </ul>
                   {(p.githubUrl || p.liveUrl) && (
                     <div style={{ fontSize: `${detailSize}px`, marginTop: '4px', marginBottom: '2px' }}>
-                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color={hColor} showIcon={false} prefix="Github Link: " />}
-                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color={hColor} showIcon={false} prefix="Live In: " />}
+                      {p.githubUrl && <LinkRenderer url={p.githubUrl} label={p.githubUrl} color="#2563eb" showIcon={false} prefix="Github Link: " />}
+                      {p.liveUrl && <LinkRenderer url={p.liveUrl} label={p.liveUrl} color="#2563eb" showIcon={false} prefix="Live In: " />}
                     </div>
                   )}
                 </div>

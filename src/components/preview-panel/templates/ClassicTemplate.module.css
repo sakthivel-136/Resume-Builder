@@ -3,6 +3,7 @@
 .container {
   padding: 0;
   box-sizing: border-box;
+  line-height: var(--line-height, 1.45);
 }
 
 .header {
